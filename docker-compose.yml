@@ -13,7 +13,7 @@ services:
       - mariadb  # เปลี่ยนจาก db เป็น mariadb
     networks:
       ecp_req_network:
-        ipv4_address: 192.168.30.2
+        ipv4_address: 192.168.129.2
 
   web:
     image: nginx:latest
@@ -30,7 +30,7 @@ services:
       - ./ssl/certificates.key:/etc/ssl/private/private.key  # คีย์ส่วนตัว SSL
     networks:
       ecp_req_network:
-        ipv4_address: 192.168.30.3
+        ipv4_address: 192.168.129.3
     depends_on:
       - app
     restart: unless-stopped
@@ -40,16 +40,16 @@ services:
     restart: unless-stopped
     container_name: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: adminecp
-      MYSQL_DATABASE: ecp_req
+      MYSQL_ROOT_PASSWORD: adminppl
+      MYSQL_DATABASE: rice_product
       MYSQL_USER: admin
-      MYSQL_PASSWORD: ecp
+      MYSQL_PASSWORD: rice
       TZ: Asia/Bangkok
     networks:
       ecp_req_network:
-        ipv4_address: 192.168.30.4
+        ipv4_address: 192.168.129.4
     ports:
-      - "3306:3306"
+      - "31296:31296"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -66,7 +66,7 @@ services:
       - mariadb  # เปลี่ยนจาก db เป็น mariadb
     networks:
       ecp_req_network:
-        ipv4_address: 192.168.30.5
+        ipv4_address: 192.168.129.5
 
   composer:
     image: composer:latest
@@ -77,14 +77,14 @@ services:
     command: ["composer", "install", "--no-interaction"]
     networks:
       ecp_req_network:
-        ipv4_address: 192.168.30.6
+        ipv4_address: 192.168.129.6
 
 networks:
   ecp_req_network:
     driver: bridge
     ipam:
       config:
-        - subnet: 192.168.30.0/24
+        - subnet: 192.168.129.0/24
 
 volumes:
   db_data:
