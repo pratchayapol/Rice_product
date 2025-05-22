@@ -50,7 +50,7 @@ session_start();
             <a href="google_auth"
                 class="mt-4 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md 
           hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-3">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                <img src="https://en.wikipedia.org/wiki/Google_logo#/media/File:Google_Favicon_2025.svg"
                     alt="Google Logo" class="w-6 h-6 bg-white rounded p-1">
                 Sign in with Google
             </a>
