@@ -155,7 +155,8 @@ include 'connect/dbcon.php';
                 echo '<a href="admin/dashboard" class="mt-6 bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังหน้าผู้ใช้งาน</a>';
             } elseif ($role == 'Admin') {
                 echo '<a href="teacher/dashboard" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
-        
+            }
+
             echo '<a href="?logout=true" class="mt-6 bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition">Logout</a>';
             echo '</div></div>';
         } else {
