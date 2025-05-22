@@ -83,15 +83,10 @@ include 'connect/dbcon.php';
 
                 if ($userAccount) {
                     // ถ้ามีข้อมูลในฐานข้อมูล
-                    $_SESSION['iname'] = $userAccount['name'];
+                    $_SESSION['name'] = $userAccount['name'];
                     $_SESSION['role'] = $userAccount['role'];
                     $_SESSION['id'] = $userAccount['id'];
-                    $_SESSION['course_level'] = $userAccount['course_level'];
 
-
-                    $_SESSION['faculty'] = $userAccount['faculty'];
-                    $_SESSION['field'] = $userAccount['field'];
-                    $_SESSION['dep'] = $userAccount['dep'];
 
                     // อัปเดตภาพโปรไฟล์ในฐานข้อมูล
                     if ($userAccount['picture'] !== $userInfo->picture) {
@@ -103,42 +98,41 @@ include 'connect/dbcon.php';
 
                     // ตรวจสอบ role และ redirect ไปที่หน้า Dashboard ที่เหมาะสม
                     switch ($_SESSION['role']) {
+                        case 'User':
+                            header("Location: user/dashboard");
+                            exit();
                         case 'Admin':
                             header("Location: admin/dashboard");
                             exit();
-                        case 'Teacher':
-                            header("Location: teacher/dashboard");
-                            exit();
-                        case 'Student':
-                            header("Location: student/dashboard");
-                            exit();
-                        case 'Officer':
-                            header("Location: officer/dashboard");
-                            exit();
+                      
                         default:
                             // ถ้า role ไม่ตรงกับที่คาดหวัง
                             header("Location: index");
                             exit();
                     }
                 } else {
-                    // ถ้าอีเมลไม่มีในฐานข้อมูล
-                    echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>';
-                    echo '<script>
-    Swal.fire({
-        icon: "error",
-        title: "อีเมลของคุณไม่พบในฐานข้อมูล",
-        text: "โปรดใช้เมลมหาวิทยาลัยของคุณในการเข้าสู่ระบบ",
-        showCancelButton: false,
-        confirmButtonText: "ตกลง",
-        backdrop: "rgba(0,0,0,0.4)",
-        allowOutsideClick: false,
-        allowEscapeKey: false
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "?logout=true";
-        }
-    });
-</script>';
+                    // ถ้าอีเมลไม่มีในฐานข้อมูล ให้เพิ่มข้อมูลใหม่
+                    $insertStmt = $pdo->prepare("INSERT INTO accounts (name, email, role, picture) 
+                                 VALUES (:name, :email, :role, :picture)");
+                    $defaultRole = 'User'; // กำหนดสิทธิ์เริ่มต้นเป็น User
+
+                    $insertStmt->bindParam(':name', $userInfo->name);
+                    $insertStmt->bindParam(':email', $userInfo->email);
+                    $insertStmt->bindParam(':role', $defaultRole);
+                    $insertStmt->bindParam(':picture', $userInfo->picture);
+                    $insertStmt->execute();
+
+                    // ดึง ID ล่าสุดที่เพิ่ง insert เข้ามา
+                    $newUserId = $pdo->lastInsertId();
+
+                    // สร้าง session สำหรับผู้ใช้ใหม่
+                    $_SESSION['name'] = $userInfo->name;
+                    $_SESSION['role'] = $defaultRole;
+                    $_SESSION['id'] = $newUserId;
+
+                    // ไปยังหน้า dashboard สำหรับผู้ใช้ทั่วไป
+                    header("Location: user/dashboard");
+                    exit();
                 }
                 exit();
             }
