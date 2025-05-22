@@ -46,12 +46,22 @@ session_start();
                 กระทรวงเกษตรและสหกรณ์
             </p>
             <!-- Button -->
+            <!-- Google Sign-In Button -->
             <a href="google_auth"
-                class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md 
-          hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
-                    alt="Google Logo" class="w-5 h-5">
-                Login with Google
+                class="mt-4 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md 
+          hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                    alt="Google Logo" class="w-6 h-6 bg-white rounded p-1">
+                Sign in with Google
+            </a>
+
+            <!-- LINE Sign-In Button -->
+            <a href="line_auth"
+                class="mt-4 px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md 
+          hover:bg-green-600 hover:shadow-lg transition-all flex items-center gap-3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+                    alt="LINE Logo" class="w-6 h-6 bg-white rounded p-1">
+                Sign in with LINE
             </a>
 
 
