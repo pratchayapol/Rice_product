@@ -1,6 +1,6 @@
 <?php
 session_start();
-$line_login_url = 'https://liff.line.me/2007460484-JyqOV7wz';
+$line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 ?>
 <!DOCTYPE html>
 <html lang="th">
