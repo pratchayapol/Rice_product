@@ -54,7 +54,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: rice_phpmyadmin
     restart: unless-stopped
     ports:
       - "4903:80"
