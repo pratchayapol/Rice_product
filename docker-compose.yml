@@ -14,6 +14,8 @@ services:
     networks:
       ecp_req_network:
         ipv4_address: 192.168.129.2
+    ports:
+      - "9001:9000"  # Host:Container
 
   web:
     image: nginx:latest
