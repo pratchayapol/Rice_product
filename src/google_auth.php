@@ -150,14 +150,18 @@ include 'connect/dbcon.php';
             echo '<h1 class="text-3xl font-semibold text-gray-800 mb-6">' . htmlspecialchars($user['name']) . '</h1>';
             echo '<div class="mb-4 text-gray-700 text-lg">อีเมล: <span class="font-semibold">' . htmlspecialchars($user['email']) . '</span></div>';
 
-            // เพิ่มปุ่มเข้าใช้งานตาม role ของผู้ใช้
+            echo '<div class="mt-6 flex flex-wrap gap-4">';
+
             if ($role == 'User') {
-                echo '<a href="user/dashboard" class="mt-6 bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังหน้าผู้ใช้งาน</a>';
+                echo '<a href="user/dashboard" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังหน้าผู้ใช้งาน</a>';
             } elseif ($role == 'Admin') {
-                echo '<a href="admin/dashboard" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
+                echo '<a href="admin/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
             }
 
-            echo '<a href="?logout=true" class="mt-6 bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition">Logout</a>';
+            echo '<a href="?logout=true" class="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition">Logout</a>';
+
+            echo '</div>';
+
             echo '</div></div>';
         } else {
             echo "ไม่สามารถเชื่อมต่อกับ Google API ได้";
