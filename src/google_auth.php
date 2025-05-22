@@ -152,13 +152,13 @@ include 'connect/dbcon.php';
 
             echo '<div class="mt-6 flex flex-wrap gap-4">';
 
+            echo '<a href="?logout=true" class="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition">Logout</a>';
+
             if ($role == 'User') {
                 echo '<a href="user/dashboard" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังหน้าผู้ใช้งาน</a>';
             } elseif ($role == 'Admin') {
                 echo '<a href="admin/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
             }
-
-            echo '<a href="?logout=true" class="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition">Logout</a>';
 
             echo '</div>';
 
