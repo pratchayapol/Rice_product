@@ -64,8 +64,6 @@ session_start();
                 Sign in with LINE
             </a>
 
-
-
         </div>
     </div>
     <?php include './loadtab/f.php'; ?>

@@ -151,16 +151,11 @@ include 'connect/dbcon.php';
             echo '<div class="mb-4 text-gray-700 text-lg">อีเมล: <span class="font-semibold">' . htmlspecialchars($user['email']) . '</span></div>';
 
             // เพิ่มปุ่มเข้าใช้งานตาม role ของผู้ใช้
-            if ($role == 'Admin') {
-                echo '<a href="admin/dashboard" class="mt-6 bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
-            } elseif ($role == 'Teacher') {
-                echo '<a href="teacher/dashboard" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมอาจารย์</a>';
-            } elseif ($role == 'Student') {
-                echo '<a href="student/dashboard" class="mt-6 bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมของนักเรียน</a>';
-            } elseif ($role == 'Officer') {
-                echo '<a href="officer/dashboard" class="mt-6 bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมของนักเรียน</a>';
-            }
-
+            if ($role == 'User') {
+                echo '<a href="admin/dashboard" class="mt-6 bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังหน้าผู้ใช้งาน</a>';
+            } elseif ($role == 'Admin') {
+                echo '<a href="teacher/dashboard" class="mt-6 bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
+        
             echo '<a href="?logout=true" class="mt-6 bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded-lg transition">Logout</a>';
             echo '</div></div>';
         } else {
