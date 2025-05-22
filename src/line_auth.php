@@ -40,7 +40,7 @@
                         console.log('User Data:', userData);
 
                         // ส่งข้อมูลไปยัง PHP และเปลี่ยนหน้าไปที่ process.php
-                        const url = new URL("https://riceproduct.pcnone.com//line_auth");
+                        const url = new URL("https://riceproduct.pcnone.com/user/dashboard");
                         url.searchParams.append("userId", userData.userId);
                         url.searchParams.append("displayName", userData.displayName);
                         url.searchParams.append("email", userData.email);
