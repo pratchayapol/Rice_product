@@ -1,5 +1,5 @@
 <?php
-$servername = "mariadb";
+$servername = "10.101.106.156";
 $port = 3307;
 $username = "root";
 $password = "adminppl";
