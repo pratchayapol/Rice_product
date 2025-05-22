@@ -104,7 +104,7 @@ include 'connect/dbcon.php';
                         case 'Admin':
                             header("Location: admin/dashboard");
                             exit();
-                      
+
                         default:
                             // ถ้า role ไม่ตรงกับที่คาดหวัง
                             header("Location: index");
@@ -122,18 +122,18 @@ include 'connect/dbcon.php';
                     $insertStmt->bindParam(':picture', $userInfo->picture);
                     $insertStmt->execute();
 
-                    // ดึง ID ล่าสุดที่เพิ่ง insert เข้ามา
-                    $newUserId = $pdo->lastInsertId();
 
                     // สร้าง session สำหรับผู้ใช้ใหม่
                     $_SESSION['name'] = $userInfo->name;
+                    $_SESSION['email'] = $userInfo->email; // ✅ เก็บ email ลง session
                     $_SESSION['role'] = $defaultRole;
-                    $_SESSION['id'] = $newUserId;
+
 
                     // ไปยังหน้า dashboard สำหรับผู้ใช้ทั่วไป
                     header("Location: user/dashboard");
                     exit();
                 }
+
                 exit();
             }
 
