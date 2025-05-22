@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$line_login_url = 'https://liff.line.me/2007460484-JyqOV7wz';
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -56,7 +56,7 @@ session_start();
             </a>
 
             <!-- LINE Sign-In Button -->
-            <a href="line_auth"
+            <a href="<?= $line_login_url ?>"
                 class="w-full mt-4 px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md 
           hover:bg-green-600 hover:shadow-lg transition-all flex items-center justify-center gap-3">
                 <img src="image/LINE_logo.svg.webp"
