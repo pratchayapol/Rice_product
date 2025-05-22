@@ -24,10 +24,9 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-100 to-blue-200">
+<body class="flex items-center justify-center min-h-screen bg">
     <?php include './loadtab/h.php'; ?>
-
-    <div class="w-full max-w-md p-8 m-6 bg-white rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-105">
+    <div class="w-full max-w-md p-8 m-6 bg-white rounded-2xl shadow-2xl transform transition duration-500 hover:scale-105">
         <div class="flex flex-col items-center">
             <!-- Logo -->
             <img src="image/logo.png" alt="Logo" class="w-28 h-28 rounded-full shadow-lg ring-4 ring-white mb-4">
@@ -45,20 +44,20 @@ session_start();
             <p class="text-gray-600 mt-1 text-sm text-center">
                 กระทรวงเกษตรและสหกรณ์
             </p>
-
             <!-- Button -->
             <a href="google_auth"
                 class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md 
-                      hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-2">
+          hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-2">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
                     alt="Google Logo" class="w-5 h-5">
                 Login with Google
             </a>
+
+
+
         </div>
     </div>
-
     <?php include './loadtab/f.php'; ?>
 </body>
-
 
 </html>
