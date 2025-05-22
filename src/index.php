@@ -24,7 +24,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg">
+<body class="flex items-center justify-center min-h-screen bg t1">
     <?php include './loadtab/h.php'; ?>
     <div class="w-full max-w-md p-8 m-6 bg-white rounded-2xl shadow-2xl transform transition duration-500 hover:scale-105">
         <div class="flex flex-col items-center">
