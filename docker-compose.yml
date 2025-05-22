@@ -19,8 +19,8 @@ services:
     image: nginx:latest
     container_name: nginx_web
     ports:
-      - "80:80"
-      - "443:443"  # เพิ่มการเปิด port 443 สำหรับ HTTPS
+      - "4902:80"
+      - "4904:443"  # เพิ่มการเปิด port 443 สำหรับ HTTPS
     volumes:
       - web_data:/var/www/html
       - ./src:/var/www/html
@@ -49,14 +49,14 @@ services:
       ecp_req_network:
         ipv4_address: 192.168.129.4
     ports:
-      - "31296:31296"
+      - "3307:3306"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "4903:80"
     environment:
       PMA_HOST: mariadb  # ใช้ mariadb แทน db
       MYSQL_ROOT_PASSWORD: adminecp
