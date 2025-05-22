@@ -215,7 +215,7 @@ include 'connect/dbcon.php';
         session_destroy();
 
         // URL สำหรับ redirect หลัง logout
-        $logoutRedirect = 'https://ecpreq.pcnone.com';
+        $logoutRedirect = 'https://riceproduct.pcnone.com';
 
         // Redirect ไป logout ของ Google และกลับมายังระบบ
         header('Location: https://accounts.google.com/Logout?continue=https://appengine.google.com/_ah/logout?continue=' . urlencode($logoutRedirect));
