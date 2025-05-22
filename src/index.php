@@ -32,9 +32,10 @@ session_start();
             <img src="image/logo.png" alt="Logo" class="w-28 h-28 rounded-full shadow-lg ring-4 ring-white mb-4">
 
             <!-- Title -->
-            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center leading-snug">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-800 text-center leading-snug">
                 ระบบบริการข้อมูลแปรรูปผลิตภัณฑ์ข้าวไทย
             </h1>
+
             <p class="text-gray-600 mt-2 text-sm text-center">
                 Smart Thai Rice Processing Information System
             </p>
