@@ -24,38 +24,41 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg">
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-100 to-blue-200">
     <?php include './loadtab/h.php'; ?>
-    <div class="w-full max-w-md p-8 m-6 bg-white rounded-2xl shadow-2xl transform transition duration-500 hover:scale-105">
+
+    <div class="w-full max-w-md p-8 m-6 bg-white rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-105">
         <div class="flex flex-col items-center">
             <!-- Logo -->
-            <img src="image/logo.png" alt="Logo" class="w-32 h-32 rounded-full shadow-lg">
+            <img src="image/logo.png" alt="Logo" class="w-28 h-28 rounded-full shadow-lg ring-4 ring-white mb-4">
 
             <!-- Title -->
-            <h4 class="mt-4 text-3xl font-extrabold text-gray-800 t1">ระบบบริการข้อมูลแปรรูปผลิตภัณฑ์ข้าวไทย</h4>
-            <p class="text-gray-500 mt-2 text-sm text-center t1">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 text-center leading-snug">
+                ระบบบริการข้อมูลแปรรูปผลิตภัณฑ์ข้าวไทย
+            </h1>
+            <p class="text-gray-600 mt-2 text-sm text-center">
                 Smart Thai Rice Processing Information System
             </p>
-            <p class="text-gray-500 mt-2 text-sm text-center t1">
+            <p class="text-gray-600 mt-1 text-sm text-center">
                 ศูนย์วิจัยข้าวขอนแก่น กรมการข้าว
             </p>
-            <p class="text-gray-500 mt-2 text-sm text-center t1">
+            <p class="text-gray-600 mt-1 text-sm text-center">
                 กระทรวงเกษตรและสหกรณ์
             </p>
+
             <!-- Button -->
             <a href="google_auth"
                 class="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md 
-          hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-2">
+                      hover:bg-blue-700 hover:shadow-lg transition-all flex items-center gap-2">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/IOS_Google_icon.png"
                     alt="Google Logo" class="w-5 h-5">
                 Login with Google
             </a>
-
-
-
         </div>
     </div>
+
     <?php include './loadtab/f.php'; ?>
 </body>
+
 
 </html>
