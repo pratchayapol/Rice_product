@@ -1,9 +1,9 @@
 <?php
 $servername = "mariadb";
-$port = 3306;
+$port = 3307;
 $username = "root";
-$password = "adminecp";
-$dbname = "ecp_req";
+$password = "adminppl";
+$dbname = "rice_product";
 
 try {
     $dsn = "mysql:host=$servername;port=$port;dbname=$dbname;charset=utf8mb4";
