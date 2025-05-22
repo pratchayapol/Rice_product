@@ -3,14 +3,13 @@ services:
     build:
       context: .
       dockerfile: ./php/Dockerfile
-    image: php:8.2-fpm-custom
     container_name: php_app
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
     restart: unless-stopped
     depends_on:
-      - mariadb  # เปลี่ยนจาก db เป็น mariadb
+      - mariadb
     networks:
       ecp_req_network:
         ipv4_address: 192.168.129.2
