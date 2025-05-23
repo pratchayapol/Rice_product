@@ -210,7 +210,13 @@ include 'connect/dbcon.php';
                 $params["httponly"]
             );
         }
-
+    ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                liff.logout(); // logout จาก LIFF
+            });
+        </script>
+    <?php
         // ทำลาย session
         session_destroy();
 
