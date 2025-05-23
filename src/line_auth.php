@@ -7,9 +7,8 @@ error_reporting(E_ALL);
 
 // เชื่อมต่อฐานข้อมูล (แก้ไขค่าตามของคุณ)
 try {
-   include 'connect/dbcon.php';
+    include 'connect/dbcon.php';
 } catch (Exception $e) {
-    // ถ้าเชื่อมต่อ DB ไม่ได้ ส่ง error เป็น JSON และออก
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Content-Type: application/json');
         echo json_encode(['error' => 'Database connection failed: ' . $e->getMessage()]);
@@ -32,37 +31,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception('ข้อมูล userId หรือ displayName ไม่ครบ');
         }
 
-        // ตรวจสอบว่ามีบัญชีอยู่แล้วหรือไม่
-        $sql = "SELECT * FROM accounts WHERE id = :id OR email = :email LIMIT 1";
+        // ตรวจสอบว่ามีบัญชีอยู่แล้วหรือไม่ โดยเช็คจาก email
+        $sql = "SELECT * FROM accounts WHERE email = :email LIMIT 1";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id' => $userId, 'email' => $email]);
+        $stmt->execute(['email' => $email]);
         $user = $stmt->fetch();
 
         if ($user) {
-            // อัปเดตภาพโปรไฟล์
-            $update = $pdo->prepare("UPDATE accounts SET picture = :picture WHERE id = :id OR email = :email");
+            // อัปเดตภาพโปรไฟล์และ line_user_id (ถ้าต้องการ)
+            $update = $pdo->prepare("UPDATE accounts SET picture = :picture, line_user_id = :line_user_id WHERE email = :email");
             $update->execute([
                 'picture' => $pictureUrl,
-                'id' => $userId,
+                'line_user_id' => $userId,
                 'email' => $email
             ]);
             $role = $user['role'];
         } else {
-            // เพิ่มผู้ใช้ใหม่
-            $insert = $pdo->prepare("INSERT INTO accounts (id, name, email, role, picture) 
-                                     VALUES (:id, :name, :email, 'User', :picture)");
+            // เพิ่มผู้ใช้ใหม่ (ไม่ระบุ id ให้ DB สร้างอัตโนมัติ)
+            $insert = $pdo->prepare("INSERT INTO accounts (name, email, role, picture, line_user_id) 
+                                     VALUES (:name, :email, 'User', :picture, :line_user_id)");
             $insert->execute([
-                'id' => $userId,
                 'name' => $displayName,
                 'email' => $email,
-                'picture' => $pictureUrl
+                'picture' => $pictureUrl,
+                'line_user_id' => $userId
             ]);
             $role = 'User';
         }
 
         // เซฟ session
         $_SESSION['user'] = [
-            'id' => $userId,
             'name' => $displayName,
             'email' => $email,
             'role' => $role,
@@ -86,71 +84,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        liff.init({
-            liffId: "2007460484-WlA3R3By", // เปลี่ยนเป็น LIFF ID ของคุณ
-            withLoginOnExternalBrowser: true,
-            loginConfig: {
-                redirectUri: window.location.href,
-                scopes: ["profile", "email"]
-            }
-        }).then(() => {
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            } else {
-                Promise.all([liff.getProfile(), liff.getDecodedIDToken()])
-                    .then(([profile, idToken]) => {
-                        const userData = {
-                            userId: profile.userId,
-                            displayName: profile.displayName,
-                            pictureUrl: profile.pictureUrl,
-                            email: idToken?.email || ""
-                        };
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    liff.init({
+        liffId: "2007460484-WlA3R3By", // เปลี่ยนเป็น LIFF ID ของคุณ
+        withLoginOnExternalBrowser: true,
+        loginConfig: {
+            redirectUri: window.location.href,
+            scopes: ["profile", "email"]
+        }
+    }).then(() => {
+        if (!liff.isLoggedIn()) {
+            liff.login();
+        } else {
+            Promise.all([liff.getProfile(), liff.getDecodedIDToken()])
+                .then(([profile, idToken]) => {
+                    const userData = {
+                        userId: profile.userId,
+                        displayName: profile.displayName,
+                        pictureUrl: profile.pictureUrl,
+                        email: idToken?.email || ""
+                    };
 
-                        fetch(window.location.href, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/x-www-form-urlencoded'
-                            },
-                            body: new URLSearchParams(userData)
-                        })
-                        .then(res => res.text())
-                        .then(text => {
-                            console.log("Response text:", text);
-                            try {
-                                const data = JSON.parse(text);
-                                if (data.error) {
-                                    alert("Error: " + data.error);
-                                    return;
-                                }
-                                if (data.role === 'Admin') {
-                                    window.location.href = "/admin/dashboard";
-                                } else if (data.role === 'User') {
-                                    window.location.href = "/user/dashboard";
-                                } else {
-                                    alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
-                                }
-                            } catch (err) {
-                                console.error("JSON parse error:", err);
-                                alert("เกิดข้อผิดพลาด: ไม่สามารถแปลงข้อมูลจากเซิร์ฟเวอร์ได้");
+                    fetch(window.location.href, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams(userData)
+                    })
+                    .then(res => res.text())
+                    .then(text => {
+                        console.log("Response text:", text);
+                        try {
+                            const data = JSON.parse(text);
+                            if (data.error) {
+                                alert("Error: " + data.error);
+                                return;
                             }
-                        })
-                        .catch(err => {
-                            console.error("Fetch error:", err);
-                            alert("เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์");
-                        });
+                            if (data.role === 'Admin') {
+                                window.location.href = "/admin/dashboard";
+                            } else if (data.role === 'User') {
+                                window.location.href = "/user/dashboard";
+                            } else {
+                                alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
+                            }
+                        } catch (err) {
+                            console.error("JSON parse error:", err);
+                            alert("เกิดข้อผิดพลาด: ไม่สามารถแปลงข้อมูลจากเซิร์ฟเวอร์ได้");
+                        }
                     })
                     .catch(err => {
-                        console.error("Error getting profile:", err);
-                        alert("เกิดข้อผิดพลาดในการดึงข้อมูลโปรไฟล์");
+                        console.error("Fetch error:", err);
+                        alert("เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์");
                     });
-            }
-        }).catch(err => {
-            console.error("LIFF init error:", err);
-            alert("เกิดข้อผิดพลาดในการเริ่มต้น LIFF");
-        });
+                })
+                .catch(err => {
+                    console.error("Error getting profile:", err);
+                    alert("เกิดข้อผิดพลาดในการดึงข้อมูลโปรไฟล์");
+                });
+        }
+    }).catch(err => {
+        console.error("LIFF init error:", err);
+        alert("เกิดข้อผิดพลาดในการเริ่มต้น LIFF");
     });
-    </script>
+});
+</script>
 </body>
 </html>
