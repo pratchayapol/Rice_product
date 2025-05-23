@@ -1,17 +1,27 @@
 <?php
 session_start();
 ob_start();
-error_reporting(0);
-ini_set('display_errors', 0);
+
+// เปิด error ระหว่างพัฒนา (ควรปิดใน production)
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Log POST ชั่วคราว
+file_put_contents('log.txt', print_r($_POST, true));
 
 // เชื่อมต่อฐานข้อมูล
 include 'connect/dbcon.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userId = $_POST['userId'] ?? '';
-    $displayName = $_POST['displayName'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $pictureUrl = $_POST['pictureUrl'] ?? '';
+    $userId       = $_POST['userId'] ?? '';
+    $displayName  = $_POST['displayName'] ?? '';
+    $email        = $_POST['email'] ?? '';
+    $pictureUrl   = $_POST['pictureUrl'] ?? '';
+
+    if (!$userId || !$displayName || !$email) {
+        echo json_encode(['error' => 'ข้อมูลไม่ครบ']);
+        exit;
+    }
 
     // ตรวจสอบว่ามีบัญชีหรือยัง
     $sql = "SELECT * FROM accounts WHERE id = :id OR email = :email LIMIT 1";
@@ -20,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch();
 
     if ($user) {
+        // อัปเดตรูปภาพ
         $updateSql = "UPDATE accounts SET picture = :picture WHERE id = :id OR email = :email";
         $updateStmt = $pdo->prepare($updateSql);
         $updateStmt->execute([
@@ -29,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         $role = $user['role'];
     } else {
+        // สร้างบัญชีใหม่
         $insertSql = "INSERT INTO accounts (id, name, email, role, picture) VALUES (:id, :name, :email, 'User', :picture)";
         $insertStmt = $pdo->prepare($insertSql);
         $insertStmt->execute([
@@ -40,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $role = 'User';
     }
 
+    // เก็บ session
     $_SESSION['user'] = [
         'id' => $userId,
         'name' => $displayName,
@@ -48,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'picture' => $pictureUrl,
     ];
 
-    // ส่ง role กลับให้ JS redirect
+    // ส่งกลับ role
     echo json_encode(['role' => $role]);
     exit;
 }
@@ -80,10 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 userId: profile.userId,
                                 displayName: profile.displayName,
                                 pictureUrl: profile.pictureUrl,
-                                email: idToken?.email || "ไม่ทราบอีเมล"
+                                email: idToken?.email || "noemail@example.com"
                             };
 
-                            // ส่งข้อมูลไปยัง PHP ด้วย fetch แบบ POST
+                            // ส่งข้อมูลไป PHP
                             fetch(window.location.href, {
                                 method: 'POST',
                                 headers: {
@@ -91,19 +104,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 },
                                 body: new URLSearchParams(userData)
                             })
-                            .then(response => response.json())
-                            .then(data => {
+                            .then(res => res.text())
+                            .then(text => {
+                                console.log('Raw response:', text);
+                                let data;
+                                try {
+                                    data = JSON.parse(text);
+                                } catch (err) {
+                                    alert('ไม่สามารถแปลงข้อมูลจากเซิร์ฟเวอร์ได้');
+                                    console.error(err);
+                                    return;
+                                }
+
                                 if (data.role === 'Admin') {
                                     window.location.href = "/admin/dashboard";
                                 } else {
                                     window.location.href = "/user/dashboard";
                                 }
                             })
-                            .catch(err => console.error('Fetch Error:', err));
+                            .catch(err => {
+                                alert('เกิดข้อผิดพลาดระหว่างส่งข้อมูล');
+                                console.error('Fetch Error:', err);
+                            });
                         })
-                        .catch(err => console.error('Error getting profile:', err));
+                        .catch(err => console.error('LIFF profile error:', err));
                 }
-            }).catch(err => console.error('LIFF Initialization failed:', err));
+            }).catch(err => console.error('LIFF Init Error:', err));
         });
     </script>
 </body>
