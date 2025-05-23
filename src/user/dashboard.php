@@ -35,7 +35,12 @@ session_start();
             <h1 class="text-xl md:text-2xl font-bold text-gray-800 text-center leading-snug">
                 กำลังดำเนินการนะครับ
             </h1>
-
+            <div class="text-center mt-6">
+                <a href="https://riceproduct.pcnone.com/google_auth?logout=true"
+                    class="inline-block px-6 py-3 bg-red-600 text-white font-semibold rounded hover:bg-red-700 transition">
+                    Logout
+                </a>
+            </div>
         </div>
     </div>
     <?php include '../loadtab/f.php'; ?>
