@@ -1,56 +1,55 @@
 <?php
 session_start();
-ob_start();
 
-// ✅ เปิดแสดง error บนหน้าเว็บ
+// แสดง error (เปิดเฉพาะตอนพัฒนา)
 ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // เชื่อมต่อฐานข้อมูล
 include 'connect/dbcon.php';
 
+// ถ้าเป็น POST ให้ประมวลผลข้อมูล
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $userId       = $_POST['userId'] ?? '';
-    $displayName  = $_POST['displayName'] ?? '';
-    $email        = $_POST['email'] ?? '';
-    $pictureUrl   = $_POST['pictureUrl'] ?? '';
+    header('Content-Type: application/json');
 
-    if (!$userId || !$displayName || !$email) {
+    $userId = $_POST['userId'] ?? '';
+    $displayName = $_POST['displayName'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $pictureUrl = $_POST['pictureUrl'] ?? '';
+
+    if (empty($userId) || empty($displayName)) {
         echo json_encode(['error' => 'ข้อมูลไม่ครบ']);
         exit;
     }
 
-    // ตรวจสอบว่ามีบัญชีหรือยัง
+    // ตรวจสอบว่ามีบัญชีอยู่แล้วหรือไม่
     $sql = "SELECT * FROM accounts WHERE id = :id OR email = :email LIMIT 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id' => $userId, 'email' => $email]);
     $user = $stmt->fetch();
 
     if ($user) {
-        // อัปเดตรูปภาพ
-        $updateSql = "UPDATE accounts SET picture = :picture WHERE id = :id OR email = :email";
-        $updateStmt = $pdo->prepare($updateSql);
-        $updateStmt->execute([
+        // อัปเดตภาพโปรไฟล์
+        $update = $pdo->prepare("UPDATE accounts SET picture = :picture WHERE id = :id OR email = :email");
+        $update->execute([
             'picture' => $pictureUrl,
             'id' => $userId,
-            'email' => $email,
+            'email' => $email
         ]);
         $role = $user['role'];
     } else {
-        // สร้างบัญชีใหม่
-        $insertSql = "INSERT INTO accounts (id, name, email, role, picture) VALUES (:id, :name, :email, 'User', :picture)";
-        $insertStmt = $pdo->prepare($insertSql);
-        $insertStmt->execute([
+        // เพิ่มผู้ใช้ใหม่
+        $insert = $pdo->prepare("INSERT INTO accounts (id, name, email, role, picture) 
+                                 VALUES (:id, :name, :email, 'User', :picture)");
+        $insert->execute([
             'id' => $userId,
             'name' => $displayName,
             'email' => $email,
-            'picture' => $pictureUrl,
+            'picture' => $pictureUrl
         ]);
         $role = 'User';
     }
 
-    // เก็บ session
     $_SESSION['user'] = [
         'id' => $userId,
         'name' => $displayName,
@@ -59,23 +58,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'picture' => $pictureUrl,
     ];
 
-    // ส่งกลับ role
     echo json_encode(['role' => $role]);
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <title>LINE-auth</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
 <body>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             liff.init({
-                liffId: "2007460484-WlA3R3By",
+                liffId: "2007460484-WlA3R3By", // <-- เปลี่ยนเป็น LIFF ID ของคุณ
                 withLoginOnExternalBrowser: true,
                 loginConfig: {
                     redirectUri: window.location.href,
@@ -91,10 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 userId: profile.userId,
                                 displayName: profile.displayName,
                                 pictureUrl: profile.pictureUrl,
-                                email: idToken?.email || "noemail@example.com"
+                                email: idToken?.email || ""
                             };
 
-                            // ส่งข้อมูลไป PHP
                             fetch(window.location.href, {
                                 method: 'POST',
                                 headers: {
@@ -102,32 +101,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 },
                                 body: new URLSearchParams(userData)
                             })
-                            .then(res => res.text())
-                            .then(text => {
-                                console.log('Raw response:', text);
-                                let data;
-                                try {
-                                    data = JSON.parse(text);
-                                } catch (err) {
-                                    alert('ไม่สามารถแปลงข้อมูลจากเซิร์ฟเวอร์ได้');
-                                    console.error(err);
-                                    return;
-                                }
-
+                            .then(res => res.json())
+                            .then(data => {
                                 if (data.role === 'Admin') {
                                     window.location.href = "/admin/dashboard";
-                                } else {
+                                } else if (data.role === 'User') {
                                     window.location.href = "/user/dashboard";
+                                } else {
+                                    alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
                                 }
                             })
                             .catch(err => {
-                                alert('เกิดข้อผิดพลาดระหว่างส่งข้อมูล');
-                                console.error('Fetch Error:', err);
+                                console.error("Fetch error:", err);
+                                alert("เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์");
                             });
                         })
-                        .catch(err => console.error('LIFF profile error:', err));
+                        .catch(err => {
+                            console.error("Error getting profile:", err);
+                        });
                 }
-            }).catch(err => console.error('LIFF Init Error:', err));
+            }).catch(err => console.error("LIFF init error:", err));
         });
     </script>
 </body>
