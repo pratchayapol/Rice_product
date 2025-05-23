@@ -29,6 +29,29 @@ session_start();
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
 
+    <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full">
+        <h1 class="text-3xl md:text-4xl font-bold text-black mb-2">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
+        <p class="text-xl text-gray-800 mb-6">Rice Products Database</p>
+
+        <div class="flex justify-center mb-8">
+            <div class="relative w-full max-w-md">
+                <input type="text" placeholder="ค้นหา" class="w-full px-5 py-3 rounded-full shadow border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400">
+                <span class="absolute right-4 top-3.5 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+        <div class="flex justify-center space-x-6">
+            <img src="your-image-url-brown.png" alt="Brown Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
+            <img src="your-image-url-white.png" alt="White Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
+            <img src="your-image-url-black.png" alt="Black Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
+        </div>
+    </div>
+
+
     <script>
         document.getElementById("menu-toggle").addEventListener("click", function() {
             const menu = document.getElementById("mobile-menu");
