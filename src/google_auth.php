@@ -189,42 +189,52 @@ include 'connect/dbcon.php';
     }
 
     if (isset($_GET['logout'])) {
-        // เริ่มต้น session ถ้ายังไม่ได้เริ่ม
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        // เคลียร์ตัวแปร session ทั้งหมด
         $_SESSION = [];
-
-        // ถ้ามีการใช้ session cookie ให้ลบ cookie ด้วย
         if (ini_get("session.use_cookies")) {
             $params = session_get_cookie_params();
             setcookie(
                 session_name(),
                 '',
-                time() - 42000, // ทำให้ cookie หมดอายุ
+                time() - 42000,
                 $params["path"],
                 $params["domain"],
                 $params["secure"],
                 $params["httponly"]
             );
         }
-    ?>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                liff.logout(); // logout จาก LIFF
-            });
-        </script>
-    <?php
-        // ทำลาย session
         session_destroy();
+    ?>
+        <!DOCTYPE html>
+        <html>
 
-        // URL สำหรับ redirect หลัง logout
-        $logoutRedirect = 'https://riceproduct.pcnone.com';
+        <head>
+            <meta charset="UTF-8">
+            <title>Logging out...</title>
+            <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+        </head>
 
-        // Redirect ไป logout ของ Google และกลับมายังระบบ
-        header('Location: https://accounts.google.com/Logout?continue=https://appengine.google.com/_ah/logout?continue=' . urlencode($logoutRedirect));
+        <body>
+            <script>
+                document.addEventListener('DOMContentLoaded', async () => {
+                    await liff.init({
+                        liffId: "2007460484-WlA3R3By"
+                    }); // ใส่ LIFF ID
+                    if (liff.isLoggedIn()) {
+                        await liff.logout();
+                    }
+                    // redirect หลัง logout สำเร็จ
+                    window.location.href = "https://accounts.google.com/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://riceproduct.pcnone.com";
+                });
+            </script>
+            <p>กำลังออกจากระบบ...</p>
+        </body>
+
+        </html>
+    <?php
         exit();
     }
 
