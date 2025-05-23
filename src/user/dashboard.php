@@ -45,9 +45,9 @@ session_start();
         </div>
 
         <div class="flex justify-center space-x-6">
-            <img src="your-image-url-brown.png" alt="Brown Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
-            <img src="your-image-url-white.png" alt="White Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
-            <img src="your-image-url-black.png" alt="Black Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
+            <img src="../image/dash1.png" alt="Brown Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
+            <img src="../image/dash2.png" alt="White Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
+            <img src="../image/dash3.png" alt="Black Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
         </div>
     </div>
 
