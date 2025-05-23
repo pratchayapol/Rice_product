@@ -27,7 +27,7 @@ session_start();
 <body class="flex items-center justify-center min-h-screen bg t1">
     <?php include '../loadtab/h.php'; ?>
     <!-- Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-cover bg-center" style="background-image: url('../images/nav.png');">
+<nav class="fixed top-0 left-0 w-full z-50 bg-cover bg-center" style="background-image: url('../images/nav.jpg');">
   <div class="bg-black bg-opacity-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-20">
