@@ -9,6 +9,56 @@ error_reporting(0);
 ini_set('display_errors', 0);
 
 include 'connect/dbcon.php';
+
+if (isset($_GET['logout'])) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION = [];
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+        session_destroy();
+    ?>
+        <!DOCTYPE html>
+        <html>
+
+        <head>
+            <meta charset="UTF-8">
+            <title>Logging out...</title>
+            <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+        </head>
+
+        <body>
+            <script>
+                document.addEventListener('DOMContentLoaded', async () => {
+                    await liff.init({
+                        liffId: "2007460484-WlA3R3By"
+                    }); // ใส่ LIFF ID
+                    if (liff.isLoggedIn()) {
+                        await liff.logout();
+                    }
+                    // redirect หลัง logout สำเร็จ
+                    window.location.href = "https://accounts.google.com/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://riceproduct.pcnone.com";
+                });
+            </script>
+        </body>
+
+        </html>
+    <?php
+        exit();
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -187,57 +237,6 @@ include 'connect/dbcon.php';
         echo '  </a></div>
     </div>';
     }
-
-    if (isset($_GET['logout'])) {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        $_SESSION = [];
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(
-                session_name(),
-                '',
-                time() - 42000,
-                $params["path"],
-                $params["domain"],
-                $params["secure"],
-                $params["httponly"]
-            );
-        }
-        session_destroy();
-    ?>
-        <!DOCTYPE html>
-        <html>
-
-        <head>
-            <meta charset="UTF-8">
-            <title>Logging out...</title>
-            <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-        </head>
-
-        <body>
-            <script>
-                document.addEventListener('DOMContentLoaded', async () => {
-                    await liff.init({
-                        liffId: "2007460484-WlA3R3By"
-                    }); // ใส่ LIFF ID
-                    if (liff.isLoggedIn()) {
-                        await liff.logout();
-                    }
-                    // redirect หลัง logout สำเร็จ
-                    window.location.href = "https://accounts.google.com/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://riceproduct.pcnone.com";
-                });
-            </script>
-        </body>
-
-        </html>
-    <?php
-        exit();
-    }
-
-
     ?>
     <?php include './loadtab/f.php'; ?>
 </body>
