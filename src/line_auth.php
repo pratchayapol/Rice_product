@@ -98,7 +98,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -127,6 +126,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     Promise.all([liff.getProfile(), liff.getDecodedIDToken()])
                         .then(([profile, idToken]) => {
+                            console.log('idToken:', idToken);
+                            console.log('email from idToken:', idToken?.email);
+
                             const userData = {
                                 userId: profile.userId,
                                 displayName: profile.displayName,
@@ -151,9 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             return;
                                         }
                                         if (data.role === 'Admin') {
-                                            //window.location.href = "/admin/dashboard";
+                                            window.location.href = "/admin/dashboard";
                                         } else if (data.role === 'User') {
-                                            //window.location.href = "/user/dashboard";
+                                            window.location.href = "/user/dashboard";
                                         } else {
                                             alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
                                         }
