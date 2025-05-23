@@ -29,7 +29,7 @@ session_start();
     <!-- Navigation Bar -->
     <nav class="fixed top-0 left-0 w-full z-50">
         <!-- Background Image Layer -->
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../images/nav.jpg'); z-index: -1;"></div>
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../image/nav.jpg'); z-index: -1;"></div>
 
         <!-- Overlay Layer -->
         <div class="bg-black bg-opacity-30">
@@ -37,7 +37,7 @@ session_start();
                 <div class="flex justify-between items-center h-20">
                     <!-- Logo and Title -->
                     <div class="flex items-center space-x-4">
-                        <img src="./images/logo.png" alt="Rice Department Logo" class="w-12 h-12 rounded-full border border-white" />
+                        <img src="../image/logo.png" alt="Rice Department Logo" class="w-12 h-12 rounded-full border border-white" />
                         <div class="text-white">
                             <div class="text-lg font-semibold">กรมการข้าว</div>
                             <div class="text-sm">Rice Department</div>
