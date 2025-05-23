@@ -23,48 +23,20 @@ session_start();
     <link rel="stylesheet" href="../css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body class="bg-gray-50 min-h-screen">
-      <?php include '../loadtab/h.php'; ?>
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-800">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
-                <h2 class="text-xl text-gray-600">Rice Products Database</h2>
+    <?php include '../loadtab/h.php'; ?>
+    <div class="header-logo-box container">
+        <div class="row">
+            <div class="align-self-center col-xl-1 col-lg-2 col-md-2 col-3"><a href="/"><img src="/static/media/rice_logo.6b89da99c2813fda6994.png" class="d-inline-block header-logo-img" alt="กรมการข้าว"></a></div>
+            <div class="align-self-center col-xl-9 col-lg-8 col-md-7 col-8">
+                <div class="header-title-text"><a href="/">ศูนย์วิจัยข้าวขอนแก่น</a></div>
+                <div class="header-sub-text"><a href="/">Khon Kaen Rice Research Center</a></div>
             </div>
-            
-            <!-- Search Bar -->
-            <div class="mt-4 md:mt-0 relative w-full md:w-64">
-                <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                    <input 
-                        type="text" 
-                        placeholder="ค้นหา..." 
-                        class="py-2 px-4 w-full focus:outline-none text-gray-700"
-                    >
-                    <button class="bg-gray-200 hover:bg-gray-300 px-4 py-2 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="absolute right-0 mt-1 text-xs text-gray-500">Q</div>
-            </div>
-        </div>
-        
-        <!-- Content Area -->
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="text-center py-12 text-gray-500">
-                <p>เนื้อหาของฐานข้อมูลจะแสดงที่นี่</p>
-                <p class="text-sm mt-2">Database content will appear here</p>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="mt-8 text-center text-sm text-gray-500">
-            <p>© 2023 ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว | Rice Products Database</p>
+            <div class="header-hamburger col-md-3 col-1"><button aria-controls="responsive-navbar-nav" type="button" aria-label="Toggle navigation" class="ml-auto navbar-toggler collapsed"><span class="navbar-toggler-icon"></span></button></div>
         </div>
     </div>
-        <?php include '../loadtab/f.php'; ?>
+    <?php include '../loadtab/f.php'; ?>
 </body>
 
 </html>
