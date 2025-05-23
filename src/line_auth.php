@@ -152,9 +152,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             return;
                                         }
                                         if (data.role === 'Admin') {
-                                            //window.location.href = "/admin/dashboard";
+                                            window.location.href = "/admin/dashboard";
                                         } else if (data.role === 'User') {
-                                            //window.location.href = "/user/dashboard";
+                                            window.location.href = "/user/dashboard";
                                         } else {
                                             alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
                                         }
