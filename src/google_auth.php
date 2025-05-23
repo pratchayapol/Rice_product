@@ -230,7 +230,6 @@ include 'connect/dbcon.php';
                     window.location.href = "https://accounts.google.com/Logout?continue=https://appengine.google.com/_ah/logout?continue=https://riceproduct.pcnone.com";
                 });
             </script>
-            <p>กำลังออกจากระบบ...</p>
         </body>
 
         </html>
