@@ -124,10 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!liff.isLoggedIn()) {
                     liff.login();
                 } else {
-                    Promise.all([liff.getProfile(), liff.getDecodedIDToken()])
-                        .then(([profile, idToken]) => {
-                            console.log('idToken:', idToken);
-                            console.log('email from idToken:', idToken?.email);
+                    Promise.all([liff.getProfile(), liff.getDecodedIDToken()]).then(([profile, idToken]) => {
 
                             const userData = {
                                 userId: profile.userId,
@@ -135,7 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 pictureUrl: profile.pictureUrl,
                                 email: idToken?.email || ""
                             };
-
+                            console.log('User Data:', userData);
+                            
                             fetch(window.location.href, {
                                     method: 'POST',
                                     headers: {
