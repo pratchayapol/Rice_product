@@ -125,8 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     liff.login();
                 } else {
                     Promise.all([liff.getProfile(), liff.getDecodedIDToken()]).then(([profile, idToken]) => {
-                            console.log("Decoded ID Token:", idToken); // ดูทั้งหมดเลย
-                            console.log("Email from idToken:", idToken?.email); // ดูว่า undefined ไหม
+                            // console.log("Decoded ID Token:", idToken); // ดูทั้งหมดเลย
+                            // console.log("Email from idToken:", idToken?.email); // ดูว่า undefined ไหม
                             const userData = {
                                 userId: profile.userId,
                                 displayName: profile.displayName,
