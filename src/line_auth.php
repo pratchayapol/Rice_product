@@ -2,12 +2,10 @@
 session_start();
 ob_start();
 
-// เปิด error ระหว่างพัฒนา (ควรปิดใน production)
-error_reporting(E_ALL);
+// ✅ เปิดแสดง error บนหน้าเว็บ
 ini_set('display_errors', 1);
-
-// Log POST ชั่วคราว
-file_put_contents('log.txt', print_r($_POST, true));
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // เชื่อมต่อฐานข้อมูล
 include 'connect/dbcon.php';
