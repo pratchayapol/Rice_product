@@ -33,7 +33,7 @@ session_start();
                 <div class="flex justify-between items-center h-20">
                     <!-- Logo and Title -->
                     <div class="flex items-center space-x-4">
-                        <img src="4c8ed6d4-5240-4def-91e0-c5cbc1f902ec.png" alt="Rice Department Logo" class="w-12 h-12 rounded-full border border-white" />
+                        <img src="../image/logo.png" alt="Rice Department Logo" class="w-12 h-12 rounded-full border border-white" />
                         <div class="text-white">
                             <div class="text-lg font-semibold">กรมการข้าว</div>
                             <div class="text-sm">Rice Department</div>
