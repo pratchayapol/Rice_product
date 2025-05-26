@@ -56,6 +56,7 @@ session_start();
                 </a>
             
         </div>
+        </div>
 
 
         <?php include '../loadtab/f.php'; ?>
