@@ -34,7 +34,7 @@ session_start();
                 <!-- การ์ดอาหาร -->
                 <a href="food.php" class="block">
                     <div class="bg-yellow-500 text-black p-6 rounded-xl shadow-md w-32 text-center hover:scale-105 transform transition">
-                        <img src="../image/food-icon.png" alt="อาหาร" class="mx-auto mb-2 w-12 h-12">
+                        <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-2 w-12 h-12">
                         <p class="font-bold">อาหาร</p>
                     </div>
                 </a>
