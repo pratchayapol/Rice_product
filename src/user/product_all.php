@@ -27,39 +27,41 @@ session_start();
 <body class="bg t1">
     <?php include '../loadtab/h.php'; ?>
     <!-- Navigation Bar -->
-    <?php include './plugin/navbar.php' ?>
+    <?php include './plugin/navbar.php'; ?>
+
     <div class="pt-24 flex items-center justify-center min-h-screen">
-        <div class="flex justify-center space-x-6 mt-10 text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full">
-           
+        <div class="bg-white/70 p-10 rounded-2xl shadow-xl max-w-4xl w-full text-center">
+            
+            <!-- Cards Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
                 <!-- การ์ดอาหาร -->
-                <a href="food.php" class="block">
-                    <div class="bg-yellow-500 text-black p-8 rounded-xl shadow-md w-48 text-center hover:scale-105 transform transition">
-                        <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-14 h-14">
-                        <p class="font-bold text-lg">อาหาร</p>
+                <a href="food.php" class="block w-full max-w-xs">
+                    <div class="bg-yellow-500 text-black p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+                        <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-16 h-16">
+                        <p class="font-bold text-xl">อาหาร</p>
                     </div>
                 </a>
 
                 <!-- การ์ดเวชสำอางค์ -->
-                <a href="cosmetic.php" class="block">
-                    <div class="bg-red-700 text-white p-8 rounded-xl shadow-md w-48 text-center hover:scale-105 transform transition">
-                        <img src="../image/cosmetic-icon.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-14 h-14">
-                        <p class="font-bold text-lg">เวชสำอางค์</p>
+                <a href="cosmetic.php" class="block w-full max-w-xs">
+                    <div class="bg-red-700 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+                        <img src="../image/cosmetic-icon.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
+                        <p class="font-bold text-xl">เวชสำอางค์</p>
                     </div>
                 </a>
 
                 <!-- การ์ดการแพทย์ -->
-                <a href="medical.php" class="block">
-                    <div class="bg-purple-900 text-white p-8 rounded-xl shadow-md w-48 text-center hover:scale-105 transform transition">
-                        <img src="../image/medical-icon.png" alt="การแพทย์" class="mx-auto mb-4 w-14 h-14">
-                        <p class="font-bold text-lg">การแพทย์</p>
+                <a href="medical.php" class="block w-full max-w-xs">
+                    <div class="bg-purple-900 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+                        <img src="../image/medical-icon.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
+                        <p class="font-bold text-xl">การแพทย์</p>
                     </div>
                 </a>
-            
+            </div>
         </div>
-        </div>
+    </div>
 
-
-        <?php include '../loadtab/f.php'; ?>
+    <?php include '../loadtab/f.php'; ?>
 </body>
 
 </html>
