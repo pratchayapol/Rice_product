@@ -1,4 +1,4 @@
-<nav class="fixed top-0 left-0 w-full z-50 shadow-lg">
+<nav class="fixed top-0 left-0 w-full z-50 shadow-lg backdrop-blur-md">
         <!-- Background Image Layer -->
         <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('../image/nav.jpg'); z-index: -1;"></div>
 
