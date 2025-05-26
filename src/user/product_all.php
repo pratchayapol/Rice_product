@@ -31,7 +31,7 @@ session_start();
 
     <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="bg-white/70 p-10 rounded-2xl shadow-xl max-w-4xl w-full text-center">
-            
+
             <!-- Cards Section -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
                 <!-- การ์ดอาหาร -->
@@ -60,7 +60,12 @@ session_start();
             </div>
         </div>
     </div>
-
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const menu = document.getElementById("mobile-menu");
+            menu.classList.toggle("hidden");
+        });
+    </script>
     <?php include '../loadtab/f.php'; ?>
 </body>
 
