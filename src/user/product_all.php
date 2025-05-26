@@ -29,7 +29,7 @@ session_start();
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
     <div class="pt-24 flex items-center justify-center min-h-screen">
-        <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full">
+        <div class="flex justify-center space-x-6 mt-10 text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full">
            
                 <!-- การ์ดอาหาร -->
                 <a href="food.php" class="block">
@@ -54,7 +54,7 @@ session_start();
                         <p class="font-bold text-lg">การแพทย์</p>
                     </div>
                 </a>
-      
+            
         </div>
 
 
