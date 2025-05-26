@@ -33,32 +33,34 @@ session_start();
         <div class="bg-white/70 p-10 rounded-2xl shadow-xl max-w-4xl w-full text-center">
 
             <!-- Cards Section -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
-                <!-- การ์ดอาหาร -->
-                <a href="food" class="block w-full max-w-xs">
-                    <div class="bg-yellow-500 text-black p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-                        <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-16 h-16">
-                        <p class="font-bold text-xl">อาหาร</p>
-                    </div>
-                </a>
 
-                <!-- การ์ดเวชสำอางค์ -->
-                <a href="cosmetic" class="block w-full max-w-xs">
-                    <div class="bg-red-700 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-                        <img src="../image/type2.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
-                        <p class="font-bold text-xl">เวชสำอางค์</p>
-                    </div>
-                </a>
+            <!-- การ์ดอาหาร -->
+            <a href="food" class="block w-full max-w-xs">
+                <div class="bg-[#FFF8E7] text-gray-800 p-8 rounded-xl shadow-sm hover:scale-105 transform transition duration-300">
+                    <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-16 h-16">
+                    <p class="font-bold text-xl">อาหาร</p>
+                </div>
+            </a>
 
-                <!-- การ์ดการแพทย์ -->
-                <a href="medical" class="block w-full max-w-xs">
-                    <div class="bg-purple-900 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-                        <img src="../image/type3.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
-                        <p class="font-bold text-xl">การแพทย์</p>
-                    </div>
-                </a>
-            </div>
+            <!-- การ์ดเวชสำอางค์ -->
+            <a href="cosmetic" class="block w-full max-w-xs">
+                <div class="bg-[#FDE2E4] text-gray-800 p-8 rounded-xl shadow-sm hover:scale-105 transform transition duration-300">
+                    <img src="../image/type2.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
+                    <p class="font-bold text-xl">เวชสำอางค์</p>
+                </div>
+            </a>
+
+            <!-- การ์ดการแพทย์ -->
+            <a href="medical" class="block w-full max-w-xs">
+                <div class="bg-[#E0EAFB] text-gray-800 p-8 rounded-xl shadow-sm hover:scale-105 transform transition duration-300">
+                    <img src="../image/type3.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
+                    <p class="font-bold text-xl">การแพทย์</p>
+                </div>
+            </a>
+
+
         </div>
+    </div>
     </div>
     <script>
         document.getElementById("menu-toggle").addEventListener("click", function() {
