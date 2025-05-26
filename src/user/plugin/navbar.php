@@ -30,9 +30,9 @@
 
                 <!-- Mobile Menu -->
                 <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
-                    <a href="#" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
-                    <a href="#" class="block bg-white text-gray-700 rounded-full px-4 py-2">ผลิตภัณฑ์ทั้งหมด</a>
-                    <a href="#" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
+                    <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
+                    <a href="product_all" class="block bg-white text-gray-700 rounded-full px-4 py-2">ผลิตภัณฑ์ทั้งหมด</a>
+                    <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
                 </div>
             </div>
         </div>
