@@ -35,7 +35,7 @@ session_start();
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
                 <!-- การ์ดอาหาร -->
                 <a href="food" class="block w-full max-w-xs">
-                    <div class="bg-[#FFF3E2] text-gray-800 p-8 rounded-xl shadow-sm hover:scale-105 transform transition duration-300">
+                    <div class="bg-[#F5CBA7] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl text-center">อาหาร</p>
                     </div>
@@ -43,7 +43,7 @@ session_start();
 
                 <!-- การ์ดเวชสำอางค์ -->
                 <a href="cosmetic" class="block w-full max-w-xs">
-                    <div class="bg-[#FBEAEA] text-gray-800 p-8 rounded-xl shadow-sm hover:scale-105 transform transition duration-300">
+                    <div class="bg-[#F5B7B1] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type2.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl text-center">เวชสำอางค์</p>
                     </div>
@@ -51,14 +51,12 @@ session_start();
 
                 <!-- การ์ดการแพทย์ -->
                 <a href="medical" class="block w-full max-w-xs">
-                    <div class="bg-[#E6F4F1] text-gray-800 p-8 rounded-xl shadow-sm hover:scale-105 transform transition duration-300">
+                    <div class="bg-[#A9CCE3] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type3.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl text-center">การแพทย์</p>
                     </div>
                 </a>
             </div>
-
-
         </div>
     </div>
     </div>
