@@ -43,7 +43,7 @@ session_start();
 
                 <!-- การ์ดเวชสำอางค์ -->
                 <a href="cosmetic" class="block w-full max-w-xs">
-                    <div class="bg-[#F5B7B1] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+                    <div class="bg-[#FFBFCF] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type2.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl text-center">เวชสำอางค์</p>
                     </div>
