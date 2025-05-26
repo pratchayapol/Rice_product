@@ -33,25 +33,25 @@ session_start();
             <div class="flex justify-center space-x-6 mt-10">
                 <!-- การ์ดอาหาร -->
                 <a href="food.php" class="block">
-                    <div class="bg-yellow-500 text-black p-6 rounded-xl shadow-md w-32 text-center hover:scale-105 transform transition">
-                        <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-2 w-12 h-12">
-                        <p class="font-bold">อาหาร</p>
+                    <div class="bg-yellow-500 text-black p-8 rounded-xl shadow-md w-48 text-center hover:scale-105 transform transition">
+                        <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-14 h-14">
+                        <p class="font-bold text-lg">อาหาร</p>
                     </div>
                 </a>
 
                 <!-- การ์ดเวชสำอางค์ -->
                 <a href="cosmetic.php" class="block">
-                    <div class="bg-red-700 text-white p-6 rounded-xl shadow-md w-32 text-center hover:scale-105 transform transition">
-                        <img src="../image/cosmetic-icon.png" alt="เวชสำอางค์" class="mx-auto mb-2 w-12 h-12">
-                        <p class="font-bold">เวชสำอางค์</p>
+                    <div class="bg-red-700 text-white p-8 rounded-xl shadow-md w-48 text-center hover:scale-105 transform transition">
+                        <img src="../image/cosmetic-icon.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-14 h-14">
+                        <p class="font-bold text-lg">เวชสำอางค์</p>
                     </div>
                 </a>
 
                 <!-- การ์ดการแพทย์ -->
                 <a href="medical.php" class="block">
-                    <div class="bg-purple-900 text-white p-6 rounded-xl shadow-md w-32 text-center hover:scale-105 transform transition">
-                        <img src="../image/medical-icon.png" alt="การแพทย์" class="mx-auto mb-2 w-12 h-12">
-                        <p class="font-bold">การแพทย์</p>
+                    <div class="bg-purple-900 text-white p-8 rounded-xl shadow-md w-48 text-center hover:scale-105 transform transition">
+                        <img src="../image/medical-icon.png" alt="การแพทย์" class="mx-auto mb-4 w-14 h-14">
+                        <p class="font-bold text-lg">การแพทย์</p>
                     </div>
                 </a>
             </div>
