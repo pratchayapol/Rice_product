@@ -45,7 +45,7 @@ session_start();
                 <!-- การ์ดเวชสำอางค์ -->
                 <a href="cosmetic.php" class="block w-full max-w-xs">
                     <div class="bg-red-700 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-                        <img src="../image/cosmetic-icon.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
+                        <img src="../image/type2.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl">เวชสำอางค์</p>
                     </div>
                 </a>
@@ -53,7 +53,7 @@ session_start();
                 <!-- การ์ดการแพทย์ -->
                 <a href="medical.php" class="block w-full max-w-xs">
                     <div class="bg-purple-900 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
-                        <img src="../image/medical-icon.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
+                        <img src="../image/type3.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl">การแพทย์</p>
                     </div>
                 </a>
