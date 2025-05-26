@@ -51,7 +51,7 @@ session_start();
 
                 <!-- การ์ดการแพทย์ -->
                 <a href="medical" class="block w-full max-w-xs">
-                    <div class="bg-[#744FD1] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
+                    <div class="bg-[#7CCFD1] text-gray-900 p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type3.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl text-center">การแพทย์</p>
                     </div>
