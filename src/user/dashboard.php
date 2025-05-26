@@ -24,7 +24,7 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-<body class="flex items-center justify-center min-h-screen bg t1">
+<body class="flex items-center justify-center min-h-screen bg t1 pt-20">
     <?php include '../loadtab/h.php'; ?>
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
