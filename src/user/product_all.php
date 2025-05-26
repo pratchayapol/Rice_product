@@ -35,7 +35,7 @@ session_start();
             <!-- Cards Section -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-center">
                 <!-- การ์ดอาหาร -->
-                <a href="food.php" class="block w-full max-w-xs">
+                <a href="food" class="block w-full max-w-xs">
                     <div class="bg-yellow-500 text-black p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type1.png" alt="อาหาร" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl">อาหาร</p>
@@ -43,7 +43,7 @@ session_start();
                 </a>
 
                 <!-- การ์ดเวชสำอางค์ -->
-                <a href="cosmetic.php" class="block w-full max-w-xs">
+                <a href="cosmetic" class="block w-full max-w-xs">
                     <div class="bg-red-700 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type2.png" alt="เวชสำอางค์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl">เวชสำอางค์</p>
@@ -51,7 +51,7 @@ session_start();
                 </a>
 
                 <!-- การ์ดการแพทย์ -->
-                <a href="medical.php" class="block w-full max-w-xs">
+                <a href="medical" class="block w-full max-w-xs">
                     <div class="bg-purple-900 text-white p-8 rounded-xl shadow-md hover:scale-105 transform transition duration-300">
                         <img src="../image/type3.png" alt="การแพทย์" class="mx-auto mb-4 w-16 h-16">
                         <p class="font-bold text-xl">การแพทย์</p>
