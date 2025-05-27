@@ -46,6 +46,7 @@ include '../connect/dbcon.php';
                     class="mx-auto rounded-full w-32 h-32 object-cover mb-4 shadow-lg">
                 <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= htmlspecialchars($_SESSION['user']['name']) ?></h2>
                 <p class="text-gray-600 text-sm md:text-base"><?= htmlspecialchars($_SESSION['user']['email']) ?></p>
+                <br>
                 <a href="./google_auth?logout=true"
                     class="inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
                     ออกจากระบบ
