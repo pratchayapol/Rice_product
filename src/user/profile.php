@@ -44,7 +44,7 @@ include '../connect/dbcon.php';
                     src="<?= htmlspecialchars($_SESSION['user']['picture']) ?>"
                     alt="Profile Picture"
                     class="mx-auto rounded-full w-32 h-32 object-cover border-4 border-white shadow-xl animate-spin-slow" />
-
+                <br>
                 <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= htmlspecialchars($_SESSION['user']['name']) ?></h2>
                 <p class="text-gray-600 text-sm md:text-base"><?= htmlspecialchars($_SESSION['user']['email']) ?></p>
                 <br>
