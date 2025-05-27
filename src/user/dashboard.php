@@ -29,7 +29,7 @@ session_start();
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
     <div class="pt-24 flex items-center justify-center min-h-screen">
-        <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full">
+        <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full transform transition duration-500">
             <h1 class="text-3xl md:text-4xl font-bold text-black mb-2">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
             <p class="text-xl text-gray-800 mb-6">Rice Products Database</p>
 
