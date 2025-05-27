@@ -28,7 +28,7 @@ session_start();
     <?php include '../loadtab/h.php'; ?>
 
     <div class="flex items-center justify-center min-h-screen">
-        <div class="max-w-7xl mx-auto p-6 shadow-lg rounded-lg">
+        <div class="max-w-7xl mx-auto p-6">
             <div class="grid grid-cols-12 gap-6">
                 <!-- Sidebar -->
                 <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center justify-center">
