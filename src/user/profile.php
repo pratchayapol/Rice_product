@@ -35,8 +35,7 @@ include '../connect/dbcon.php';
     <?php include '../loadtab/h.php'; ?>
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
-    
-    <div class="pt-24 flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full hover:scale-105 transform transition duration-300">
             <h1 class="text-3xl md:text-4xl font-bold text-black mb-6">โปรไฟล์</h1>
 
