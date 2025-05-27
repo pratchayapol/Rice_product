@@ -76,7 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'role' => $role,
             'picture' => $pictureUrl,
         ];
-
+        $_SESSION['logged_in'] = true;
+        
         echo json_encode(['role' => $role]);
     } catch (Exception $e) {
         echo json_encode(['error' => $e->getMessage()]);
@@ -88,15 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8" />
     <title>LINE Auth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
+
 <body>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             liff.init({
                 liffId: "2007460484-WlA3R3By", // เปลี่ยนเป็น LIFF ID ของคุณ
                 withLoginOnExternalBrowser: true,
@@ -118,35 +121,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             };
 
                             fetch(window.location.href, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded'
-                                },
-                                body: new URLSearchParams(userData)
-                            })
-                            .then(res => res.text())
-                            .then(text => {
-                                try {
-                                    const data = JSON.parse(text);
-                                    if (data.error) {
-                                        alert("Error: " + data.error);
-                                        return;
-                                    }
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    },
+                                    body: new URLSearchParams(userData)
+                                })
+                                .then(res => res.text())
+                                .then(text => {
+                                    try {
+                                        const data = JSON.parse(text);
+                                        if (data.error) {
+                                            alert("Error: " + data.error);
+                                            return;
+                                        }
 
-                                    if (data.role === 'Admin') {
-                                        window.location.href = "/admin/dashboard";
-                                    } else if (data.role === 'User') {
-                                        window.location.href = "/user/dashboard";
-                                    } else {
-                                        alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
+                                        if (data.role === 'Admin') {
+                                            window.location.href = "/admin/dashboard";
+                                        } else if (data.role === 'User') {
+                                            window.location.href = "/user/dashboard";
+                                        } else {
+                                            alert("ไม่สามารถระบุสิทธิ์การใช้งานได้");
+                                        }
+                                    } catch (err) {
+                                        alert("เกิดข้อผิดพลาด: ไม่สามารถแปลงข้อมูลจากเซิร์ฟเวอร์ได้");
                                     }
-                                } catch (err) {
-                                    alert("เกิดข้อผิดพลาด: ไม่สามารถแปลงข้อมูลจากเซิร์ฟเวอร์ได้");
-                                }
-                            })
-                            .catch(err => {
-                                alert("เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์");
-                            });
+                                })
+                                .catch(err => {
+                                    alert("เกิดข้อผิดพลาดในการติดต่อเซิร์ฟเวอร์");
+                                });
                         })
                         .catch(err => {
                             alert("เกิดข้อผิดพลาดในการดึงข้อมูลโปรไฟล์");
@@ -158,4 +161,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         });
     </script>
 </body>
+
 </html>
