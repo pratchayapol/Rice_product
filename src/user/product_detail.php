@@ -81,7 +81,7 @@ if ($id > 0) {
                 <!-- Content -->
                 <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
                     <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
-                        จาก <?php echo $thai_name ?>
+                        จาก <?php echo $thai_name .' ( '. $english_name .' )' ?>
                     </h3>
 
                     <!-- Tabs -->
