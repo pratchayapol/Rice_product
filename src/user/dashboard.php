@@ -10,12 +10,12 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         $query = isset($_GET['q']) ? trim($_GET['q']) : '';
 
         if ($query !== '') {
-            $stmt = $pdo->prepare("SELECT DISTINCT rice_variety_th_name 
-                                   FROM rice_products 
-                                   WHERE rice_variety_th_name LIKE :query 
-                                      OR rice_variety_en_name LIKE :query 
-                                      OR product_name LIKE :query 
-                                   LIMIT 10");
+            $stmt = $pdo->prepare("SELECT DISTINCT rice_variety_th_name, rice_variety_en_name, product_name
+                       FROM rice_products 
+                       WHERE rice_variety_th_name LIKE :query 
+                          OR rice_variety_en_name LIKE :query 
+                          OR product_name LIKE :query 
+                       LIMIT 10");
             $searchTerm = "%" . $query . "%";
             $stmt->execute(['query' => $searchTerm]);
             $results = $stmt->fetchAll(PDO::FETCH_COLUMN);
