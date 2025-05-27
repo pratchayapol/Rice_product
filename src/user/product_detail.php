@@ -73,7 +73,7 @@ if ($id > 0) {
                         <span class="text-gray-400">รูปภาพ</span>
                     </div>
                     <p class="text-sm mb-4">
-                        ที่มา : <a href="<?php echo $source_url ?>" class="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                        ที่มา : <a href="<?php echo $source_url ?>" class="text-inherit no-underline" target="_blank" rel="noopener noreferrer">
                             <?php echo $source ?>
                         </a>
                     </p>
