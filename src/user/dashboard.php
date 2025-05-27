@@ -69,6 +69,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 fetch(`?ajax=1&q=${encodeURIComponent(query)}`)
                     .then(res => res.json())
                     .then(data => {
+                        console.log(data); // ดูว่าได้ key อะไรกลับมา
                         suggestionBox.innerHTML = '';
                         if (data.length > 0) {
                             data.forEach(item => {
@@ -76,7 +77,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                                 li.textContent = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
                                 li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
                                 li.onclick = () => {
-                                    input.value = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
+                                    input.value = item.rice_variety_th_name;
                                     suggestionBox.classList.add('hidden');
                                 };
                                 suggestionBox.appendChild(li);
