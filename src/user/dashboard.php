@@ -1,6 +1,33 @@
 <?php
 session_start();
 
+include '../connect/dbcon.php';
+
+if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
+    header('Content-Type: application/json');
+
+    try {
+        $query = isset($_GET['q']) ? trim($_GET['q']) : '';
+
+        if ($query !== '') {
+            $stmt = $pdo->prepare("SELECT DISTINCT rice_variety_th_name 
+                                   FROM rice_products 
+                                   WHERE rice_variety_th_name LIKE :query 
+                                      OR rice_variety_en_name LIKE :query 
+                                   LIMIT 10");
+            $searchTerm = "%" . $query . "%";
+            $stmt->execute(['query' => $searchTerm]);
+            $results = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            echo json_encode($results);
+        } else {
+            echo json_encode([]);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['error' => $e->getMessage()]);
+        exit;
+    }
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -22,6 +49,45 @@ session_start();
     <!-- animation -->
     <link rel="stylesheet" href="../css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('search-input');
+            const suggestionBox = document.getElementById('suggestions');
+
+            input.addEventListener('input', () => {
+                const query = input.value;
+
+                if (query.length < 2) {
+                    suggestionBox.innerHTML = '';
+                    suggestionBox.classList.add('hidden');
+                    return;
+                }
+
+                fetch(`?ajax=1&q=${encodeURIComponent(query)}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        suggestionBox.innerHTML = '';
+                        if (data.length > 0) {
+                            data.forEach(item => {
+                                const li = document.createElement('li');
+                                li.textContent = item;
+                                li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
+                                li.onclick = () => {
+                                    input.value = item;
+                                    suggestionBox.classList.add('hidden');
+                                };
+                                suggestionBox.appendChild(li);
+                            });
+                            suggestionBox.classList.remove('hidden');
+                        } else {
+                            suggestionBox.classList.add('hidden');
+                        }
+                    });
+            });
+        });
+    </script>
+
 </head>
 
 <body class="bg t1">
@@ -44,41 +110,6 @@ session_start();
                     <ul id="suggestions" class="absolute z-10 w-full bg-white border border-gray-300 rounded-b-lg mt-1 max-h-60 overflow-y-auto hidden"></ul>
                 </div>
             </div>
-
-            <script>
-                document.getElementById('search-input').addEventListener('input', function() {
-                    const query = this.value;
-                    const suggestionBox = document.getElementById('suggestions');
-
-                    if (query.length < 2) {
-                        suggestionBox.innerHTML = '';
-                        suggestionBox.classList.add('hidden');
-                        return;
-                    }
-
-                    fetch('search_product?q=' + encodeURIComponent(query))
-                        .then(response => response.json())
-                        .then(data => {
-                            suggestionBox.innerHTML = '';
-                            if (data.length > 0) {
-                                data.forEach(item => {
-                                    const li = document.createElement('li');
-                                    li.textContent = item;
-                                    li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
-                                    li.onclick = () => {
-                                        document.getElementById('search-input').value = item;
-                                        suggestionBox.classList.add('hidden');
-                                    };
-                                    suggestionBox.appendChild(li);
-                                });
-                                suggestionBox.classList.remove('hidden');
-                            } else {
-                                suggestionBox.classList.add('hidden');
-                            }
-                        });
-                });
-            </script>
-
 
             <div class="flex justify-center space-x-6">
                 <img src="../image/dash1.png" alt="Brown Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
