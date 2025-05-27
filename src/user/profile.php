@@ -41,7 +41,7 @@ include '../connect/dbcon.php';
 
             <?php if (isset($_SESSION['user'])): ?>
                 <div class="relative w-32 h-32 mx-auto mb-4">
-                    <div class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-tr from-pink-500 via-yellow-400 to-blue-500">
+                    <div class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-br from-indigo-500 to-fuchsia-500">
                         <img
                             src="<?= htmlspecialchars($_SESSION['user']['picture']) ?>"
                             alt="Profile Picture"
