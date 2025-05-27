@@ -46,7 +46,7 @@ session_start();
 
                 <!-- Content -->
                 <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">จาก ข้าวกล้องพันธุ์สังข์หยดพัทลุง</h3>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-yellow-400 px-4 py-2">จาก ข้าวกล้องพันธุ์สังข์หยดพัทลุง</h3>
 
                     <!-- Tabs -->
                     <div class="flex justify-around mb-4">
