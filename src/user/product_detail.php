@@ -64,7 +64,11 @@ if ($id > 0) {
 
     <body class="bg t1">
         <div class="flex items-center justify-center min-h-screen p-6">
-            <h3>ไม่มี ID นี้ในการตรวจสอบ</h3>
+            <div class="max-w-7xl w-full">
+                <div class="grid grid-cols-12 gap-6">
+                    <h1>ไม่มี ID นี้ในการตรวจสอบ</h1>
+                </div>
+            </div>
         </div>
     </body>
 
