@@ -74,7 +74,7 @@ if ($id > 0) {
 
                 <!-- Sidebar -->
                 <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
-                    <h3 class="text-2xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์  <?php echo $product_name ?></h3>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์  <?php echo $product_name ?></h3>
                     <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center">
                         <span class="text-gray-400">รูปภาพ</span>
                     </div>
