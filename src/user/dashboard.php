@@ -72,7 +72,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         if (data.length > 0) {
                             data.forEach(item => {
                                 const li = document.createElement('li');
-                                li.textContent = item;
+                                li.textContent = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
                                 li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
                                 li.onclick = () => {
                                     input.value = item;
