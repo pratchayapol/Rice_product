@@ -36,8 +36,6 @@ if ($id > 0) {
 
 ?>
 
-
-        ?>
         <!DOCTYPE html>
         <html lang="th">
 
