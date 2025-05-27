@@ -10,7 +10,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         $query = isset($_GET['q']) ? trim($_GET['q']) : '';
 
         if ($query !== '') {
-            $stmt = $pdo->prepare("SELECT rice_variety_th_name, rice_variety_en_name, product_name
+            $stmt = $pdo->prepare("SELECT id, rice_variety_th_name, rice_variety_en_name, product_name
                        FROM rice_products 
                        WHERE rice_variety_th_name LIKE :query 
                           OR rice_variety_en_name LIKE :query 
@@ -18,7 +18,6 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                        LIMIT 10");
             $searchTerm = "%" . $query . "%";
             $stmt->execute(['query' => $searchTerm]);
-
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($results);
         } else {
@@ -77,8 +76,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                                 li.textContent = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
                                 li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
                                 li.onclick = () => {
-                                    input.value = item.rice_variety_th_name;
-                                    suggestionBox.classList.add('hidden');
+                                    window.location.href = `product_detail?id=${item.id}`;
                                 };
                                 suggestionBox.appendChild(li);
                             });
