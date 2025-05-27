@@ -40,10 +40,15 @@ include '../connect/dbcon.php';
             <h1 class="text-3xl md:text-4xl font-bold text-black mb-6">โปรไฟล์</h1>
 
             <?php if (isset($_SESSION['user'])): ?>
-                <img
-                    src="<?= htmlspecialchars($_SESSION['user']['picture']) ?>"
-                    alt="Profile Picture"
-                    class="mx-auto rounded-full w-32 h-32 object-cover mb-4 shadow-lg">
+                <div class="relative w-32 h-32 mx-auto mb-4">
+                    <div class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-tr from-pink-500 via-yellow-400 to-blue-500">
+                        <img
+                            src="<?= htmlspecialchars($_SESSION['user']['picture']) ?>"
+                            alt="Profile Picture"
+                            class="rounded-full w-full h-full object-cover shadow-lg">
+                    </div>
+                </div>
+
                 <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= htmlspecialchars($_SESSION['user']['name']) ?></h2>
                 <p class="text-gray-600 text-sm md:text-base"><?= htmlspecialchars($_SESSION['user']['email']) ?></p>
                 <br>
