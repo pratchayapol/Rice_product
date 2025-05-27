@@ -15,7 +15,7 @@ include '../connect/dbcon.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>โปรไฟล์</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -35,21 +35,33 @@ include '../connect/dbcon.php';
     <?php include '../loadtab/h.php'; ?>
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
-    <div class="pt-24 flex items-center justify-center min-h-screen">
+    
+    <div class="pt-24 flex items-center justify-center min-h-screen bg-gray-100">
         <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl max-w-xl w-full hover:scale-105 transform transition duration-300">
-            <h1 class="text-3xl md:text-4xl font-bold text-black mb-2">ข้อมูลของคุณ</h1>
+            <h1 class="text-3xl md:text-4xl font-bold text-black mb-6">โปรไฟล์</h1>
 
+            <?php if (isset($_SESSION['user'])): ?>
+                <img
+                    src="<?= htmlspecialchars($_SESSION['user']['picture']) ?>"
+                    alt="Profile Picture"
+                    class="mx-auto rounded-full w-32 h-32 object-cover mb-4 shadow-lg">
+                <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= htmlspecialchars($_SESSION['user']['name']) ?></h2>
+                <p class="text-gray-600 text-sm md:text-base"><?= htmlspecialchars($_SESSION['user']['email']) ?></p>
+            <?php else: ?>
+                <p class="text-red-500">ไม่มีข้อมูลผู้ใช้</p>
+            <?php endif; ?>
         </div>
+    </div>
 
 
 
-        <script>
-            document.getElementById("menu-toggle").addEventListener("click", function() {
-                const menu = document.getElementById("mobile-menu");
-                menu.classList.toggle("hidden");
-            });
-        </script>
-        <?php include '../loadtab/f.php'; ?>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function() {
+            const menu = document.getElementById("mobile-menu");
+            menu.classList.toggle("hidden");
+        });
+    </script>
+    <?php include '../loadtab/f.php'; ?>
 </body>
 
 </html>
