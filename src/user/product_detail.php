@@ -37,7 +37,7 @@ session_start();
                         <span class="text-gray-400">รูปภาพ</span>
                     </div>
                     <p class="text-sm mb-4">ที่มา : สำนักวิจัยและพัฒนาข้าว กรมการข้าว</p>
-                    <a href="/dashboard" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm inline-block text-center">
+                    <a href="./dashboard" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm inline-block text-center">
                         หน้าแรก
                     </a>
 
