@@ -75,7 +75,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                                 li.textContent = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
                                 li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
                                 li.onclick = () => {
-                                    input.value = item;
+                                    input.value = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
                                     suggestionBox.classList.add('hidden');
                                 };
                                 suggestionBox.appendChild(li);
