@@ -39,7 +39,37 @@ if ($id > 0) {
         echo "ไม่พบข้อมูล";
     }
 } else {
-    echo "ID ไม่ถูกต้อง";
+?>
+    <!DOCTYPE html>
+    <html lang="th">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>รายละเอียดผลิตภัณท์</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Custom fonts for this template-->
+        <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link rel="stylesheet" href="../css/fonts.css">
+        <link rel="stylesheet" href="../css/bg.css">
+        <!-- animation -->
+        <link rel="stylesheet" href="../css/animation.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body class="bg t1">
+        <div class="flex items-center justify-center min-h-screen p-6">
+            <h3>ไม่มี ID นี้ในการตรวจสอบ</h3>
+        </div>
+    </body>
+
+    </html>
+<?
 }
 
 ?>
@@ -74,7 +104,7 @@ if ($id > 0) {
 
                 <!-- Sidebar -->
                 <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
-                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์  <?php echo $product_name ?></h3>
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์ <?php echo $product_name ?></h3>
                     <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center">
                         <span class="text-gray-400">รูปภาพ</span>
                     </div>
