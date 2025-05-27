@@ -105,7 +105,7 @@ if ($id > 0) {
                             <div class="relative min-h-[320px]">
                                 <div id="method" class="tab-content">
                                     <div class="bg-orange-100 p-4 rounded-lg mb-4">
-                                        <h4 class="font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">อุปกรณ์</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">อุปกรณ์</h4>
                                         <ul class="list-disc list-inside text-sm">
                                             <li>ข้าวกล้องข้าวเหนียวดำ ข้าวกล้องพันธุ์สังข์หยดพัทลุง ข้าวกล้องเล็บนกปัตตานี และข้าวกล้องพันธุ์เชียงพัทลุง</li>
                                             <li>น้ำตาลทราย</li>
@@ -116,7 +116,7 @@ if ($id > 0) {
                                         </ul>
                                     </div>
                                     <div class="bg-orange-100 p-4 rounded-lg">
-                                        <h4 class="font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">วิธีทำ</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">วิธีทำ</h4>
                                         <ol class="list-decimal list-inside text-sm space-y-2">
                                             <li>แช่น้ำ ต้มข้าว อุณหภูมิ 60-100°C เป็นเวลา 40 นาที</li>
                                             <li>
