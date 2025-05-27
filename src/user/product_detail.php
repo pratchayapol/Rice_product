@@ -210,7 +210,7 @@ if ($id > 0) {
             <div class="max-w-7xl w-full">
                 <div class="grid grid-cols-12 gap-6">
                     <div class="col-span-12 md:col-span-12 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
-                        <h1>ไม่มี ID นี้ในการตรวจสอบ</h1>
+                        <h1 class="text-xl md:text-3xl font-semibold">ไม่มี ID นี้ในการตรวจสอบ</h1>
                     </div>
                 </div>
             </div>
