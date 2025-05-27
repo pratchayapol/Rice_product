@@ -1,6 +1,40 @@
 <?php
 session_start();
 
+// รับค่า id จาก query string อย่างปลอดภัย
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+if ($id > 0) {
+    // เตรียมคำสั่ง SQL
+    $stmt = $pdo->prepare("SELECT * FROM rice_products WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+
+    // ดึงข้อมูล
+    $product = $stmt->fetch();
+
+    if ($product) {
+        // ตัวอย่างการเข้าถึงข้อมูล
+        $gs_no = $product['gs_no'];
+        $thai_name = $product['rice_variety_th_name'];
+        $english_name = $product['rice_variety_en_name'];
+        $product_name = $product['product_name'];
+        $group = $product['product_group'];
+        $category = $product['categore'];
+        $group_th = $product['rice_variety_group_th_name'];
+        $group_en = $product['rice_variety_group_en_name'];
+        $source_url = $product['source_url'];
+        $source = $product['source'];
+        $recipe = $product['recipe'];
+        $type = $product['type'];
+
+        // ใช้งานต่อใน HTML หรือระบบ
+    } else {
+        echo "ไม่พบข้อมูล";
+    }
+} else {
+    echo "ID ไม่ถูกต้อง";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -33,11 +67,11 @@ session_start();
 
                 <!-- Sidebar -->
                 <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
-                    <h2 class="text-2xl font-bold mb-4">ผลิตภัณฑ์<br>ข้าวกล้องอัดแท่ง</h2>
+                    <h2 class="text-2xl font-bold mb-4">ผลิตภัณฑ์<br><?php echo $product_name ?></h2>
                     <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center">
                         <span class="text-gray-400">รูปภาพ</span>
                     </div>
-                    <p class="text-sm mb-4">ที่มา : สำนักวิจัยและพัฒนาข้าว กรมการข้าว</p>
+                    <p class="text-sm mb-4">ที่มา : <?php echo $source ?></p>
                     <a href="./dashboard" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm inline-block text-center">
                         หน้าแรก
                     </a>
@@ -46,7 +80,7 @@ session_start();
                 <!-- Content -->
                 <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
                     <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
-                        จาก ข้าวกล้องพันธุ์สังข์หยดพัทลุง
+                        จาก <?php echo $thai_name ?>
                     </h3>
 
                     <!-- Tabs -->
