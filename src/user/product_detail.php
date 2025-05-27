@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: session_timeout.php');
+    exit;
+}
+
 include '../connect/dbcon.php';
 // รับค่า id จาก query string อย่างปลอดภัย
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;

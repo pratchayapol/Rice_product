@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: session_timeout.php');
+    exit;
+}
+
 include '../connect/dbcon.php';
 
 if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
