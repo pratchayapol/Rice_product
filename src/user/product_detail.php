@@ -72,7 +72,12 @@ if ($id > 0) {
                     <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center">
                         <span class="text-gray-400">รูปภาพ</span>
                     </div>
-                    <p class="text-sm mb-4">ที่มา : <?php echo $source ?></p>
+                    <p class="text-sm mb-4">
+                        ที่มา : <a href="<?php echo $source_url ?>" class="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                            <?php echo $source ?>
+                        </a>
+                    </p>
+
                     <a href="./dashboard" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm inline-block text-center">
                         หน้าแรก
                     </a>
@@ -81,7 +86,7 @@ if ($id > 0) {
                 <!-- Content -->
                 <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
                     <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
-                        จาก <?php echo $thai_name .' ( '. $english_name .' )' ?>
+                        จาก <?php echo $thai_name . ' ( ' . $english_name . ' )' ?>
                     </h3>
 
                     <!-- Tabs -->
