@@ -26,65 +26,71 @@ session_start();
 
 <body class="bg t1">
     <?php include '../loadtab/h.php'; ?>
-    <div class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-        <div class="grid grid-cols-12 gap-6">
-            <!-- Sidebar -->
-            <div class="col-span-12 md:col-span-4 bg-olive-700 rounded-lg p-6 text-white">
-                <h2 class="text-2xl font-bold mb-4">ผลิตภัณฑ์<br>ข้าวกล้องอัดแท่ง</h2>
-                <div class="bg-white h-40 rounded-lg mb-4 flex items-center justify-center">
-                    <span class="text-gray-400">รูปภาพ</span>
-                </div>
-                <p class="text-sm">ที่มา : สำนักวิจัยและพัฒนาข้าว กรมการข้าว</p>
-                <button class="mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm">หน้าแรก</button>
-            </div>
 
-            <!-- Content -->
-            <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
-                <h3 class="text-xl font-bold text-center text-gray-800 mb-4">จาก ข้าวกล้องพันธุ์สังข์หยดพัทลุง</h3>
-
-                <!-- Tabs -->
-                <div class="flex justify-around mb-4">
-                    <span class="bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">กรรมวิธีการผลิต</span>
-                    <span class="bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">ข้อมูลพันธุ์ข้าว</span>
-                    <span class="bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">ข้อมูลโภชนาการ</span>
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="max-w-7xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+            <div class="grid grid-cols-12 gap-6">
+                <!-- Sidebar -->
+                <div class="col-span-12 md:col-span-4 bg-olive-700 rounded-lg p-6 text-white">
+                    <h2 class="text-2xl font-bold mb-4">ผลิตภัณฑ์<br>ข้าวกล้องอัดแท่ง</h2>
+                    <div class="bg-white h-40 rounded-lg mb-4 flex items-center justify-center">
+                        <span class="text-gray-400">รูปภาพ</span>
+                    </div>
+                    <p class="text-sm">ที่มา : สำนักวิจัยและพัฒนาข้าว กรมการข้าว</p>
+                    <button class="mt-4 bg-yellow-400 text-black px-4 py-2 rounded-full text-sm">หน้าแรก</button>
                 </div>
 
-                <!-- อุปกรณ์ -->
-                <div class="bg-orange-100 p-4 rounded-lg mb-4">
-                    <h4 class="font-bold mb-2">อุปกรณ์</h4>
-                    <ul class="list-disc list-inside text-sm">
-                        <li>ข้าวกล้องข้าวเหนียวดำ ข้าวกล้องพันธุ์สังข์หยดพัทลุง ข้าวกล้องเล็บนกปัตตานี และข้าวกล้องพันธุ์เชียงพัทลุง</li>
-                        <li>น้ำตาลทราย</li>
-                        <li>เครื่องปั่น (blender)</li>
-                        <li>กระทะไฟฟ้า</li>
-                        <li>เครื่องชั่งไฟฟ้า</li>
-                        <li>ตู้อบไฟฟ้า</li>
-                    </ul>
-                </div>
+                <!-- Content -->
+                <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
+                    <h3 class="text-xl font-bold text-center text-gray-800 mb-4">จาก ข้าวกล้องพันธุ์สังข์หยดพัทลุง</h3>
 
-                <!-- วิธีทำ -->
-                <div class="bg-orange-100 p-4 rounded-lg">
-                    <h4 class="font-bold mb-2">วิธีทำ</h4>
-                    <ol class="list-decimal list-inside text-sm space-y-2">
-                        <li>
-                            นำข้าวกล้องพันธุ์ต่างๆ แช่น้ำ 3-5 ชั่วโมง กำจัดสิ่งสกปรก แล้วใส่น้ำ ต้มให้สุก ใช้อุณหภูมิ 60-100 องศาเซลเซียส เป็นเวลา 40 นาที
-                        </li>
-                        <li>
-                            บดให้ละเอียด และอัดให้เป็นแท่ง มีขั้นตอนย่อย 2 กรรมวิธีคือ
-                            <ul class="list-disc list-inside ml-4 mt-1">
-                                <li>
-                                    กรรมวิธีที่ 1 ผสมข้าวกล้องที่ต้มแล้วบดละเอียด 100 กรัม น้ำตาลทราย 40 กรัม เกลือเล็กน้อย อัดเป็นแผ่นหนา 1 ซม. หั่นเป็นแท่ง ยาว 4 ซม. หนา 1 ซม. อบที่ 100 องศาเซลเซียส 15 นาที
-                                </li>
-                                <li>
-                                    กรรมวิธีที่ 2 ผสมข้าวกล้องบดละเอียด 100 กรัม น้ำตาลทราย 40 กรัม ผสมกัน แล้วนำไปอัดเป็นแท่งจากข้าวกล้องพันธุ์ต่าง ๆ ในอัตราส่วน เช่น 25:25:25:25 หรือแล้วแต่ต้องการ
-                                </li>
-                            </ul>
-                        </li>
-                    </ol>
+                    <!-- Tabs -->
+                    <div class="flex justify-around mb-4">
+                        <span class="bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">กรรมวิธีการผลิต</span>
+                        <span class="bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">ข้อมูลพันธุ์ข้าว</span>
+                        <span class="bg-yellow-400 px-4 py-2 rounded-full font-semibold text-sm">ข้อมูลโภชนาการ</span>
+                    </div>
+
+                    <!-- อุปกรณ์ -->
+                    <div class="bg-orange-100 p-4 rounded-lg mb-4">
+                        <h4 class="font-bold mb-2">อุปกรณ์</h4>
+                        <ul class="list-disc list-inside text-sm">
+                            <li>ข้าวกล้องข้าวเหนียวดำ ข้าวกล้องพันธุ์สังข์หยดพัทลุง ข้าวกล้องเล็บนกปัตตานี และข้าวกล้องพันธุ์เชียงพัทลุง</li>
+                            <li>น้ำตาลทราย</li>
+                            <li>เครื่องปั่น (blender)</li>
+                            <li>กระทะไฟฟ้า</li>
+                            <li>เครื่องชั่งไฟฟ้า</li>
+                            <li>ตู้อบไฟฟ้า</li>
+                        </ul>
+                    </div>
+
+                    <!-- วิธีทำ -->
+                    <div class="bg-orange-100 p-4 rounded-lg">
+                        <h4 class="font-bold mb-2">วิธีทำ</h4>
+                        <ol class="list-decimal list-inside text-sm space-y-2">
+                            <li>
+                                นำข้าวกล้องพันธุ์ต่างๆ แช่น้ำ 3-5 ชั่วโมง กำจัดสิ่งสกปรก แล้วใส่น้ำ ต้มให้สุก ใช้อุณหภูมิ 60-100 องศาเซลเซียส เป็นเวลา 40 นาที
+                            </li>
+                            <li>
+                                บดให้ละเอียด และอัดให้เป็นแท่ง มีขั้นตอนย่อย 2 กรรมวิธีคือ
+                                <ul class="list-disc list-inside ml-4 mt-1">
+                                    <li>
+                                        กรรมวิธีที่ 1 ผสมข้าวกล้องที่ต้มแล้วบดละเอียด 100 กรัม น้ำตาลทราย 40 กรัม เกลือเล็กน้อย อัดเป็นแผ่นหนา 1 ซม. หั่นเป็นแท่ง ยาว 4 ซม. หนา 1 ซม. อบที่ 100 องศาเซลเซียส 15 นาที
+                                    </li>
+                                    <li>
+                                        กรรมวิธีที่ 2 ผสมข้าวกล้องบดละเอียด 100 กรัม น้ำตาลทราย 40 กรัม ผสมกัน แล้วนำไปอัดเป็นแท่งจากข้าวกล้องพันธุ์ต่าง ๆ ในอัตราส่วน เช่น 25:25:25:25 หรือแล้วแต่ต้องการ
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
     <?php include '../loadtab/f.php'; ?>
 </body>
 
