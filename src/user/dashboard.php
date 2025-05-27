@@ -14,6 +14,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                                    FROM rice_products 
                                    WHERE rice_variety_th_name LIKE :query 
                                       OR rice_variety_en_name LIKE :query 
+                                      OR product_name LIKE :query 
                                    LIMIT 10");
             $searchTerm = "%" . $query . "%";
             $stmt->execute(['query' => $searchTerm]);
