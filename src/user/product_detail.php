@@ -74,7 +74,7 @@ if ($id > 0) {
                                 <?php if (!empty($picture)): ?>
                                     <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain">
                                 <?php else: ?>
-                                    <span class="text-gray-400">รูปภาพ</span>
+                                    <span class="text-gray-400">ไม่มีข้อมูลรูปภาพ</span>
                                 <?php endif; ?>
                             </div>
                             <p class="text-sm mb-4">
