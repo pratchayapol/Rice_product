@@ -31,7 +31,7 @@ session_start();
         <div class="max-w-7xl mx-auto p-6">
             <div class="grid grid-cols-12 gap-6">
                 <!-- Sidebar -->
-                <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center justify-center">
+                <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
                     <h2 class="text-2xl font-bold mb-4">ผลิตภัณฑ์<br>ข้าวกล้องอัดแท่ง</h2>
                     <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center">
                         <span class="text-gray-400">รูปภาพ</span>
@@ -39,6 +39,7 @@ session_start();
                     <p class="text-sm mb-4">ที่มา : สำนักวิจัยและพัฒนาข้าว กรมการข้าว</p>
                     <button class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm">หน้าแรก</button>
                 </div>
+
 
 
                 <!-- Content -->
