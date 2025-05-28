@@ -130,7 +130,7 @@ if ($id > 0) {
                                     </div>
                                 </div>
 
-                                <div id="rice" class="tab-content hidden absolute inset-0">
+                                <div id="rice" class="tab-content hidden">
                                     <div class="bg-orange-100 p-4 rounded-lg">
                                         <h1 class="text-center text-2xl font-bold text-gray-700 mb-6">สังข์หยดพัทลุง</h1>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -171,7 +171,7 @@ if ($id > 0) {
                                     </div>
                                 </div>
 
-                                <div id="nutrition" class="tab-content hidden absolute inset-0">
+                                <div id="nutrition" class="tab-content hidden">
                                     <div class="bg-orange-100 p-4 rounded-lg">
                                         <h4 class="font-bold mb-2">ข้อมูลโภชนาการ</h4>
                                         <ul class="list-disc list-inside text-sm">
