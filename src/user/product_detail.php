@@ -167,13 +167,7 @@ if ($id > 0) {
                                             </div>
                                         </div>
 
-                                        <!-- กล่องข้อมูลพันธุ์ข้าวเพิ่มเติม -->
-                                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-100 rounded-lg p-4 w-full max-w-md shadow mt-6">
-                                            <h4 class="font-bold mb-2 text-center">ข้อมูลพันธุ์ข้าว</h4>
-                                            <p class="text-sm text-gray-800">
-                                                ข้าวพันธุ์สังข์หยดพัทลุง เป็นข้าวกล้องมีสารต้านอนุมูลอิสระสูง มีธาตุเหล็กและใยอาหารมาก เหมาะสำหรับแปรรูปเพื่อสุขภาพ
-                                            </p>
-                                        </div>
+                                     
                                     </div>
                                 </div>
 
