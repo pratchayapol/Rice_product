@@ -20,7 +20,7 @@ if ($id > 0) {
     $product = $stmt->fetch();
 
     if ($product) {
-        // ตัวอย่างการเข้าถึงข้อมูล
+        // การเข้าถึงข้อมูล
         $gs_no = $product['gs_no'];
         $thai_name = $product['rice_variety_th_name'];
         $english_name = $product['rice_variety_en_name'];
