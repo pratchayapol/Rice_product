@@ -102,7 +102,7 @@ if ($id > 0) {
                             </div>
 
                             <!-- Tab Contents -->
-                            <div class="relative min-h-[320px]">
+                            <div class="relative">
                                 <div id="method" class="tab-content">
                                     <div class="bg-orange-100 p-4 rounded-lg mb-4">
                                         <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">อุปกรณ์</h4>
