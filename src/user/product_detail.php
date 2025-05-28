@@ -132,10 +132,48 @@ if ($id > 0) {
 
                                 <div id="rice" class="tab-content hidden absolute inset-0">
                                     <div class="bg-orange-100 p-4 rounded-lg">
-                                        <h4 class="font-bold mb-2">ข้อมูลพันธุ์ข้าว</h4>
-                                        <p class="text-sm">
-                                            ข้าวพันธุ์สังข์หยดพัทลุง เป็นข้าวกล้องมีสารต้านอนุมูลอิสระสูง มีธาตุเหล็กและใยอาหารมาก เหมาะสำหรับแปรรูปเพื่อสุขภาพ
-                                        </p>
+                                        <h1 class="text-center text-2xl font-bold text-gray-700 mb-6">สังข์หยดพัทลุง</h1>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                                            <!-- ข้อมูลทั่วไป -->
+                                            <div>
+                                                <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h2>
+                                                <ul class="text-sm text-gray-700 space-y-1">
+                                                    <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> 9708</li>
+                                                    <li><strong>ชื่อพันธุ์ไทย:</strong> สังข์หยด</li>
+                                                    <li><strong>ชื่อพันธุ์อังกฤษ:</strong> SANG YOD</li>
+                                                    <li><strong>นิเวศการปลูกข้าว:</strong> ข้าวนาสวน</li>
+                                                    <li><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> ไม่มีข้อมูล</li>
+                                                    <li><strong>สภาพภาพทั่วไป:</strong> พันธุ์พื้นเมือง</li>
+                                                    <li><strong>อายุเก็บเกี่ยว (วัน):</strong> ไม่มีข้อมูล</li>
+                                                    <li><strong>ความไวต่อช่วงแสง:</strong> ไวต่อช่วงแสง</li>
+                                                </ul>
+                                                <img src="https://via.placeholder.com/150x100?text=สังข์หยด" alt="รูปต้นข้าว" class="mt-4 rounded border">
+                                            </div>
+
+                                            <!-- คุณภาพทางเคมีของเมล็ด -->
+                                            <div>
+                                                <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h2>
+                                                <ul class="text-sm text-gray-700 space-y-1">
+                                                    <li><strong>ปริมาณอมิโลส (%):</strong> 22.58</li>
+                                                    <li><strong>อุณหภูมิแป้งสุก:</strong> ปานกลาง</li>
+                                                    <li><strong>อุณหภูมิแป้งสุก (เพิ่มเติม):</strong> 70-74°C</li>
+                                                    <li><strong>ความคงตัวของแป้งสุก:</strong> อ่อนปานกลาง</li>
+                                                    <li><strong>ความคงตัวของแป้งสุก (เพิ่มเติม):</strong> 61-80 มม.</li>
+                                                    <li><strong>กลิ่นหอม:</strong> ไม่หอม</li>
+                                                    <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> 1.69</li>
+                                                </ul>
+                                                <img src="https://via.placeholder.com/150x100?text=ข้าวสุก" alt="รูปเมล็ดข้าว" class="mt-4 rounded border">
+                                            </div>
+                                        </div>
+
+                                        <!-- กล่องข้อมูลพันธุ์ข้าวเพิ่มเติม -->
+                                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-orange-100 rounded-lg p-4 w-full max-w-md shadow mt-6">
+                                            <h4 class="font-bold mb-2 text-center">ข้อมูลพันธุ์ข้าว</h4>
+                                            <p class="text-sm text-gray-800">
+                                                ข้าวพันธุ์สังข์หยดพัทลุง เป็นข้าวกล้องมีสารต้านอนุมูลอิสระสูง มีธาตุเหล็กและใยอาหารมาก เหมาะสำหรับแปรรูปเพื่อสุขภาพ
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
 
