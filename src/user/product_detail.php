@@ -132,7 +132,7 @@ if ($id > 0) {
 
                                 <div id="rice" class="tab-content hidden">
                                     <div class="bg-orange-100 p-4 rounded-lg">
-                                        <h1 class="text-center text-2xl font-bold text-gray-700 mb-6 bg-white mx-auto shadow">สังข์หยดพัทลุง</h1>
+                                        <h1 class="text-2xl text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">สังข์หยดพัทลุง</h1>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                                             <!-- ข้อมูลทั่วไป -->
