@@ -125,7 +125,7 @@ if ($id > 0) {
 
                             <?php if (!empty($picture)): ?>
                                 <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                                    <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain">
+                                    <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain"  onclick="openImageModal(this.src)">
                                 </div>
                             <?php else: ?>
 
