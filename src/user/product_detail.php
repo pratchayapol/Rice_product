@@ -82,8 +82,9 @@ if ($id > 0) {
             $aroma                = !empty($general_info['aroma']) ? $general_info['aroma'] : 'ไม่พบข้อมูล';
             $cooked_rice_expansion_ratio                = !empty($general_info['cooked_rice_expansion_ratio']) ? $general_info['cooking_quality'] : 'ไม่พบข้อมูล';
 
-            $picture_rice_1                = !empty($general_info['picture_rice_1']) ? $general_info['picture_rice_1'] : 'ไม่พบข้อมูล';
-            $picture_rice_2                = !empty($general_info['picture_rice_2']) ? $general_info['picture_rice_2'] : 'ไม่พบข้อมูล';
+            $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
+            $picture_rice_2 = $general_info['picture_rice_2'] ?? null;
+
         } else {
             echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
         }
