@@ -192,7 +192,7 @@ if ($id > 0) {
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
                                                 <?php if (!empty($picture_rice_1)): ?>
-                                                    <img src="<?php echo htmlspecialchars($picture_rice_1) ?>" alt="รูปต้นข้าว" class="mt-4 rounded border">
+                                                    <img src="<?php echo htmlspecialchars($picture_rice_1) ?>" alt="รูปต้นข้าว" class="h-full object-contain">
                                                 <?php endif; ?>
                                             </div>
 
@@ -209,7 +209,7 @@ if ($id > 0) {
                                                     <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
                                                 <?php if (!empty($picture_rice_2)): ?>
-                                                    <img src="<?php echo htmlspecialchars($picture_rice_2) ?>" alt="รูปเมล็ดข้าว" class="mt-4 rounded border">
+                                                    <img src="<?php echo htmlspecialchars($picture_rice_2) ?>" alt="รูปเมล็ดข้าว" class="h-full object-contain">
                                                 <?php endif; ?>
                                             </div>
                                         </div>
