@@ -74,6 +74,16 @@ if ($id > 0) {
             $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
 
+            $amylose_content_percent        = !empty($general_info['amylose_content_percent']) ? $general_info['amylose_content_percent'] : 'ไม่พบข้อมูล';
+            $gelatinization_temp            = !empty($general_info['gelatinization_temp']) ? $general_info['gelatinization_temp'] : 'ไม่พบข้อมูล';
+            $gelatinization_temp_additional = !empty($general_info['gelatinization_temp_additional']) ? $general_info['gelatinization_temp_additional'] : 'ไม่พบข้อมูล';
+            $gelatinized_starch_stability   = !empty($general_info['gelatinized_starch_stability']) ? $general_info['	gelatinized_starch_stability'] : 'ไม่พบข้อมูล';
+            $gelatinized_starch_stability_additional              = !empty($general_info['gelatinized_starch_stability_additional']) ? $general_info['gelatinized_starch_stability_additional'] : 'ไม่พบข้อมูล';
+            $aroma                = !empty($general_info['aroma']) ? $general_info['aroma'] : 'ไม่พบข้อมูล';
+            $cooked_rice_expansion_ratio                = !empty($general_info['cooked_rice_expansion_ratio']) ? $general_info['cooking_quality'] : 'ไม่พบข้อมูล';
+
+            $picture_rice_1                = !empty($general_info['picture_rice_1']) ? $general_info['picture_rice_1'] : 'ไม่พบข้อมูล';
+            $picture_rice_2                = !empty($general_info['picture_rice_2']) ? $general_info['picture_rice_2'] : 'ไม่พบข้อมูล';
         } else {
             echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
         }
@@ -181,22 +191,22 @@ if ($id > 0) {
                                                     <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
-                                                <img src="https://via.placeholder.com/150x100?text=สังข์หยด" alt="รูปต้นข้าว" class="mt-4 rounded border">
+                                                <img src="<?php echo htmlspecialchars($picture_rice_1) ?>" alt="รูปต้นข้าว" class="mt-4 rounded border">
                                             </div>
 
                                             <!-- คุณภาพทางเคมีของเมล็ด -->
                                             <div>
                                                 <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h2>
                                                 <ul class="text-sm text-gray-700 space-y-1">
-                                                    <li><strong>ปริมาณอมิโลส (%):</strong> 22.58</li>
-                                                    <li><strong>อุณหภูมิแป้งสุก:</strong> ปานกลาง</li>
-                                                    <li><strong>อุณหภูมิแป้งสุก (เพิ่มเติม):</strong> 70-74°C</li>
-                                                    <li><strong>ความคงตัวของแป้งสุก:</strong> อ่อนปานกลาง</li>
-                                                    <li><strong>ความคงตัวของแป้งสุก (เพิ่มเติม):</strong> 61-80 มม.</li>
-                                                    <li><strong>กลิ่นหอม:</strong> ไม่หอม</li>
-                                                    <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> 1.69</li>
+                                                    <li><strong>ปริมาณอมิโลส (%):</strong> <?php echo htmlspecialchars($amylose_content_percent) ?></li>
+                                                    <li><strong>อุณหภูมิแป้งสุก:</strong> <?php echo htmlspecialchars($gelatinization_temp) ?></li>
+                                                    <li><strong>อุณหภูมิแป้งสุก (เพิ่มเติม):</strong> <?php echo htmlspecialchars($gelatinization_temp_additional) ?></li>
+                                                    <li><strong>ความคงตัวของแป้งสุก:</strong> <?php echo htmlspecialchars($gelatinized_starch_stability) ?></li>
+                                                    <li><strong>ความคงตัวของแป้งสุก (เพิ่มเติม):</strong> <?php echo htmlspecialchars($gelatinized_starch_stability_additional) ?></li>
+                                                    <li><strong>กลิ่นหอม:</strong> <?php echo htmlspecialchars($aroma) ?></li>
+                                                    <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
-                                                <img src="https://via.placeholder.com/150x100?text=ข้าวสุก" alt="รูปเมล็ดข้าว" class="mt-4 rounded border">
+                                                <img src="<?php echo htmlspecialchars($picture_rice_2) ?>" alt="รูปเมล็ดข้าว" class="mt-4 rounded border">
                                             </div>
                                         </div>
 
