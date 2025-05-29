@@ -130,7 +130,7 @@ if ($id > 0) {
                                             <div>
                                                 <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h2>
                                                 <ul class="text-sm text-gray-700 space-y-1">
-                                                    <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> 9708</li>
+                                                    <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
                                                     <li><strong>ชื่อพันธุ์ไทย:</strong> สังข์หยด</li>
                                                     <li><strong>ชื่อพันธุ์อังกฤษ:</strong> SANG YOD</li>
                                                     <li><strong>นิเวศการปลูกข้าว:</strong> ข้าวนาสวน</li>
