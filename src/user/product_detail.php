@@ -192,6 +192,7 @@ if ($id > 0) {
                                                     <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
+                                                    <br>
                                                 <?php if (!empty($picture_rice_1)): ?>
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
@@ -215,7 +216,7 @@ if ($id > 0) {
                                                     <li><strong>กลิ่นหอม:</strong> <?php echo htmlspecialchars($aroma) ?></li>
                                                     <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
-                                                <br>
+                                                <br>    <br>
                                                 <?php if (!empty($picture_rice_2)): ?>
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_2) ?>"
