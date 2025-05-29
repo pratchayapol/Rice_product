@@ -195,7 +195,8 @@ if ($id > 0) {
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
                                                             alt="รูปต้นข้าว"
-                                                            class="mt-4 rounded border object-cover w-48 h-48" />
+                                                            class="rounded border object-cover w-48 h-48 cursor-pointer"
+                                                            onclick="openImageModal(this.src)" />
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
@@ -216,7 +217,7 @@ if ($id > 0) {
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_2) ?>"
                                                             alt="รูปเมล็ดข้าว"
-                                                            class="mt-4 rounded border object-cover w-48 h-48" />
+                                                            class="mt-4 rounded border object-cover w-48 h-48" onclick="openImageModal(this.src)" />
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
@@ -244,7 +245,26 @@ if ($id > 0) {
                 </div>
             </div>
 
+            <!-- Modal เต็มจอ (ใช้ร่วมกัน) -->
+            <div id="imageModal"
+                class="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center hidden"
+                onclick="closeImageModal()">
+                <img id="modalImage" src="" alt="รูปเต็ม" class="max-w-full max-h-full rounded shadow-lg">
+            </div>
             <script>
+                function openImageModal(src) {
+                    const modal = document.getElementById('imageModal');
+                    const modalImage = document.getElementById('modalImage');
+                    modalImage.src = src;
+                    modal.classList.remove('hidden');
+                }
+
+                function closeImageModal() {
+                    const modal = document.getElementById('imageModal');
+                    modal.classList.add('hidden');
+                }
+
+
                 function showTab(tabId, btn) {
                     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
                     document.getElementById(tabId).classList.remove('hidden');
