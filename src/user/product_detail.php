@@ -58,20 +58,20 @@ if ($id > 0) {
             $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // แยกเก็บข้อมูลในตัวแปร PHP
-            $thai_breed_name                 = $general_info['thai_breed_name'];
-            $english_breed_name             = $general_info['english_breed_name'];
-            $scientific_name                = $general_info['scientific_name'];
-            $other_names_or_numbers         = $general_info['other_names_or_numbers'];
-            $type_of_rice_race_type         = $general_info['type_of_rice_race_type'];
-            $rice_ecosystem                 = $general_info['rice_ecosystem'];
-            $breeder                        = $general_info['breeder'];
-            $date_of_approval_or_recommendation = $general_info['date_of_approval_or_recommendation'];
-            $breeding_organization          = $general_info['breeding_organization'];
-            $general_status                 = $general_info['general_status'];
-            $legal_status                   = $general_info['legal_status'];
-            $harvest_age_days               = $general_info['harvest_age_days'];
-            $harvest_days                   = $general_info['harvest_days'];
-            $photoperiod_sensitivity        = $general_info['photoperiod_sensitivity'];
+            $thai_breed_name                 = !empty($general_info['thai_breed_name']) ? $general_info['thai_breed_name'] : 'ไม่พบข้อมูล';
+            $english_breed_name             = !empty($general_info['english_breed_name']) ? $general_info['english_breed_name'] : 'ไม่พบข้อมูล';
+            $scientific_name                = !empty($general_info['scientific_name']) ? $general_info['scientific_name'] : 'ไม่พบข้อมูล';
+            $other_names_or_numbers         = !empty($general_info['other_names_or_numbers']) ? $general_info['other_names_or_numbers'] : 'ไม่พบข้อมูล';
+            $type_of_rice_race_type         = !empty($general_info['type_of_rice_race_type']) ? $general_info['type_of_rice_race_type'] : 'ไม่พบข้อมูล';
+            $rice_ecosystem                 = !empty($general_info['rice_ecosystem']) ? $general_info['rice_ecosystem'] : 'ไม่พบข้อมูล';
+            $breeder                        = !empty($general_info['breeder']) ? $general_info['breeder'] : 'ไม่พบข้อมูล';
+            $date_of_approval_or_recommendation = !empty($general_info['date_of_approval_or_recommendation']) ? $general_info['date_of_approval_or_recommendation'] : 'ไม่พบข้อมูล';
+            $breeding_organization          = !empty($general_info['breeding_organization']) ? $general_info['breeding_organization'] : 'ไม่พบข้อมูล';
+            $general_status                 = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
+            $legal_status                   = !empty($general_info['legal_status']) ? $general_info['legal_status'] : 'ไม่พบข้อมูล';
+            $harvest_age_days               = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
+            $harvest_days                   = !empty($general_info['harvest_days']) ? $general_info['harvest_days'] : 'ไม่พบข้อมูล';
+            $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
             // ตัวอย่างแสดงค่าบางตัวแปร
             echo "ชื่อพันธุ์ไทย: " . htmlspecialchars($thai_breed_name) . "<br>";
