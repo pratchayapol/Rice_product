@@ -36,6 +36,50 @@ if ($id > 0) {
         $cooking_equipment = $product['cooking_equipment'];
         $picture = $product['picture'];
 
+        // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
+        $gs_no_array = explode(', ', $gs_no);
+        $target_gs_no = trim($gs_no_array[0]); // ลบช่องว่างเผื่อมี
+
+        // แปลงเป็น integer ถ้าจำเป็น
+        $target_gs_no = (int)$target_gs_no;
+
+        // คำสั่ง SQL พร้อม placeholder
+        $sql = "SELECT * FROM general_information WHERE gs_no = :gs_no";
+
+        // เตรียมคำสั่ง
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':gs_no', $target_gs_no, PDO::PARAM_INT);
+
+        // ประมวลผล
+        $stmt->execute();
+
+        // ตรวจสอบผลลัพธ์
+        if ($stmt->rowCount() > 0) {
+            $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // แยกเก็บข้อมูลในตัวแปร PHP
+            $thai_breed_name                 = $general_info['thai_breed_name'];
+            $english_breed_name             = $general_info['english_breed_name'];
+            $scientific_name                = $general_info['scientific_name'];
+            $other_names_or_numbers         = $general_info['other_names_or_numbers'];
+            $type_of_rice_race_type         = $general_info['type_of_rice_race_type'];
+            $rice_ecosystem                 = $general_info['rice_ecosystem'];
+            $breeder                        = $general_info['breeder'];
+            $date_of_approval_or_recommendation = $general_info['date_of_approval_or_recommendation'];
+            $breeding_organization          = $general_info['breeding_organization'];
+            $general_status                 = $general_info['general_status'];
+            $legal_status                   = $general_info['legal_status'];
+            $harvest_age_days               = $general_info['harvest_age_days'];
+            $harvest_days                   = $general_info['harvest_days'];
+            $photoperiod_sensitivity        = $general_info['photoperiod_sensitivity'];
+
+            // ตัวอย่างแสดงค่าบางตัวแปร
+            echo "ชื่อพันธุ์ไทย: " . htmlspecialchars($thai_breed_name) . "<br>";
+            echo "ชื่อวิทยาศาสตร์: " . htmlspecialchars($scientific_name) . "<br>";
+        } else {
+            echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
+        }
+
 ?>
 
         <!DOCTYPE html>
@@ -131,13 +175,14 @@ if ($id > 0) {
                                                 <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h2>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
-                                                    <li><strong>ชื่อพันธุ์ไทย:</strong> สังข์หยด</li>
-                                                    <li><strong>ชื่อพันธุ์อังกฤษ:</strong> SANG YOD</li>
-                                                    <li><strong>นิเวศการปลูกข้าว:</strong> ข้าวนาสวน</li>
-                                                    <li><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> ไม่มีข้อมูล</li>
-                                                    <li><strong>สภาพภาพทั่วไป:</strong> พันธุ์พื้นเมือง</li>
-                                                    <li><strong>อายุเก็บเกี่ยว (วัน):</strong> ไม่มีข้อมูล</li>
-                                                    <li><strong>ความไวต่อช่วงแสง:</strong> ไวต่อช่วงแสง</li>
+                                                    <li><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></li>
+                                                    <li><strong>ชื่อพันธุ์อังกฤษ:</strong> <?php echo htmlspecialchars($english_breed_name) ?></li>
+                                                    <li><strong>ชื่อวิทยาศาสตร์:</strong> <?php echo htmlspecialchars($scientific_name) ?></li>
+                                                    <li><strong>นิเวศการปลูกข้าว:</strong> <?php echo htmlspecialchars($rice_ecosystem) ?></li>
+                                                    <li><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> <?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></li>
+                                                    <li><strong>สภาพภาพทั่วไป:</strong> <?php echo htmlspecialchars($general_status) ?></li>
+                                                    <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
+                                                    <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
                                                 <img src="https://via.placeholder.com/150x100?text=สังข์หยด" alt="รูปต้นข้าว" class="mt-4 rounded border">
                                             </div>
