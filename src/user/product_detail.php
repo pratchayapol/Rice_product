@@ -73,9 +73,7 @@ if ($id > 0) {
             $harvest_days                   = !empty($general_info['harvest_days']) ? $general_info['harvest_days'] : 'ไม่พบข้อมูล';
             $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
-            // ตัวอย่างแสดงค่าบางตัวแปร
-            echo "ชื่อพันธุ์ไทย: " . htmlspecialchars($thai_breed_name) . "<br>";
-            echo "ชื่อวิทยาศาสตร์: " . htmlspecialchars($scientific_name) . "<br>";
+
         } else {
             echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
         }
