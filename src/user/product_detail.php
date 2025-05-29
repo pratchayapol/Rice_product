@@ -84,7 +84,6 @@ if ($id > 0) {
 
             $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
             $picture_rice_2 = $general_info['picture_rice_2'] ?? null;
-
         } else {
             echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
         }
@@ -193,7 +192,11 @@ if ($id > 0) {
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
                                                 <?php if (!empty($picture_rice_1)): ?>
-                                                    <img src="<?php echo htmlspecialchars($picture_rice_1) ?>" alt="รูปต้นข้าว" class="mt-4 rounded border object-cover w-48 h-48 items-center" />
+                                                    <div class="flex justify-center">
+                                                        <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
+                                                            alt="รูปต้นข้าว"
+                                                            class="mt-4 rounded border object-cover w-48 h-48" />
+                                                    </div>
                                                 <?php endif; ?>
                                             </div>
 
@@ -210,7 +213,11 @@ if ($id > 0) {
                                                     <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
                                                 <?php if (!empty($picture_rice_2)): ?>
-                                                    <img src="<?php echo htmlspecialchars($picture_rice_2) ?>" alt="รูปเมล็ดข้าว" class="mt-4 rounded border object-cover w-48 h-48 items-center">
+                                                    <div class="flex justify-center">
+                                                        <img src="<?php echo htmlspecialchars($picture_rice_2) ?>"
+                                                            alt="รูปเมล็ดข้าว"
+                                                            class="mt-4 rounded border object-cover w-48 h-48" />
+                                                    </div>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
