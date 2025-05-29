@@ -125,7 +125,7 @@ if ($id > 0) {
 
                             <?php if (!empty($picture)): ?>
                                 <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center overflow-hidden">
-                                    <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain"  onclick="openImageModal(this.src)">
+                                    <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain" onclick="openImageModal(this.src)">
                                 </div>
                             <?php else: ?>
 
@@ -206,7 +206,6 @@ if ($id > 0) {
                                             <div>
                                                 <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h2>
                                                 <br>
-                                                <br>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>ปริมาณอมิโลส (%):</strong> <?php echo htmlspecialchars($amylose_content_percent) ?></li>
                                                     <li><strong>อุณหภูมิแป้งสุก:</strong> <?php echo htmlspecialchars($gelatinization_temp) ?></li>
@@ -216,6 +215,7 @@ if ($id > 0) {
                                                     <li><strong>กลิ่นหอม:</strong> <?php echo htmlspecialchars($aroma) ?></li>
                                                     <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
+                                                <br> <br>
                                                 <?php if (!empty($picture_rice_2)): ?>
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_2) ?>"
