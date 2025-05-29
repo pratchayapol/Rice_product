@@ -93,7 +93,7 @@ if ($id > 0) {
                         <!-- Content -->
                         <div class="col-span-12 md:col-span-8 bg-blue-100 rounded-lg p-6">
                             <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
-                                จาก <?php echo $thai_name . ' ( ' . $english_name . ' )' ?>
+                                จากข้าวพันธุ์ <?php echo $thai_name . ' ( ' . $english_name . ' )' ?>
                             </h3>
 
                             <!-- Tabs -->
@@ -108,27 +108,16 @@ if ($id > 0) {
                                 <div id="method" class="tab-content">
                                     <div class="bg-orange-100 p-4 rounded-lg mb-4">
                                         <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">อุปกรณ์</h4>
-                                        <ul class="list-disc list-inside text-sm">
-                                            <li>ข้าวกล้องข้าวเหนียวดำ ข้าวกล้องพันธุ์สังข์หยดพัทลุง ข้าวกล้องเล็บนกปัตตานี และข้าวกล้องพันธุ์เชียงพัทลุง</li>
-                                            <li>น้ำตาลทราย</li>
-                                            <li>เครื่องปั่น (blender)</li>
-                                            <li>กระทะไฟฟ้า</li>
-                                            <li>เครื่องชั่งไฟฟ้า</li>
-                                            <li>ตู้อบไฟฟ้า</li>
-                                        </ul>
+                                        <div style='border:1px solid #ccc; padding:10px;'>
+                                            <?php echo $cooking_equipment; ?>
+                                        </div>
+
                                     </div>
                                     <div class="bg-orange-100 p-4 rounded-lg">
                                         <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">วิธีทำ</h4>
-                                        <ol class="list-decimal list-inside text-sm space-y-2">
-                                            <li>แช่น้ำ ต้มข้าว อุณหภูมิ 60-100°C เป็นเวลา 40 นาที</li>
-                                            <li>
-                                                บดละเอียด แล้วอัดเป็นแท่ง โดยมี 2 กรรมวิธี:
-                                                <ul class="list-disc list-inside ml-4 mt-1">
-                                                    <li>วิธีที่ 1: ข้าว 100g + น้ำตาล 40g อัดเป็นแผ่น อบ</li>
-                                                    <li>วิธีที่ 2: ผสมข้าวบด + น้ำตาล แล้วอัดเป็นแท่งในอัตราส่วนต่าง ๆ</li>
-                                                </ul>
-                                            </li>
-                                        </ol>
+                                        <div style='border:1px solid #ccc; padding:10px;'>
+                                            <?php echo $recipe; ?>
+                                        </div>
                                     </div>
                                 </div>
 
