@@ -180,6 +180,7 @@ if ($id > 0) {
                                             <!-- ข้อมูลทั่วไป -->
                                             <div>
                                                 <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h2>
+                                                <br>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
                                                     <li><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></li>
@@ -204,6 +205,8 @@ if ($id > 0) {
                                             <!-- คุณภาพทางเคมีของเมล็ด -->
                                             <div>
                                                 <h2 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h2>
+                                                <br>
+                                                <br>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>ปริมาณอมิโลส (%):</strong> <?php echo htmlspecialchars($amylose_content_percent) ?></li>
                                                     <li><strong>อุณหภูมิแป้งสุก:</strong> <?php echo htmlspecialchars($gelatinization_temp) ?></li>
