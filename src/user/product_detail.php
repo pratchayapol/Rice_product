@@ -191,7 +191,9 @@ if ($id > 0) {
                                                     <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
-                                                <img src="<?php echo htmlspecialchars($picture_rice_1) ?>" alt="รูปต้นข้าว" class="mt-4 rounded border">
+                                                <?php if (!empty($picture_rice_1)): ?>
+                                                    <img src="<?php echo htmlspecialchars($picture_rice_1) ?>" alt="รูปต้นข้าว" class="mt-4 rounded border">
+                                                <?php endif; ?>
                                             </div>
 
                                             <!-- คุณภาพทางเคมีของเมล็ด -->
@@ -206,7 +208,9 @@ if ($id > 0) {
                                                     <li><strong>กลิ่นหอม:</strong> <?php echo htmlspecialchars($aroma) ?></li>
                                                     <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
-                                                <img src="<?php echo htmlspecialchars($picture_rice_2) ?>" alt="รูปเมล็ดข้าว" class="mt-4 rounded border">
+                                                <?php if (!empty($picture_rice_2)): ?>
+                                                    <img src="<?php echo htmlspecialchars($picture_rice_2) ?>" alt="รูปเมล็ดข้าว" class="mt-4 rounded border">
+                                                <?php endif; ?>
                                             </div>
                                         </div>
 
