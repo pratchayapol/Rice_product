@@ -159,14 +159,14 @@ if ($id > 0) {
                             <div class="relative">
                                 <div id="method" class="tab-content">
                                     <div class="bg-white p-4 rounded-lg mb-4">
-                                        <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">อุปกรณ์</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm">อุปกรณ์</h4>
                                         <div style='border:0px solid #ccc; padding:10px;'>
                                             <?php echo $cooking_equipment; ?>
                                         </div>
 
                                     </div>
                                     <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="inline-block font-bold mb-2 bg-yellow-400 px-4 py-2 rounded-full text-sm">วิธีทำ</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm">วิธีทำ</h4>
                                         <div style='border:0px solid #ccc; padding:10px;'>
                                             <?php echo $recipe; ?>
                                         </div>
@@ -179,7 +179,7 @@ if ($id > 0) {
 
                                             <!-- ข้อมูลทั่วไป -->
                                             <div>
-                                                <h4 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h4>
+                                                <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h4>
                                                 <br>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
@@ -205,7 +205,7 @@ if ($id > 0) {
 
                                             <!-- คุณภาพทางเคมีของเมล็ด -->
                                             <div>
-                                                <h4 class="text-lg font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h4>
+                                                <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h4>
                                                 <br>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>ปริมาณอมิโลส (%):</strong> <?php echo htmlspecialchars($amylose_content_percent) ?></li>
