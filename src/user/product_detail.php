@@ -233,7 +233,7 @@ if ($id > 0) {
 
                                 <div id="nutrition" class="tab-content hidden">
                                     <div class="bg-orange-100 p-4 rounded-lg">
-                                        <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลโภชนาการ</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">ข้อมูลโภชนาการ</h4>
                                         <ul class="list-disc list-inside text-sm">
                                             <li>ใยอาหารสูง</li>
                                             <li>มีสารต้านอนุมูลอิสระ</li>
