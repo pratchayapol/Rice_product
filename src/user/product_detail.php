@@ -110,6 +110,9 @@ if ($id > 0) {
             <!-- animation -->
             <link rel="stylesheet" href="../css/animation.css">
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+            <!-- Chart.js -->
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         </head>
 
         <body class="bg t1">
@@ -192,7 +195,7 @@ if ($id > 0) {
                                                     <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
-                                                    <br>
+                                                <br>
                                                 <?php if (!empty($picture_rice_1)): ?>
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
@@ -216,7 +219,7 @@ if ($id > 0) {
                                                     <li><strong>กลิ่นหอม:</strong> <?php echo htmlspecialchars($aroma) ?></li>
                                                     <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
                                                 </ul>
-                                                <br>    <br>
+                                                <br> <br>
                                                 <?php if (!empty($picture_rice_2)): ?>
                                                     <div class="flex justify-center">
                                                         <img src="<?php echo htmlspecialchars($picture_rice_2) ?>"
@@ -234,12 +237,9 @@ if ($id > 0) {
                                 <div id="nutrition" class="tab-content hidden">
                                     <div class="bg-orange-100 p-4 rounded-lg">
                                         <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">ข้อมูลโภชนาการ</h4>
-                                        <ul class="list-disc list-inside text-sm">
-                                            <li>ใยอาหารสูง</li>
-                                            <li>มีสารต้านอนุมูลอิสระ</li>
-                                            <li>ให้พลังงานพอเหมาะ</li>
-                                            <li>มีวิตามินและแร่ธาตุที่จำเป็น</li>
-                                        </ul>
+                                        <div class="overflow-x-auto">
+                                            <canvas id="nutritionChart" class="w-full h-[700px]"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -255,6 +255,95 @@ if ($id > 0) {
                 onclick="closeImageModal()">
                 <img id="modalImage" src="" alt="รูปเต็ม" class="max-w-full max-h-full rounded shadow-lg">
             </div>
+            <script>
+                const labels = [
+                    "โปรตีนในข้าวกล้อง (%)",
+                    "โปรตีนในข้าวสาร (%)",
+                    "ไขมัน (%)",
+                    "ไขมันในข้าวสาร (%)",
+                    "ใยอาหาร (กรัม/100 กรัม)",
+                    "ใยอาหารในข้าวสาร",
+                    "วิตามิน อี",
+                    "วิตามิน อี ในข้าวสาร",
+                    "วิตามิน บี1",
+                    "วิตามิน บี1 ในข้าวสาร",
+                    "วิตามิน บี2",
+                    "วิตามิน บี2 ในข้าวสาร",
+                    "ไนอาซีน",
+                    "ไนอาซีน ในข้าวสาร",
+                    "ลูทีน",
+                    "ลูทีน ในข้าวสาร",
+                    "เบต้าแคโรทีน",
+                    "เบต้าแคโรทีนในข้าวสาร",
+                    "แคลเซียม",
+                    "แคลเซียมในข้าวสาร",
+                    "เหล็ก",
+                    "เหล็กในข้าวสาร",
+                    "ไฟเตท",
+                    "ไฟเตทในข้าวสาร",
+                    "ทองแดง",
+                    "ทองแดงในข้าวสาร",
+                    "โฟเลต",
+                    "โฟเลตในข้าวสาร"
+                ];
+
+                const dataValues = [
+                    7.5, 6.3, 2.2, 1.4, 3.1, 1.7, 1.2, 0.6,
+                    0.5, 0.2, 0.08, 0.04, 2.3, 1.0, 0.4, 0.2,
+                    0.3, 0.1, 12, 8, 1.1, 0.6, 240, 110,
+                    0.25, 0.14, 50, 20
+                ];
+
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                        label: "ปริมาณสารอาหาร",
+                        data: dataValues,
+                        backgroundColor: "rgba(251, 146, 60, 0.85)", // Tailwind orange-400
+                        borderRadius: 10,
+                        barThickness: 20
+                    }]
+                };
+
+                const config = {
+                    type: "bar",
+                    data: data,
+                    options: {
+                        indexAxis: "y",
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: (ctx) =>
+                                        `${ctx.label}: ${ctx.raw} ${
+                ctx.label.includes("%") ? "%" : "มก./100 กรัม"
+              }`
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: "ปริมาณ (มก./กรัม หรือ %)"
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    autoSkip: false
+                                }
+                            }
+                        }
+                    }
+                };
+
+                new Chart(document.getElementById("nutritionChart"), config);
+            </script>
+
             <script>
                 function openImageModal(src) {
                     const modal = document.getElementById('imageModal');
