@@ -10,8 +10,8 @@
                 <div class="flex items-center space-x-4">
                     <img src="../image/logo.png" alt="Rice Department Logo" class="w-12 h-12 rounded-full border border-white" />
                     <div class="text-white">
-                        <div class="text-lg font-semibold">ระบบบริการข้อมูลแปรรูปผลิตภัณฑ์ข้าวไทย</div>
-                        <div class="text-sm">Smart Thai Rice Processing Information System</div>
+                        <div class="text-lg font-semibold">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</div>
+                        <div class="text-sm">Rice Product Processing Database</div>
                     </div>
                 </div>
 

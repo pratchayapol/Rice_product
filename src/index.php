@@ -8,7 +8,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Thai Rice Processing Information System</title>
+    <title>Rice Product Processing Database</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -33,11 +33,11 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
             <!-- Title -->
             <h1 class="text-xl md:text-2xl font-bold text-gray-800 text-center leading-snug">
-                ระบบบริการข้อมูลแปรรูปผลิตภัณฑ์ข้าวไทย
+                ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว
             </h1>
 
             <p class="text-gray-600 mt-2 text-sm text-center">
-                Smart Thai Rice Processing Information System
+               Rice Product Processing Database
             </p>
             <p class="text-gray-600 mt-1 text-sm text-center">
                 ศูนย์วิจัยข้าวขอนแก่น กรมการข้าว
