@@ -279,11 +279,7 @@ if ($id > 0) {
                         indexAxis: "y",
                         responsive: true,
                         maintainAspectRatio: false,
-                        animation: {
-                            duration: 1500,
-                            easing: 'easeOutQuart',
-                            from: 0,
-                        },
+                        animation: false, // ❌ ปิดเอฟเฟกต์แอนิเมชัน
                         plugins: {
                             legend: {
                                 display: false
@@ -349,8 +345,9 @@ if ($id > 0) {
                             }
                         }
                     },
-                    plugins: [ChartDataLabels] // ไม่มี zoom plugin ในนี้แล้ว
+                    plugins: [ChartDataLabels]
                 };
+
 
                 new Chart(document.getElementById("nutritionChart"), config);
             </script>
