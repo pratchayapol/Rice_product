@@ -307,7 +307,7 @@ if ($id > 0) {
                                 formatter: (value, ctx) => {
                                     // แสดง % ถ้าชื่อ label มี %
                                     const label = ctx.chart.data.labels[ctx.dataIndex];
-                                    return `${value} ${label.includes("%") ? "%" : "มก./100 กรัม"}`;
+                                    return `${value} `;
                                 }
                             }
                         },
