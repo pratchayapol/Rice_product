@@ -238,7 +238,7 @@ if ($id > 0) {
                                     <div class="bg-orange-100 p-6 rounded-lg">
                                         <h4 class="inline-block font-bold mb-4 bg-white px-6 py-2 rounded-full text-sm mx-auto shadow"> ข้อมูลโภชนาการ </h4>
                                         <div class="overflow-x-auto">
-                                            <canvas id="nutritionChart" class="w-full h-[900px]"></canvas>
+                                            <canvas id="nutritionChart" class="w-full" style="min-height: 1200px;"></canvas>
                                         </div>
                                     </div>
                                 </div>
