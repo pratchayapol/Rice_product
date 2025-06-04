@@ -299,7 +299,7 @@ if ($id > 0) {
                     datasets: [{
                         label: "ปริมาณสารอาหาร",
                         data: dataValues,
-                        backgroundColor: "rgba(34, 197, 94, 0.85)", // Tailwind: green-500
+                        backgroundColor: "rgba(45, 64, 93, 0.85)", // Tailwind: green-500
                         borderRadius: 10,
                         barThickness: 20
                     }]
