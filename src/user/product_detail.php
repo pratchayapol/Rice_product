@@ -313,6 +313,7 @@ if ($id > 0) {
                     options: {
                         indexAxis: "y",
                         responsive: true,
+                        maintainAspectRatio: false, // ✅ ปิดอัตราส่วน ให้ canvas ขยายเต็ม
                         plugins: {
                             legend: {
                                 display: false
