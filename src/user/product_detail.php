@@ -159,14 +159,14 @@ if ($id > 0) {
                             <div class="relative">
                                 <div id="method" class="tab-content">
                                     <div class="bg-white p-4 rounded-lg mb-4">
-                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm">อุปกรณ์</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">อุปกรณ์</h4>
                                         <div style='border:0px solid #ccc; padding:10px;'>
                                             <?php echo $cooking_equipment; ?>
                                         </div>
 
                                     </div>
                                     <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm">วิธีทำ</h4>
+                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">วิธีทำ</h4>
                                         <div style='border:0px solid #ccc; padding:10px;'>
                                             <?php echo $recipe; ?>
                                         </div>
