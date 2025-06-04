@@ -280,9 +280,9 @@ if ($id > 0) {
                         responsive: true,
                         maintainAspectRatio: false,
                         animation: {
-                            duration: 1500, // เวลาแอนิเมชันวินาที (1000ms = 1s)
-                            easing: 'easeOutQuart', // อนิเมชันแบบเนียนๆ
-                            from: 0, // เริ่มต้นค่าที่ 0 (default)
+                            duration: 1500,
+                            easing: 'easeOutQuart',
+                            from: 0,
                         },
                         plugins: {
                             legend: {
@@ -349,7 +349,7 @@ if ($id > 0) {
                             }
                         }
                     },
-                    plugins: [ChartDataLabels]
+                    plugins: [ChartDataLabels] // ไม่มี zoom plugin ในนี้แล้ว
                 };
 
                 new Chart(document.getElementById("nutritionChart"), config);
