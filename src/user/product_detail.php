@@ -299,11 +299,9 @@ if ($id > 0) {
                     datasets: [{
                         label: "ปริมาณสารอาหาร",
                         data: dataValues,
-                        backgroundColor: "rgba(251, 146, 60, 0.85)", // Tailwind orange-400
+                        backgroundColor: "rgba(34, 197, 94, 0.85)", // Tailwind: green-500
                         borderRadius: 10,
-                        barThickness: 20,
-                        barPercentage: 0.8, // ✅ เพิ่มช่องว่างระหว่างแท่ง
-                        categoryPercentage: 0.6 // ✅ เพิ่มช่องว่างระหว่างหมวด
+                        barThickness: 20
                     }]
                 };
 
@@ -329,6 +327,13 @@ if ($id > 0) {
                         },
                         scales: {
                             x: {
+                                grid: {
+                                    display: false, // ❌ ไม่แสดงเส้นกริด
+                                    drawBorder: false
+                                },
+                                ticks: {
+                                    color: "#333"
+                                },
                                 beginAtZero: true,
                                 title: {
                                     display: true,
@@ -336,6 +341,10 @@ if ($id > 0) {
                                 }
                             },
                             y: {
+                                grid: {
+                                    display: false, // ❌ ไม่แสดงเส้นกริด
+                                    drawBorder: false
+                                },
                                 ticks: {
                                     autoSkip: false
                                 }
