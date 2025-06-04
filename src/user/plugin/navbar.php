@@ -45,19 +45,20 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
-                <!-- Dropdown Container -->
-                <div class="relative group">
-                    <button class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 focus:outline-none">
-                        ผลิตภัณฑ์ทั้งหมด
-                    </button>
 
-                    <!-- Dropdown Menu -->
-                    <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10 hidden group-hover:block">
-                        <a href="product_all?type=food" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">อาหาร</a>
-                        <a href="product_all?type=cosmetic" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">เวชสำอางค์</a>
-                        <a href="product_all?type=medical" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">การแพทย์</a>
+                <!-- Dropdown toggle -->
+                <div>
+                    <button id="mobile-submenu-toggle" class="w-full text-left bg-white text-gray-700 rounded-full px-4 py-2 flex justify-between items-center">
+                        ผลิตภัณฑ์ทั้งหมด
+                        <span id="submenu-arrow">▼</span>
+                    </button>
+                    <div id="mobile-submenu" class="hidden mt-2 ml-4 space-y-2">
+                        <a href="product_all?type=food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
+                        <a href="product_all?type=cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
+                        <a href="product_all?type=medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
                     </div>
                 </div>
+
                 <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
             </div>
         </div>
