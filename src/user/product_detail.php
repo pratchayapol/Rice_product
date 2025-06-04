@@ -235,10 +235,10 @@ if ($id > 0) {
                                 </div>
 
                                 <div id="nutrition" class="tab-content hidden">
-                                    <div class="bg-orange-100 p-4 rounded-lg">
-                                        <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">ข้อมูลโภชนาการ</h4>
+                                    <div class="bg-orange-100 p-6 rounded-lg">
+                                        <h4 class="inline-block font-bold mb-4 bg-white px-6 py-2 rounded-full text-sm mx-auto shadow"> ข้อมูลโภชนาการ </h4>
                                         <div class="overflow-x-auto">
-                                            <canvas id="nutritionChart" class="w-full h-[700px]"></canvas>
+                                            <canvas id="nutritionChart" class="w-full h-[900px]"></canvas>
                                         </div>
                                     </div>
                                 </div>
