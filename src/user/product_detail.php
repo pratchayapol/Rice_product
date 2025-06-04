@@ -353,19 +353,6 @@ if ($id > 0) {
             </script>
 
             <script>
-                function openImageModal(src) {
-                    const modal = document.getElementById('imageModal');
-                    const modalImage = document.getElementById('modalImage');
-                    modalImage.src = src;
-                    modal.classList.remove('hidden');
-                }
-
-                function closeImageModal() {
-                    const modal = document.getElementById('imageModal');
-                    modal.classList.add('hidden');
-                }
-
-
                 function showTab(tabId, btn) {
                     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
                     document.getElementById(tabId).classList.remove('hidden');

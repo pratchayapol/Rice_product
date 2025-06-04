@@ -66,12 +66,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         </div>
     </div>
     </div>
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            const menu = document.getElementById("mobile-menu");
-            menu.classList.toggle("hidden");
-        });
-    </script>
+
     <?php include '../loadtab/f.php'; ?>
 </body>
 
