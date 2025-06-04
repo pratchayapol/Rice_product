@@ -279,6 +279,11 @@ if ($id > 0) {
                         indexAxis: "y",
                         responsive: true,
                         maintainAspectRatio: false,
+                        animation: {
+                            duration: 1500, // เวลาแอนิเมชันวินาที (1000ms = 1s)
+                            easing: 'easeOutQuart', // อนิเมชันแบบเนียนๆ
+                            from: 0, // เริ่มต้นค่าที่ 0 (default)
+                        },
                         plugins: {
                             legend: {
                                 display: false
@@ -295,20 +300,16 @@ if ($id > 0) {
                                         `${ctx.label}: ${ctx.raw} ${ctx.label.includes("%") ? "%" : "มก./100 กรัม"}`
                                 }
                             },
-                            datalabels: { // <-- เปิดใช้งาน datalabels plugin
-                                anchor: 'end', // ตำแหน่ง label ให้อยู่ปลายแท่ง
-                                align: 'right', // จัด label ชิดขวา (เหนือแท่ง)
-                                color: '#2D405D', // สีตัวเลข (ใช้สีเดียวกับแท่ง)
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'right',
+                                color: '#2D405D',
                                 font: {
                                     family: 'Noto Sans Thai',
                                     weight: 'bold',
                                     size: 12
                                 },
-                                formatter: (value, ctx) => {
-                                    // แสดง % ถ้าชื่อ label มี %
-                                    const label = ctx.chart.data.labels[ctx.dataIndex];
-                                    return `${value} `;
-                                }
+                                formatter: (value) => `${value}`
                             }
                         },
                         scales: {
@@ -348,7 +349,7 @@ if ($id > 0) {
                             }
                         }
                     },
-                    plugins: [ChartDataLabels] // <-- เพิ่ม plugin เข้าไปที่นี่ด้วย
+                    plugins: [ChartDataLabels]
                 };
 
                 new Chart(document.getElementById("nutritionChart"), config);
