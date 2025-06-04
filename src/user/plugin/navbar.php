@@ -16,8 +16,9 @@
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-4">
+                <div class="hidden md:flex space-x-4 items-center relative group">
                     <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
+
                     <!-- Dropdown Container -->
                     <div class="relative group">
                         <button class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 focus:outline-none">
@@ -31,6 +32,7 @@
                             <a href="product_all?type=medical" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">การแพทย์</a>
                         </div>
                     </div>
+
                     <a href="profile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
                 </div>
 
