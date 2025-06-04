@@ -301,7 +301,9 @@ if ($id > 0) {
                         data: dataValues,
                         backgroundColor: "rgba(251, 146, 60, 0.85)", // Tailwind orange-400
                         borderRadius: 10,
-                        barThickness: 20
+                        barThickness: 20,
+                        barPercentage: 0.8, // ✅ เพิ่มช่องว่างระหว่างแท่ง
+                        categoryPercentage: 0.6 // ✅ เพิ่มช่องว่างระหว่างหมวด
                     }]
                 };
 
