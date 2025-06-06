@@ -138,6 +138,70 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 <img src="../image/dash2.png" alt="White Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
                 <img src="../image/dash3.png" alt="Black Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
             </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="col-span-1 bg-yellow-500 text-white rounded-xl shadow p-4">
+                        <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
+                        <p class="text-3xl font-bold">447</p>
+                    </div>
+
+                    <div class="col-span-1 bg-white border rounded-xl shadow p-4">
+                        <p class="text-md">ผลิตภัณฑ์อาหาร</p>
+                        <p class="text-3xl font-bold">380</p>
+                    </div>
+
+                    <div class="col-span-1 bg-white border rounded-xl shadow p-4">
+                        <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
+                        <p class="text-3xl font-bold">73</p>
+                    </div>
+
+                    <div class="col-span-1 bg-white border rounded-xl shadow p-4">
+                        <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
+                        <p class="text-3xl font-bold">4</p>
+                    </div>
+                </div>
+
+                <div class="mt-10 bg-white rounded-xl shadow p-6">
+                    <canvas id="productChart"></canvas>
+                </div>
+            </div>
+
+            <script>
+                const ctx = document.getElementById('productChart').getContext('2d');
+                const productChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['ผลิตภัณฑ์อาหาร', 'ผลิตภัณฑ์เวชสำอาง', 'ผลิตภัณฑ์ทางการแพทย์'],
+                        datasets: [{
+                            label: 'จำนวนผลิตภัณฑ์',
+                            data: [380, 73, 4],
+                            backgroundColor: [
+                                '#a17600', // อาหาร
+                                '#caa63c', // เวชสำอาง
+                                '#e0bb3c' // การแพทย์
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.label}: ${context.parsed} รายการ`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
         </div>
 
 
