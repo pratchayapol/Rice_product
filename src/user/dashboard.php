@@ -149,7 +149,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <?php include './plugin/navbar.php' ?>
     <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="w-full max-w-7xl px-4 md:px-8">
-            <div class="text-center bg-white/70 p-10 rounded-2xl shadow-xl w-full mb-10">
+            <div class="text-center bg-white/70 py-24 px-10 rounded-2xl shadow-xl w-full mb-10">
                 <h1 class="text-3xl md:text-4xl font-bold text-black mb-2">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
                 <p class="text-xl text-gray-800 mb-6">Rice Product Processing Database</p>
 
