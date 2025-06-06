@@ -8,6 +8,26 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
+if (isset($_GET['ajax'])) {
+    try {
+        $foodCount = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
+        $cosmeticCount = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
+        $medicalCount = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
+
+        $total = $foodCount + $cosmeticCount + $medicalCount;
+
+        echo json_encode([
+            'food' => $foodCount,
+            'cosmetic' => $cosmeticCount,
+            'medical' => $medicalCount,
+            'total' => $total
+        ]);
+    } catch (Exception $e) {
+        echo json_encode(['error' => $e->getMessage()]);
+    }
+    exit;
+}
+
 if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     header('Content-Type: application/json');
 
@@ -143,27 +163,23 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     <ul id="suggestions" class="absolute z-10 w-full bg-white border border-gray-300 rounded-b-lg mt-1 max-h-60 overflow-y-auto hidden"></ul>
                 </div>
             </div>
-
             <div class="max-w-4xl mx-auto">
                 <div class="grid grid-cols-4 gap-4">
                     <div class="col-span-1 bg-yellow-500 text-white rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
-                       
+                        <p id="totalCount" class="text-3xl font-bold">0</p>
                     </div>
-
                     <div class="col-span-1 bg-white border rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์อาหาร</p>
-                         <p id="foodCount" class="text-3xl font-bold">0</p>
+                        <p id="foodCount" class="text-3xl font-bold">0</p>
                     </div>
-
                     <div class="col-span-1 bg-white border rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
                         <p id="cosmeticCount" class="text-3xl font-bold">0</p>
                     </div>
-
                     <div class="col-span-1 bg-white border rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
-                       <p id="medicalCount" class="text-3xl font-bold">0</p>
+                        <p id="medicalCount" class="text-3xl font-bold">0</p>
                     </div>
                 </div>
 
@@ -188,7 +204,6 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         document.getElementById('cosmeticCount').textContent = data.cosmetic;
                         document.getElementById('medicalCount').textContent = data.medical;
 
-                        // อัปเดต chart
                         productChart.data.datasets[0].data = [data.food, data.cosmetic, data.medical];
                         productChart.update();
                     } catch (error) {
@@ -203,7 +218,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         labels: ['ผลิตภัณฑ์อาหาร', 'ผลิตภัณฑ์เวชสำอาง', 'ผลิตภัณฑ์ทางการแพทย์'],
                         datasets: [{
                             label: 'จำนวนผลิตภัณฑ์',
-                            data: [0, 0, 0], // เริ่มจากค่าว่าง
+                            data: [0, 0, 0],
                             backgroundColor: ['#a17600', '#caa63c', '#e0bb3c'],
                             borderWidth: 1
                         }]
@@ -225,7 +240,6 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     }
                 });
 
-                // เรียกข้อมูลทันทีเมื่อโหลด
                 fetchProductCounts();
             </script>
 
