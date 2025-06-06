@@ -201,7 +201,6 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     </div>
 
     <!-- Chart Script -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         async function fetchProductCounts() {
             try {
@@ -243,6 +242,11 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 plugins: {
                     legend: {
                         position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Noto Sans Thai'
+                            }
+                        }
                     },
                     tooltip: {
                         callbacks: {
