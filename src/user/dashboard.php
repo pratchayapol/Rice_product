@@ -235,6 +235,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // ให้ canvas ปรับตาม container
                 plugins: {
                     legend: {
                         position: 'bottom',
