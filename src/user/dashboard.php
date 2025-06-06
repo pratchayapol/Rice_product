@@ -17,17 +17,17 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
         if ($query !== '') {
             $stmt = $pdo->prepare("
-        SELECT id, rice_variety_th_name, rice_variety_en_name, product_name FROM food_product
+        SELECT food_product_id, rice_variety_th_name, rice_variety_en_name, product_name FROM food_product
         WHERE rice_variety_th_name LIKE :query 
            OR rice_variety_en_name LIKE :query 
            OR product_name LIKE :query 
         UNION
-        SELECT id, rice_variety_th_name, rice_variety_en_name, product_name FROM cosmetic_product
+        SELECT cosmetic_product_id, rice_variety_th_name, rice_variety_en_name, product_name FROM cosmetic_product
         WHERE rice_variety_th_name LIKE :query 
            OR rice_variety_en_name LIKE :query 
            OR product_name LIKE :query 
         UNION
-        SELECT id, rice_variety_th_name, rice_variety_en_name, product_name FROM medical_product
+        SELECT medical_product_id, rice_variety_th_name, rice_variety_en_name, product_name FROM medical_product
         WHERE rice_variety_th_name LIKE :query 
            OR rice_variety_en_name LIKE :query 
            OR product_name LIKE :query 
