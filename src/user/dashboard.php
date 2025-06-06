@@ -249,6 +249,12 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         }
                     },
                     tooltip: {
+                        bodyFont: {
+                            family: 'Noto Sans Thai'
+                        },
+                        titleFont: {
+                            family: 'Noto Sans Thai'
+                        },
                         callbacks: {
                             label: function(context) {
                                 return `${context.label}: ${context.parsed} รายการ`;
