@@ -8,7 +8,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
-
 if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     header('Content-Type: application/json');
 
@@ -16,40 +15,50 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         $query = isset($_GET['q']) ? trim($_GET['q']) : '';
 
         if ($query !== '') {
+            // การค้นหาแบบ UNION (ตามที่คุณเขียนไว้)
             $stmt = $pdo->prepare("
-    SELECT food_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'food' AS type 
-    FROM food_product
-    WHERE rice_variety_th_name LIKE :query 
-       OR rice_variety_en_name LIKE :query 
-       OR product_name LIKE :query 
-    UNION
-    SELECT cosmetic_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'cosmetic' AS type 
-    FROM cosmetic_product
-    WHERE rice_variety_th_name LIKE :query 
-       OR rice_variety_en_name LIKE :query 
-       OR product_name LIKE :query 
-    UNION
-    SELECT medical_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'medical' AS type 
-    FROM medical_product
-    WHERE rice_variety_th_name LIKE :query 
-       OR rice_variety_en_name LIKE :query 
-       OR product_name LIKE :query 
-");
-
-
+                SELECT food_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'food' AS type 
+                FROM food_product
+                WHERE rice_variety_th_name LIKE :query 
+                   OR rice_variety_en_name LIKE :query 
+                   OR product_name LIKE :query 
+                UNION
+                SELECT cosmetic_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'cosmetic' AS type 
+                FROM cosmetic_product
+                WHERE rice_variety_th_name LIKE :query 
+                   OR rice_variety_en_name LIKE :query 
+                   OR product_name LIKE :query 
+                UNION
+                SELECT medical_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'medical' AS type 
+                FROM medical_product
+                WHERE rice_variety_th_name LIKE :query 
+                   OR rice_variety_en_name LIKE :query 
+                   OR product_name LIKE :query 
+            ");
             $searchTerm = "%" . $query . "%";
             $stmt->execute(['query' => $searchTerm]);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($results);
         } else {
-            echo json_encode([]);
+            // ดึงข้อมูลนับจำนวน
+            $foodCount = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
+            $cosmeticCount = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
+            $medicalCount = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
+            $total = $foodCount + $cosmeticCount + $medicalCount;
+
+            echo json_encode([
+                'food' => (int)$foodCount,
+                'cosmetic' => (int)$cosmeticCount,
+                'medical' => (int)$medicalCount,
+                'total' => (int)$total
+            ]);
         }
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
-        exit;
     }
     exit;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -135,32 +144,26 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 </div>
             </div>
 
-            <div class="flex justify-center space-x-6">
-                <img src="../image/dash1.png" alt="Brown Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
-                <img src="../image/dash2.png" alt="White Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
-                <img src="../image/dash3.png" alt="Black Rice" class="w-20 h-20 rounded-full object-cover shadow-lg">
-            </div>
-
             <div class="max-w-4xl mx-auto">
                 <div class="grid grid-cols-4 gap-4">
                     <div class="col-span-1 bg-yellow-500 text-white rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
-                        <p class="text-3xl font-bold">447</p>
+                       
                     </div>
 
                     <div class="col-span-1 bg-white border rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์อาหาร</p>
-                        <p class="text-3xl font-bold">380</p>
+                         <p id="foodCount" class="text-3xl font-bold">0</p>
                     </div>
 
                     <div class="col-span-1 bg-white border rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
-                        <p class="text-3xl font-bold">73</p>
+                        <p id="cosmeticCount" class="text-3xl font-bold">0</p>
                     </div>
 
                     <div class="col-span-1 bg-white border rounded-xl shadow p-4">
                         <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
-                        <p class="text-3xl font-bold">4</p>
+                       <p id="medicalCount" class="text-3xl font-bold">0</p>
                     </div>
                 </div>
 
@@ -170,6 +173,29 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             </div>
 
             <script>
+                async function fetchProductCounts() {
+                    try {
+                        const response = await fetch('?ajax=1');
+                        const data = await response.json();
+
+                        if (data.error) {
+                            console.error('Error:', data.error);
+                            return;
+                        }
+
+                        document.getElementById('totalCount').textContent = data.total;
+                        document.getElementById('foodCount').textContent = data.food;
+                        document.getElementById('cosmeticCount').textContent = data.cosmetic;
+                        document.getElementById('medicalCount').textContent = data.medical;
+
+                        // อัปเดต chart
+                        productChart.data.datasets[0].data = [data.food, data.cosmetic, data.medical];
+                        productChart.update();
+                    } catch (error) {
+                        console.error('Fetch failed:', error);
+                    }
+                }
+
                 const ctx = document.getElementById('productChart').getContext('2d');
                 const productChart = new Chart(ctx, {
                     type: 'pie',
@@ -177,12 +203,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         labels: ['ผลิตภัณฑ์อาหาร', 'ผลิตภัณฑ์เวชสำอาง', 'ผลิตภัณฑ์ทางการแพทย์'],
                         datasets: [{
                             label: 'จำนวนผลิตภัณฑ์',
-                            data: [380, 73, 4],
-                            backgroundColor: [
-                                '#a17600', // อาหาร
-                                '#caa63c', // เวชสำอาง
-                                '#e0bb3c' // การแพทย์
-                            ],
+                            data: [0, 0, 0], // เริ่มจากค่าว่าง
+                            backgroundColor: ['#a17600', '#caa63c', '#e0bb3c'],
                             borderWidth: 1
                         }]
                     },
@@ -202,7 +224,11 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         }
                     }
                 });
+
+                // เรียกข้อมูลทันทีเมื่อโหลด
+                fetchProductCounts();
             </script>
+
 
         </div>
 
