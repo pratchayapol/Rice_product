@@ -270,12 +270,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                             weight: 'bold',
                             family: 'Noto Sans Thai'
                         },
-                        formatter: function(value) {
-                            return value > 0 ? value : '';
-                        },
-                        anchor: 'end', // ชิดขอบด้านนอก
-                        align: 'end', // ชิดออกไปด้านนอก
-                        offset: 10 // ระยะห่างจากขอบ
+                        formatter: function(value, context) {
+                            return value > 0 ? value : ''; // แสดงเฉพาะค่าที่มากกว่า 0
+                        }
                     }
                 },
             },
