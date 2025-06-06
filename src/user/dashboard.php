@@ -72,6 +72,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <link rel="stylesheet" href="../css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const input = document.getElementById('search-input');
