@@ -164,35 +164,39 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         <ul id="suggestions" class="absolute z-10 w-full bg-white border border-gray-300 rounded-b-lg mt-1 max-h-60 overflow-y-auto hidden"></ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Section แสดงจำนวน + Chart -->
-            <div class="flex flex-col md:flex-row gap-6">
-                <!-- แสดงจำนวน -->
-                <div class="flex-1 grid grid-cols-2 lg:grid-cols-2 gap-4">
-                    <div class="bg-yellow-500 text-white rounded-xl shadow p-2">
-                        <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
-                        <p id="totalCount" class="text-3xl font-bold">0</p>
+                <!-- Section แสดงจำนวน + Chart -->
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- แสดงจำนวน -->
+                    <div class="flex-1 grid grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div class="bg-yellow-500 text-white rounded-xl shadow p-2">
+                            <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
+                            <p id="totalCount" class="text-3xl font-bold">0</p>
+                        </div>
+                        <div class="bg-white border rounded-xl shadow p-2">
+                            <p class="text-md">ผลิตภัณฑ์อาหาร</p>
+                            <p id="foodCount" class="text-3xl font-bold">0</p>
+                        </div>
+                        <div class="bg-white border rounded-xl shadow p-2">
+                            <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
+                            <p id="cosmeticCount" class="text-3xl font-bold">0</p>
+                        </div>
+                        <div class="bg-white border rounded-xl shadow p-2">
+                            <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
+                            <p id="medicalCount" class="text-3xl font-bold">0</p>
+                        </div>
                     </div>
-                    <div class="bg-white border rounded-xl shadow p-2">
-                        <p class="text-md">ผลิตภัณฑ์อาหาร</p>
-                        <p id="foodCount" class="text-3xl font-bold">0</p>
-                    </div>
-                    <div class="bg-white border rounded-xl shadow p-2">
-                        <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
-                        <p id="cosmeticCount" class="text-3xl font-bold">0</p>
-                    </div>
-                    <div class="bg-white border rounded-xl shadow p-2">
-                        <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
-                        <p id="medicalCount" class="text-3xl font-bold">0</p>
+
+                    <!-- Pie Chart -->
+                    <div class="flex-1 bg-white rounded-xl shadow p-3">
+                        <canvas id="productChart" style="height:250px;"></canvas>
                     </div>
                 </div>
 
-                <!-- Pie Chart -->
-                <div class="flex-1 bg-white rounded-xl shadow p-3">
-                    <canvas id="productChart" style="height:250px;"></canvas>
-                </div>
+
             </div>
+
+
         </div>
     </div>
 
