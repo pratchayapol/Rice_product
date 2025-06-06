@@ -170,19 +170,19 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             <div class="flex flex-col md:flex-row gap-6">
                 <!-- แสดงจำนวน -->
                 <div class="flex-1 grid grid-cols-2 lg:grid-cols-2 gap-4">
-                    <div class="bg-white border rounded-xl shadow p-2">
+                    <div class="bg-yellow-500 text-white rounded-xl shadow p-2">
                         <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
                         <p id="totalCount" class="text-3xl font-bold">0</p>
                     </div>
-                    <div class="bg-white border rounded-xl shadow p-4">
+                    <div class="bg-white border rounded-xl shadow p-2">
                         <p class="text-md">ผลิตภัณฑ์อาหาร</p>
                         <p id="foodCount" class="text-3xl font-bold">0</p>
                     </div>
-                    <div class="bg-white border rounded-xl shadow p-4">
+                    <div class="bg-white border rounded-xl shadow p-2">
                         <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
                         <p id="cosmeticCount" class="text-3xl font-bold">0</p>
                     </div>
-                    <div class="bg-white border rounded-xl shadow p-4">
+                    <div class="bg-white border rounded-xl shadow p-2">
                         <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
                         <p id="medicalCount" class="text-3xl font-bold">0</p>
                     </div>
