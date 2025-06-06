@@ -17,22 +17,26 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
         if ($query !== '') {
             $stmt = $pdo->prepare("
-        SELECT food_product_id, rice_variety_th_name, rice_variety_en_name, product_name FROM food_product
-        WHERE rice_variety_th_name LIKE :query 
-           OR rice_variety_en_name LIKE :query 
-           OR product_name LIKE :query 
-        UNION
-        SELECT cosmetic_product_id, rice_variety_th_name, rice_variety_en_name, product_name FROM cosmetic_product
-        WHERE rice_variety_th_name LIKE :query 
-           OR rice_variety_en_name LIKE :query 
-           OR product_name LIKE :query 
-        UNION
-        SELECT medical_product_id, rice_variety_th_name, rice_variety_en_name, product_name FROM medical_product
-        WHERE rice_variety_th_name LIKE :query 
-           OR rice_variety_en_name LIKE :query 
-           OR product_name LIKE :query 
-        LIMIT 10
-    ");
+    SELECT food_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'food' AS type 
+    FROM food_product
+    WHERE rice_variety_th_name LIKE :query 
+       OR rice_variety_en_name LIKE :query 
+       OR product_name LIKE :query 
+    UNION
+    SELECT cosmetic_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'cosmetic' AS type 
+    FROM cosmetic_product
+    WHERE rice_variety_th_name LIKE :query 
+       OR rice_variety_en_name LIKE :query 
+       OR product_name LIKE :query 
+    UNION
+    SELECT medical_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'medical' AS type 
+    FROM medical_product
+    WHERE rice_variety_th_name LIKE :query 
+       OR rice_variety_en_name LIKE :query 
+       OR product_name LIKE :query 
+    LIMIT 10
+");
+
 
             $searchTerm = "%" . $query . "%";
             $stmt->execute(['query' => $searchTerm]);
@@ -94,7 +98,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                                 li.textContent = `${item.rice_variety_th_name} (${item.rice_variety_en_name}) - ${item.product_name}`;
                                 li.className = 'px-4 py-2 hover:bg-green-100 cursor-pointer';
                                 li.onclick = () => {
-                                    window.location.href = `product_detail?id=${item.id}`;
+                                    window.location.href = `product_detail.php?id=${item.id}&type=${item.type}`;
                                 };
                                 suggestionBox.appendChild(li);
                             });
