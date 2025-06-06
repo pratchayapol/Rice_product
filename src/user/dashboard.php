@@ -102,6 +102,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -202,6 +203,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
     <!-- Chart Script -->
     <script>
+        Chart.defaults.font.family = 'Noto Sans Thai';
+
         async function fetchProductCounts() {
             try {
                 const response = await fetch('?ajax=1');
@@ -238,7 +241,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // ให้ canvas ปรับตาม container
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'bottom',
@@ -260,9 +263,20 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                                 return `${context.label}: ${context.parsed} รายการ`;
                             }
                         }
+                    },
+                    datalabels: {
+                        color: '#000',
+                        font: {
+                            weight: 'bold',
+                            family: 'Noto Sans Thai'
+                        },
+                        formatter: function(value, context) {
+                            return value > 0 ? value : ''; // แสดงเฉพาะค่าที่มากกว่า 0
+                        }
                     }
-                }
-            }
+                },
+            },
+            plugins: [ChartDataLabels]
         });
 
         fetchProductCounts();
