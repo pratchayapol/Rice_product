@@ -172,7 +172,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
                     <!-- Pie Chart -->
                     <div class="flex-1 bg-white rounded-xl shadow p-3">
-                        <canvas id="productChart" style="height:250px;"></canvas>
+                        <canvas id="productChart" class="h-80"></canvas>
                     </div>
                 </div>
 
@@ -254,8 +254,10 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                             family: 'Noto Sans Thai'
                         },
                         formatter: function(value, context) {
-                            return value > 0 ? value : ''; // แสดงเฉพาะค่าที่มากกว่า 0
-                        }
+                            return value > 0 ? value : '';
+                        },
+                        anchor: 'end',
+                        align: 'end'
                     }
                 },
             },
