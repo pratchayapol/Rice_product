@@ -28,18 +28,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <!-- animation -->
     <link rel="stylesheet" href="../css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-  tailwind.config = {
-    theme: {
-      extend: {}
-    },
-    variants: {
-      extend: {
-        display: ['peer-hover', 'hover'],
-      }
-    }
-  }
-</script>
 </head>
 
 <body class="bg t1">

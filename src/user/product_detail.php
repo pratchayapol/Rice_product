@@ -115,18 +115,6 @@ if ($id > 0) {
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 
-            <script>
-  tailwind.config = {
-    theme: {
-      extend: {}
-    },
-    variants: {
-      extend: {
-        display: ['peer-hover', 'hover'],
-      }
-    }
-  }
-</script>
         </head>
 
         <body class="bg t1">
