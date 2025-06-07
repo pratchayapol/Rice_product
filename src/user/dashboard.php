@@ -9,32 +9,17 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 include '../connect/dbcon.php';
 
-try {
-    $foodCount = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
-    $cosmeticCount = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
-    $medicalCount = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
+header('Content-Type: application/json');
 
-    $total = $foodCount + $cosmeticCount + $medicalCount;
-
-    echo json_encode([
-        'food' => $foodCount,
-        'cosmetic' => $cosmeticCount,
-        'medical' => $medicalCount,
-        'total' => $total
-    ]);
-} catch (Exception $e) {
-    echo json_encode(['error' => $e->getMessage()]);
-}
-
+require_once 'db_connect.php'; // เชื่อมต่อฐานข้อมูลของคุณตรงนี้
 
 if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
-    header('Content-Type: application/json');
-
+    // 👉 โหมด AJAX: การค้นหา
     try {
         $query = isset($_GET['q']) ? trim($_GET['q']) : '';
 
         if ($query !== '') {
-            // การค้นหาแบบ UNION (ตามที่คุณเขียนไว้)
+            // การค้นหาข้อมูลจากทั้ง 3 ตาราง
             $stmt = $pdo->prepare("
                 SELECT food_product_id AS id, rice_variety_th_name, rice_variety_en_name, product_name, 'food' AS type 
                 FROM food_product
@@ -59,7 +44,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($results);
         } else {
-            // ดึงข้อมูลนับจำนวน
+            // ดึงจำนวนข้อมูลรวมถ้าไม่ได้ค้นหา
             $foodCount = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
             $cosmeticCount = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
             $medicalCount = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
