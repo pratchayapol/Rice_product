@@ -25,8 +25,8 @@
                             ผลิตภัณฑ์ทั้งหมด
                         </button>
 
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10 hidden group-hover:block group-focus-within:block">
+                        <!-- Dropdown Menu (hover ใช้ group-hover:block และตั้ง display เป็น hidden ก่อน) -->
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10 hidden group-hover:block">
                             <a href="product_all?type=food" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
                             <a href="product_all?type=cosmetic" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
                             <a href="product_all?type=medical" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
@@ -35,6 +35,7 @@
 
                     <a href="profile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
                 </div>
+
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
@@ -67,13 +68,13 @@
 
 <script>
     // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', function () {
+    document.getElementById('menu-toggle').addEventListener('click', function() {
         const menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
     });
 
     // Toggle submenu
-    document.getElementById('mobile-submenu-toggle').addEventListener('click', function () {
+    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
         const submenu = document.getElementById('mobile-submenu');
         const arrow = document.getElementById('submenu-arrow');
         submenu.classList.toggle('hidden');
