@@ -226,7 +226,6 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 }]
             },
             options: {
-                cutout: '70%', // กำหนดขนาดวงกลมกลวงตรงกลาง (ปรับเปอร์เซนต์ได้)
                 responsive: true,
                 maintainAspectRatio: false,
                 plugins: {
