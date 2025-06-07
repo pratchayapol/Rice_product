@@ -27,9 +27,9 @@
 
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10 hidden group-hover:block group-focus-within:block">
-                            <a href="product_all?type=food" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">อาหาร</a>
-                            <a href="product_all?type=cosmetic" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">เวชสำอางค์</a>
-                            <a href="product_all?type=medical" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">การแพทย์</a>
+                            <a href="product_all?type=food" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
+                            <a href="product_all?type=cosmetic" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
+                            <a href="product_all?type=medical" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
                         </div>
                     </div>
 
