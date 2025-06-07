@@ -279,7 +279,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             plugins: [ChartDataLabels]
         });
 
-        fetchProductCounts();
+        fetchProductCounts(); // เรียกครั้งแรกทันที
+        setInterval(fetchProductCounts, 1000); // เรียกซ้ำทุก 1 วินาที
     </script>
 
 
