@@ -232,7 +232,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
-                    padding: 25 // 👈 ลดขนาดวงกลมโดยเพิ่ม padding รอบขอบ
+                    padding: 35 // 👈 ลดขนาดวงกลมโดยเพิ่ม padding รอบขอบ
                 },
                 plugins: {
                     legend: {
