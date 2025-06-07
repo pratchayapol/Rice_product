@@ -21,14 +21,11 @@
 
                     <!-- Group Wrapper -->
                     <div class="relative">
-                        <!-- ปุ่ม dropdown -->
-                        <button class="peer bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 focus:outline-none">
+                        <button class="peer bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
                             ผลิตภัณฑ์ทั้งหมด
                         </button>
-
-                        <!-- เมนูย่อย -->
                         <div class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden 
-                peer-hover:flex hover:flex flex-col">
+              peer-hover:flex hover:flex flex-col">
                             <a href="product_all?type=food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
                             <a href="product_all?type=cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
                             <a href="product_all?type=medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
