@@ -267,7 +267,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         },
                         anchor: 'end',
                         align: 'end',
-                        offset: 5
+                        offset: 2.5
                     }
                 },
             },
