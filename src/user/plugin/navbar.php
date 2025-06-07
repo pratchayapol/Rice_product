@@ -20,17 +20,43 @@
                     <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
 
                     <!-- Group Wrapper -->
-                    <div class="relative">
-                        <button class="peer bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
+                    <div class="relative" id="menu-wrapper">
+                        <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
                             ผลิตภัณฑ์ทั้งหมด
                         </button>
-                        <div class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden 
-              peer-hover:flex hover:flex flex-col">
+
+                        <div id="dropdown-menu"
+                            class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
                             <a href="product_all?type=food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
                             <a href="product_all?type=cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
                             <a href="product_all?type=medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
                         </div>
                     </div>
+
+                    <script>
+                        const button = document.getElementById('menu-button');
+                        const dropdown = document.getElementById('dropdown-menu');
+                        const wrapper = document.getElementById('menu-wrapper');
+
+                        let hideTimeout;
+
+                        function showMenu() {
+                            clearTimeout(hideTimeout);
+                            dropdown.classList.remove('hidden');
+                            dropdown.classList.add('flex');
+                        }
+
+                        function hideMenuWithDelay() {
+                            hideTimeout = setTimeout(() => {
+                                dropdown.classList.remove('flex');
+                                dropdown.classList.add('hidden');
+                            }, 5000); // ซ่อนหลัง 5 วินาที
+                        }
+
+                        wrapper.addEventListener('mouseenter', showMenu);
+                        wrapper.addEventListener('mouseleave', hideMenuWithDelay);
+                    </script>
+
                     <a href="profile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
                 </div>
 
