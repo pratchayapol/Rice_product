@@ -85,7 +85,18 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {}
+    },
+    variants: {
+      extend: {
+        display: ['peer-hover', 'hover'],
+      }
+    }
+  }
+</script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const input = document.getElementById('search-input');
