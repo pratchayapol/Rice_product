@@ -231,6 +231,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                layout: {
+                    padding: 50 // 👈 ลดขนาดวงกลมโดยเพิ่ม padding รอบขอบ
+                },
                 plugins: {
                     legend: {
                         position: 'bottom',
