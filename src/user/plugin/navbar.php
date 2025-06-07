@@ -43,15 +43,25 @@
                         function showMenu() {
                             clearTimeout(hideTimeout);
                             dropdown.classList.remove('hidden');
-                            dropdown.classList.add('flex');
+                            requestAnimationFrame(() => {
+                                dropdown.classList.remove('opacity-0', 'translate-y-2');
+                                dropdown.classList.add('opacity-100', 'translate-y-0');
+                            });
                         }
 
                         function hideMenuWithDelay() {
                             hideTimeout = setTimeout(() => {
-                                dropdown.classList.remove('flex');
-                                dropdown.classList.add('hidden');
-                            }, 500); // ซ่อนหลัง 5 วินาที
+                                dropdown.classList.add('opacity-0', 'translate-y-2');
+                                dropdown.classList.remove('opacity-100', 'translate-y-0');
+
+                                // Delay hiding the element completely
+                                setTimeout(() => {
+                                    dropdown.classList.add('hidden');
+                                }, 300); // match duration in Tailwind (300ms)
+                            }, 300); // 0.3 วินาทีหลังจาก mouseleave
                         }
+
+
 
                         wrapper.addEventListener('mouseenter', showMenu);
                         wrapper.addEventListener('mouseleave', hideMenuWithDelay);
