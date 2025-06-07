@@ -15,18 +15,18 @@
                     </div>
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-4 items-center">
                     <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
 
-                    <!-- Group Wrapper -->
+                    <!-- กลุ่ม dropdown ทั้งหมด -->
                     <div class="relative group">
-                        <button class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 focus:outline-none">
+                        <!-- ปุ่มหลัก -->
+                        <div class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 cursor-pointer">
                             ผลิตภัณฑ์ทั้งหมด
-                        </button>
+                        </div>
 
-                        <!-- Dropdown Menu (hover ใช้ group-hover:block และตั้ง display เป็น hidden ก่อน) -->
-                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10 hidden group-hover:block">
+                        <!-- เมนูย่อย ต้องอยู่ใน .group และต้องไม่มีช่องว่าง -->
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition duration-150 ease-in-out">
                             <a href="product_all?type=food" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
                             <a href="product_all?type=cosmetic" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
                             <a href="product_all?type=medical" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
