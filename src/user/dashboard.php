@@ -8,25 +8,24 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
-if (isset($_GET['ajax'])) {
-    try {
-        $foodCount = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
-        $cosmeticCount = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
-        $medicalCount = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
 
-        $total = $foodCount + $cosmeticCount + $medicalCount;
+try {
+    $foodCount = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
+    $cosmeticCount = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
+    $medicalCount = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
 
-        echo json_encode([
-            'food' => $foodCount,
-            'cosmetic' => $cosmeticCount,
-            'medical' => $medicalCount,
-            'total' => $total
-        ]);
-    } catch (Exception $e) {
-        echo json_encode(['error' => $e->getMessage()]);
-    }
-    exit;
+    $total = $foodCount + $cosmeticCount + $medicalCount;
+
+    echo json_encode([
+        'food' => $foodCount,
+        'cosmetic' => $cosmeticCount,
+        'medical' => $medicalCount,
+        'total' => $total
+    ]);
+} catch (Exception $e) {
+    echo json_encode(['error' => $e->getMessage()]);
 }
+
 
 if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     header('Content-Type: application/json');
