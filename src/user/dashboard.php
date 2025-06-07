@@ -171,7 +171,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     </div>
 
                     <!-- Pie Chart -->
-                    <div class="flex-1 bg-white rounded-xl shadow p-3">
+                    <div class="flex-1 bg-white rounded-xl shadow p-3 h-96 overflow-visible">
                         <canvas id="productChart" class="h-80"></canvas>
                     </div>
                 </div>
@@ -257,7 +257,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                             return value > 0 ? value : '';
                         },
                         anchor: 'end',
-                        align: 'end'
+                        align: 'end',
+                        offset: 20 // เพิ่มระยะห่างจากวงกลม
                     }
                 },
             },
