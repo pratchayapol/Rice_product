@@ -50,7 +50,7 @@
                             hideTimeout = setTimeout(() => {
                                 dropdown.classList.remove('flex');
                                 dropdown.classList.add('hidden');
-                            }, 5000); // ซ่อนหลัง 5 วินาที
+                            }, 500); // ซ่อนหลัง 5 วินาที
                         }
 
                         wrapper.addEventListener('mouseenter', showMenu);
