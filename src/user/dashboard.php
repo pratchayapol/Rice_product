@@ -171,9 +171,10 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     </div>
 
                     <!-- Pie Chart -->
-                    <div class="bg-white rounded-xl shadow p-8 pt-16 overflow-visible w-72 h-80">
+                    <div class="bg-white rounded-xl shadow p-6 pt-12 overflow-visible w-96 h-96">
                         <canvas id="productChart" class="w-full h-full"></canvas>
                     </div>
+
 
 
 
