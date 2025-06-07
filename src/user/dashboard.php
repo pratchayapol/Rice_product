@@ -215,7 +215,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
         const ctx = document.getElementById('productChart').getContext('2d');
         const productChart = new Chart(ctx, {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: ['ผลิตภัณฑ์อาหาร', 'ผลิตภัณฑ์เวชสำอาง', 'ผลิตภัณฑ์ทางการแพทย์'],
                 datasets: [{
@@ -226,8 +226,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 }]
             },
             options: {
+                cutout: '70%', // กำหนดขนาดวงกลมกลวงตรงกลาง (ปรับเปอร์เซนต์ได้)
                 responsive: true,
-                cutout: '70%', // หรือปรับเป็น 60%, 50% ตามชอบ
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
