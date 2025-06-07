@@ -257,8 +257,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                             return value > 0 ? value : '';
                         },
                         anchor: 'end',
-                        align: 'end',
-                        offset: 20 // เพิ่มระยะห่างจากวงกลม
+                        align: 'end'
                     }
                 },
             },
