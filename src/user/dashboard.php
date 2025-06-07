@@ -11,7 +11,6 @@ include '../connect/dbcon.php';
 
 header('Content-Type: application/json');
 
-require_once 'db_connect.php'; // เชื่อมต่อฐานข้อมูลของคุณตรงนี้
 
 if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     // 👉 โหมด AJAX: การค้นหา
