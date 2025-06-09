@@ -139,16 +139,16 @@ $products = $stmt->fetchAll();
                         </button>
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu3" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์จากการหมัก::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากการหมัก::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากการหมัก::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากการหมัก::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องปรุงรส
                             </button>
                         </div>
