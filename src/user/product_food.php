@@ -29,6 +29,36 @@ $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $products = $stmt->fetchAll();
+
+
+
+$search = $_GET['search'] ?? '';
+$type = $_GET['type'] ?? '';
+
+$sql = "SELECT * FROM food_product WHERE 1";
+$params = [];
+
+if ($search !== '') {
+    $sql .= " AND product_name LIKE :search";
+    $params[':search'] = "%$search%";
+}
+
+if ($type !== '') {
+    $sql .= " AND category = :type"; // สมมุติว่าคุณมี column `category` ระบุว่าเป็นอาหาร/ขนม/เครื่องดื่ม
+    $params[':type'] = $type;
+}
+
+$sql .= " ORDER BY food_product_id LIMIT 50"; // limit ความเร็ว
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$products = $stmt->fetchAll();
+
+header('Content-Type: application/json');
+echo json_encode($products);
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -65,7 +95,7 @@ $products = $stmt->fetchAll();
                     <div class="w-full md:w-1/4 space-y-4">
                         <!-- Search Box -->
                         <div class="relative">
-                            <input type="text" placeholder="ค้นหาผลิตภัณฑ์ข้าว"
+                            <input type="text" id="searchInput" placeholder="ค้นหาผลิตภัณฑ์ข้าว"
                                 class="w-full px-5 py-3 rounded-full shadow border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" />
                             <span class="absolute right-4 top-3.5 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
@@ -90,13 +120,13 @@ $products = $stmt->fetchAll();
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu" class="hidden ml-4 mt-2 space-y-2">
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="อาหาร" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ขนม" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="เครื่องดื่ม" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
                         </div>
@@ -160,7 +190,55 @@ $products = $stmt->fetchAll();
         </div>
 
     </div>
+    <script>
+        $(document).ready(function() {
+            function fetchProducts(search = '', type = '') {
+                $.get('', {
+                    search: search,
+                    type: type
+                }, function(data) {
+                    let html = '';
+                    if (data.length === 0) {
+                        html = '<p class="text-gray-500 col-span-3">ไม่พบข้อมูล</p>';
+                    } else {
+                        data.forEach(product => {
+                            html += `
+                        <a href="product_detail?id=${product.food_product_id}&type=food"
+                            class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+                            <img src="${product.picture || '../image/rice_product/A.jpg'}"
+                                alt="${product.product_name}"
+                                class="rounded-xl mb-4 w-full h-40 object-cover" />
+                            <div class="flex flex-col gap-2 w-full">
+                                <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
+                                    ${product.product_name}
+                                </div>
+                                <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
+                                    ${product.rice_variety_th_name}
+                                </div>
+                            </div>
+                        </a>`;
+                        });
+                    }
+                    $('.grid').html(html);
+                });
+            }
 
+            $('#searchInput').on('input', function() {
+                const query = $(this).val();
+                fetchProducts(query, currentType);
+            });
+
+            let currentType = '';
+            $('.filter-btn').on('click', function() {
+                currentType = $(this).data('type');
+                const query = $('#searchInput').val();
+                fetchProducts(query, currentType);
+            });
+
+            // โหลดครั้งแรก
+            fetchProducts();
+        });
+    </script>
     <?php include '../loadtab/f.php'; ?>
 </body>
 
