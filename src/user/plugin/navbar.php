@@ -27,9 +27,9 @@
 
                         <div id="dropdown-menu"
                             class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
-                            <a href="product_all?type=food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
-                            <a href="product_all?type=cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
-                            <a href="product_all?type=medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
+                            <a href="product_food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
+                            <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
+                            <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
                         </div>
                     </div>
 
@@ -79,8 +79,8 @@
                     </button>
                     <div id="mobile-submenu" class="hidden mt-2 ml-4 space-y-2">
                         <a href="product_food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
-                        <a href="product_all?type=cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
-                        <a href="product_all?type=medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
+                        <a href="product_cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
+                        <a href="product_medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
                     </div>
                 </div>
 
