@@ -102,10 +102,10 @@ $products = $stmt->fetchAll();
                                         class="rounded-xl mb-4 w-full h-40 object-cover" />
 
                                     <div class="flex flex-col gap-2 w-full">
-                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-sky-100 hover:bg-gray-200 transition text-center">
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-gray-200 transition text-center">
                                             <?= htmlspecialchars($product['product_name']) ?>
                                         </div>
-                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-sky-100 hover:bg-gray-200 transition text-center">
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-gray-200 transition text-center">
                                             <?= htmlspecialchars($product['rice_variety_th_name']) ?>
                                         </div>
                                     </div>
