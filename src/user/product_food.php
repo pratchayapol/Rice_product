@@ -8,16 +8,32 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
+// แสดง 6 card ต่อ 1 หน้า
+$cardsPerPage = 6;
+
+// รับค่าหน้าปัจจุบันจาก URL ถ้าไม่มีให้เป็น 1
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// คำนวณ offset
+$offset = ($page - 1) * $cardsPerPage;
 
 try {
-    // 🔍 ดึงข้อมูลจากตาราง food_product
-    $stmt = $pdo->query("SELECT * FROM food_product");
+    // ดึงข้อมูลรวมทั้งหมดเพื่อนับจำนวนหน้า
+    $totalStmt = $pdo->query("SELECT COUNT(*) FROM food_product");
+    $totalCards = $totalStmt->fetchColumn();
+
+    // ดึงข้อมูลเฉพาะหน้าปัจจุบัน
+    $stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
+    $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
     $products = $stmt->fetchAll();
+
+    $totalPages = ceil($totalCards / $cardsPerPage);
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();
     exit;
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -99,6 +115,15 @@ try {
                             <?php endforeach; ?>
                         </div>
 
+                        <!-- Pagination -->
+                        <div class="flex justify-center gap-3 mt-6">
+                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                <a href="?page=<?= $i ?>"
+                                    class="px-4 py-2 rounded <?= $i === $page ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
+                                    <?= $i ?>
+                                </a>
+                            <?php endfor; ?>
+                        </div>
                     </div>
 
 
