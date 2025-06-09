@@ -194,6 +194,25 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <script>
         Chart.defaults.font.family = 'Noto Sans Thai';
 
+        function animateCounter(element, start, end, duration = 500) {
+            if (start === end) {
+                element.textContent = end;
+                return;
+            }
+            const range = end - start;
+            const increment = range / (duration / 16); // ประมาณ 60fps
+            let current = start;
+            const step = () => {
+                current += increment;
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    element.textContent = end;
+                } else {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(step);
+                }
+            };
+            step();
+        }
         async function fetchProductCounts() {
             try {
                 const response = await fetch('?ajax=1');
@@ -204,10 +223,17 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     return;
                 }
 
-                document.getElementById('totalCount').textContent = data.total;
-                document.getElementById('foodCount').textContent = data.food;
-                document.getElementById('cosmeticCount').textContent = data.cosmetic;
-                document.getElementById('medicalCount').textContent = data.medical;
+                animateCounter(document.getElementById('totalCount'),
+                    parseInt(document.getElementById('totalCount').textContent || 0), data.total);
+
+                animateCounter(document.getElementById('foodCount'),
+                    parseInt(document.getElementById('foodCount').textContent || 0), data.food);
+
+                animateCounter(document.getElementById('cosmeticCount'),
+                    parseInt(document.getElementById('cosmeticCount').textContent || 0), data.cosmetic);
+
+                animateCounter(document.getElementById('medicalCount'),
+                    parseInt(document.getElementById('medicalCount').textContent || 0), data.medical);
 
                 productChart.data.datasets[0].data = [data.food, data.cosmetic, data.medical];
                 productChart.update();
@@ -215,6 +241,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 console.error('Fetch failed:', error);
             }
         }
+
 
         const ctx = document.getElementById('productChart').getContext('2d');
         const productChart = new Chart(ctx, {
