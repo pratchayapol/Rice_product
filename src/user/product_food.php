@@ -110,7 +110,7 @@ $products = $stmt->fetchAll();
                         </div>
 
                         <!-- Pagination (ย้ายมาข้างในกล่องฝั่งขวา) -->
-                        <nav class="flex justify-center mt-4 mb-2 space-x-2">
+                        <nav class="flex justify-end mt-6 space-x-2">
                             <?php foreach ($paginator->getPages() as $page): ?>
                                 <?php if ($page['url']): ?>
                                     <a href="<?= $page['url'] ?>"
