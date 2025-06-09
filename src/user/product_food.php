@@ -160,6 +160,55 @@ $products = $stmt->fetchAll();
         </div>
 
     </div>
+    <script>
+        $(document).ready(function() {
+            function fetchProducts(search = '', type = '') {
+                $.get('fetch_products.php', {
+                    search: search,
+                    type: type
+                }, function(data) {
+                    let html = '';
+                    if (data.length === 0) {
+                        html = '<p class="text-gray-500 col-span-3">ไม่พบข้อมูล</p>';
+                    } else {
+                        data.forEach(product => {
+                            html += `
+                        <a href="product_detail?id=${product.food_product_id}&type=food"
+                            class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+                            <img src="${product.picture || '../image/rice_product/A.jpg'}"
+                                alt="${product.product_name}"
+                                class="rounded-xl mb-4 w-full h-40 object-cover" />
+                            <div class="flex flex-col gap-2 w-full">
+                                <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
+                                    ${product.product_name}
+                                </div>
+                                <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
+                                    ${product.rice_variety_th_name}
+                                </div>
+                            </div>
+                        </a>`;
+                        });
+                    }
+                    $('.grid').html(html);
+                });
+            }
+
+            $('#searchInput').on('input', function() {
+                const query = $(this).val();
+                fetchProducts(query, currentType);
+            });
+
+            let currentType = '';
+            $('.filter-btn').on('click', function() {
+                currentType = $(this).data('type');
+                const query = $('#searchInput').val();
+                fetchProducts(query, currentType);
+            });
+
+            // โหลดครั้งแรก
+            fetchProducts();
+        });
+    </script>
 
     <?php include '../loadtab/f.php'; ?>
 </body>
