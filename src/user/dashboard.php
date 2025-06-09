@@ -196,7 +196,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <script>
         Chart.defaults.font.family = 'Noto Sans Thai';
 
-        function animateCounter(element, start, end, duration = 500) {
+        function animateCounter(element, start, end, duration = 1500) {
             if (start === end) {
                 element.textContent = end;
                 return;
