@@ -86,10 +86,10 @@ try {
                                         class="rounded-xl mb-4 w-full aspect-[4/2] object-cover" />
 
                                     <div class="flex flex-col gap-2 w-full">
-                                        <button class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
+                                        <button class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition">
                                             <?= htmlspecialchars($product['product_name']) ?>
                                         </button>
-                                        <button class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
+                                        <button class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition">
                                             <?= htmlspecialchars($product['rice_variety_th_name']) ?>
                                         </button>
                                     </div>
