@@ -88,9 +88,10 @@ $products = $stmt->fetchAll();
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
-                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full shadow-md">
                             ผลิตภัณฑ์อาหาร
                         </h3>
+
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
                                 <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
