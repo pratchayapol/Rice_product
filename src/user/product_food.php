@@ -29,6 +29,55 @@ $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $products = $stmt->fetchAll();
+
+
+
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$type = isset($_GET['type']) ? trim($_GET['type']) : '';
+
+// สร้างเงื่อนไข WHERE แบบไดนามิก
+$where = [];
+$params = [];
+
+if ($search !== '') {
+    $where[] = "(product_name LIKE :search OR rice_variety_th_name LIKE :search)";
+    $params[':search'] = "%$search%";
+}
+
+if ($type !== '') {
+    $where[] = "product_category = :type"; // สมมติว่ามีคอลัมน์ product_category เก็บประเภทสินค้า เช่น 'อาหาร' 'ขนม' 'เครื่องดื่ม'
+    $params[':type'] = $type;
+}
+
+$whereSQL = '';
+if (count($where) > 0) {
+    $whereSQL = 'WHERE ' . implode(' AND ', $where);
+}
+
+// ดึงจำนวนสินค้าโดยเงื่อนไข
+$stmtCount = $pdo->prepare("SELECT COUNT(*) FROM food_product $whereSQL");
+$stmtCount->execute($params);
+$totalItems = $stmtCount->fetchColumn();
+
+// สร้าง paginator ใหม่
+$paginator = new Paginator($totalItems, $cardsPerPage, $currentPage, $urlPattern);
+
+// ดึงข้อมูลสินค้าหน้าปัจจุบันตามเงื่อนไข
+$offset = ($currentPage - 1) * $cardsPerPage;
+$sql = "SELECT * FROM food_product $whereSQL ORDER BY food_product_id LIMIT :limit OFFSET :offset";
+$stmt = $pdo->prepare($sql);
+
+foreach ($params as $key => $val) {
+    $stmt->bindValue($key, $val);
+}
+
+$stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+
+$products = $stmt->fetchAll();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -65,8 +114,14 @@ $products = $stmt->fetchAll();
                     <div class="w-full md:w-1/4 space-y-4">
                         <!-- Search Box -->
                         <div class="relative">
-                            <input type="text" placeholder="ค้นหาผลิตภัณฑ์ข้าว"
-                                class="w-full px-5 py-3 rounded-full shadow border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" />
+                            <form method="GET" action="" id="search-form">
+                                <input
+                                    type="text"
+                                    name="search"
+                                    placeholder="ค้นหาผลิตภัณฑ์ข้าว"
+                                    value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
+                                    class="w-full px-5 py-3 rounded-full shadow border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400" />
+                            </form>
                             <span class="absolute right-4 top-3.5 text-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -90,15 +145,9 @@ $products = $stmt->fetchAll();
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu" class="hidden ml-4 mt-2 space-y-2">
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
-                                อาหาร
-                            </button>
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
-                                ขนม
-                            </button>
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องดื่ม
-                            </button>
+                            <a href="?type=อาหาร" class="block w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">อาหาร</a>
+                            <a href="?type=ขนม" class="block w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">ขนม</a>
+                            <a href="?type=เครื่องดื่ม" class="block w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">เครื่องดื่ม</a>
                         </div>
 
                         <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
@@ -160,7 +209,15 @@ $products = $stmt->fetchAll();
         </div>
 
     </div>
-
+    <script>
+        // กด Enter ในช่องค้นหา ส่งฟอร์ม
+        document.querySelector('input[name="search"]').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('search-form').submit();
+            }
+        });
+    </script>
     <?php include '../loadtab/f.php'; ?>
 </body>
 
