@@ -1,52 +1,45 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
-include '../connect/dbcon.php';
-
-use JasonGrimes\Paginator;
+require_once '../connect/dbcon.php';
 
 $search = $_GET['search'] ?? '';
 $type = $_GET['type'] ?? '';
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $limit = 6;
 $offset = ($page - 1) * $limit;
 
-// นับจำนวนทั้งหมดเพื่อใช้ทำ pagination
-$countSql = "SELECT COUNT(*) FROM food_product WHERE 1";
-$dataSql = "SELECT * FROM food_product WHERE 1";
+// สร้าง SQL พื้นฐาน
+$sql = "FROM food_product WHERE 1";
 $params = [];
 
 if ($search !== '') {
-    $countSql .= " AND product_name LIKE :search";
-    $dataSql .= " AND product_name LIKE :search";
+    $sql .= " AND product_name LIKE :search";
     $params[':search'] = "%$search%";
 }
 
 if ($type !== '') {
-    $countSql .= " AND category = :type";
-    $dataSql .= " AND category = :type";
+    $sql .= " AND category = :type";
     $params[':type'] = $type;
 }
 
-$totalItems = $pdo->prepare($countSql);
-$totalItems->execute($params);
-$totalCount = $totalItems->fetchColumn();
+// 1. ดึงจำนวนทั้งหมด
+$countStmt = $pdo->prepare("SELECT COUNT(*) $sql");
+$countStmt->execute($params);
+$total = $countStmt->fetchColumn();
 
-// ดึงข้อมูลรายการในหน้านั้น
-$dataSql .= " ORDER BY food_product_id LIMIT :limit OFFSET :offset";
-$stmt = $pdo->prepare($dataSql);
+// 2. ดึงข้อมูลเฉพาะหน้า
+$dataStmt = $pdo->prepare("SELECT * $sql ORDER BY food_product_id DESC LIMIT :limit OFFSET :offset");
 foreach ($params as $key => $val) {
-    $stmt->bindValue($key, $val);
+    $dataStmt->bindValue($key, $val);
 }
-$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
-$products = $stmt->fetchAll();
+$dataStmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$dataStmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$dataStmt->execute();
+$products = $dataStmt->fetchAll();
 
-// ส่ง response
+// 3. ส่งกลับ
 echo json_encode([
     'products' => $products,
-    'total' => $totalCount,
+    'total' => $total,
     'perPage' => $limit,
     'currentPage' => $page
 ]);
