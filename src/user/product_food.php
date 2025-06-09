@@ -77,18 +77,48 @@ $products = $stmt->fetchAll();
                         </div>
 
                         <!-- เมนูประเภทสินค้า -->
-                        <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
-                            ผลิตภัณฑ์จากเมล็ดข้าว
-                        </button>
-                        <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
-                            อาหาร
-                        </button>
-                        <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
-                            ขนม
-                        </button>
-                        <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
-                            เครื่องดื่ม
-                        </button>
+                        <!-- เมนูหลัก -->
+                        <div class="w-full space-y-2">
+
+                            <button
+                                class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300"
+                                onclick="document.getElementById('submenu').classList.toggle('hidden')">
+                                ผลิตภัณฑ์จากเมล็ดข้าว
+                            </button>
+
+                            <!-- กลุ่มเมนูย่อย -->
+                            <div>
+                                <button
+                                    class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300"
+                                    onclick="document.getElementById('submenu-items').classList.toggle('hidden')">
+                                    อาหาร ▼
+                                </button>
+
+                                <div id="submenu-items" class="hidden ml-4 mt-2 space-y-2">
+                                    <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-left">
+                                        ขนม
+                                    </button>
+                                    <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-left">
+                                        เครื่องดื่ม
+                                    </button>
+                                </div>
+                            </div>
+
+                            <button
+                                class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                                ผลิตภัณฑ์จากแป้งข้าว
+                            </button>
+
+                            <button
+                                class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                                ผลิตภัณฑ์จากการหมัก
+                            </button>
+
+                            <button
+                                class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                                ผลิตภัณฑ์จากส่วนอื่นๆ
+                            </button>
+                        </div>
                         <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
                             ผลิตภัณฑ์จากแป้งข้าว
                         </button>
