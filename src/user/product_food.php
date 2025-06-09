@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // ปรับ path ให้ตรงกับที่ติดตั้ง vendor
 
 use JasonGrimes\Paginator;
 
