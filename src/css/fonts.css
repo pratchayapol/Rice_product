@@ -1,11 +1,14 @@
 .t1 {font-family: 'Noto Sans Thai', sans-serif;}
 
-  /* ซ่อน scrollbar ทั้งหมดในทุกเบราว์เซอร์ */
   #suggestions {
-    scrollbar-width: none;        /* Firefox */
-    -ms-overflow-style: none;     /* IE และ Edge */
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-mask-image: linear-gradient(black, black); /* ป้องกัน scrollbar แสดง */
+    mask-image: linear-gradient(black, black);
   }
 
   #suggestions::-webkit-scrollbar {
-    display: none;                /* Chrome, Safari และ Opera */
+    width: 0px;
+    background: transparent;
   }
