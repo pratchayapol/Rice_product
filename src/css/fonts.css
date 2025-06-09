@@ -1,2 +1,10 @@
 .t1 {font-family: 'Noto Sans Thai', sans-serif;}
 
+/* ซ่อน scrollbar ในทุก browser */
+#suggestions {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+#suggestions::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
