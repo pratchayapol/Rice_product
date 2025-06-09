@@ -36,7 +36,7 @@ $products = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลิตภัณฑ์ด้านอาหาร</title>
+    <title>ผลิตภัณฑ์อาหาร</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -88,12 +88,15 @@ $products = $stmt->fetchAll();
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
+                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
+                                ผลิตภัณฑ์อาหาร
+                            </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
                                 <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
                                     class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
 
-                                    <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/null.jpg' ?>"
+                                    <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
                                         alt="<?= htmlspecialchars($product['product_name']) ?>"
                                         class="rounded-xl mb-4 w-full h-40 object-cover" />
 
