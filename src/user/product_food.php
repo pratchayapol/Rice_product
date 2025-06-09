@@ -108,7 +108,11 @@ $products = $stmt->fetchAll();
                         <?php endforeach; ?>
                     </div>
 
-                    <!-- Pagination -->
+                    
+
+
+                </div>
+                <!-- Pagination -->
                     <nav class="flex justify-center mt-6 space-x-2">
                         <?php foreach ($paginator->getPages() as $page): ?>
                             <?php if ($page['url']): ?>
@@ -121,9 +125,6 @@ $products = $stmt->fetchAll();
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </nav>
-
-
-                </div>
             </div>
         </div>
 
