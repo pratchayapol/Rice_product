@@ -1,28 +1,52 @@
 <?php
-require_once '../connect/dbcon.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+include '../connect/dbcon.php';
+
+use JasonGrimes\Paginator;
 
 $search = $_GET['search'] ?? '';
 $type = $_GET['type'] ?? '';
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-$sql = "SELECT * FROM food_product WHERE 1";
+$limit = 6;
+$offset = ($page - 1) * $limit;
+
+// นับจำนวนทั้งหมดเพื่อใช้ทำ pagination
+$countSql = "SELECT COUNT(*) FROM food_product WHERE 1";
+$dataSql = "SELECT * FROM food_product WHERE 1";
 $params = [];
 
 if ($search !== '') {
-    $sql .= " AND product_name LIKE :search";
+    $countSql .= " AND product_name LIKE :search";
+    $dataSql .= " AND product_name LIKE :search";
     $params[':search'] = "%$search%";
 }
 
 if ($type !== '') {
-    $sql .= " AND category = :type"; // สมมุติว่าคุณมี column `category` ระบุว่าเป็นอาหาร/ขนม/เครื่องดื่ม
+    $countSql .= " AND category = :type";
+    $dataSql .= " AND category = :type";
     $params[':type'] = $type;
 }
 
-$sql .= " ORDER BY food_product_id LIMIT 50"; // limit ความเร็ว
+$totalItems = $pdo->prepare($countSql);
+$totalItems->execute($params);
+$totalCount = $totalItems->fetchColumn();
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
+// ดึงข้อมูลรายการในหน้านั้น
+$dataSql .= " ORDER BY food_product_id LIMIT :limit OFFSET :offset";
+$stmt = $pdo->prepare($dataSql);
+foreach ($params as $key => $val) {
+    $stmt->bindValue($key, $val);
+}
+$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
 $products = $stmt->fetchAll();
 
-header('Content-Type: application/json');
-echo json_encode($products);
-?>
+// ส่ง response
+echo json_encode([
+    'products' => $products,
+    'total' => $totalCount,
+    'perPage' => $limit,
+    'currentPage' => $page
+]);
