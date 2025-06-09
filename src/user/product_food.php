@@ -76,11 +76,11 @@ $products = $stmt->fetchAll();
                             </span>
                         </div>
 
-                        <!-- เมนูประเภทสินค้า -->
+                        <!-- เมนูประเภทผลิตภัณฑ์ -->
                         <!-- เมนูหลัก -->
                         <button
                             class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
-                            onclick="document.getElementById('submenu').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
+                            onclick="document.getElementById('submenu1').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
                             ผลิตภัณฑ์จากเมล็ดข้าว
                             <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -89,27 +89,69 @@ $products = $stmt->fetchAll();
                         </button>
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
-                        <div id="submenu" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                        <div id="submenu1" class="hidden ml-4 mt-2 space-y-2">
+                            <button data-type="เมล็ดข้าว::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button data-type="อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="เมล็ดข้าว::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button data-type="เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="เมล็ดข้าว::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
-                            <button data-type="เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="เมล็ดข้าว::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องปรุงรส
                             </button>
                         </div>
 
-                        <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                        <button
+                            class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
+                            onclick="document.getElementById('submenu2').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
                             ผลิตภัณฑ์จากแป้งข้าว
+                            <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
                         </button>
-                        <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                        <!-- เมนูย่อย (ซ่อนก่อน) -->
+                        <div id="submenu2" class="hidden ml-4 mt-2 space-y-2">
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                อาหาร
+                            </button>
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                ขนม
+                            </button>
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                เครื่องดื่ม
+                            </button>
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                เครื่องปรุงรส
+                            </button>
+                        </div>
+                        <button
+                            class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
+                            onclick="document.getElementById('submenu3').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
                             ผลิตภัณฑ์จากการหมัก
+                            <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
                         </button>
+                        <!-- เมนูย่อย (ซ่อนก่อน) -->
+                        <div id="submenu3" class="hidden ml-4 mt-2 space-y-2">
+                            <button data-type="ผลิตภัณฑ์จากการหมัก::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                อาหาร
+                            </button>
+                            <button data-type="ผลิตภัณฑ์จากการหมัก::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                ขนม
+                            </button>
+                            <button data-type="ผลิตภัณฑ์จากการหมัก::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                เครื่องดื่ม
+                            </button>
+                            <button data-type="ผลิตภัณฑ์จากการหมัก::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                                เครื่องปรุงรส
+                            </button>
+                        </div>
                         <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
                             ผลิตภัณฑ์จากส่วนอื่นๆ
                         </button>
