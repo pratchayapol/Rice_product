@@ -7,6 +7,17 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
+include '../connect/dbcon.php';
+
+try {
+    // 🔍 ดึงข้อมูลจากตาราง food_product
+    $stmt = $pdo->query("SELECT * FROM food_product");
+    $products = $stmt->fetchAll();
+} catch (PDOException $e) {
+    echo "Database error: " . $e->getMessage();
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -67,27 +78,23 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4">
                         <!-- ตรงนี้วาง Card หรือ Content หลักได้ -->
-                        <div class="grid grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+                            <?php foreach ($products as $product): ?>
+                                <div class="bg-white rounded-2xl shadow p-4 flex flex-col items-center">
+                                    <img src="<?= htmlspecialchars($product['picture']) ?>"
+                                        alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                        class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
 
-                            <!-- Card 1 -->
-                            <div class="bg-sky-200 rounded-2xl shadow p-4 flex flex-col items-center">
-                                <img src="URL_ของภาพสินค้า" alt="ภาพผลิตภัณฑ์"
-                                    class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
-
-                                <div class="flex flex-col gap-2 w-full">
-                                    <button
-                                        class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
-                                        ชื่อผลิตภัณฑ์
-                                    </button>
-                                    <button
-                                        class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
-                                        ชื่อพันธุ์ข้าว
-                                    </button>
+                                    <div class="flex flex-col gap-2 w-full">
+                                        <button class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
+                                            <?= htmlspecialchars($product['product_name']) ?>
+                                        </button>
+                                        <button class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
+                                            <?= htmlspecialchars($product['rice_variety_th_name']) ?>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <!-- เพิ่ม Card ต่อได้เรื่อย ๆ -->
+                            <?php endforeach; ?>
                         </div>
                     </div>
 
