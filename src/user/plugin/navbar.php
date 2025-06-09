@@ -65,59 +65,48 @@
                 <div class="md:hidden">
                     <button id="menu-toggle" class="text-white focus:outline-none">☰</button>
                 </div>
-            </div>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
-                <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
+                    <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
 
-                <!-- Dropdown toggle -->
-                <!-- Group Wrapper -->
-                <div class="relative" id="menu-wrapper">
-                    <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex items-center gap-1">
-                        ผลิตภัณฑ์ทั้งหมด
-                        <!-- ลูกศรลง -->
-                        <svg id="menu-arrow" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
+                    <!-- Dropdown toggle (mobile) -->
+                    <div class="relative" id="menu-wrapper-mobile">
+                        <button id="menu-button-mobile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex items-center gap-1 w-full">
+                            ผลิตภัณฑ์ทั้งหมด
+                            <svg id="menu-arrow-mobile" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
 
-                    <div id="dropdown-menu"
-                        class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
-                        <a href="product_food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
-                        <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
-                        <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
+                        <div id="dropdown-menu-mobile"
+                            class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
+                            <a href="product_food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
+                            <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
+                            <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
+                        </div>
                     </div>
-                </div>
 
-                <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
+                    <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
+                </div>
             </div>
         </div>
-    </div>
 </nav>
 
 <script>
-    const menuButton = document.getElementById('menu-button');
-    const dropdownMenu = document.getElementById('dropdown-menu');
-    const menuArrow = document.getElementById('menu-arrow');
-
-    menuButton.addEventListener('click', () => {
-        dropdownMenu.classList.toggle('hidden');
-
-        // ตรวจสอบว่าหน้าจอเล็กกว่า 768px (mobile)
-        if (window.innerWidth < 768) {
-            menuArrow.classList.toggle('rotate-180');
-        } else {
-            // ถ้า desktop ให้ reset ลูกศรไม่หมุน
-            menuArrow.classList.remove('rotate-180');
-        }
+    // Toggle mobile main menu
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
     });
 
-    // ถ้าต้องการรีเซ็ตลูกศรตอน resize หน้าจอ (optional)
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 768) {
-            menuArrow.classList.remove('rotate-180');
-            dropdownMenu.classList.add('hidden'); // ซ่อนเมนู desktop ด้วยถ้าต้องการ
-        }
+    // Toggle mobile submenu and rotate arrow
+    const menuButtonMobile = document.getElementById('menu-button-mobile');
+    const dropdownMobile = document.getElementById('dropdown-menu-mobile');
+    const menuArrowMobile = document.getElementById('menu-arrow-mobile');
+
+    menuButtonMobile.addEventListener('click', () => {
+        dropdownMobile.classList.toggle('hidden');
+        menuArrowMobile.classList.toggle('rotate-180');
     });
 </script>
