@@ -8,9 +8,28 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
+// แสดง 6 card ต่อ 1 หน้า
+$cardsPerPage = 6;
+
+// รับค่าหน้าปัจจุบันจาก URL ถ้าไม่มีให้เป็น 1
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+
+// คำนวณ offset
+$offset = ($page - 1) * $cardsPerPage;
+
 try {
-    $stmt = $pdo->query("SELECT * FROM food_product ORDER BY food_product_id");
+    // ดึงข้อมูลรวมทั้งหมดเพื่อนับจำนวนหน้า
+    $totalStmt = $pdo->query("SELECT COUNT(*) FROM food_product");
+    $totalCards = $totalStmt->fetchColumn();
+
+    // ดึงข้อมูลเฉพาะหน้าปัจจุบัน
+    $stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
+    $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
     $products = $stmt->fetchAll();
+
+    $totalPages = ceil($totalCards / $cardsPerPage);
 } catch (PDOException $e) {
     echo "Database error: " . $e->getMessage();
     exit;
@@ -36,7 +55,6 @@ try {
     <!-- animation -->
     <link rel="stylesheet" href="../css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 </head>
 
 <body class="bg t1">
@@ -74,29 +92,38 @@ try {
                     </div>
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
-                    <div class="w-full md:w-3/4 p-6">
-                        <table id="productTable" class="display w-full">
-                            <thead>
-                                <tr>
-                                    <th>รูป</th>
-                                    <th>ชื่อสินค้า</th>
-                                    <th>พันธุ์ข้าว</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($products as $product): ?>
-                                    <tr onclick="location.href='product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food';" style="cursor:pointer;">
-                                        <td>
-                                            <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/null.jpg' ?>"
-                                                alt="<?= htmlspecialchars($product['product_name']) ?>"
-                                                style="width:100px; height:75px; object-fit:cover; border-radius:8px;" />
-                                        </td>
-                                        <td><?= htmlspecialchars($product['product_name']) ?></td>
-                                        <td><?= htmlspecialchars($product['rice_variety_th_name']) ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                    <div class="w-full md:w-3/4">
+                        <!-- ตรงนี้วาง Card หรือ Content หลักได้ -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+                            <?php foreach ($products as $product): ?>
+                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
+                                    class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+
+                                    <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/null.jpg' ?>"
+                                        alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                        class="rounded-xl mb-4 w-full h-40 object-cover" />
+
+                                    <div class="flex flex-col gap-2 w-full">
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
+                                            <?= htmlspecialchars($product['product_name']) ?>
+                                        </div>
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
+                                            <?= htmlspecialchars($product['rice_variety_th_name']) ?>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="flex justify-center gap-3 mt-6">
+                            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                                <a href="?page=<?= $i ?>"
+                                    class="px-4 py-2 rounded <?= $i === $page ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
+                                    <?= $i ?>
+                                </a>
+                            <?php endfor; ?>
+                        </div>
                     </div>
 
 
@@ -105,28 +132,7 @@ try {
         </div>
 
     </div>
-    <!-- โหลด jQuery และ DataTables JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#productTable').DataTable({
-                pageLength: 6,
-                lengthChange: false,
-                language: {
-                    search: "ค้นหา:",
-                    paginate: {
-                        previous: "ก่อนหน้า",
-                        next: "ถัดไป"
-                    },
-                    info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
-                    infoEmpty: "ไม่มีข้อมูล",
-                    zeroRecords: "ไม่พบข้อมูลที่ค้นหา"
-                }
-            });
-        });
-    </script>
     <?php include '../loadtab/f.php'; ?>
 </body>
 
