@@ -238,6 +238,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     legend: {
                         position: 'bottom',
                         labels: {
+                            padding: 20, // 👈 ระยะห่างระหว่างแผนภูมิกับ label ด้านล่าง
                             font: {
                                 family: 'Noto Sans Thai'
                             }
