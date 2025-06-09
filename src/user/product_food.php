@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../vendor/autoload.php'; // ปรับ path ให้ตรงกับที่ติดตั้ง vendor
+require_once __DIR__ . '/../vendor/autoload.php'; // โหลด Composer autoload
 
 use JasonGrimes\Paginator;
 
