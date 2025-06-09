@@ -21,12 +21,8 @@
 
                     <!-- Group Wrapper -->
                     <div class="relative" id="menu-wrapper">
-                        <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex items-center gap-1">
+                        <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
                             ผลิตภัณฑ์ทั้งหมด
-                            <!-- ลูกศรลง -->
-                            <svg id="menu-arrow" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
                         </button>
 
                         <div id="dropdown-menu"
@@ -76,15 +72,21 @@
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
 
                 <!-- Dropdown toggle -->
-                <div>
-                    <button id="mobile-submenu-toggle" class="w-full text-left bg-white text-gray-700 rounded-full px-4 py-2 flex justify-between items-center">
+                <!-- Group Wrapper -->
+                <div class="relative" id="menu-wrapper">
+                    <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex items-center gap-1">
                         ผลิตภัณฑ์ทั้งหมด
-                        <span id="submenu-arrow">▼</span>
+                        <!-- ลูกศรลง -->
+                        <svg id="menu-arrow" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
-                    <div id="mobile-submenu" class="hidden mt-2 ml-4 space-y-2">
-                        <a href="product_food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
-                        <a href="product_cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
-                        <a href="product_medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
+
+                    <div id="dropdown-menu"
+                        class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
+                        <a href="product_food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
+                        <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
+                        <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
                     </div>
                 </div>
 
@@ -101,6 +103,21 @@
 
     menuButton.addEventListener('click', () => {
         dropdownMenu.classList.toggle('hidden');
-        menuArrow.classList.toggle('rotate-180'); // หมุนลูกศร 180 องศาเมื่อเปิดเมนู
+
+        // ตรวจสอบว่าหน้าจอเล็กกว่า 768px (mobile)
+        if (window.innerWidth < 768) {
+            menuArrow.classList.toggle('rotate-180');
+        } else {
+            // ถ้า desktop ให้ reset ลูกศรไม่หมุน
+            menuArrow.classList.remove('rotate-180');
+        }
+    });
+
+    // ถ้าต้องการรีเซ็ตลูกศรตอน resize หน้าจอ (optional)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            menuArrow.classList.remove('rotate-180');
+            dropdownMenu.classList.add('hidden'); // ซ่อนเมนู desktop ด้วยถ้าต้องการ
+        }
     });
 </script>
