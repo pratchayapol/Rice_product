@@ -21,8 +21,12 @@
 
                     <!-- Group Wrapper -->
                     <div class="relative" id="menu-wrapper">
-                        <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
+                        <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex items-center gap-1">
                             ผลิตภัณฑ์ทั้งหมด
+                            <!-- ลูกศรลง -->
+                            <svg id="menu-arrow" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
                         </button>
 
                         <div id="dropdown-menu"
@@ -91,23 +95,12 @@
 </nav>
 
 <script>
-    // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
-    });
+    const menuButton = document.getElementById('menu-button');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const menuArrow = document.getElementById('menu-arrow');
 
-    // Toggle submenu
-    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
-        const submenu = document.getElementById('mobile-submenu');
-        const arrow = document.getElementById('submenu-arrow');
-        submenu.classList.toggle('hidden');
-
-        // เปลี่ยนลูกศร ▼/▲
-        if (submenu.classList.contains('hidden')) {
-            arrow.textContent = '▼';
-        } else {
-            arrow.textContent = '▲';
-        }
+    menuButton.addEventListener('click', () => {
+        dropdownMenu.classList.toggle('hidden');
+        menuArrow.classList.toggle('rotate-180'); // หมุนลูกศร 180 องศาเมื่อเปิดเมนู
     });
 </script>
