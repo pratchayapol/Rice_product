@@ -88,9 +88,9 @@ $products = $stmt->fetchAll();
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
-                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
-                                ผลิตภัณฑ์อาหาร
-                            </h3>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
+                            ผลิตภัณฑ์อาหาร
+                        </h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
                                 <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
@@ -112,16 +112,16 @@ $products = $stmt->fetchAll();
                             <?php endforeach; ?>
                         </div>
 
-                        <!-- Pagination (ย้ายมาข้างในกล่องฝั่งขวา) -->
-                        <nav class="flex justify-end mt-6 space-x-2">
+                        <!-- Pagination (responsive) -->
+                        <nav class="flex flex-wrap justify-center md:justify-end mt-6 space-x-2">
                             <?php foreach ($paginator->getPages() as $page): ?>
                                 <?php if ($page['url']): ?>
                                     <a href="<?= $page['url'] ?>"
-                                        class="px-4 py-2 rounded <?= $page['isCurrent'] ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
+                                        class="px-4 py-2 mb-2 rounded text-sm <?= $page['isCurrent'] ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
                                         <?= $page['num'] ?>
                                     </a>
                                 <?php else: ?>
-                                    <span class="px-4 py-2 text-gray-400"><?= $page['num'] ?></span>
+                                    <span class="px-4 py-2 mb-2 text-sm text-gray-400"><?= $page['num'] ?></span>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </nav>
