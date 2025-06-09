@@ -79,23 +79,28 @@ $products = $stmt->fetchAll();
                         <!-- เมนูประเภทสินค้า -->
                         <!-- เมนูหลัก -->
                         <button
-                            class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300"
-                            onclick="document.getElementById('submenu').classList.toggle('hidden')">
+                            class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
+                            onclick="document.getElementById('submenu').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
                             ผลิตภัณฑ์จากเมล็ดข้าว
+                            <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
                         </button>
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu" class="hidden ml-4 mt-2 space-y-2">
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-left">
+                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-left">
+                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-left">
+                            <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
                         </div>
+
                         <button class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
                             ผลิตภัณฑ์จากแป้งข้าว
                         </button>
