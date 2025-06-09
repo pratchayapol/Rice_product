@@ -77,13 +77,28 @@ $products = $stmt->fetchAll();
                         </div>
 
                         <!-- เมนูประเภทสินค้า -->
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">ผลิตภัณฑ์จากเมล็ดข้าว</button>
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">อาหาร</button>
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">ขนม</button>
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">เครื่องดื่ม</button>
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">ผลิตภัณฑ์จากแป้งข้าว</button>
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">ผลิตภัณฑ์จากการหมัก</button>
-                        <button class="w-full py-2 rounded-full border border-gray-400 hover:bg-gray-100">ผลิตภัณฑ์จากส่วนอื่นๆ</button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            ผลิตภัณฑ์จากเมล็ดข้าว
+                        </button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            อาหาร
+                        </button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            ขนม
+                        </button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            เครื่องดื่ม
+                        </button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            ผลิตภัณฑ์จากแป้งข้าว
+                        </button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            ผลิตภัณฑ์จากการหมัก
+                        </button>
+                        <button class="w-full py-2 rounded-full bg-white border border-gray-400 hover:bg-yellow-600 hover:border-transparent hover:shadow-lg transition-colors duration-300">
+                            ผลิตภัณฑ์จากส่วนอื่นๆ
+                        </button>
+
                     </div>
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
