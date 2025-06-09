@@ -70,7 +70,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         <div class="grid grid-cols-3 gap-6">
                             
                             <!-- Card 1 -->
-                            <div class="bg-sky-300 rounded-2xl shadow p-4 flex flex-col items-center">
+                            <div class="bg-sky-200 rounded-2xl shadow p-4 flex flex-col items-center">
                                 <img src="URL_ของภาพสินค้า" alt="ภาพผลิตภัณท์"
                                     class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
                                 <p class="text-gray-800 font-semibold text-sm mb-1">ชื่อผลิตภัณฑ์</p>
