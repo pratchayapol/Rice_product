@@ -80,7 +80,7 @@ try {
                         <!-- ตรงนี้วาง Card หรือ Content หลักได้ -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
-                                <div class="bg-white rounded-2xl shadow p-4 flex flex-col items-center">
+                                <div class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center">
                                     <img src="<?= htmlspecialchars($product['picture']) ?>"
                                         alt="<?= htmlspecialchars($product['product_name']) ?>"
                                         class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
