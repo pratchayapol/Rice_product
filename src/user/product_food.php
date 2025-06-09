@@ -87,44 +87,43 @@ $products = $stmt->fetchAll();
                     </div>
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-                        <?php foreach ($products as $product): ?>
-                            <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
-                                class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+                    <div class="w-full md:w-3/4 flex flex-col">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
+                            <?php foreach ($products as $product): ?>
+                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
+                                    class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
 
-                                <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/null.jpg' ?>"
-                                    alt="<?= htmlspecialchars($product['product_name']) ?>"
-                                    class="rounded-xl mb-4 w-full h-40 object-cover" />
+                                    <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/null.jpg' ?>"
+                                        alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                        class="rounded-xl mb-4 w-full h-40 object-cover" />
 
-                                <div class="flex flex-col gap-2 w-full">
-                                    <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
-                                        <?= htmlspecialchars($product['product_name']) ?>
+                                    <div class="flex flex-col gap-2 w-full">
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
+                                            <?= htmlspecialchars($product['product_name']) ?>
+                                        </div>
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
+                                            <?= htmlspecialchars($product['rice_variety_th_name']) ?>
+                                        </div>
                                     </div>
-                                    <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
-                                        <?= htmlspecialchars($product['rice_variety_th_name']) ?>
-                                    </div>
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-
-                    
-
-
-                </div>
-                <!-- Pagination -->
-                    <nav class="flex justify-center mt-6 space-x-2">
-                        <?php foreach ($paginator->getPages() as $page): ?>
-                            <?php if ($page['url']): ?>
-                                <a href="<?= $page['url'] ?>"
-                                    class="px-4 py-2 rounded <?= $page['isCurrent'] ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
-                                    <?= $page['num'] ?>
                                 </a>
-                            <?php else: ?>
-                                <span class="px-4 py-2 text-gray-400"><?= $page['num'] ?></span>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </nav>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <!-- Pagination (ย้ายมาข้างในกล่องฝั่งขวา) -->
+                        <nav class="flex justify-center mt-4 mb-2 space-x-2">
+                            <?php foreach ($paginator->getPages() as $page): ?>
+                                <?php if ($page['url']): ?>
+                                    <a href="<?= $page['url'] ?>"
+                                        class="px-4 py-2 rounded <?= $page['isCurrent'] ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
+                                        <?= $page['num'] ?>
+                                    </a>
+                                <?php else: ?>
+                                    <span class="px-4 py-2 text-gray-400"><?= $page['num'] ?></span>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
 
