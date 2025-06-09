@@ -83,7 +83,7 @@ try {
                                 <div class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center">
                                     <img src="<?= htmlspecialchars($product['picture']) ?>"
                                         alt="<?= htmlspecialchars($product['product_name']) ?>"
-                                        class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
+                                        class="rounded-xl mb-4 w-full aspect-[4/2] object-cover" />
 
                                     <div class="flex flex-col gap-2 w-full">
                                         <button class="w-full px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">
