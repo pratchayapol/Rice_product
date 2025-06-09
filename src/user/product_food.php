@@ -80,22 +80,25 @@ try {
                         <!-- ตรงนี้วาง Card หรือ Content หลักได้ -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
-                                <div class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center">
-                                    <img src="<?= htmlspecialchars($product['picture']) ?>"
+                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
+                                    class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+
+                                    <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/null.jpg' ?>"
                                         alt="<?= htmlspecialchars($product['product_name']) ?>"
-                                        class="rounded-xl mb-4 w-full aspect-[4/2] object-cover" />
+                                        class="rounded-xl mb-4 w-full h-40 object-cover" />
 
                                     <div class="flex flex-col gap-2 w-full">
-                                        <button class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition">
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
                                             <?= htmlspecialchars($product['product_name']) ?>
-                                        </button>
-                                        <button class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition">
+                                        </div>
+                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow hover:shadow-md hover:bg-gray-100 transition text-center">
                                             <?= htmlspecialchars($product['rice_variety_th_name']) ?>
-                                        </button>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             <?php endforeach; ?>
                         </div>
+
                     </div>
 
 
