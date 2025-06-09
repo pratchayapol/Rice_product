@@ -204,14 +204,10 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     return;
                 }
 
-                animateCounter(document.getElementById('totalCount'),
-                    parseInt(document.getElementById('totalCount').textContent || 0), data.total);
-                animateCounter(document.getElementById('foodCount'),
-                    parseInt(document.getElementById('foodCount').textContent || 0), data.food);
-                animateCounter(document.getElementById('cosmeticCount'),
-                    parseInt(document.getElementById('cosmeticCount').textContent || 0), data.cosmetic);
-                animateCounter(document.getElementById('medicalCount'),
-                    parseInt(document.getElementById('medicalCount').textContent || 0), data.medical);
+                document.getElementById('totalCount').textContent = data.total;
+                document.getElementById('foodCount').textContent = data.food;
+                document.getElementById('cosmeticCount').textContent = data.cosmetic;
+                document.getElementById('medicalCount').textContent = data.medical;
 
                 productChart.data.datasets[0].data = [data.food, data.cosmetic, data.medical];
                 productChart.update();
