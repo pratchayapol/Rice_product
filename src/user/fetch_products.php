@@ -3,6 +3,11 @@ require_once '../connect/dbcon.php';
 
 $search = $_GET['search'] ?? '';
 $type = $_GET['type'] ?? '';
+
+if (strpos($type, '::') !== false) {
+    [$mainType, $subType] = explode('::', $type);
+}
+
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $perPage = 6;
 $offset = ($page - 1) * $perPage;
@@ -15,9 +20,11 @@ if ($search !== '') {
     $params[':search'] = "%$search%";
 }
 
-if ($type !== '') {
-    $sql .= " AND category = :type";
-    $params[':type'] = $type;
+if ($mainType !== '') {
+    $sql .= " AND product_group = '" . addslashes($mainType) . "'";
+}
+if ($subType !== '') {
+    $sql .= " AND category = '" . addslashes($subType) . "'";
 }
 
 $totalSql = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
