@@ -90,13 +90,13 @@ $products = $stmt->fetchAll();
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="อาหาร" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button data-type="ขนม" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ขนม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button data-type="เครื่องดื่ม" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
                         </div>
@@ -142,18 +142,7 @@ $products = $stmt->fetchAll();
                         </div>
 
                         <!-- Pagination (responsive) -->
-                        <nav class="flex flex-wrap justify-center md:justify-end mt-6 space-x-2">
-                            <?php foreach ($paginator->getPages() as $page): ?>
-                                <?php if ($page['url']): ?>
-                                    <a href="<?= $page['url'] ?>"
-                                        class="px-4 py-2 mb-2 rounded text-sm <?= $page['isCurrent'] ? 'bg-sky-600 text-white' : 'bg-gray-200 hover:bg-gray-300' ?>">
-                                        <?= $page['num'] ?>
-                                    </a>
-                                <?php else: ?>
-                                    <span class="px-4 py-2 mb-2 text-sm text-gray-400"><?= $page['num'] ?></span>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </nav>
+                        <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
                     </div>
                 </div>
             </div>

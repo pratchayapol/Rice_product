@@ -3,12 +3,11 @@ require_once '../connect/dbcon.php';
 
 $search = $_GET['search'] ?? '';
 $type = $_GET['type'] ?? '';
-$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-$limit = 6;
-$offset = ($page - 1) * $limit;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perPage = 6;
+$offset = ($page - 1) * $perPage;
 
-// สร้าง SQL พื้นฐาน
-$sql = "FROM food_product WHERE 1";
+$sql = "SELECT * FROM food_product WHERE 1";
 $params = [];
 
 if ($search !== '') {
@@ -21,25 +20,25 @@ if ($type !== '') {
     $params[':type'] = $type;
 }
 
-// 1. ดึงจำนวนทั้งหมด
-$countStmt = $pdo->prepare("SELECT COUNT(*) $sql");
-$countStmt->execute($params);
-$total = $countStmt->fetchColumn();
+$totalSql = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
+$stmtTotal = $pdo->prepare($totalSql);
+$stmtTotal->execute($params);
+$totalItems = $stmtTotal->fetchColumn();
 
-// 2. ดึงข้อมูลเฉพาะหน้า
-$dataStmt = $pdo->prepare("SELECT * $sql ORDER BY food_product_id DESC LIMIT :limit OFFSET :offset");
+$sql .= " ORDER BY food_product_id LIMIT :limit OFFSET :offset";
+$stmt = $pdo->prepare($sql);
 foreach ($params as $key => $val) {
-    $dataStmt->bindValue($key, $val);
+    $stmt->bindValue($key, $val);
 }
-$dataStmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-$dataStmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$dataStmt->execute();
-$products = $dataStmt->fetchAll();
+$stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+$stmt->execute();
+$products = $stmt->fetchAll();
 
-// 3. ส่งกลับ
+header('Content-Type: application/json');
 echo json_encode([
     'products' => $products,
-    'total' => $total,
-    'perPage' => $limit,
+    'total' => $totalItems,
+    'perPage' => $perPage,
     'currentPage' => $page
 ]);
