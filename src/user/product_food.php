@@ -165,8 +165,9 @@ $products = $stmt->fetchAll();
                         products,
                         total,
                         perPage,
-                        currentPage
+                        currentPage: returnedPage
                     } = response;
+                    currentPage = returnedPage; // อัปเดต currentPage จาก response
 
                     let html = '';
                     if (products.length === 0) {
@@ -191,16 +192,57 @@ $products = $stmt->fetchAll();
                     }
                     $('.grid').html(html);
 
-                    // 👉 สร้าง pagination
+                    // 👉 สร้าง pagination พร้อม Prev / Next และย่อหน้าหลายๆ หน้า
                     const totalPages = Math.ceil(total / perPage);
                     let paginationHtml = '';
-                    if (totalPages > 1) {
-                        for (let i = 1; i <= totalPages; i++) {
-                            paginationHtml += `
-                        <button class="px-3 py-1 rounded ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200'}"
-                                onclick="goToPage(${i})">${i}</button>`;
-                        }
+
+                    const createBtn = (i) => `
+                    <button class="px-3 py-1 rounded ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}"
+                        onclick="goToPage(${i})">${i}</button>`;
+
+                    const addEllipsis = () => `<span class="px-3 py-1 text-gray-400">...</span>`;
+
+                    // Prev button
+                    if (currentPage > 1) {
+                        paginationHtml += `<button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" onclick="goToPage(${currentPage - 1})">&laquo; Prev</button>`;
                     }
+
+                    const maxVisible = 5;
+                    let start = Math.max(2, currentPage - 1);
+                    let end = Math.min(totalPages - 1, currentPage + 1);
+
+                    if (currentPage <= 3) {
+                        start = 2;
+                        end = Math.min(totalPages - 1, 5);
+                    } else if (currentPage >= totalPages - 2) {
+                        start = Math.max(2, totalPages - 4);
+                        end = totalPages - 1;
+                    }
+
+                    // Always show first page
+                    paginationHtml += createBtn(1);
+
+                    if (start > 2) {
+                        paginationHtml += addEllipsis();
+                    }
+
+                    for (let i = start; i <= end; i++) {
+                        paginationHtml += createBtn(i);
+                    }
+
+                    if (end < totalPages - 1) {
+                        paginationHtml += addEllipsis();
+                    }
+
+                    if (totalPages > 1) {
+                        paginationHtml += createBtn(totalPages);
+                    }
+
+                    // Next button
+                    if (currentPage < totalPages) {
+                        paginationHtml += `<button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" onclick="goToPage(${currentPage + 1})">Next &raquo;</button>`;
+                    }
+
                     $('.pagination').html(paginationHtml);
                 });
             }
@@ -227,6 +269,7 @@ $products = $stmt->fetchAll();
             fetchProducts();
         });
     </script>
+
 
     <?php include '../loadtab/f.php'; ?>
 </body>
