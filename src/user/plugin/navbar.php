@@ -78,7 +78,7 @@
                         <span id="submenu-arrow">▼</span>
                     </button>
                     <div id="mobile-submenu" class="hidden mt-2 ml-4 space-y-2">
-                        <a href="product_all?type=food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
+                        <a href="product_food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
                         <a href="product_all?type=cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
                         <a href="product_all?type=medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
                     </div>
