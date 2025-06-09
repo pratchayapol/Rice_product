@@ -65,48 +65,49 @@
                 <div class="md:hidden">
                     <button id="menu-toggle" class="text-white focus:outline-none">☰</button>
                 </div>
+            </div>
 
-                <!-- Mobile Menu -->
-                <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
-                    <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
+                <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
 
-                    <!-- Dropdown toggle (mobile) -->
-                    <div class="relative" id="menu-wrapper-mobile">
-                        <button id="menu-button-mobile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex items-center gap-1 w-full">
-                            ผลิตภัณฑ์ทั้งหมด
-                            <svg id="menu-arrow-mobile" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-
-                        <div id="dropdown-menu-mobile"
-                            class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
-                            <a href="product_food" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์อาหาร</a>
-                            <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอางค์</a>
-                            <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์การแพทย์</a>
-                        </div>
+                <!-- Dropdown toggle -->
+                <div>
+                    <button id="mobile-submenu-toggle" class="w-full text-left bg-white text-gray-700 rounded-full px-4 py-2 flex justify-between items-center">
+                        ผลิตภัณฑ์ทั้งหมด
+                        <span id="submenu-arrow">▼</span>
+                    </button>
+                    <div id="mobile-submenu" class="hidden mt-2 ml-4 space-y-2">
+                        <a href="product_food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
+                        <a href="product_cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
+                        <a href="product_medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
                     </div>
-
-                    <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
                 </div>
+
+                <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
             </div>
         </div>
+    </div>
 </nav>
 
 <script>
-    // Toggle mobile main menu
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenu.classList.toggle('hidden');
+    // Toggle mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
     });
 
-    // Toggle mobile submenu and rotate arrow
-    const menuButtonMobile = document.getElementById('menu-button-mobile');
-    const dropdownMobile = document.getElementById('dropdown-menu-mobile');
-    const menuArrowMobile = document.getElementById('menu-arrow-mobile');
+    // Toggle submenu
+    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
+        const submenu = document.getElementById('mobile-submenu');
+        const arrow = document.getElementById('submenu-arrow');
+        submenu.classList.toggle('hidden');
 
-    menuButtonMobile.addEventListener('click', () => {
-        dropdownMobile.classList.toggle('hidden');
-        menuArrowMobile.classList.toggle('rotate-180');
+        // เปลี่ยนลูกศร ▼/▲
+        if (submenu.classList.contains('hidden')) {
+            arrow.textContent = '▼';
+        } else {
+            arrow.textContent = '▲';
+        }
     });
 </script>
