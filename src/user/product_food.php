@@ -37,7 +37,32 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
     <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="bg-white/70 p-10 rounded-2xl shadow-xl max-w-4xl w-full text-center">
-            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow p-4 flex flex-col items-center">
+                    <img src="URL_ของภาพสินค้า" alt="สินค้า" class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
+                    <p class="text-gray-800 font-semibold text-sm mb-1">ชื่อผลิตภัณฑ์</p>
+                    <p class="text-gray-500 text-sm mb-3">ชื่อพันธุ์ข้าว</p>
+                    <div class="flex gap-2">
+                        <button class="px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">ปุ่ม 1</button>
+                        <button class="px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">ปุ่ม 2</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow p-4 flex flex-col items-center">
+                    <img src="URL_ของภาพสินค้า" alt="สินค้า" class="rounded-xl mb-4 w-full aspect-[4/3] object-cover" />
+                    <p class="text-gray-800 font-semibold text-sm mb-1">ชื่อผลิตภัณฑ์</p>
+                    <p class="text-gray-500 text-sm mb-3">ชื่อพันธุ์ข้าว</p>
+                    <div class="flex gap-2">
+                        <button class="px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">ปุ่ม 1</button>
+                        <button class="px-4 py-1 rounded-full border border-gray-400 text-sm text-gray-700 hover:bg-gray-100">ปุ่ม 2</button>
+                    </div>
+                </div>
+
+                <!-- เพิ่มการ์ดต่อได้เรื่อย ๆ -->
+            </div>
+
         </div>
     </div>
     </div>
