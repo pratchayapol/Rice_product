@@ -152,7 +152,7 @@ $products = $stmt->fetchAll();
                                 เครื่องปรุงรส
                             </button>
                         </div>
-                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ::" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ::" class="filter-btn  w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
                             ผลิตภัณฑ์จากส่วนอื่นๆ
                         </button>
 
@@ -160,7 +160,7 @@ $products = $stmt->fetchAll();
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
-                        <h3 class="filter-btn text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full shadow-md">
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full shadow-md">
                             ผลิตภัณฑ์อาหาร
                         </h3>
 
