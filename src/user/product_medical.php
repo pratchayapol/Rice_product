@@ -155,7 +155,7 @@ $products = $stmt->fetchAll();
                     } else {
                         products.forEach(product => {
                             html += `
-                    <a href="product_detail?id=${product.medical_product_id}&type=cosmetic"
+                    <a href="product_detail?id=${product.medical_product_id}&type=medical"
                         class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
                         <img src="${product.picture || '../image/rice_product/A.jpg'}"
                             alt="${product.product_name}" class="rounded-xl mb-4 w-full h-40 object-cover" />
