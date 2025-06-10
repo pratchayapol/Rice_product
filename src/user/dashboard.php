@@ -154,19 +154,19 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- แสดงจำนวน -->
                     <div class="flex-1 grid grid-cols-2 lg:grid-cols-2 gap-4">
-                        <div class="bg-yellow-500 text-white rounded-xl shadow p-2 flex flex-col items-center justify-center text-center">
+                       <div class="text-white rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e8b927;">
                             <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
                             <p id="totalCount" class="text-3xl font-bold">0</p>
                         </div>
-                        <div class="bg-white border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center">
+                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #ffd8c3;">
                             <p class="text-md">ผลิตภัณฑ์อาหาร</p>
                             <p id="foodCount" class="text-3xl font-bold">0</p>
                         </div>
-                        <div class="bg-white border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center">
+                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #fff2fc;">
                             <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
                             <p id="cosmeticCount" class="text-3xl font-bold">0</p>
                         </div>
-                        <div class="bg-white border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center">
+                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e6f5ff;">
                             <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
                             <p id="medicalCount" class="text-3xl font-bold">0</p>
                         </div>
@@ -253,7 +253,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 datasets: [{
                     label: 'จำนวนผลิตภัณฑ์',
                     data: [0, 0, 0],
-                    backgroundColor: ['#a17600', '#caa63c', '#e0bb3c'],
+                    backgroundColor: ['#74ae71', '#cd9fde', '#4cc0f5'],
                     borderWidth: 1
                 }]
             },
