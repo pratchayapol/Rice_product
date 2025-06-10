@@ -192,7 +192,7 @@ $products = $stmt->fetchAll();
             let currentPage = 1;
 
             function fetchProducts(search = '', type = '', page = 1) {
-                $.get('fetch_products_food.php', {
+                $.get('fetch_products_cosmetic.php', {
                     search: search,
                     type: type,
                     page: page
