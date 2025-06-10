@@ -18,9 +18,10 @@ $sql = "SELECT * FROM cosmetic_product WHERE 1";
 $params = [];
 
 if ($search !== '') {
-    $sql .= " AND product_name LIKE :search";
+    $sql .= " AND (rice_variety_th_name LIKE :search OR rice_variety_en_name LIKE :search)";
     $params[':search'] = "%$search%";
 }
+
 
 if ($mainType !== '') {
     $sql .= " AND product_group = '" . addslashes($mainType) . "'";
