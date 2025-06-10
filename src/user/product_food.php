@@ -59,7 +59,7 @@ $products = $stmt->fetchAll();
 
     <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="w-full px-6"> <!-- ขยายเต็มจอและมี padding ขอบ -->
-            <div class="bg-white/95 p-10 rounded-2xl shadow-xl w-full text-center">
+            <div class="bg-white/75 p-10 rounded-2xl shadow-xl w-full text-center">
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- เมนูด้านซ้าย -->
                     <div class="w-full md:w-1/4 space-y-4">
