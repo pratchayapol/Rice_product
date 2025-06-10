@@ -151,7 +151,7 @@ $products = $stmt->fetchAll();
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
-                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
                             ผลิตภัณฑ์เวชสำอาง
                         </h3>
 
