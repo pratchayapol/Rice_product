@@ -90,16 +90,16 @@ $products = $stmt->fetchAll();
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu1" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::อาหาร" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::อาหารว่าง" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::เครื่องดื่ม" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::เครื่องปรุงรส" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องปรุงรส
                             </button>
                         </div>
