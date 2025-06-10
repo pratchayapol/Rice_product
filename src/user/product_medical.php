@@ -78,75 +78,19 @@ $products = $stmt->fetchAll();
 
                         <!-- เมนูประเภทผลิตภัณฑ์ -->
                         <!-- เมนูหลัก -->
-                        <button
-                            class="w-full py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
-                            onclick="document.getElementById('submenu1').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                            ผลิตภัณฑ์บำรุงผิว
-                            <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
+                        <button data-type="เวชภัณฑ์จากสารออกฤทธิ์ในข้าว::" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                            เวชภัณฑ์จากสารออกฤทธิ์ในข้าว
                         </button>
 
-                        <!-- เมนูย่อย (ซ่อนก่อน) -->
-                        <div id="submenu1" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์บำรุงผิว::เซรั่ม" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เซรั่ม
-                            </button>
-                            <button data-type="ผลิตภัณฑ์บำรุงผิว::ครีมบำรุงผิว" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                ครีมบำรุงผิว
-                            </button>
-                            <button data-type="ผลิตภัณฑ์บำรุงผิว::มาส์กหน้าข้าว" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                มาส์กหน้าข้าว
-                            </button>
-                            <button data-type="ผลิตภัณฑ์บำรุงผิว::โลชั่น" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                โลชั่น
-                            </button>
-                        </div>
-
-                        <button
-                            class="w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
-                            onclick="document.getElementById('submenu2').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                            ผลิตภัณฑ์ทำความสะอาด
-                            <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
+                        <button data-type="วัสดุทางการแพทย์จากข้าว::"
+                            class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                            วัสดุทางการแพทย์จากข้าว
                         </button>
-                        <!-- เมนูย่อย (ซ่อนก่อน) -->
-                        <div id="submenu2" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์ทำความสะอาด::สบู่ข้าว" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                สบู่ข้าว
-                            </button>
-                            <button data-type="ผลิตภัณฑ์ทำความสะอาด::โฟมล้างหน้า" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                โฟมล้างหน้า
-                            </button>
-                            <button data-type="ผลิตภัณฑ์ทำความสะอาด::สครับผิว" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                สครับผิว
-                            </button>
-                        </div>
-                        <button
-                            class="w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
-                            onclick="document.getElementById('submenu3').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                            ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ
-                            <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
+                      
+                        <button data-type="ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย::"
+                            class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                            ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย
                         </button>
-                        <!-- เมนูย่อย (ซ่อนก่อน) -->
-                        <div id="submenu3" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ::แชมพู / ครีมนวดผม" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                แชมพู / ครีมนวดผม
-                            </button>
-                            <button data-type="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ::ทรีตเมนต์" class="filter-btn w-60 py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                ทรีตเมนต์
-                            </button>
-                        </div>
-                        <button data-type="ผลิตภัณฑ์เวชสำอางเฉพาะทาง::" class="filter-btn  w-full py-2 rounded-full bg-white shadow hover:bg-rose-300 hover:shadow-lg transition-colors duration-300">
-                            ผลิตภัณฑ์เวชสำอางเฉพาะทาง
-                        </button>
-
                     </div>
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
