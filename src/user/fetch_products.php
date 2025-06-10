@@ -2,6 +2,7 @@
 require_once '../connect/dbcon.php';
 
 $search = $_GET['search'] ?? '';
+$type = $_GET['type'] ?? '';
 $mainType = '';
 $subType = '';
 
