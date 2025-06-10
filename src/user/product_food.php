@@ -105,7 +105,7 @@ $products = $stmt->fetchAll();
                         </div>
 
                         <button
-                            class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
+                            class="w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
                             onclick="document.getElementById('submenu2').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
                             ผลิตภัณฑ์จากแป้งข้าว
                             <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
@@ -115,21 +115,21 @@ $products = $stmt->fetchAll();
                         </button>
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu2" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องปรุงรส
                             </button>
                         </div>
                         <button
-                            class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
+                            class="w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
                             onclick="document.getElementById('submenu3').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
                             ผลิตภัณฑ์จากการหมัก
                             <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
@@ -139,20 +139,20 @@ $products = $stmt->fetchAll();
                         </button>
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu3" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 อาหาร
                             </button>
-                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 ขนม
                             </button>
-                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องดื่ม
                             </button>
-                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300 text-center">
+                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
                                 เครื่องปรุงรส
                             </button>
                         </div>
-                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ::" class="filter-btn  w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ::" class="filter-btn  w-full py-2 rounded-full bg-white shadow hover:bg-rose-300 hover:shadow-lg transition-colors duration-300">
                             ผลิตภัณฑ์จากส่วนอื่นๆ
                         </button>
 
