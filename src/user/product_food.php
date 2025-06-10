@@ -152,7 +152,7 @@ $products = $stmt->fetchAll();
                                 เครื่องปรุงรส
                             </button>
                         </div>
-                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
+                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ::" class="w-full py-2 rounded-full bg-white shadow hover:bg-yellow-600 hover:shadow-lg transition-colors duration-300">
                             ผลิตภัณฑ์จากส่วนอื่นๆ
                         </button>
 
