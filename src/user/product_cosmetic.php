@@ -16,7 +16,7 @@ $cardsPerPage = 6;
 $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 // ดึงจำนวนสินค้าทั้งหมด
-$totalItems = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
+$totalItems = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
 
 // สร้าง paginator
 $urlPattern = '?page=(:num)';
@@ -24,7 +24,7 @@ $paginator = new Paginator($totalItems, $cardsPerPage, $currentPage, $urlPattern
 
 // ดึงข้อมูลสินค้าของหน้าปัจจุบัน
 $offset = ($currentPage - 1) * $cardsPerPage;
-$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
+$stmt = $pdo->prepare("SELECT * FROM cosmetic_product ORDER BY cosmetic_product_id LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
@@ -36,7 +36,7 @@ $products = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลิตภัณฑ์อาหาร</title>
+    <title>ผลิตภัณฑ์เวชสำอาง</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -81,7 +81,7 @@ $products = $stmt->fetchAll();
                         <button
                             class="w-full py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
                             onclick="document.getElementById('submenu1').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                            ผลิตภัณฑ์จากเมล็ดข้าว
+                            ผลิตภัณฑ์บำรุงผิว
                             <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -90,24 +90,24 @@ $products = $stmt->fetchAll();
 
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu1" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::อาหาร" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                อาหาร
+                            <button data-type="ผลิตภัณฑ์บำรุงผิว::เซรั่ม" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                เซรั่ม
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::อาหารว่าง" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                ขนม
+                            <button data-type="ผลิตภัณฑ์บำรุงผิว::ครีมบำรุงผิว" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                ครีมบำรุงผิว
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::เครื่องดื่ม" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องดื่ม
+                            <button data-type="ผลิตภัณฑ์บำรุงผิว::มาส์กหน้าข้าว" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                มาส์กหน้าข้าว
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากเมล็ดข้าว::เครื่องปรุงรส" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องปรุงรส
+                            <button data-type="ผลิตภัณฑ์บำรุงผิว::โลชั่น" class="filter-btn w-40 py-2 rounded-full bg-white shadow hover:bg-emerald-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                โลชั่น
                             </button>
                         </div>
 
                         <button
                             class="w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
                             onclick="document.getElementById('submenu2').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                            ผลิตภัณฑ์จากแป้งข้าว
+                            ผลิตภัณฑ์ทำความสะอาด
                             <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -115,23 +115,20 @@ $products = $stmt->fetchAll();
                         </button>
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu2" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                อาหาร
+                            <button data-type="ผลิตภัณฑ์ทำความสะอาด::สบู่ข้าว" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                สบู่ข้าว
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                ขนม
+                            <button data-type="ผลิตภัณฑ์ทำความสะอาด::โฟมล้างหน้า" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                โฟมล้างหน้า
                             </button>
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องดื่ม
-                            </button>
-                            <button data-type="ผลิตภัณฑ์จากแป้งข้าว::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องปรุงรส
+                            <button data-type="ผลิตภัณฑ์ทำความสะอาด::สครับผิว" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                สครับผิว
                             </button>
                         </div>
                         <button
                             class="w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2"
                             onclick="document.getElementById('submenu3').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                            ผลิตภัณฑ์จากการหมัก
+                            ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ
                             <!-- ลูกศรลง (หมุน 180 องศาเมื่อเปิด) -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -139,21 +136,15 @@ $products = $stmt->fetchAll();
                         </button>
                         <!-- เมนูย่อย (ซ่อนก่อน) -->
                         <div id="submenu3" class="hidden ml-4 mt-2 space-y-2">
-                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหาร" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                อาหาร
+                            <button data-type="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ::แชมพู / ครีมนวดผม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                แชมพู / ครีมนวดผม
                             </button>
-                            <button data-type="ผลิตภัณฑ์หมักดอง::อาหารว่าง" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                ขนม
-                            </button>
-                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องดื่ม" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องดื่ม
-                            </button>
-                            <button data-type="ผลิตภัณฑ์หมักดอง::เครื่องปรุงรส" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
-                                เครื่องปรุงรส
+                            <button data-type="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ::ทรีตเมนต์" class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 text-center">
+                                ทรีตเมนต์
                             </button>
                         </div>
-                        <button data-type="ผลิตภัณฑ์จากส่วนอื่น ๆ::" class="filter-btn  w-full py-2 rounded-full bg-white shadow hover:bg-rose-300 hover:shadow-lg transition-colors duration-300">
-                            ผลิตภัณฑ์จากส่วนอื่นๆ
+                        <button data-type="ผลิตภัณฑ์เวชสำอางเฉพาะทาง::" class="filter-btn  w-full py-2 rounded-full bg-white shadow hover:bg-rose-300 hover:shadow-lg transition-colors duration-300">
+                            ผลิตภัณฑ์เวชสำอางเฉพาะทาง
                         </button>
 
                     </div>
@@ -161,12 +152,12 @@ $products = $stmt->fetchAll();
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
-                            ผลิตภัณฑ์อาหาร
+                            ผลิตภัณฑ์เวชสำอาง
                         </h3>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
-                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
+                                <a href="product_detail?id=<?= urlencode($product['cosmetic_product_id']) ?>&type=food"
                                     class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
 
                                     <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
@@ -201,7 +192,7 @@ $products = $stmt->fetchAll();
             let currentPage = 1;
 
             function fetchProducts(search = '', type = '', page = 1) {
-                $.get('fetch_products.php', {
+                $.get('fetch_products_food.php', {
                     search: search,
                     type: type,
                     page: page
@@ -220,7 +211,7 @@ $products = $stmt->fetchAll();
                     } else {
                         products.forEach(product => {
                             html += `
-                    <a href="product_detail?id=${product.food_product_id}&type=food"
+                    <a href="product_detail?id=${product.cosmetic_product_id}&type=cosmetic"
                         class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
                         <img src="${product.picture || '../image/rice_product/A.jpg'}"
                             alt="${product.product_name}" class="rounded-xl mb-4 w-full h-40 object-cover" />
