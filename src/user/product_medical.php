@@ -91,6 +91,11 @@ $products = $stmt->fetchAll();
                             class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
                             ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย
                         </button>
+
+                        <button data-type="ผลิตภัณฑ์เฉพาะโรค::"
+                            class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-slate-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                            ผลิตภัณฑ์เฉพาะโรค
+                        </button>
                     </div>
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
