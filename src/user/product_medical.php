@@ -16,7 +16,7 @@ $cardsPerPage = 6;
 $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
 // ดึงจำนวนสินค้าทั้งหมด
-$totalItems = $pdo->query("SELECT COUNT(*) FROM cosmetic_product")->fetchColumn();
+$totalItems = $pdo->query("SELECT COUNT(*) FROM medical_product")->fetchColumn();
 
 // สร้าง paginator
 $urlPattern = '?page=(:num)';
@@ -24,7 +24,7 @@ $paginator = new Paginator($totalItems, $cardsPerPage, $currentPage, $urlPattern
 
 // ดึงข้อมูลสินค้าของหน้าปัจจุบัน
 $offset = ($currentPage - 1) * $cardsPerPage;
-$stmt = $pdo->prepare("SELECT * FROM cosmetic_product ORDER BY cosmetic_product_id LIMIT :limit OFFSET :offset");
+$stmt = $pdo->prepare("SELECT * FROM medical_product ORDER BY medical_product_id LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
@@ -36,7 +36,7 @@ $products = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลิตภัณฑ์เวชสำอาง</title>
+    <title>ผลิตภัณฑ์ทางการแพทย์</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -152,12 +152,12 @@ $products = $stmt->fetchAll();
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full md:w-3/4 flex flex-col">
                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
-                            ผลิตภัณฑ์เวชสำอาง
+                            ผลิตภัณฑ์ทางการแพทย์
                         </h3>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
-                                <a href="product_detail?id=<?= urlencode($product['cosmetic_product_id']) ?>&type=cosmetic"
+                                <a href="product_detail?id=<?= urlencode($product['medical_product_id']) ?>&type=medical"
                                     class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
 
                                     <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
@@ -192,7 +192,7 @@ $products = $stmt->fetchAll();
             let currentPage = 1;
 
             function fetchProducts(search = '', type = '', page = 1) {
-                $.get('fetch_products_cosmetic.php', {
+                $.get('fetch_products_medical.php', {
                     search: search,
                     type: type,
                     page: page
@@ -211,7 +211,7 @@ $products = $stmt->fetchAll();
                     } else {
                         products.forEach(product => {
                             html += `
-                    <a href="product_detail?id=${product.cosmetic_product_id}&type=cosmetic"
+                    <a href="product_detail?id=${product.medical_product_id}&type=cosmetic"
                         class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
                         <img src="${product.picture || '../image/rice_product/A.jpg'}"
                             alt="${product.product_name}" class="rounded-xl mb-4 w-full h-40 object-cover" />
