@@ -154,7 +154,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- แสดงจำนวน -->
                     <div class="flex-1 grid grid-cols-2 lg:grid-cols-2 gap-4">
-                       <div class="text-white rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e8b927;">
+                       <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e8b927;">
                             <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
                             <p id="totalCount" class="text-3xl font-bold">0</p>
                         </div>
