@@ -76,17 +76,7 @@ if ($id > 0) {
                 $harvest_days                   = !empty($general_info['harvest_days']) ? $general_info['harvest_days'] : 'ไม่พบข้อมูล';
                 $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
-
-                $amylose_content_percent        = !empty($general_info['amylose_content_percent']) ? $general_info['amylose_content_percent'] : 'ไม่พบข้อมูล';
-                $gelatinization_temp            = !empty($general_info['gelatinization_temp']) ? $general_info['gelatinization_temp'] : 'ไม่พบข้อมูล';
-                $gelatinization_temp_additional = !empty($general_info['gelatinization_temp_additional']) ? $general_info['gelatinization_temp_additional'] : 'ไม่พบข้อมูล';
-                $gelatinized_starch_stability   = !empty($general_info['gelatinized_starch_stability']) ? $general_info['	gelatinized_starch_stability'] : 'ไม่พบข้อมูล';
-                $gelatinized_starch_stability_additional              = !empty($general_info['gelatinized_starch_stability_additional']) ? $general_info['gelatinized_starch_stability_additional'] : 'ไม่พบข้อมูล';
-                $aroma                = !empty($general_info['aroma']) ? $general_info['aroma'] : 'ไม่พบข้อมูล';
-                $cooked_rice_expansion_ratio                = !empty($general_info['cooked_rice_expansion_ratio']) ? $general_info['cooking_quality'] : 'ไม่พบข้อมูล';
-
                 $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
-                $picture_rice_2 = $general_info['picture_rice_2'] ?? null;
             } else {
                 echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
             }
