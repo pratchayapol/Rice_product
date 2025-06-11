@@ -181,40 +181,42 @@ if ($id > 0) {
                                 </div>
 
                                 <div id="rice" class="tab-content hidden">
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+                                        <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-4xl">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                                            <!-- ข้อมูลทั่วไป -->
-                                            <div>
-                                                <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h4>
-                                                <br>
-                                                <?php if (!empty($picture_rice_1)): ?>
-                                                    <div class="flex justify-center">
-                                                        <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
-                                                            alt="รูปต้นข้าว"
-                                                            class="rounded border object-cover w-48 h-48 cursor-pointer"
-                                                            onclick="openImageModal(this.src)" />
-                                                    </div>
-                                                <?php endif; ?>
-                                                <br>
-                                                <ul class="text-sm text-gray-700 space-y-1">
-                                                    <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
-                                                    <li><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></li>
-                                                    <li><strong>ชื่อพันธุ์อังกฤษ:</strong> <?php echo htmlspecialchars($english_breed_name) ?></li>
-                                                    <li><strong>ชื่อวิทยาศาสตร์:</strong> <?php echo htmlspecialchars($scientific_name) ?></li>
-                                                    <li><strong>นิเวศการปลูกข้าว:</strong> <?php echo htmlspecialchars($rice_ecosystem) ?></li>
-                                                    <li><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> <?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></li>
-                                                    <li><strong>สภาพภาพทั่วไป:</strong> <?php echo htmlspecialchars($general_status) ?></li>
-                                                    <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
-                                                    <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
-                                                </ul>
-
+                                                <!-- ข้อมูลทั่วไป -->
+                                                <div>
+                                                    <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">
+                                                        ข้อมูลทั่วไป
+                                                    </h4>
+                                                    <br>
+                                                    <?php if (!empty($picture_rice_1)): ?>
+                                                        <div class="flex justify-center">
+                                                            <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
+                                                                alt="รูปต้นข้าว"
+                                                                class="rounded border object-cover w-48 h-48 cursor-pointer"
+                                                                onclick="openImageModal(this.src)" />
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <br>
+                                                    <ul class="text-sm text-gray-700 space-y-1">
+                                                        <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
+                                                        <li><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></li>
+                                                        <li><strong>ชื่อพันธุ์อังกฤษ:</strong> <?php echo htmlspecialchars($english_breed_name) ?></li>
+                                                        <li><strong>ชื่อวิทยาศาสตร์:</strong> <?php echo htmlspecialchars($scientific_name) ?></li>
+                                                        <li><strong>นิเวศการปลูกข้าว:</strong> <?php echo htmlspecialchars($rice_ecosystem) ?></li>
+                                                        <li><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> <?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></li>
+                                                        <li><strong>สภาพภาพทั่วไป:</strong> <?php echo htmlspecialchars($general_status) ?></li>
+                                                        <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
+                                                        <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
+                                                    </ul>
+                                                </div>
 
                                             </div>
                                         </div>
-
-
                                     </div>
+
                                 </div>
 
                                 <div id="nutrition" class="tab-content hidden">
