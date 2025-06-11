@@ -200,17 +200,22 @@ if ($id > 0) {
                                                         </div>
                                                     <?php endif; ?>
                                                     <br>
-                                                    <ul class="text-sm text-gray-700 space-y-1">
-                                                        <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
-                                                        <li><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></li>
-                                                        <li><strong>ชื่อพันธุ์อังกฤษ:</strong> <?php echo htmlspecialchars($english_breed_name) ?></li>
-                                                        <li><strong>ชื่อวิทยาศาสตร์:</strong> <?php echo htmlspecialchars($scientific_name) ?></li>
-                                                        <li><strong>นิเวศการปลูกข้าว:</strong> <?php echo htmlspecialchars($rice_ecosystem) ?></li>
-                                                        <li><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> <?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></li>
-                                                        <li><strong>สภาพภาพทั่วไป:</strong> <?php echo htmlspecialchars($general_status) ?></li>
-                                                        <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
-                                                        <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
-                                                    </ul>
+                                                    <!-- ปรับให้แสดงข้อมูลเป็น 2 คอลัมน์ -->
+                                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-700">
+                                                        <div class="text-left space-y-1">
+                                                            <div><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></div>
+                                                            <div><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></div>
+                                                            <div><strong>ชื่อพันธุ์อังกฤษ:</strong> <?php echo htmlspecialchars($english_breed_name) ?></div>
+                                                            <div><strong>ชื่อวิทยาศาสตร์:</strong> <?php echo htmlspecialchars($scientific_name) ?></div>
+                                                            <div><strong>นิเวศการปลูกข้าว:</strong> <?php echo htmlspecialchars($rice_ecosystem) ?></div>
+                                                        </div>
+                                                        <div class="text-left space-y-1">
+                                                            <div><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> <?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></div>
+                                                            <div><strong>สภาพภาพทั่วไป:</strong> <?php echo htmlspecialchars($general_status) ?></div>
+                                                            <div><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></div>
+                                                            <div><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
