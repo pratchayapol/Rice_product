@@ -127,7 +127,7 @@ if ($id > 0) {
                     <div class="grid grid-cols-12">
 
                         <!-- Sidebar -->
-                        <div class="col-span-12 md:col-span-4 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center" style="background-color: #8b8550;">
+                        <div class="col-span-12 md:col-span-4 p-6 text-center text-gray-800 flex flex-col items-center rounded-tl-lg rounded-bl-lg" style="background-color: #8b8550;">
                             <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์ <?php echo $product_name ?></h3>
 
                             <?php
@@ -150,7 +150,7 @@ if ($id > 0) {
                         </div>
 
                         <!-- Content -->
-                        <div class="col-span-12 md:col-span-8 bg-white p-6">
+                        <div class="col-span-12 md:col-span-8 bg-white p-6 rounded-tr-lg rounded-br-lg">
                             <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">
                                 จาก ข้าวพันธุ์<?php echo $thai_name . ' ( ' . $english_name . ' )' ?>
                             </h3>
