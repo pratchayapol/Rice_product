@@ -46,7 +46,7 @@ if ($id > 0) {
             $target_rice_id = (int)$target_rice_id;
 
             // คำสั่ง SQL พร้อม placeholder
-            $sql = "SELECT * FROM general_information WHERE rice_id = :rice_id";
+            $sql = "SELECT * FROM rice WHERE rice_id = :rice_id";
 
             // เตรียมคำสั่ง
             $stmt = $pdo->prepare($sql);
