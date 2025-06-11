@@ -123,7 +123,7 @@ if ($id > 0) {
             <?php include '../loadtab/h.php'; ?>
 
             <div class="flex items-center justify-center min-h-screen p-6">
-                <div class="max-w-7xl w-full">
+                <div class="w-full">
                     <div class="grid grid-cols-12">
 
                         <!-- Sidebar -->
