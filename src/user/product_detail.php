@@ -71,6 +71,7 @@ if ($id > 0) {
                 $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
                 $picture_rice = $general_info['picture_rice'] ?? null;
+                $link_url = $general_info['link_url'] ?? null;
             } else {
                 echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
             }
@@ -259,6 +260,15 @@ if ($id > 0) {
                                                             </tbody>
                                                         </table>
                                                     </div> <!-- overflow-x-auto -->
+                                                    <?php if (!empty($link_url)): ?>
+                                                        <div class="mt-4 text-center">
+                                                            <a href="<?php echo htmlspecialchars($link_url); ?>"
+                                                                target="_blank"
+                                                                class="inline-block bg-[#454b0b] hover:bg-[#5c6113] text-white text-sm font-medium px-4 py-2 rounded-lg shadow transition">
+                                                                ดูข้อมูลพันธุ์ข้าวเพิ่มเติม
+                                                            </a>
+                                                        </div>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
