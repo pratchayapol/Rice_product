@@ -16,7 +16,7 @@ if ($id > 0) {
 
     if ($type === "food") {
         // เตรียมคำสั่ง SQL
-        $stmt = $pdo->prepare("SELECT * FROM food_product WHERE id = :id");
+        $stmt = $pdo->prepare("SELECT * FROM food_product WHERE food_product_id = :id");
         $stmt->execute(['id' => $id]);
 
         // ดึงข้อมูล
