@@ -184,7 +184,7 @@ if ($id > 0) {
                                     <div class="bg-white p-4 rounded-lg max-w-4xl mx-auto">
                                         <div class="flex justify-center">
                                             <!-- กล่องเนื้อหา -->
-                                            <div class="w-full max-w-2xl">
+                                            <div class="w-full">
                                                 <!-- ข้อมูลทั่วไป -->
                                                 <div>
                                                     <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">
