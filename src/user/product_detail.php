@@ -181,10 +181,10 @@ if ($id > 0) {
                                 </div>
 
                                 <div id="rice" class="tab-content hidden">
-                                    <div class="flex justify-center items-center min-h-screen bg-gray-100">
-                                        <div class="bg-white p-4 rounded-lg shadow-md w-full max-w-4xl">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <div class="flex justify-center">
+                                            <!-- กล่องเนื้อหา -->
+                                            <div class="w-full max-w-2xl">
                                                 <!-- ข้อมูลทั่วไป -->
                                                 <div>
                                                     <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">
@@ -212,11 +212,12 @@ if ($id > 0) {
                                                         <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                     </ul>
                                                 </div>
-
                                             </div>
                                         </div>
-                                    </div>
 
+
+
+                                    </div>
                                 </div>
 
                                 <div id="nutrition" class="tab-content hidden">
