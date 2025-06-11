@@ -70,7 +70,7 @@ if ($id > 0) {
                 $harvest_age_days               = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
                 $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
-                $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
+                $picture_rice = $general_info['picture_rice'] ?? null;
             } else {
                 echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
             }
@@ -206,9 +206,9 @@ if ($id > 0) {
                                                         ข้อมูลทั่วไป
                                                     </h4>
                                                     <br>
-                                                    <?php if (!empty($picture_rice_1)): ?>
+                                                    <?php if (!empty($picture_rice)): ?>
                                                         <div class="flex justify-center">
-                                                            <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
+                                                            <img src="<?php echo htmlspecialchars($picture_rice) ?>"
                                                                 alt="รูปต้นข้าว"
                                                                 class="rounded border object-cover w-48 h-48 cursor-pointer"
                                                                 onclick="openImageModal(this.src)" />
