@@ -105,13 +105,13 @@ if ($id > 0) {
             if (compare_names($english_name, $english_breed_name)) {
                 $display_english_name = $english_name;
             } else {
-                $display_english_name = $english_name . ' หรือ ' . $english_breed_name;
+                $display_english_name = $english_name . ' AND ' . $english_breed_name;
             }
         } else {
             $display_english_name = !empty($english_name) ? $english_name : ($english_breed_name ?: 'ไม่พบข้อมูล');
         }
 ?>
-        ?>
+
 
         <!DOCTYPE html>
         <html lang="th">
