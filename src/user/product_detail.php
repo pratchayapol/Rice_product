@@ -181,7 +181,7 @@ if ($id > 0) {
                                 </div>
 
                                 <div id="rice" class="tab-content hidden">
-                                    <div class="bg-white p-4 rounded-lg">
+                                    <div class="bg-white p-4 rounded-lg max-w-4xl mx-auto">
                                         <div class="flex justify-center">
                                             <!-- กล่องเนื้อหา -->
                                             <div class="w-full max-w-2xl">
@@ -200,54 +200,56 @@ if ($id > 0) {
                                                         </div>
                                                     <?php endif; ?>
                                                     <br>
-                                                    <table class="w-full text-sm text-gray-700">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">หมายเลขประจำพันธุ์ (G.S. No.):</td>
-                                                                <td class="text-left px-2 py-1"><?php echo $gs_no; ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์ไทย:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($thai_breed_name); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์อังกฤษ:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($english_breed_name); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ชื่อวิทยาศาสตร์:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($scientific_name); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">นิเวศการปลูกข้าว:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($rice_ecosystem); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">วันเดือนปีที่รับรอง/แนะนำ:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($date_of_approval_or_recommendation); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">สภาพภาพทั่วไป:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($general_status); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">อายุเก็บเกี่ยว (วัน):</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($harvest_age_days); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ความไวต่อช่วงแสง:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($photoperiod_sensitivity); ?></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
+
+                                                    <!-- ตารางข้อมูล -->
+                                                    <div class="overflow-x-auto">
+                                                        <table class="min-w-full text-sm text-gray-700 table-auto">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold whitespace-nowrap">หมายเลขประจำพันธุ์ (G.S. No.):</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo $gs_no; ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์ไทย:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($thai_breed_name); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์อังกฤษ:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($english_breed_name); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">ชื่อวิทยาศาสตร์:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($scientific_name); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">นิเวศการปลูกข้าว:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($rice_ecosystem); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">วันเดือนปีที่รับรอง/แนะนำ:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($date_of_approval_or_recommendation); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">สภาพภาพทั่วไป:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($general_status); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">อายุเก็บเกี่ยว (วัน):</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($harvest_age_days); ?></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-left px-2 py-1 font-semibold">ความไวต่อช่วงแสง:</td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($photoperiod_sensitivity); ?></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div> <!-- overflow-x-auto -->
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
+
 
                                 <div id="nutrition" class="tab-content hidden">
                                     <div class="bg-white p-4 rounded-lg">
