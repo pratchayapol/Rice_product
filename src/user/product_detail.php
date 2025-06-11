@@ -131,7 +131,7 @@ if ($id > 0) {
                             <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์ <?php echo $product_name ?></h3>
 
                             <?php
-                            $excludeImage = '/image/rice_product/A.jpg';
+                            $excludeImage = '../image/rice_product/A.jpg';
                             if (!empty($picture) && $picture !== $excludeImage): ?>
                                 <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center overflow-hidden">
                                     <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain" onclick="openImageModal(this.src)">
