@@ -154,19 +154,21 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- แสดงจำนวน -->
                     <div class="flex-1 grid grid-cols-2 lg:grid-cols-2 gap-4">
-                       <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e8b927;">
+                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e8b927;">
                             <p class="text-md">ผลิตภัณฑ์ทั้งหมด</p>
                             <p id="totalCount" class="text-3xl font-bold">0</p>
                         </div>
-                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #ffd8c3;">
+                        <div class="border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#ffd8c3] transform transition-transform duration-300 hover:scale-105">
                             <p class="text-md">ผลิตภัณฑ์อาหาร</p>
                             <p id="foodCount" class="text-3xl font-bold">0</p>
                         </div>
-                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #fff2fc;">
+
+                        <div class="border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#fff2fc] transform transition-transform duration-300 hover:scale-105">
                             <p class="text-md">ผลิตภัณฑ์เวชสำอาง</p>
                             <p id="cosmeticCount" class="text-3xl font-bold">0</p>
                         </div>
-                        <div class="border rounded-xl shadow p-2 flex flex-col items-center justify-center text-center" style="background-color: #e6f5ff;">
+
+                        <div class="border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#e6f5ff] transform transition-transform duration-300 hover:scale-105">
                             <p class="text-md">ผลิตภัณฑ์ทางการแพทย์</p>
                             <p id="medicalCount" class="text-3xl font-bold">0</p>
                         </div>
