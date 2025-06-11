@@ -184,16 +184,29 @@ if ($id > 0) {
                                     <div class="bg-white p-4 rounded-lg mb-4">
                                         <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">อุปกรณ์</h4>
                                         <div style='border:0px solid #ccc; padding:10px;'>
-                                            <?php echo $ingredients_and_equipment; ?>
+                                            <?php
+                                            if (is_null($ingredients_and_equipment) || $ingredients_and_equipment === '') {
+                                                echo "เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ";
+                                            } else {
+                                                echo $ingredients_and_equipment;
+                                            }
+                                            ?>
                                         </div>
 
                                     </div>
                                     <div class="bg-white p-4 rounded-lg">
                                         <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">วิธีทำ</h4>
                                         <div style='border:0px solid #ccc; padding:10px;'>
-                                            <?php echo $instructions; ?>
+                                            <?php
+                                            if (is_null($instructions) || trim($instructions) === '') {
+                                                echo "เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ";
+                                            } else {
+                                                echo $instructions;
+                                            }
+                                            ?>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div id="rice" class="tab-content hidden">
