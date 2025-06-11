@@ -158,7 +158,7 @@ $products = $stmt->fetchAll();
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
                             <?php foreach ($products as $product): ?>
                                 <a href="product_detail?id=<?= urlencode($product['cosmetic_product_id']) ?>&type=cosmetic"
-                                    class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+                                    class="bg-violet-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
 
                                     <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
                                         alt="<?= htmlspecialchars($product['product_name']) ?>"
