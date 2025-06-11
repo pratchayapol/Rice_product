@@ -203,17 +203,26 @@ if ($id > 0) {
                                                     <!-- ปรับให้แสดงข้อมูลเป็น 2 คอลัมน์ -->
                                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-700">
                                                         <div class="text-left space-y-1">
-                                                            <div><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></div>
-                                                            <div><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></div>
-                                                            <div><strong>ชื่อพันธุ์อังกฤษ:</strong> <?php echo htmlspecialchars($english_breed_name) ?></div>
-                                                            <div><strong>ชื่อวิทยาศาสตร์:</strong> <?php echo htmlspecialchars($scientific_name) ?></div>
-                                                            <div><strong>นิเวศการปลูกข้าว:</strong> <?php echo htmlspecialchars($rice_ecosystem) ?></div>
+                                                            <div><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> </div>
+                                                            <div><strong>ชื่อพันธุ์ไทย:</strong></div>
+                                                            <div><strong>ชื่อพันธุ์อังกฤษ:</strong></div>
+                                                            <div><strong>ชื่อวิทยาศาสตร์:</strong></div>
+                                                            <div><strong>นิเวศการปลูกข้าว:</strong></div>
+                                                            <div><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong></div>
+                                                            <div><strong>สภาพภาพทั่วไป:</strong></div>
+                                                            <div><strong>อายุเก็บเกี่ยว (วัน):</strong></div>
+                                                            <div><strong>ความไวต่อช่วงแสง:</strong></div>
                                                         </div>
                                                         <div class="text-left space-y-1">
-                                                            <div><strong>วันเดือนปีที่รับรอง/แนะนำ:</strong> <?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></div>
-                                                            <div><strong>สภาพภาพทั่วไป:</strong> <?php echo htmlspecialchars($general_status) ?></div>
-                                                            <div><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></div>
-                                                            <div><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></div>
+                                                            <div><?php echo $gs_no; ?></div>
+                                                            <div><?php echo htmlspecialchars($thai_breed_name); ?></div>
+                                                            <div><?php echo htmlspecialchars($english_breed_name) ?></div>
+                                                            <div><?php echo htmlspecialchars($scientific_name) ?></div>
+                                                            <div><?php echo htmlspecialchars($rice_ecosystem) ?></div>
+                                                            <div><?php echo htmlspecialchars($date_of_approval_or_recommendation) ?></div>
+                                                            <div><?php echo htmlspecialchars($general_status) ?></div>
+                                                            <div><?php echo htmlspecialchars($harvest_age_days) ?></div>
+                                                            <div><?php echo htmlspecialchars($photoperiod_sensitivity) ?></div>
                                                         </div>
                                                     </div>
                                                 </div>
