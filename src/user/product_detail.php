@@ -124,7 +124,7 @@ if ($id > 0) {
 
             <div class="flex items-center justify-center min-h-screen p-6">
                 <div class="max-w-7xl w-full">
-                    <div class="grid grid-cols-12 gap-6">
+                    <div class="grid grid-cols-12">
 
                         <!-- Sidebar -->
                         <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
