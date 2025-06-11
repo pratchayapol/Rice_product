@@ -81,7 +81,37 @@ if ($id > 0) {
                 echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
             }
         }
+
+        // ฟังก์ชันเปรียบเทียบแบบไม่สนใจช่องว่างและตัวพิมพ์ใหญ่เล็ก
+        function compare_names($a, $b)
+        {
+            return trim(mb_strtolower($a)) === trim(mb_strtolower($b));
+        }
+
+        // สร้างตัวแปรสำหรับแสดงผล
+        if (!empty($thai_name) && !empty($thai_breed_name)) {
+            if (compare_names($thai_name, $thai_breed_name)) {
+                $display_thai_name = $thai_name; // ชื่อเหมือนกัน แสดงชื่อเดียว
+            } else {
+                $display_thai_name = $thai_name . ' หรือ ' . $thai_breed_name; // ชื่อไม่เหมือนกัน แสดงทั้งสอง
+            }
+        } else {
+            // ถ้ามีแค่ข้อมูลแหล่งใดแหล่งหนึ่ง
+            $display_thai_name = !empty($thai_name) ? $thai_name : ($thai_breed_name ?: 'ไม่พบข้อมูล');
+        }
+
+
+        if (!empty($english_name) && !empty($english_breed_name)) {
+            if (compare_names($english_name, $english_breed_name)) {
+                $display_english_name = $english_name;
+            } else {
+                $display_english_name = $english_name . ' หรือ ' . $english_breed_name;
+            }
+        } else {
+            $display_english_name = !empty($english_name) ? $english_name : ($english_breed_name ?: 'ไม่พบข้อมูล');
+        }
 ?>
+        ?>
 
         <!DOCTYPE html>
         <html lang="th">
@@ -202,11 +232,11 @@ if ($id > 0) {
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์ไทย:</td>
-                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($thai_breed_name); ?></td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($display_thai_name); ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์อังกฤษ:</td>
-                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($english_breed_name); ?></td>
+                                                                    <td class="text-left px-2 py-1"><?php echo htmlspecialchars($display_english_name); ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="text-left px-2 py-1 font-semibold">ชื่อวิทยาศาสตร์:</td>
