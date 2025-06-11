@@ -181,7 +181,7 @@ if ($id > 0) {
                                 </div>
 
                                 <div id="rice" class="tab-content hidden">
-                                    <div class="bg-white p-4 rounded-lg max-w-4xl mx-auto w-full">
+                                    <div class="bg-white p-4 rounded-lg mx-auto w-full">
                                         <div class="flex justify-center">
                                             <!-- กล่องเนื้อหา -->
                                             <div class="w-full max-w-2xl">
