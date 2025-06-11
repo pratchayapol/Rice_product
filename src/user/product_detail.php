@@ -130,12 +130,12 @@ if ($id > 0) {
                         <div class="col-span-12 md:col-span-4 bg-pink-100 rounded-lg p-6 text-center text-gray-800 flex flex-col items-center">
                             <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-white px-4 py-2 rounded-full">ผลิตภัณฑ์ <?php echo $product_name ?></h3>
 
-                            <?php if (!empty($picture)): ?>
+                            <?php
+                            $excludeImage = '/image/rice_product/A.jpg';
+                            if (!empty($picture) && $picture !== $excludeImage): ?>
                                 <div class="bg-white h-40 w-full rounded-lg mb-4 flex items-center justify-center overflow-hidden">
                                     <img src="<?= htmlspecialchars($picture) ?>" alt="Product Image" class="h-full object-contain" onclick="openImageModal(this.src)">
                                 </div>
-                            <?php else: ?>
-
                             <?php endif; ?>
 
                             <p class="text-sm mb-4">
