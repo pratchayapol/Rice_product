@@ -188,6 +188,15 @@ if ($id > 0) {
                                             <div>
                                                 <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">ข้อมูลทั่วไป</h4>
                                                 <br>
+                                                <?php if (!empty($picture_rice_1)): ?>
+                                                    <div class="flex justify-center">
+                                                        <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
+                                                            alt="รูปต้นข้าว"
+                                                            class="rounded border object-cover w-48 h-48 cursor-pointer"
+                                                            onclick="openImageModal(this.src)" />
+                                                    </div>
+                                                <?php endif; ?>
+                                                <br>
                                                 <ul class="text-sm text-gray-700 space-y-1">
                                                     <li><strong>หมายเลขประจำพันธุ์ (G.S. No.):</strong> <?php echo $gs_no; ?></li>
                                                     <li><strong>ชื่อพันธุ์ไทย:</strong> <?php echo htmlspecialchars($thai_breed_name); ?></li>
@@ -199,15 +208,8 @@ if ($id > 0) {
                                                     <li><strong>อายุเก็บเกี่ยว (วัน):</strong> <?php echo htmlspecialchars($harvest_age_days) ?></li>
                                                     <li><strong>ความไวต่อช่วงแสง:</strong> <?php echo htmlspecialchars($photoperiod_sensitivity) ?></li>
                                                 </ul>
-                                                <br>
-                                                <?php if (!empty($picture_rice_1)): ?>
-                                                    <div class="flex justify-center">
-                                                        <img src="<?php echo htmlspecialchars($picture_rice_1) ?>"
-                                                            alt="รูปต้นข้าว"
-                                                            class="rounded border object-cover w-48 h-48 cursor-pointer"
-                                                            onclick="openImageModal(this.src)" />
-                                                    </div>
-                                                <?php endif; ?>
+
+
                                             </div>
                                         </div>
 
