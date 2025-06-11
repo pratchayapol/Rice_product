@@ -64,16 +64,10 @@ if ($id > 0) {
                 $thai_breed_name                 = !empty($general_info['thai_breed_name']) ? $general_info['thai_breed_name'] : 'ไม่พบข้อมูล';
                 $english_breed_name             = !empty($general_info['english_breed_name']) ? $general_info['english_breed_name'] : 'ไม่พบข้อมูล';
                 $scientific_name                = !empty($general_info['scientific_name']) ? $general_info['scientific_name'] : 'ไม่พบข้อมูล';
-                $other_names_or_numbers         = !empty($general_info['other_names_or_numbers']) ? $general_info['other_names_or_numbers'] : 'ไม่พบข้อมูล';
-                $type_of_rice_race_type         = !empty($general_info['type_of_rice_race_type']) ? $general_info['type_of_rice_race_type'] : 'ไม่พบข้อมูล';
                 $rice_ecosystem                 = !empty($general_info['rice_ecosystem']) ? $general_info['rice_ecosystem'] : 'ไม่พบข้อมูล';
-                $breeder                        = !empty($general_info['breeder']) ? $general_info['breeder'] : 'ไม่พบข้อมูล';
                 $date_of_approval_or_recommendation = !empty($general_info['date_of_approval_or_recommendation']) ? $general_info['date_of_approval_or_recommendation'] : 'ไม่พบข้อมูล';
-                $breeding_organization          = !empty($general_info['breeding_organization']) ? $general_info['breeding_organization'] : 'ไม่พบข้อมูล';
                 $general_status                 = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
-                $legal_status                   = !empty($general_info['legal_status']) ? $general_info['legal_status'] : 'ไม่พบข้อมูล';
                 $harvest_age_days               = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
-                $harvest_days                   = !empty($general_info['harvest_days']) ? $general_info['harvest_days'] : 'ไม่พบข้อมูล';
                 $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
                 $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
