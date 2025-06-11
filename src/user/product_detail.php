@@ -60,6 +60,7 @@ if ($id > 0) {
                 $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 // แยกเก็บข้อมูลในตัวแปร PHP
+                $gs_no                 = !empty($general_info['gs_no']) ? $general_info['gs_no'] : 'ไม่พบข้อมูล';
                 $thai_breed_name                 = !empty($general_info['thai_breed_name']) ? $general_info['thai_breed_name'] : 'ไม่พบข้อมูล';
                 $english_breed_name             = !empty($general_info['english_breed_name']) ? $general_info['english_breed_name'] : 'ไม่พบข้อมูล';
                 $scientific_name                = !empty($general_info['scientific_name']) ? $general_info['scientific_name'] : 'ไม่พบข้อมูล';
