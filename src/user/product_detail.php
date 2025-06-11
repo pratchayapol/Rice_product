@@ -10,7 +10,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 include '../connect/dbcon.php';
 //รับค่า id และ type
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-$type = isset($_GET['type']);
+$type = isset($_GET['type']) ? $_GET['type'] : '';
 
 if ($id > 0) {
 
