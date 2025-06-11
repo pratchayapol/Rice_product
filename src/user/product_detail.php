@@ -24,34 +24,33 @@ if ($id > 0) {
 
         if ($product) {
             // การเข้าถึงข้อมูล
-            $gs_no = $product['gs_no'];
+            $rice_id = $product['rice_id'];
             $thai_name = $product['rice_variety_th_name'];
             $english_name = $product['rice_variety_en_name'];
             $product_name = $product['product_name'];
             $group = $product['product_group'];
-            $category = $product['categore'];
+            $category = $product['category'];
             $group_th = $product['rice_variety_group_th_name'];
             $group_en = $product['rice_variety_group_en_name'];
             $source_url = $product['source_url'];
             $source = $product['source'];
-            $recipe = $product['recipe'];
-            $type = $product['type'];
-            $cooking_equipment = $product['cooking_equipment'];
+            $ingredients_and_equipment = $product['ingredients_and_equipment'];
+            $instructions = $product['instructions'];
             $picture = $product['picture'];
 
             // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
-            $gs_no_array = explode(', ', $gs_no);
-            $target_gs_no = trim($gs_no_array[0]); // ลบช่องว่างเผื่อมี
+            $rice_id_array = explode(', ', $rice_id);
+            $target_rice_id = trim($rice_id_array[0]); // ลบช่องว่างเผื่อมี
 
             // แปลงเป็น integer ถ้าจำเป็น
-            $target_gs_no = (int)$target_gs_no;
+            $target_rice_id = (int)$target_rice_id;
 
             // คำสั่ง SQL พร้อม placeholder
-            $sql = "SELECT * FROM general_information WHERE gs_no = :gs_no";
+            $sql = "SELECT * FROM general_information WHERE rice_id = :rice_id";
 
             // เตรียมคำสั่ง
             $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':gs_no', $target_gs_no, PDO::PARAM_INT);
+            $stmt->bindParam(':rice_id', $target_rice_id, PDO::PARAM_INT);
 
             // ประมวลผล
             $stmt->execute();
@@ -88,7 +87,7 @@ if ($id > 0) {
                 $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
                 $picture_rice_2 = $general_info['picture_rice_2'] ?? null;
             } else {
-                echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
+                echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
             }
         }
 ?>
