@@ -221,7 +221,7 @@ $products = $stmt->fetchAll();
                         products.forEach(product => {
                             html += `
                     <a href="product_detail?id=${product.food_product_id}&type=food"
-                        class="bg-sky-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
+                        class="bg-rose-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
                         <img src="${product.picture || '../image/rice_product/A.jpg'}"
                             alt="${product.product_name}" class="rounded-xl mb-4 w-full h-40 object-cover" />
                         <div class="flex flex-col gap-2 w-full">
