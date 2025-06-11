@@ -209,29 +209,6 @@ if ($id > 0) {
                                                     </div>
                                                 <?php endif; ?>
                                             </div>
-
-                                            <!-- คุณภาพทางเคมีของเมล็ด -->
-                                            <div>
-                                                <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">คุณภาพทางเคมีของเมล็ด</h4>
-                                                <br>
-                                                <ul class="text-sm text-gray-700 space-y-1">
-                                                    <li><strong>ปริมาณอมิโลส (%):</strong> <?php echo htmlspecialchars($amylose_content_percent) ?></li>
-                                                    <li><strong>อุณหภูมิแป้งสุก:</strong> <?php echo htmlspecialchars($gelatinization_temp) ?></li>
-                                                    <li><strong>อุณหภูมิแป้งสุก (เพิ่มเติม):</strong> <?php echo htmlspecialchars($gelatinization_temp_additional) ?></li>
-                                                    <li><strong>ความคงตัวของแป้งสุก:</strong> <?php echo htmlspecialchars($gelatinized_starch_stability) ?></li>
-                                                    <li><strong>ความคงตัวของแป้งสุก (เพิ่มเติม):</strong> <?php echo htmlspecialchars($gelatinized_starch_stability_additional) ?></li>
-                                                    <li><strong>กลิ่นหอม:</strong> <?php echo htmlspecialchars($aroma) ?></li>
-                                                    <li><strong>อัตราการยืดตัวของข้าวสุก:</strong> <?php echo htmlspecialchars($cooked_rice_expansion_ratio) ?></li>
-                                                </ul>
-                                                <br> <br>
-                                                <?php if (!empty($picture_rice_2)): ?>
-                                                    <div class="flex justify-center">
-                                                        <img src="<?php echo htmlspecialchars($picture_rice_2) ?>"
-                                                            alt="รูปเมล็ดข้าว"
-                                                            class="mt-4 rounded border object-cover w-48 h-48" onclick="openImageModal(this.src)" />
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
                                         </div>
 
 
