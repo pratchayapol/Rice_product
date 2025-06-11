@@ -186,7 +186,7 @@ if ($id > 0) {
                                         <div style='border:0px solid #ccc; padding:10px;'>
                                             <?php
                                             if (is_null($ingredients_and_equipment) || $ingredients_and_equipment === '') {
-                                                echo "เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ";
+                                                echo "<div class='bg-yellow-100 text-yellow-800 p-3 rounded-md text-center'>เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ</div>";
                                             } else {
                                                 echo $ingredients_and_equipment;
                                             }
@@ -199,7 +199,7 @@ if ($id > 0) {
                                         <div style='border:0px solid #ccc; padding:10px;'>
                                             <?php
                                             if (is_null($instructions) || trim($instructions) === '') {
-                                                echo "เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ";
+                                                echo "<div class='bg-yellow-100 text-yellow-800 p-3 rounded-md text-center'>เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ</div>";
                                             } else {
                                                 echo $instructions;
                                             }
