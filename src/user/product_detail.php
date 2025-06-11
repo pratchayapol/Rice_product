@@ -8,86 +8,89 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
-// รับค่า id จาก query string อย่างปลอดภัย
+//รับค่า id และ type
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$type = isset($_GET['type']);
 
 if ($id > 0) {
-    // เตรียมคำสั่ง SQL
-    $stmt = $pdo->prepare("SELECT * FROM rice_products WHERE id = :id");
-    $stmt->execute(['id' => $id]);
 
-    // ดึงข้อมูล
-    $product = $stmt->fetch();
+    if ($type === "food") {
+        // เตรียมคำสั่ง SQL
+        $stmt = $pdo->prepare("SELECT * FROM food_product WHERE id = :id");
+        $stmt->execute(['id' => $id]);
 
-    if ($product) {
-        // การเข้าถึงข้อมูล
-        $gs_no = $product['gs_no'];
-        $thai_name = $product['rice_variety_th_name'];
-        $english_name = $product['rice_variety_en_name'];
-        $product_name = $product['product_name'];
-        $group = $product['product_group'];
-        $category = $product['categore'];
-        $group_th = $product['rice_variety_group_th_name'];
-        $group_en = $product['rice_variety_group_en_name'];
-        $source_url = $product['source_url'];
-        $source = $product['source'];
-        $recipe = $product['recipe'];
-        $type = $product['type'];
-        $cooking_equipment = $product['cooking_equipment'];
-        $picture = $product['picture'];
+        // ดึงข้อมูล
+        $product = $stmt->fetch();
 
-        // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
-        $gs_no_array = explode(', ', $gs_no);
-        $target_gs_no = trim($gs_no_array[0]); // ลบช่องว่างเผื่อมี
+        if ($product) {
+            // การเข้าถึงข้อมูล
+            $gs_no = $product['gs_no'];
+            $thai_name = $product['rice_variety_th_name'];
+            $english_name = $product['rice_variety_en_name'];
+            $product_name = $product['product_name'];
+            $group = $product['product_group'];
+            $category = $product['categore'];
+            $group_th = $product['rice_variety_group_th_name'];
+            $group_en = $product['rice_variety_group_en_name'];
+            $source_url = $product['source_url'];
+            $source = $product['source'];
+            $recipe = $product['recipe'];
+            $type = $product['type'];
+            $cooking_equipment = $product['cooking_equipment'];
+            $picture = $product['picture'];
 
-        // แปลงเป็น integer ถ้าจำเป็น
-        $target_gs_no = (int)$target_gs_no;
+            // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
+            $gs_no_array = explode(', ', $gs_no);
+            $target_gs_no = trim($gs_no_array[0]); // ลบช่องว่างเผื่อมี
 
-        // คำสั่ง SQL พร้อม placeholder
-        $sql = "SELECT * FROM general_information WHERE gs_no = :gs_no";
+            // แปลงเป็น integer ถ้าจำเป็น
+            $target_gs_no = (int)$target_gs_no;
 
-        // เตรียมคำสั่ง
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':gs_no', $target_gs_no, PDO::PARAM_INT);
+            // คำสั่ง SQL พร้อม placeholder
+            $sql = "SELECT * FROM general_information WHERE gs_no = :gs_no";
 
-        // ประมวลผล
-        $stmt->execute();
+            // เตรียมคำสั่ง
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':gs_no', $target_gs_no, PDO::PARAM_INT);
 
-        // ตรวจสอบผลลัพธ์
-        if ($stmt->rowCount() > 0) {
-            $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
+            // ประมวลผล
+            $stmt->execute();
 
-            // แยกเก็บข้อมูลในตัวแปร PHP
-            $thai_breed_name                 = !empty($general_info['thai_breed_name']) ? $general_info['thai_breed_name'] : 'ไม่พบข้อมูล';
-            $english_breed_name             = !empty($general_info['english_breed_name']) ? $general_info['english_breed_name'] : 'ไม่พบข้อมูล';
-            $scientific_name                = !empty($general_info['scientific_name']) ? $general_info['scientific_name'] : 'ไม่พบข้อมูล';
-            $other_names_or_numbers         = !empty($general_info['other_names_or_numbers']) ? $general_info['other_names_or_numbers'] : 'ไม่พบข้อมูล';
-            $type_of_rice_race_type         = !empty($general_info['type_of_rice_race_type']) ? $general_info['type_of_rice_race_type'] : 'ไม่พบข้อมูล';
-            $rice_ecosystem                 = !empty($general_info['rice_ecosystem']) ? $general_info['rice_ecosystem'] : 'ไม่พบข้อมูล';
-            $breeder                        = !empty($general_info['breeder']) ? $general_info['breeder'] : 'ไม่พบข้อมูล';
-            $date_of_approval_or_recommendation = !empty($general_info['date_of_approval_or_recommendation']) ? $general_info['date_of_approval_or_recommendation'] : 'ไม่พบข้อมูล';
-            $breeding_organization          = !empty($general_info['breeding_organization']) ? $general_info['breeding_organization'] : 'ไม่พบข้อมูล';
-            $general_status                 = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
-            $legal_status                   = !empty($general_info['legal_status']) ? $general_info['legal_status'] : 'ไม่พบข้อมูล';
-            $harvest_age_days               = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
-            $harvest_days                   = !empty($general_info['harvest_days']) ? $general_info['harvest_days'] : 'ไม่พบข้อมูล';
-            $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
+            // ตรวจสอบผลลัพธ์
+            if ($stmt->rowCount() > 0) {
+                $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                // แยกเก็บข้อมูลในตัวแปร PHP
+                $thai_breed_name                 = !empty($general_info['thai_breed_name']) ? $general_info['thai_breed_name'] : 'ไม่พบข้อมูล';
+                $english_breed_name             = !empty($general_info['english_breed_name']) ? $general_info['english_breed_name'] : 'ไม่พบข้อมูล';
+                $scientific_name                = !empty($general_info['scientific_name']) ? $general_info['scientific_name'] : 'ไม่พบข้อมูล';
+                $other_names_or_numbers         = !empty($general_info['other_names_or_numbers']) ? $general_info['other_names_or_numbers'] : 'ไม่พบข้อมูล';
+                $type_of_rice_race_type         = !empty($general_info['type_of_rice_race_type']) ? $general_info['type_of_rice_race_type'] : 'ไม่พบข้อมูล';
+                $rice_ecosystem                 = !empty($general_info['rice_ecosystem']) ? $general_info['rice_ecosystem'] : 'ไม่พบข้อมูล';
+                $breeder                        = !empty($general_info['breeder']) ? $general_info['breeder'] : 'ไม่พบข้อมูล';
+                $date_of_approval_or_recommendation = !empty($general_info['date_of_approval_or_recommendation']) ? $general_info['date_of_approval_or_recommendation'] : 'ไม่พบข้อมูล';
+                $breeding_organization          = !empty($general_info['breeding_organization']) ? $general_info['breeding_organization'] : 'ไม่พบข้อมูล';
+                $general_status                 = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
+                $legal_status                   = !empty($general_info['legal_status']) ? $general_info['legal_status'] : 'ไม่พบข้อมูล';
+                $harvest_age_days               = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
+                $harvest_days                   = !empty($general_info['harvest_days']) ? $general_info['harvest_days'] : 'ไม่พบข้อมูล';
+                $photoperiod_sensitivity        = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
 
-            $amylose_content_percent        = !empty($general_info['amylose_content_percent']) ? $general_info['amylose_content_percent'] : 'ไม่พบข้อมูล';
-            $gelatinization_temp            = !empty($general_info['gelatinization_temp']) ? $general_info['gelatinization_temp'] : 'ไม่พบข้อมูล';
-            $gelatinization_temp_additional = !empty($general_info['gelatinization_temp_additional']) ? $general_info['gelatinization_temp_additional'] : 'ไม่พบข้อมูล';
-            $gelatinized_starch_stability   = !empty($general_info['gelatinized_starch_stability']) ? $general_info['	gelatinized_starch_stability'] : 'ไม่พบข้อมูล';
-            $gelatinized_starch_stability_additional              = !empty($general_info['gelatinized_starch_stability_additional']) ? $general_info['gelatinized_starch_stability_additional'] : 'ไม่พบข้อมูล';
-            $aroma                = !empty($general_info['aroma']) ? $general_info['aroma'] : 'ไม่พบข้อมูล';
-            $cooked_rice_expansion_ratio                = !empty($general_info['cooked_rice_expansion_ratio']) ? $general_info['cooking_quality'] : 'ไม่พบข้อมูล';
+                $amylose_content_percent        = !empty($general_info['amylose_content_percent']) ? $general_info['amylose_content_percent'] : 'ไม่พบข้อมูล';
+                $gelatinization_temp            = !empty($general_info['gelatinization_temp']) ? $general_info['gelatinization_temp'] : 'ไม่พบข้อมูล';
+                $gelatinization_temp_additional = !empty($general_info['gelatinization_temp_additional']) ? $general_info['gelatinization_temp_additional'] : 'ไม่พบข้อมูล';
+                $gelatinized_starch_stability   = !empty($general_info['gelatinized_starch_stability']) ? $general_info['	gelatinized_starch_stability'] : 'ไม่พบข้อมูล';
+                $gelatinized_starch_stability_additional              = !empty($general_info['gelatinized_starch_stability_additional']) ? $general_info['gelatinized_starch_stability_additional'] : 'ไม่พบข้อมูล';
+                $aroma                = !empty($general_info['aroma']) ? $general_info['aroma'] : 'ไม่พบข้อมูล';
+                $cooked_rice_expansion_ratio                = !empty($general_info['cooked_rice_expansion_ratio']) ? $general_info['cooking_quality'] : 'ไม่พบข้อมูล';
 
-            $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
-            $picture_rice_2 = $general_info['picture_rice_2'] ?? null;
-        } else {
-            echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
+                $picture_rice_1 = $general_info['picture_rice_1'] ?? null;
+                $picture_rice_2 = $general_info['picture_rice_2'] ?? null;
+            } else {
+                echo "ไม่พบข้อมูลสำหรับ gs_no = $target_gs_no";
+            }
         }
-
 ?>
 
         <!DOCTYPE html>
