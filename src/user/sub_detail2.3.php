@@ -20,59 +20,8 @@
           </div>
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-                      <!-- Card: ข้าวเปลือก -->
-                      <div class="bg-blue-100 p-4 rounded shadow">
-                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวเปลือก</h2>
-                          <p class="text-center text-gray-600">ไม่มีข้อมูล</p>
-                      </div>
-
-                      <!-- Card: ข้าวสาร -->
-                      <div class="bg-blue-100 p-4 rounded shadow">
-                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวสาร</h2>
-                          <ul class="text-sm text-gray-700 space-y-1">
-                              <li>แคลเซียม: 19.62 mg/kg</li>
-                              <li>ไอโซเควอซิติน: 54.06 mg/kg</li>
-                              <li>เควอซิติน: 145.34 mg/kg</li>
-                              <li>รูติน: 50.12 mg/kg</li>
-                              <li>แคทีชิน: 36.64 mg/kg</li>
-                              <li>กรดแทนนิก: 87.87 mg/kg</li>
-                          </ul>
-                      </div>
-
-                      <!-- Card: ข้าวกล้อง -->
-                      <div class="bg-blue-100 p-4 rounded shadow">
-                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวกล้อง</h2>
-                          <p class="text-center text-gray-600">ไม่มีข้อมูล</p>
-                      </div>
-
-                      <!-- Card: ข้าวกล้องงอก -->
-                      <div class="bg-blue-100 p-4 rounded shadow">
-                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวกล้องงอก</h2>
-                          <p class="text-center text-gray-600">ไม่มีข้อมูล</p>
-                      </div>
-                  </div>
-
-                  <!-- แผนภูมิแท่ง -->
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <!-- แคลเซียม -->
-                      <div class="chart-container" style="height: 400px;">
-                          <canvas id="chartCalcium"></canvas>
-                      </div>
-
-                      <!-- ไอโซเควอซิติน -->
-                      <div class="chart-container" style="height: 400px;">
-                          <canvas id="chartIsoquercetin"></canvas>
-                      </div>
-
-                      <!-- เควอซิติน -->
-                      <div class="chart-container" style="height: 400px;">
-                          <canvas id="chartQuercetin"></canvas>
-                      </div>
-
-                  </div>
-
-
+                 
+dd
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
                   <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab2 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
@@ -84,77 +33,6 @@
                   <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab4 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
               </div>
           </div>
-          <script>
-              // ✅ ข้อมูลประเภทข้าว
-              const riceTypes = ['ข้าวสาร', 'ข้าวเปลือก', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
-
-              // ✅ ฟังก์ชันสร้าง options สำหรับแต่ละกราฟ
-              const baseOptions = (title) => ({
-                  responsive: true,
-                  maintainAspectRatio: false,
-                  animation: {
-                      duration: 1000,
-                      easing: 'easeOutCubic',
-                      y: {
-                          from: 0 // ✅ ให้ animate ค่า y จาก 0
-                      }
-                  },
-                  plugins: {
-                      title: {
-                          display: true,
-                          text: title
-                      }
-                  },
-                  scales: {
-                      y: {
-                          beginAtZero: true
-                      }
-                  }
-              });
-
-              // ✅ กราฟแคลเซียม
-              new Chart(document.getElementById('chartCalcium'), {
-                  type: 'bar',
-                  data: {
-                      labels: riceTypes,
-                      datasets: [{
-                          label: 'แคลเซียม (mg/kg)',
-                          data: [19.62, 0, 0, 0],
-                          backgroundColor: 'rgba(54, 162, 235, 0.7)'
-                      }]
-                  },
-                  options: baseOptions('แคลเซียม')
-              });
-
-              // ✅ กราฟไอโซเควอซิติน
-              new Chart(document.getElementById('chartIsoquercetin'), {
-                  type: 'bar',
-                  data: {
-                      labels: riceTypes,
-                      datasets: [{
-                          label: 'ไอโซเควอซิติน (mg/kg)',
-                          data: [54.06, 0, 0, 0],
-                          backgroundColor: 'rgba(255, 159, 64, 0.7)'
-                      }]
-                  },
-                  options: baseOptions('ไอโซเควอซิติน')
-              });
-
-              // ✅ กราฟเควอซิติน
-              new Chart(document.getElementById('chartQuercetin'), {
-                  type: 'bar',
-                  data: {
-                      labels: riceTypes,
-                      datasets: [{
-                          label: 'เควอซิติน (mg/kg)',
-                          data: [145.34, 0, 0, 0],
-                          backgroundColor: 'rgba(255, 99, 132, 0.7)'
-                      }]
-                  },
-                  options: baseOptions('เควอซิติน')
-              });
-          </script>
-
-
+    
       </div>
   </div>
