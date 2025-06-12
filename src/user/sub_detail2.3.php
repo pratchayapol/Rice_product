@@ -22,23 +22,7 @@
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
                   <?php
                     try {
-                        $sql = "SELECT * FROM sampleinfo WHERE rice_id = :rice_id LIMIT 1";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindParam(':rice_id', $rice_id, PDO::PARAM_INT);
-                        $stmt->execute();
-
-                        // 3. ดึงข้อมูลออกมา
-                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                        if ($row) {
-                            // 4. สร้างตัวแปรแบบ sampleinfo_ชื่อฟิลด์
-                            foreach ($row as $field => $value) {
-                                ${"sampleinfo_" . $field} = $value;
-                            }
-                            echo $sampleinfo_cropSampleID;
-                        } else {
-                            echo "ไม่พบข้อมูล";
-                        }
+                        
                     } catch (PDOException $e) {
                         echo "เกิดข้อผิดพลาด: " . $e->getMessage();
                     }

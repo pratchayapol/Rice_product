@@ -221,3 +221,22 @@ if (!empty($english_name) && !empty($english_breed_name)) {
 } else {
     $display_english_name = !empty($english_name) ? $english_name : ($english_breed_name ?: 'ไม่พบข้อมูล');
 }
+
+
+$sql = "SELECT * FROM sampleinfo WHERE rice_id = :rice_id LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->bindParam(':rice_id', $rice_id, PDO::PARAM_INT);
+$stmt->execute();
+
+// 3. ดึงข้อมูลออกมา
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($row) {
+    // 4. สร้างตัวแปรแบบ sampleinfo_ชื่อฟิลด์
+    foreach ($row as $field => $value) {
+        ${"sampleinfo_" . $field} = $value;
+    }
+    echo $sampleinfo_cropSampleID;  //เป็น PK ของ sampleinfo เพื่อไปหา fk ของ 4 table ที่เหลือ
+} else {
+    echo "ไม่พบข้อมูล";
+}
