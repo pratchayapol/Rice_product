@@ -229,10 +229,10 @@
                                             titleFont: {
                                                 family: 'Noto Sans Thai'
                                             },
+                                            color: '#000',
                                             bodyFont: {
                                                 family: 'Noto Sans Thai'
-                                            },
-                                            color: '#000'
+                                            }
                                         }
                                     }
                                 }
