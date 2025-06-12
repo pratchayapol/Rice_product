@@ -1,19 +1,3 @@
-<style>
-    #chartContainer {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        /* 3 กราฟต่อแถว */
-        gap: 30px;
-        /* ระยะห่างระหว่างกราฟ */
-    }
-
-    #chartContainer canvas {
-        width: 100% !important;
-        /* ให้เต็มพื้นที่คอลัมน์ */
-        height: 300px !important;
-        /* กำหนดความสูงกราฟ */
-    }
-</style>
 
 <div id="nutrition" class="tab-content hidden">
     <div class="bg-white p-4 rounded-lg">
