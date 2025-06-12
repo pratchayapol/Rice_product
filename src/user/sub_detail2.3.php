@@ -26,9 +26,8 @@
                   </div>
 
                   <script>
-                      // chartData ถูกส่งมาจาก PHP แล้ว
+                      // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
 
-                      // ฟิลด์ที่จะแสดง + หน่วย
                       const fieldsToShow = [
                           "seedWeight", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
                           "gloss", "whiteness", "transparency", "moisture", "elongationRatio",
@@ -61,7 +60,6 @@
                           adhesiveness: ""
                       };
 
-                      // ฟังก์ชันตรวจสอบว่ามีข้อมูลจริงหรือไม่
                       function hasValidData(data) {
                           for (const cat in data) {
                               for (const field in data[cat]) {
@@ -73,104 +71,100 @@
                           return false;
                       }
 
+                      const chartContainer = document.getElementById('chartContainer');
                       const noDataMsg = document.getElementById('noDataMsg');
-                      const ctx = document.getElementById('physicalChart').getContext('2d');
 
                       if (!hasValidData(chartData)) {
-                          // ไม่มีข้อมูลแสดงข้อความแทนกราฟ
-                          document.getElementById('physicalChart').style.display = 'none';
                           noDataMsg.style.display = 'block';
                       } else {
                           noDataMsg.style.display = 'none';
 
-                          // รวบรวมฟิลด์ที่มีข้อมูลจริงและอยู่ใน fieldsToShow เท่านั้น
-                          let allFieldsSet = new Set();
+                          // หาฟิลด์ที่มีข้อมูลจริง
+                          let fieldsWithData = new Set();
                           for (const cat in chartData) {
                               for (const field in chartData[cat]) {
                                   if (fieldsToShow.includes(field) && chartData[cat][field].length > 0) {
-                                      allFieldsSet.add(field);
+                                      fieldsWithData.add(field);
                                   }
                               }
                           }
-                          const allFields = Array.from(allFieldsSet);
+                          fieldsWithData = Array.from(fieldsWithData);
 
-                          // แปลงชื่อฟิลด์ + หน่วยสำหรับ label แกน Y
-                          const allFieldsWithUnits = allFields.map(field => {
-                              const unit = fieldUnits[field] ? ` (${fieldUnits[field]})` : "";
-                              return field + unit;
-                          });
-
-                          // หมวดหมู่จากข้อมูล
+                          // หมวดหมู่
                           const categories = Object.keys(chartData);
 
-                          // เตรียม dataset
-                          const datasets = categories.map(cat => {
-                              return {
-                                  label: cat,
-                                  data: allFields.map(field => {
-                                      const values = chartData[cat][field] || [];
-                                      if (values.length === 0) return 0;
-                                      const avg = values.reduce((a, b) => a + b, 0) / values.length;
-                                      return avg;
-                                  }),
-                                  backgroundColor: getRandomColor(),
-                              };
-                          });
+                          // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
+                          fieldsWithData.forEach(field => {
+                              // สร้าง canvas ใหม่
+                              const canvas = document.createElement('canvas');
+                              canvas.id = `chart_${field}`;
+                              canvas.style.marginBottom = '40px';
+                              chartContainer.appendChild(canvas);
 
-                          // สร้างกราฟ
-                          const physicalChart = new Chart(ctx, {
-                              type: 'bar',
-                              data: {
-                                  labels: allFieldsWithUnits,
-                                  datasets: datasets,
-                              },
-                              options: {
-                                  indexAxis: 'y', // แผนภูมิแท่งแนวนอน
-                                  responsive: true,
-                                  scales: {
-                                      x: {
-                                          beginAtZero: true,
-                                          title: {
-                                              display: true,
-                                              text: 'ค่าเฉลี่ย'
-                                          }
-                                      },
-                                      y: {
-                                          title: {
-                                              display: true,
-                                              text: 'คุณลักษณะทางกายภาพ'
-                                          }
-                                      }
+                              const ctx = canvas.getContext('2d');
+
+                              // เตรียมข้อมูล dataset (หมวดหมู่เป็นแต่ละแท่ง)
+                              const data = categories.map(cat => {
+                                  const values = chartData[cat][field] || [];
+                                  if (values.length === 0) return 0;
+                                  return values.reduce((a, b) => a + b, 0) / values.length;
+                              });
+
+                              // สร้างกราฟแท่งแนวนอน
+                              new Chart(ctx, {
+                                  type: 'bar',
+                                  data: {
+                                      labels: categories,
+                                      datasets: [{
+                                          label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
+                                          data: data,
+                                          backgroundColor: categories.map(() => getRandomColor()),
+                                      }]
                                   },
-                                  plugins: {
-                                      legend: {
-                                          position: 'top',
+                                  options: {
+                                      indexAxis: 'y',
+                                      responsive: true,
+                                      scales: {
+                                          x: {
+                                              beginAtZero: true,
+                                              title: {
+                                                  display: true,
+                                                  text: 'ค่าเฉลี่ย'
+                                              }
+                                          },
+                                          y: {
+                                              title: {
+                                                  display: true,
+                                                  text: 'หมวดหมู่ข้าว'
+                                              }
+                                          }
                                       },
-                                      title: {
-                                          display: true,
-                                          text: 'ข้อมูลทางกายภาพตามหมวดหมู่ข้าว'
-                                      },
-                                      tooltip: {
-                                          callbacks: {
-                                              label: function(context) {
-                                                  const label = context.dataset.label || '';
-                                                  const field = allFields[context.dataIndex];
-                                                  const unit = fieldUnits[field] || '';
-                                                  return `${label}: ${context.parsed.x.toFixed(2)} ${unit}`;
+                                      plugins: {
+                                          legend: {
+                                              display: false
+                                          },
+                                          title: {
+                                              display: true,
+                                              text: `ข้อมูล ${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
+                                          },
+                                          tooltip: {
+                                              callbacks: {
+                                                  label: function(context) {
+                                                      return `${context.parsed.x.toFixed(2)} ${fieldUnits[field] || ''}`;
+                                                  }
                                               }
                                           }
                                       }
                                   }
-                              }
+                              });
                           });
+                      }
 
-                          // ฟังก์ชันสุ่มสี
-                          function getRandomColor() {
-                              const r = Math.floor(Math.random() * 200);
-                              const g = Math.floor(Math.random() * 200);
-                              const b = Math.floor(Math.random() * 200);
-                              return `rgba(${r},${g},${b},0.7)`;
-                          }
+                      function getRandomColor() {
+                          const r = Math.floor(Math.random() * 200);
+                          const g = Math.floor(Math.random() * 200);
+                          const b = Math.floor(Math.random() * 200);
+                          return `rgba(${r},${g},${b},0.7)`;
                       }
                   </script>
 
