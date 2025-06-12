@@ -128,7 +128,7 @@
                   maintainAspectRatio: false,
                   animation: {
                       duration: 1000,
-                      easing: 'easeOutBounce'
+                      easing: 'easeInOutCubic'
                   },
                   plugins: {
                       title: {
