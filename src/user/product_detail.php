@@ -45,6 +45,7 @@ if ($id > 0) {
         <!-- Chart.js -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+        <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
     </head>
 
@@ -93,7 +94,7 @@ if ($id > 0) {
 
                         <!-- Tab Contents -->
                         <div class="relative">
-                            <?php 
+                            <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
                             include 'sub_detail2.3.php'; //tab ข้อมูลโภชนาการ
