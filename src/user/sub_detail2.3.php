@@ -69,7 +69,7 @@
                         length: "mm",
                         width: "mm",
                         thickness: "mm",
-                        seedShapeRatio: "(ยาว/กว้าง)",
+                        seedShapeRatio: "ยาว/กว้าง",
                         chalkiness: "%",
                         moisture: "%",
                         elongationRatio: "",
