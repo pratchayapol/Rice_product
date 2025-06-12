@@ -149,13 +149,11 @@
                                             beginAtZero: true,
                                             title: {
                                                 display: true,
-                                                text: 'ค่าเฉลี่ย'
                                             }
                                         },
                                         x: {
                                             title: {
                                                 display: true,
-                                                text: 'หมวดหมู่ข้าว'
                                             }
                                         }
                                     },
