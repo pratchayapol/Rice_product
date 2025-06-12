@@ -250,7 +250,7 @@ if ($rows) {
     $categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
     $physicalData = [];
     $fieldsToShow = [
-        'seedWeight',
+        'น้ำหนักเมล็ดข้าว',
         'length',
         'width',
         'thickness',
