@@ -236,7 +236,57 @@ if ($row) {
     foreach ($row as $field => $value) {
         ${"sampleinfo_" . $field} = $value;
     }
-    
+    $sampleinfo_cropSampleID;  //เป็น PK ของ sampleinfo เพื่อไปหา fk ของ 4 table ที่เหลือ
 } else {
-    echo "ไม่พบข้อมูล";
+}
+
+// table physical (ข้อมูลทางกายภาพ)
+$sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID LIMIT 1";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+
+// 2. ดึงข้อมูล
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($row) {
+    // 3. สร้างตัวแปรแบบ physical_ชื่อฟิลด์
+    foreach ($row as $field => $value) {
+        ${"physical_" . $field} = $value;
+    }
+    $physicalData = [
+        "น้ำหนักเมล็ด (g/1000 เมล็ด)" => $physical_seedWeight,
+        "ความยาว (mm)" => $physical_length,
+        "ความกว้าง (mm)" => $physical_width,
+        "ความหนา (mm)" => $physical_thickness,
+        "สี" => $physical_color,
+        "รูปร่างเมล็ด (ยาว/กว้าง)" => $physical_seedShapeRatio,
+        "ข้าวท้องไข่ (%)" => $physical_chalkiness,
+        "ความเงา" => $physical_gloss,
+        "ความขาว" => $physical_whiteness,
+        "ความโปร่งแสง" => $physical_transparency,
+        "ความชื้น (%)" => $physical_moisture,
+        "การยืดตัวของข้าวสุก" => $physical_elongationRatio,
+        "การพองตัว" => $physical_swelling,
+        "เนื้อสัมผัส" => $physical_texture,
+        "ความหนืดสูงสุด" => $physical_peakViscosity,
+        "ความหนืดต่ำสุด" => $physical_trough,
+        "Breakdown" => $physical_breakdown,
+        "ความหนืดสุดท้าย" => $physical_finalViscosity,
+        "Setback" => $physical_setback,
+        "อุณหภูมิเริ่มเปลี่ยนความหนืด" => $physical_pastingTemp,
+        "ความหนืดแป้งข้าว" => $physical_riceFlourViscosity,
+        "Precipitation" => $physical_precipitation,
+        "Retrogradation" => $physical_retrogradation,
+        "ความคงตัวแป้งสุกปานกลาง (mm)" => $physical_gelConsistency,
+        "กำลังการพองตัว (%)" => $physical_swellingPower,
+        "ความแข็ง" => $physical_hardness,
+        "ความเหนียวหนึบ" => $physical_adhesiveness,
+        "ความเหนียวติด" => $physical_stickiness
+    ];
+
+    // เตรียมข้อมูล JSON
+    $labels = json_encode(array_keys($physicalData), JSON_UNESCAPED_UNICODE);
+    $values = json_encode(array_values($physicalData));
+} else {
+    echo "ไม่พบข้อมูล physical ";
 }
