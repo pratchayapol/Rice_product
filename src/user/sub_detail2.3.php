@@ -82,7 +82,7 @@
 
                           if (datasets.length > 0) {
                               const canvasId = `chart_${field}`;
-                              document.getElementById("chartsContainer").innerHTML += `
+                              document.getElementById("physicalChart").innerHTML += `
                 <div style="margin-bottom: 40px;">
                     <h3>${fieldLabels[field]}</h3>
                     <canvas id="${canvasId}" height="200"></canvas>
