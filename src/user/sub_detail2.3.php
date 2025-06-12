@@ -34,17 +34,8 @@
                             // 4. สร้างตัวแปรแบบ sampleinfo_ชื่อฟิลด์
                             foreach ($row as $field => $value) {
                                 ${"sampleinfo_" . $field} = $value;
-                            } // 2. แสดงผลลัพธ์ทั้งหมด
-                            echo "<h3>ข้อมูล sampleinfo:</h3>";
-                            echo "<table border='1' cellpadding='8' cellspacing='0'>";
-                            echo "<tr><th>ชื่อฟิลด์</th><th>ค่า</th></tr>";
-
-                            foreach ($row as $field => $value) {
-                                echo "<tr>";
-                                echo "<td>sampleinfo_$field</td>";
-                                echo "<td>" . htmlspecialchars($value) . "</td>";
-                                echo "</tr>";
                             }
+                            echo $sampleinfo_cropSampleID;
                         } else {
                             echo "ไม่พบข้อมูล";
                         }
