@@ -130,6 +130,17 @@
                           };
                           return colors[category] || "rgba(201, 203, 207, 0.7)";
                       }
+
+                      console.log("chartData:", chartData);
+
+                      for (const field in fieldLabels) {
+                          console.log("⚙️ Field:", field);
+
+                          for (const category in chartData) {
+                              console.log("➡️ Category:", category);
+                              console.log("📊 Values:", chartData[category][field]);
+                          }
+                      }
                   </script>
 
               </div>
