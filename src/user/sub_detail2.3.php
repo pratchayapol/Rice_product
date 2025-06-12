@@ -58,7 +58,7 @@
                       function hasValidData(data) {
                           for (const cat in data) {
                               for (const field in data[cat]) {
-                                  if (data[cat][field].length > 0) {
+                                  if (data[cat][field] && data[cat][field].length > 0) {
                                       return true;
                                   }
                               }
@@ -99,7 +99,6 @@
                                   }
                               }
 
-                              // ถ้าไม่มี category ไหนเลย (กรณีแปลก) ข้าม
                               if (categoriesWithData.length === 0) return;
 
                               // สร้าง canvas ใหม่ และกำหนดขนาดเล็กลง (ความสูงประมาณ 150px)
@@ -107,6 +106,7 @@
                               canvas.id = `chart_${field}`;
                               canvas.style.marginBottom = '30px';
                               canvas.style.height = '150px';
+                              canvas.style.width = '100%';
                               chartContainer.appendChild(canvas);
 
                               const ctx = canvas.getContext('2d');
@@ -124,7 +124,7 @@
                                   options: {
                                       indexAxis: 'y',
                                       responsive: true,
-                                      maintainAspectRatio: false, // ให้ใช้ความสูงตามที่กำหนด
+                                      maintainAspectRatio: false,
                                       scales: {
                                           x: {
                                               beginAtZero: true,
