@@ -65,12 +65,12 @@
                           let allEmpty = true; // 🟡 ตรวจว่าข้อมูลทั้งหมดว่าง
 
                           for (const category in chartData) {
-                              const values = chartData[category][field];
+                              const valuesRaw = chartData[category][field];
+                              const values = Array.isArray(valuesRaw) ? valuesRaw : [];
 
-                              // คัดกรองเฉพาะค่าที่ valid
-                              const validValues = values?.filter(v => v != null && v !== '' && !isNaN(v) && v !== 0);
+                              const validValues = values.filter(v => v != null && v !== '' && !isNaN(v) && v !== 0);
 
-                              if (validValues && validValues.length > 0) {
+                              if (validValues.length > 0) {
                                   allEmpty = false;
                                   const avg = validValues.reduce((a, b) => a + b, 0) / validValues.length;
                                   datasets.push({
