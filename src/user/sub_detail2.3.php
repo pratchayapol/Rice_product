@@ -34,6 +34,13 @@
                         "setback", "pastingTemp", "gelConsistency", "swellingPower", "hardness", "adhesiveness"
                     ];
 
+                    const fieldNamesTH = {
+                        seedWeight: "น้ำหนักเมล็ด",
+                        length: "ความยาว",
+                        width: "ความกว้าง",
+                        thickness: "ความหนา",
+                        // ... เติมให้ครบทุกฟิลด์ที่ต้องการ
+                    };
                     const fieldUnits = {
                         seedWeight: "g/1,000 seeds",
                         length: "mm",
@@ -163,7 +170,7 @@
                                         },
                                         title: {
                                             display: true,
-                                            text: `ข้อมูล ${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
+                                            text: `ข้อมูล ${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
                                         },
                                         tooltip: {
                                             callbacks: {
