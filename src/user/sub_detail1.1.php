@@ -268,7 +268,7 @@ if ($rows) {
         }
     }
 
-    // ส่งไป JS
+    // ส่งไป JavaScript
     echo "<script>";
     echo "const chartData = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
     echo "</script>";

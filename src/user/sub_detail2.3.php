@@ -24,52 +24,111 @@
 
                   <canvas id="physicalChart" height="120"></canvas>
                   <script>
-                      const ctx = document.getElementById('physicalChart').getContext('2d');
+                      // สมมุติว่า chartData มาจากฝั่ง PHP แล้ว (ถูก echo เป็น JSON)
+                      // ตัวอย่าง chartData:
+                      // chartData = {
+                      //     'ข้าวเปลือก': { seedWeight: [20], length: [8.2], ... },
+                      //     'ข้าวกล้อง': { seedWeight: [18], length: [7.9], ... }
+                      // }
 
-                      const labels = Object.keys(chartData); // ข้าวเปลือก, ข้าวสาร ฯลฯ
+                      // 🟦 ชื่อภาษาไทยของแต่ละฟิลด์ (สำหรับแสดงในกราฟ)
+                      const fieldLabels = {
+                          seedWeight: "น้ำหนักเมล็ด (g)",
+                          length: "ความยาว (mm)",
+                          width: "ความกว้าง (mm)",
+                          thickness: "ความหนา (mm)",
+                          chalkiness: "ข้าวท้องไข่ (%)",
+                          gloss: "ความมัน",
+                          whiteness: "ความขาว",
+                          transparency: "ความโปร่งใส",
+                          moisture: "ความชื้น (%)",
+                          elongationRatio: "การยืดตัว",
+                          swelling: "การพองตัว",
+                          texture: "เนื้อสัมผัส",
+                          peakViscosity: "ความหนืดสูงสุด",
+                          trough: "ความหนืดต่ำสุด",
+                          breakdown: "การสลายตัว",
+                          finalViscosity: "ความหนืดสุดท้าย",
+                          setback: "การคืนตัว",
+                          pastingTemp: "อุณหภูมิแป้งสุก",
+                          riceFlourViscosity: "ความหนืดแป้งข้าว",
+                          precipitation: "การตกตะกอน",
+                          retrogradation: "การคืนตัวของแป้ง",
+                          gelConsistency: "ความคงตัวของแป้ง",
+                          swellingPower: "กำลังพองตัว (%)",
+                          hardness: "ความแข็ง",
+                          adhesiveness: "ความเหนียวติด",
+                          stickiness: "ความเหนียว"
+                      };
 
-                      const getAvg = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+                      // 🔄 Loop เพื่อสร้างกราฟสำหรับแต่ละ field
+                      for (const field in fieldLabels) {
+                          const datasets = [];
+                          const labels = [];
 
-                      const seedWeight = labels.map(cat => getAvg(chartData[cat]['seedWeight']));
-                      const length = labels.map(cat => getAvg(chartData[cat]['length']));
-                      const width = labels.map(cat => getAvg(chartData[cat]['width']));
-
-                      new Chart(ctx, {
-                          type: 'bar',
-                          data: {
-                              labels: labels,
-                              datasets: [{
-                                      label: 'น้ำหนักเมล็ด (g/1000 เมล็ด)',
-                                      data: seedWeight,
-                                      backgroundColor: 'rgba(75, 192, 192, 0.7)'
-                                  },
-                                  {
-                                      label: 'ความยาว (mm)',
-                                      data: length,
-                                      backgroundColor: 'rgba(255, 206, 86, 0.7)'
-                                  },
-                                  {
-                                      label: 'ความกว้าง (mm)',
-                                      data: width,
-                                      backgroundColor: 'rgba(153, 102, 255, 0.7)'
-                                  }
-                              ]
-                          },
-                          options: {
-                              responsive: true,
-                              scales: {
-                                  y: {
-                                      beginAtZero: true
-                                  }
-                              },
-                              plugins: {
-                                  title: {
-                                      display: true,
-                                      text: 'ข้อมูลทางกายภาพ แยกตามประเภทข้าว'
-                                  }
+                          // ดึงค่าจากแต่ละหมวด (ข้าวเปลือก, ข้าวกล้อง ฯลฯ)
+                          for (const category in chartData) {
+                              const values = chartData[category][field];
+                              if (values && values.length > 0) {
+                                  const avg = values.reduce((a, b) => a + b, 0) / values.length;
+                                  datasets.push({
+                                      label: category,
+                                      data: [avg],
+                                      backgroundColor: getColor(category)
+                                  });
+                                  labels.push(category);
                               }
                           }
-                      });
+
+                          if (datasets.length > 0) {
+                              const canvasId = `chart_${field}`;
+                              document.getElementById("chartsContainer").innerHTML += `
+                <div style="margin-bottom: 40px;">
+                    <h3>${fieldLabels[field]}</h3>
+                    <canvas id="${canvasId}" height="200"></canvas>
+                </div>
+            `;
+
+                              new Chart(document.getElementById(canvasId), {
+                                  type: 'bar',
+                                  data: {
+                                      labels: labels,
+                                      datasets: [{
+                                          label: fieldLabels[field],
+                                          data: datasets.map(d => d.data[0]),
+                                          backgroundColor: datasets.map(d => d.backgroundColor)
+                                      }]
+                                  },
+                                  options: {
+                                      responsive: true,
+                                      plugins: {
+                                          legend: {
+                                              display: false
+                                          },
+                                          title: {
+                                              display: false
+                                          }
+                                      },
+                                      scales: {
+                                          y: {
+                                              beginAtZero: true
+                                          }
+                                      }
+                                  }
+                              });
+                          }
+                      }
+
+                      // 🔴 ฟังก์ชันสีตามหมวดข้าว
+                      function getColor(category) {
+                          const colors = {
+                              "ข้าวเปลือก": "rgba(255, 99, 132, 0.7)",
+                              "ข้าวสาร": "rgba(54, 162, 235, 0.7)",
+                              "ข้าวกล้อง": "rgba(255, 206, 86, 0.7)",
+                              "ข้าวกล้องงอก": "rgba(75, 192, 192, 0.7)"
+                          };
+                          return colors[category] || "rgba(201, 203, 207, 0.7)";
+                      }
                   </script>
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
