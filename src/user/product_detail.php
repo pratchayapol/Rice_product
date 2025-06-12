@@ -13,7 +13,9 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $type = isset($_GET['type']) ? $_GET['type'] : '';
 
 if ($id > 0) {
-include 'sub_detail1.php';
+
+    //ไฟล์นี้เป็นการค้นหาข้อมูลจากทั้ง 3 table 
+    include 'sub_detail1.php';
 ?>
 
 
@@ -89,123 +91,19 @@ include 'sub_detail1.php';
 
                         <!-- Tab Contents -->
                         <div class="relative">
-                            <div id="method" class="tab-content">
-                                <div class="bg-white p-4 rounded-lg mb-4">
-                                    <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">อุปกรณ์</h4>
-                                    <div style='border:0px solid #ccc; padding:10px;'>
-                                        <?php
-                                        if (is_null($ingredients_and_equipment) || $ingredients_and_equipment === '') {
-                                            echo "<div class='bg-yellow-100 text-yellow-800 p-3 rounded-md text-center'>เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ</div>";
-                                        } else {
-                                            echo $ingredients_and_equipment;
-                                        }
-                                        ?>
-                                    </div>
-
-                                </div>
-                                <div class="bg-white p-4 rounded-lg">
-                                    <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">วิธีทำ</h4>
-                                    <div style='border:0px solid #ccc; padding:10px;'>
-                                        <?php
-                                        if (is_null($instructions) || trim($instructions) === '') {
-                                            echo "<div class='bg-yellow-100 text-yellow-800 p-3 rounded-md text-center'>เจ้าหน้าที่กำลังนำเข้าข้อมูลค่ะ</div>";
-                                        } else {
-                                            echo $instructions;
-                                        }
-                                        ?>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div id="rice" class="tab-content hidden">
-                                <div class="bg-white p-4 rounded-lg mx-auto w-full">
-                                    <div class="flex justify-center">
-                                        <!-- กล่องเนื้อหา -->
-                                        <div class="w-full max-w-2xl">
-                                            <!-- ข้อมูลทั่วไป -->
-                                            <div>
-                                                <h4 class="text-sm font-semibold mb-2 bg-white text-center rounded-full w-fit px-4 py-1 mx-auto shadow">
-                                                    ข้อมูลทั่วไป
-                                                </h4>
-                                                <br>
-                                                <?php if (!empty($picture_rice)): ?>
-                                                    <div class="flex justify-center">
-                                                        <img src="<?php echo htmlspecialchars($picture_rice) ?>"
-                                                            alt="รูปต้นข้าว"
-                                                            class="rounded border object-cover w-48 h-48 cursor-pointer"
-                                                            onclick="openImageModal(this.src)" />
-                                                    </div>
-                                                <?php endif; ?>
-                                                <br>
-
-                                                <!-- ตารางข้อมูล -->
-                                                <div class="overflow-x-auto">
-                                                    <table class="min-w-full text-sm text-gray-700 table-auto">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold whitespace-nowrap">หมายเลขประจำพันธุ์ (G.S. No.):</td>
-                                                                <td class="text-left px-2 py-1"><?php echo $gs_no; ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์ไทย:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($display_thai_name); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ชื่อพันธุ์อังกฤษ:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($display_english_name); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ชื่อวิทยาศาสตร์:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($scientific_name); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">นิเวศการปลูกข้าว:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($rice_ecosystem); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">วันเดือนปีที่รับรอง/แนะนำ:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($date_of_approval_or_recommendation); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">สภาพภาพทั่วไป:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($general_status); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">อายุเก็บเกี่ยว (วัน):</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($harvest_age_days); ?></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-left px-2 py-1 font-semibold">ความไวต่อช่วงแสง:</td>
-                                                                <td class="text-left px-2 py-1"><?php echo htmlspecialchars($photoperiod_sensitivity); ?></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div> <!-- overflow-x-auto -->
-                                                <?php if (!empty($link_url)): ?>
-                                                    <div class="mt-4 text-center">
-                                                        <a href="<?php echo htmlspecialchars($link_url); ?>"
-                                                            target="_blank"
-                                                            class="inline-block bg-[#454b0b] hover:bg-[#5c6113] text-white text-sm font-medium px-4 py-2 rounded-lg shadow transition">
-                                                            ดูข้อมูลพันธุ์ข้าวเพิ่มเติม
-                                                        </a>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
 
-                            <div id="nutrition" class="tab-content hidden">
-                                <div class="bg-white p-4 rounded-lg">
-                                    <h4 class="inline-block font-bold mb-4 bg-white px-6 py-2 rounded-full text-sm mx-auto shadow"> กำลังดำเนินการพัฒนา Code เริ่ม 12 / 06 / 2568 </h4>
-                                    <div class="overflow-x-auto">
-                                        
-                                    </div>
-                                </div>
-                            </div>
+                            <?php 
+                            include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
+                            include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
+                            include 'sub_detail2.3.php'; //tab ข้อมูลโภชนาการ
+                            ?>
+                        
+
+
+
+
+                          
                         </div>
                     </div>
 
