@@ -170,7 +170,7 @@
                                         },
                                         title: {
                                             display: true,
-                                            text: `ข้อมูล ${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
+                                            text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
                                         },
                                         tooltip: {
                                             callbacks: {
