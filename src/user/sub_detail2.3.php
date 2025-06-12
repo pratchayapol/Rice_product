@@ -128,10 +128,7 @@
                   maintainAspectRatio: false,
                   animation: {
                       duration: 1000,
-                      easing: 'easeOutCubic', // หรือแบบอื่น เช่น 'linear', 'easeInQuad', ...
-                      y: {
-                          from: 0 // ค่อย ๆ animate ค่า y จาก 0 ขึ้นไป
-                      }
+                      easing: 'easeOutCubic' // เอา 'y.from' ออก
                   },
                   plugins: {
                       title: {
@@ -157,8 +154,8 @@
                           backgroundColor: 'rgba(54, 162, 235, 0.7)'
                       }]
                   },
-                  options: baseOptions('แคลเซียม')
-
+                  options: baseOptions('แคลเซียม'),
+                  plugins: [roundedBarsPlugin] // ✅ ใส่ plugin ตรงนี้
               });
 
               // ✅ กราฟไอโซเควอซิติน
@@ -172,7 +169,8 @@
                           backgroundColor: 'rgba(255, 159, 64, 0.7)'
                       }]
                   },
-                  options: baseOptions('ไอโซเควอซิติน')
+                  options: baseOptions('ไอโซเควอซิติน'),
+                  plugins: [roundedBarsPlugin] // ✅ ใส่ plugin ตรงนี้
               });
 
               // ✅ กราฟเควอซิติน
@@ -186,7 +184,8 @@
                           backgroundColor: 'rgba(255, 99, 132, 0.7)'
                       }]
                   },
-                  options: baseOptions('เควอซิติน')
+                  options: baseOptions('เควอซิติน'),
+                  plugins: [roundedBarsPlugin] // ✅ ใส่ plugin ตรงนี้
               });
           </script>
 
