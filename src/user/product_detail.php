@@ -14,8 +14,10 @@ $type = isset($_GET['type']) ? $_GET['type'] : '';
 
 if ($id > 0) {
 
-    //ไฟล์นี้เป็นการค้นหาข้อมูลจากทั้ง 3 table 
-    include 'sub_detail1.php';
+    //ไฟล์นี้เป็นการค้นหาข้อมูลแปรรูปผลิตภัณฑ์ทั้ง 3 table และ table rice (ข้อมูลข้าว)
+    include 'sub_detail1.1.php';
+
+
 ?>
 
 
