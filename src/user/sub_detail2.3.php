@@ -28,10 +28,22 @@
                     // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
 
                     const fieldsToShow = [
-                        "seedWeight", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
-                        "gloss", "whiteness", "transparency", "moisture", "elongationRatio",
-                        "swelling", "peakViscosity", "trough", "breakdown", "finalViscosity",
-                        "setback", "pastingTemp", "gelConsistency", "swellingPower", "hardness", "adhesiveness"
+                        "seedWeight",
+                        "length",
+                        "width",
+                        "thickness",
+                        "seedShapeRatio",
+                        "chalkiness",
+                        "moisture",
+                        "elongationRatio",
+                        "peakViscosity",
+                        "trough",
+                        "breakdown",
+                        "finalViscosity",
+                        "setback",
+                        "pastingTemp",
+                        "gelConsistency",
+                        "swellingPower",
                     ];
 
                     const fieldNamesTH = {
@@ -39,7 +51,18 @@
                         length: "ความยาว",
                         width: "ความกว้าง",
                         thickness: "ความหนา",
-                        // ... เติมให้ครบทุกฟิลด์ที่ต้องการ
+                        seedShapeRatio: "รูปร่างเมล็ด",
+                        chalkiness: "ข้าวท้องไข่",
+                        moisture: "ปริมาณความชื้น",
+                        elongationRatio: "การยืดตัวของข้าวสุก",
+                        peakViscosity: "ความหนืดสูงสุด",
+                        trough: "ความหนืดต่ำสุด",
+                        breakdown: "ความหนืดเปลี่ยนแปลงไปสู่ขั้นสลายตัว",
+                        finalViscosity: "ความหนืดสุดท้าย",
+                        setback: "การคืนตัวของแป้ง",
+                        pastingTemp: "อุณหภูมิที่เริ่มมีการเปลี่ยนแปลงความหนืด",
+                        gelConsistency: "ความคงตัวแป้งสุกปานกลาง",
+                        swellingPower: "ค่าการวิเคราะห์กำลังการพองตัว",
                     };
                     const fieldUnits = {
                         seedWeight: "g/1,000 seeds",
@@ -48,12 +71,8 @@
                         thickness: "mm",
                         seedShapeRatio: "",
                         chalkiness: "%",
-                        gloss: "",
-                        whiteness: "",
-                        transparency: "",
                         moisture: "%",
                         elongationRatio: "",
-                        swelling: "",
                         peakViscosity: "",
                         trough: "",
                         breakdown: "",
@@ -62,8 +81,6 @@
                         pastingTemp: "°C",
                         gelConsistency: "mm",
                         swellingPower: "%",
-                        hardness: "",
-                        adhesiveness: ""
                     };
 
                     function hasValidData(data) {

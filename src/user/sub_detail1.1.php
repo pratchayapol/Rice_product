@@ -256,12 +256,8 @@ if ($rows) {
         'thickness',
         'seedShapeRatio',
         'chalkiness',
-        'gloss',
-        'whiteness',
-        'transparency',
         'moisture',
         'elongationRatio',
-        'swelling',
         'peakViscosity',
         'trough',
         'breakdown',
@@ -270,8 +266,6 @@ if ($rows) {
         'pastingTemp',
         'gelConsistency',
         'swellingPower',
-        'hardness',
-        'adhesiveness'
     ];
     foreach ($categories as $cat) {
         $physicalData[$cat] = [];
