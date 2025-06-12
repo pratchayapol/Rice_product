@@ -20,7 +20,7 @@
         </div>
         <div id="default-tab-content">
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                <div id="chartContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div id="chartContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
                     <p id="noDataMsg" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
                 </div>
 
@@ -94,11 +94,15 @@
 
                         // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
                         fieldsWithData.forEach(field => {
-                            // สร้าง canvas ใหม่
+                            const cardWrapper = document.createElement('div');
+                            cardWrapper.className = 'bg-white rounded-xl shadow p-4';
+
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
-                            canvas.className = 'w-full h-[300px]'; // ใช้ Tailwind
-                            chartContainer.appendChild(canvas);
+                            canvas.className = 'w-full max-w-full h-[300px]';
+
+                            cardWrapper.appendChild(canvas);
+                            chartContainer.appendChild(cardWrapper);
 
                             const ctx = canvas.getContext('2d');
 
