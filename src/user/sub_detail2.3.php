@@ -118,6 +118,9 @@
                             if (data.every(val => val === 0)) return;
 
                             // ✅ สร้างกราฟ
+                            const cardWrapper = document.createElement('div');
+                            cardWrapper.className = 'bg-white rounded-xl shadow p-4';
+
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
                             canvas.width = 800; // ✅ กำหนดขนาดกราฟจริง
@@ -127,6 +130,7 @@
 
                             cardWrapper.appendChild(canvas);
                             chartContainer.appendChild(cardWrapper);
+
                             const ctx = canvas.getContext('2d');
 
                             new Chart(ctx, {
