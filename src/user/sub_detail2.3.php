@@ -20,6 +20,11 @@
           </div>
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
+                  <div id="chartContainer">
+                      <canvas id="physicalChart"></canvas>
+                      <p id="noDataMsg" style="display:none; color: red; font-weight: bold;">ไม่พบข้อมูล</p>
+                  </div>
+
                   <script>
                       // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
 
@@ -58,7 +63,7 @@
                       function hasValidData(data) {
                           for (const cat in data) {
                               for (const field in data[cat]) {
-                                  if (data[cat][field] && data[cat][field].length > 0) {
+                                  if (data[cat][field].length > 0) {
                                       return true;
                                   }
                               }
@@ -85,46 +90,40 @@
                           }
                           fieldsWithData = Array.from(fieldsWithData);
 
+                          // หมวดหมู่
+                          const categories = Object.keys(chartData);
+
+                          // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
                           fieldsWithData.forEach(field => {
-                              // หา categories ที่มีข้อมูลจริงสำหรับฟิลด์นี้
-                              const categoriesWithData = [];
-                              const data = [];
-
-                              for (const cat in chartData) {
-                                  const values = chartData[cat][field] || [];
-                                  if (values.length > 0) {
-                                      categoriesWithData.push(cat);
-                                      const avg = values.reduce((a, b) => a + b, 0) / values.length;
-                                      data.push(avg);
-                                  }
-                              }
-
-                              if (categoriesWithData.length === 0) return;
-
-                              // สร้าง canvas ใหม่ และกำหนดขนาดเล็กลง (ความสูงประมาณ 150px)
+                              // สร้าง canvas ใหม่
                               const canvas = document.createElement('canvas');
                               canvas.id = `chart_${field}`;
-                              canvas.style.marginBottom = '30px';
-                              canvas.style.height = '150px';
-                              canvas.style.width = '100%';
+                              canvas.style.marginBottom = '40px';
                               chartContainer.appendChild(canvas);
 
                               const ctx = canvas.getContext('2d');
 
+                              // เตรียมข้อมูล dataset (หมวดหมู่เป็นแต่ละแท่ง)
+                              const data = categories.map(cat => {
+                                  const values = chartData[cat][field] || [];
+                                  if (values.length === 0) return 0;
+                                  return values.reduce((a, b) => a + b, 0) / values.length;
+                              });
+
+                              // สร้างกราฟแท่งแนวนอน
                               new Chart(ctx, {
                                   type: 'bar',
                                   data: {
-                                      labels: categoriesWithData,
+                                      labels: categories,
                                       datasets: [{
                                           label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
                                           data: data,
-                                          backgroundColor: categoriesWithData.map(() => getRandomColor()),
+                                          backgroundColor: categories.map(() => getRandomColor()),
                                       }]
                                   },
                                   options: {
                                       indexAxis: 'y',
                                       responsive: true,
-                                      maintainAspectRatio: false,
                                       scales: {
                                           x: {
                                               beginAtZero: true,
@@ -168,6 +167,7 @@
                           return `rgba(${r},${g},${b},0.7)`;
                       }
                   </script>
+
 
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
