@@ -89,9 +89,14 @@
                         }
                         fieldsWithData = Array.from(fieldsWithData);
 
-                        // หมวดหมู่
-                        const categories = Object.keys(chartData);
 
+                        // หมวดหมู่ที่มีข้อมูลอย่างน้อย 1 ฟิลด์ใน fieldsToShow
+                        const categories = Object.keys(chartData).filter(cat => {
+                            return fieldsToShow.some(field => {
+                                const values = chartData[cat][field];
+                                return values && values.length > 0;
+                            });
+                        });
                         // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
                         fieldsWithData.forEach(field => {
                             const cardWrapper = document.createElement('div');
