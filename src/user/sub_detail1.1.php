@@ -155,6 +155,8 @@ if ($type === "food") {
         // แปลงเป็น integer ถ้าจำเป็น
         $target_rice_id = (int)$target_rice_id;
 
+
+
         // คำสั่ง SQL พร้อม placeholder
         $sql = "SELECT * FROM rice WHERE rice_id = :rice_id";
 
@@ -168,6 +170,8 @@ if ($type === "food") {
         // ตรวจสอบผลลัพธ์
         if ($stmt->rowCount() > 0) {
             $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            echo $rice_id = !empty($general_info['rice_id']) ? $general_info['rice_id'] : '';
 
             // แยกเก็บข้อมูลในตัวแปร PHP
             $gs_no = !empty($general_info['gs_no']) ? $general_info['gs_no'] : 'ไม่พบข้อมูล';
