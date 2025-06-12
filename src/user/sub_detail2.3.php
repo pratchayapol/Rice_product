@@ -123,7 +123,7 @@
 
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
-                            canvas.className = 'w-full h-[300px]';
+                            canvas.className = 'w-full h-[600px]';
 
                             cardWrapper.appendChild(canvas);
                             chartContainer.appendChild(cardWrapper);
