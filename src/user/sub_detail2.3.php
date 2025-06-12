@@ -20,53 +20,52 @@
           </div>
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                  <?php echo $sampleinfo_cropSampleID;
-                    echo 'physical'.$physical_nutritionDBID;
-
-                    ?>
 
 
-                  <canvas id="physicalChart" width="100%" height="400"></canvas>
+                  <canvas id="physicalChart" height="120"></canvas>
                   <script>
                       const ctx = document.getElementById('physicalChart').getContext('2d');
-                      const physicalChart = new Chart(ctx, {
+
+                      const labels = Object.keys(chartData); // ข้าวเปลือก, ข้าวสาร ฯลฯ
+
+                      const getAvg = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+
+                      const seedWeight = labels.map(cat => getAvg(chartData[cat]['seedWeight']));
+                      const length = labels.map(cat => getAvg(chartData[cat]['length']));
+                      const width = labels.map(cat => getAvg(chartData[cat]['width']));
+
+                      new Chart(ctx, {
                           type: 'bar',
                           data: {
-                              labels: <?= $labels ?>,
+                              labels: labels,
                               datasets: [{
-                                  label: 'ลักษณะทางกายภาพของข้าว',
-                                  data: <?= $values ?>,
-                                  backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                                  borderColor: 'rgba(75, 192, 192, 1)',
-                                  borderWidth: 1
-                              }]
+                                      label: 'น้ำหนักเมล็ด (g/1000 เมล็ด)',
+                                      data: seedWeight,
+                                      backgroundColor: 'rgba(75, 192, 192, 0.7)'
+                                  },
+                                  {
+                                      label: 'ความยาว (mm)',
+                                      data: length,
+                                      backgroundColor: 'rgba(255, 206, 86, 0.7)'
+                                  },
+                                  {
+                                      label: 'ความกว้าง (mm)',
+                                      data: width,
+                                      backgroundColor: 'rgba(153, 102, 255, 0.7)'
+                                  }
+                              ]
                           },
                           options: {
                               responsive: true,
-                              maintainAspectRatio: false,
-                              indexAxis: 'y', // แสดงแนวนอน (เปลี่ยนเป็น 'x' ถ้าต้องการแนวตั้ง)
                               scales: {
-                                  x: {
-                                      beginAtZero: true,
-                                      title: {
-                                          display: true,
-                                          text: 'ค่าที่วัดได้'
-                                      }
-                                  },
                                   y: {
-                                      title: {
-                                          display: true,
-                                          text: 'คุณลักษณะ'
-                                      }
+                                      beginAtZero: true
                                   }
                               },
                               plugins: {
-                                  tooltip: {
-                                      callbacks: {
-                                          label: function(context) {
-                                              return context.dataset.label + ': ' + context.parsed.x;
-                                          }
-                                      }
+                                  title: {
+                                      display: true,
+                                      text: 'ข้อมูลทางกายภาพ แยกตามประเภทข้าว'
                                   }
                               }
                           }

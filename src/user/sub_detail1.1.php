@@ -247,13 +247,27 @@ $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($rows) {
-    foreach ($rows as $row) {
-        echo "nutritionDBID: " . $row['nutritionDBID'] . "<br>";
-        echo "น้ำหนักเมล็ด: " . $row['seedWeight'] . "<br>";
-        echo "ความยาว: " . $row['length'] . "<br>";
-        echo "ความกว้าง: " . $row['width'] . "<br>";
-        echo "<hr>";
+    $categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
+    $physicalData = [];
+
+    foreach ($categories as $cat) {
+        $physicalData[$cat] = ['seedWeight' => [], 'length' => [], 'width' => []];
     }
+
+    // รวมข้อมูลแยกตามหมวด
+    foreach ($rows as $row) {
+        $cat = $row['riceCategories'];
+        if (in_array($cat, $categories)) {
+            $physicalData[$cat]['seedWeight'][] = floatval($row['seedWeight']);
+            $physicalData[$cat]['length'][] = floatval($row['length']);
+            $physicalData[$cat]['width'][] = floatval($row['width']);
+        }
+    }
+
+    // ส่งไป JS
+    echo "<script>";
+    echo "const chartData = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
+    echo "</script>";
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }
