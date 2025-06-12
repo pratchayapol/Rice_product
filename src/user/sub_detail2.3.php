@@ -20,120 +20,99 @@
           </div>
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-
-
-                  <div id="chartsContainer"></div>
+                  <div id="chartContainer">
+                      <canvas id="physicalChart"></canvas>
+                      <p id="noDataMsg" style="display:none; color: red; font-weight: bold;">ไม่พบข้อมูล</p>
+                  </div>
 
                   <script>
-                      window.addEventListener("DOMContentLoaded", () => {
-                          const fieldLabels = {
-                              seedWeight: "น้ำหนักเมล็ด (g)",
-                              length: "ความยาว (mm)",
-                              width: "ความกว้าง (mm)",
-                              thickness: "ความหนา (mm)",
-                              chalkiness: "ข้าวท้องไข่ (%)",
-                              gloss: "ความมัน",
-                              whiteness: "ความขาว",
-                              transparency: "ความโปร่งใส",
-                              moisture: "ความชื้น (%)",
-                              elongationRatio: "การยืดตัว",
-                              swelling: "การพองตัว",
-                              texture: "เนื้อสัมผัส",
-                              peakViscosity: "ความหนืดสูงสุด",
-                              trough: "ความหนืดต่ำสุด",
-                              breakdown: "การสลายตัว",
-                              finalViscosity: "ความหนืดสุดท้าย",
-                              setback: "การคืนตัว",
-                              pastingTemp: "อุณหภูมิแป้งสุก",
-                              riceFlourViscosity: "ความหนืดแป้งข้าว",
-                              precipitation: "การตกตะกอน",
-                              retrogradation: "การคืนตัวของแป้ง",
-                              gelConsistency: "ความคงตัวของแป้ง",
-                              swellingPower: "กำลังพองตัว (%)",
-                              hardness: "ความแข็ง",
-                              adhesiveness: "ความเหนียวติด",
-                              stickiness: "ความเหนียว"
-                          };
+                      // chartData ถูกส่งมาจาก PHP แล้ว
 
-                          for (const field in fieldLabels) {
-                              const datasets = [];
-                              const labels = [];
-                              let allEmpty = true;
-
-                              for (const category in chartData) {
-                                  const valuesRaw = chartData[category][field];
-                                  const values = Array.isArray(valuesRaw) ? valuesRaw : [];
-                                  const validValues = values.filter(v => v != null && v !== '' && !isNaN(v) && v !== 0);
-
-                                  if (validValues.length > 0) {
-                                      allEmpty = false;
-                                      const avg = validValues.reduce((a, b) => a + b, 0) / validValues.length;
-                                      datasets.push({
-                                          label: category,
-                                          data: [avg],
-                                          backgroundColor: getColor(category)
-                                      });
-                                      labels.push(category);
+                      // ตรวจสอบว่ามีข้อมูลตัวเลขจริงๆ หรือไม่
+                      function hasValidData(data) {
+                          for (const cat in data) {
+                              for (const field in data[cat]) {
+                                  if (data[cat][field].length > 0) {
+                                      return true;
                                   }
                               }
+                          }
+                          return false;
+                      }
 
-                              const canvasId = `chart_${field}`;
-                              if (allEmpty) {
-                                  document.getElementById("chartsContainer").innerHTML += `
-                <div style="margin-bottom: 40px;">
-                    <h3>${fieldLabels[field]}</h3>
-                    <p style="color: red;">ไม่พบข้อมูล</p>
-                </div>
-            `;
-                              } else {
-                                  document.getElementById("chartsContainer").innerHTML += `
-                <div style="margin-bottom: 40px;">
-                    <h3>${fieldLabels[field]}</h3>
-                    <canvas id="${canvasId}" height="200"></canvas>
-                </div>
-            `;
-                                  new Chart(document.getElementById(canvasId), {
-                                      type: 'bar',
-                                      data: {
-                                          labels: labels,
-                                          datasets: [{
-                                              label: fieldLabels[field],
-                                              data: datasets.map(d => d.data[0]),
-                                              backgroundColor: datasets.map(d => d.backgroundColor)
-                                          }]
-                                      },
-                                      options: {
-                                          responsive: true,
-                                          plugins: {
-                                              legend: {
-                                                  display: false
-                                              },
-                                              title: {
-                                                  display: false
-                                              }
-                                          },
-                                          scales: {
-                                              y: {
-                                                  beginAtZero: true
-                                              }
-                                          }
-                                      }
-                                  });
+                      const noDataMsg = document.getElementById('noDataMsg');
+                      const ctx = document.getElementById('physicalChart').getContext('2d');
+
+                      if (!hasValidData(chartData)) {
+                          // ไม่มีข้อมูลแสดงข้อความแทนกราฟ
+                          document.getElementById('physicalChart').style.display = 'none';
+                          noDataMsg.style.display = 'block';
+                      } else {
+                          noDataMsg.style.display = 'none';
+
+                          // เตรียมข้อมูลสำหรับกราฟ
+                          // สมมติจะเอา field เป็นแกน Y, ค่าเฉลี่ยของแต่ละหมวดหมู่เป็นแกน X
+                          // เพราะ physicalData[category][field] เป็น array ของค่าตัวเลข
+
+                          // รวบรวมฟิลด์ทั้งหมดจาก category แรกที่มีข้อมูล
+                          let allFields = new Set();
+                          for (const cat in chartData) {
+                              for (const field in chartData[cat]) {
+                                  allFields.add(field);
                               }
                           }
+                          allFields = Array.from(allFields);
 
-                          function getColor(category) {
-                              const colors = {
-                                  "ข้าวเปลือก": "rgba(255, 99, 132, 0.7)",
-                                  "ข้าวสาร": "rgba(54, 162, 235, 0.7)",
-                                  "ข้าวกล้อง": "rgba(255, 206, 86, 0.7)",
-                                  "ข้าวกล้องงอก": "rgba(75, 192, 192, 0.7)"
+                          // เตรียม datasets ตามหมวดหมู่แต่ละตัว
+                          const categories = Object.keys(chartData);
+                          const datasets = categories.map(cat => {
+                              return {
+                                  label: cat,
+                                  data: allFields.map(field => {
+                                      const values = chartData[cat][field] || [];
+                                      if (values.length === 0) return 0;
+                                      // ค่าเฉลี่ย
+                                      const avg = values.reduce((a, b) => a + b, 0) / values.length;
+                                      return avg;
+                                  }),
+                                  backgroundColor: getRandomColor(),
                               };
-                              return colors[category] || "rgba(201, 203, 207, 0.7)";
-                          }
+                          });
 
-                          console.log("✅ chartData:", chartData);
-                      });
+                          const physicalChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: {
+                                  labels: allFields,
+                                  datasets: datasets,
+                              },
+                              options: {
+                                  indexAxis: 'y', // ทำให้เป็นแผนภูมิแท่งแนวนอน
+                                  responsive: true,
+                                  scales: {
+                                      x: {
+                                          beginAtZero: true,
+                                      }
+                                  },
+                                  plugins: {
+                                      legend: {
+                                          position: 'top',
+                                      },
+                                      title: {
+                                          display: true,
+                                          text: 'ข้อมูลทางกายภาพตามหมวดหมู่'
+                                      }
+                                  }
+                              }
+                          });
+
+                          // ฟังก์ชันสุ่มสีแบบง่ายๆ
+                          function getRandomColor() {
+                              const r = Math.floor(Math.random() * 200);
+                              const g = Math.floor(Math.random() * 200);
+                              const b = Math.floor(Math.random() * 200);
+                              return `rgba(${r},${g},${b},0.7)`;
+                          }
+                      }
                   </script>
 
 
