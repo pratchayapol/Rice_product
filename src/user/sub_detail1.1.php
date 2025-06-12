@@ -251,16 +251,13 @@ if ($rows) {
     $physicalData = [];
 
     foreach ($categories as $cat) {
-        $physicalData[$cat] = []; // เตรียม array สำหรับแต่ละหมวด
+        $physicalData[$cat] = [];
     }
 
-    // วนลูปข้อมูลทั้งหมด
     foreach ($rows as $row) {
         $cat = $row['riceCategories'];
-
         if (in_array($cat, $categories)) {
             foreach ($row as $field => $value) {
-                // ข้ามค่าที่ไม่ใช่ตัวเลข เช่น PK หรือ string ที่ไม่เกี่ยว
                 if (is_numeric($value)) {
                     $physicalData[$cat][$field][] = floatval($value);
                 }
@@ -268,7 +265,6 @@ if ($rows) {
         }
     }
 
-    // ส่งไป JavaScript
     echo "<script>";
     echo "const chartData = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
     echo "</script>";

@@ -25,124 +25,115 @@
                   <div id="chartsContainer"></div>
 
                   <script>
-                      // 🔵 สมมุติว่า chartData ถูกส่งมาจาก PHP ฝั่ง Server
-                      // เช่น: chartData = { 'ข้าวเปลือก': { seedWeight: [20], ... }, ... }
+                      window.addEventListener("DOMContentLoaded", () => {
+                          const fieldLabels = {
+                              seedWeight: "น้ำหนักเมล็ด (g)",
+                              length: "ความยาว (mm)",
+                              width: "ความกว้าง (mm)",
+                              thickness: "ความหนา (mm)",
+                              chalkiness: "ข้าวท้องไข่ (%)",
+                              gloss: "ความมัน",
+                              whiteness: "ความขาว",
+                              transparency: "ความโปร่งใส",
+                              moisture: "ความชื้น (%)",
+                              elongationRatio: "การยืดตัว",
+                              swelling: "การพองตัว",
+                              texture: "เนื้อสัมผัส",
+                              peakViscosity: "ความหนืดสูงสุด",
+                              trough: "ความหนืดต่ำสุด",
+                              breakdown: "การสลายตัว",
+                              finalViscosity: "ความหนืดสุดท้าย",
+                              setback: "การคืนตัว",
+                              pastingTemp: "อุณหภูมิแป้งสุก",
+                              riceFlourViscosity: "ความหนืดแป้งข้าว",
+                              precipitation: "การตกตะกอน",
+                              retrogradation: "การคืนตัวของแป้ง",
+                              gelConsistency: "ความคงตัวของแป้ง",
+                              swellingPower: "กำลังพองตัว (%)",
+                              hardness: "ความแข็ง",
+                              adhesiveness: "ความเหนียวติด",
+                              stickiness: "ความเหนียว"
+                          };
 
-                      // 🔶 คำอธิบายของแต่ละฟิลด์ (ภาษาไทย)
-                      const fieldLabels = {
-                          seedWeight: "น้ำหนักเมล็ด (g)",
-                          length: "ความยาว (mm)",
-                          width: "ความกว้าง (mm)",
-                          thickness: "ความหนา (mm)",
-                          chalkiness: "ข้าวท้องไข่ (%)",
-                          gloss: "ความมัน",
-                          whiteness: "ความขาว",
-                          transparency: "ความโปร่งใส",
-                          moisture: "ความชื้น (%)",
-                          elongationRatio: "การยืดตัว",
-                          swelling: "การพองตัว",
-                          texture: "เนื้อสัมผัส",
-                          peakViscosity: "ความหนืดสูงสุด",
-                          trough: "ความหนืดต่ำสุด",
-                          breakdown: "การสลายตัว",
-                          finalViscosity: "ความหนืดสุดท้าย",
-                          setback: "การคืนตัว",
-                          pastingTemp: "อุณหภูมิแป้งสุก",
-                          riceFlourViscosity: "ความหนืดแป้งข้าว",
-                          precipitation: "การตกตะกอน",
-                          retrogradation: "การคืนตัวของแป้ง",
-                          gelConsistency: "ความคงตัวของแป้ง",
-                          swellingPower: "กำลังพองตัว (%)",
-                          hardness: "ความแข็ง",
-                          adhesiveness: "ความเหนียวติด",
-                          stickiness: "ความเหนียว"
-                      };
+                          for (const field in fieldLabels) {
+                              const datasets = [];
+                              const labels = [];
+                              let allEmpty = true;
 
-                      // 🔁 Loop สร้างกราฟหรือแสดงข้อความ "ไม่พบข้อมูล"
-                      for (const field in fieldLabels) {
-                          const datasets = [];
-                          const labels = [];
-                          let allEmpty = true; // 🟡 ตรวจว่าข้อมูลทั้งหมดว่าง
+                              for (const category in chartData) {
+                                  const valuesRaw = chartData[category][field];
+                                  const values = Array.isArray(valuesRaw) ? valuesRaw : [];
+                                  const validValues = values.filter(v => v != null && v !== '' && !isNaN(v) && v !== 0);
 
-                          for (const category in chartData) {
-                              const valuesRaw = chartData[category][field];
-                              const values = Array.isArray(valuesRaw) ? valuesRaw : [];
-
-                              const validValues = values.filter(v => v != null && v !== '' && !isNaN(v) && v !== 0);
-
-                              if (validValues.length > 0) {
-                                  allEmpty = false;
-                                  const avg = validValues.reduce((a, b) => a + b, 0) / validValues.length;
-                                  datasets.push({
-                                      label: category,
-                                      data: [avg],
-                                      backgroundColor: getColor(category)
-                                  });
-                                  labels.push(category);
+                                  if (validValues.length > 0) {
+                                      allEmpty = false;
+                                      const avg = validValues.reduce((a, b) => a + b, 0) / validValues.length;
+                                      datasets.push({
+                                          label: category,
+                                          data: [avg],
+                                          backgroundColor: getColor(category)
+                                      });
+                                      labels.push(category);
+                                  }
                               }
-                          }
 
-                          const canvasId = `chart_${field}`;
-                          if (allEmpty) {
-                              // ❌ ไม่มีข้อมูล
-                              document.getElementById("chartsContainer").innerHTML += `
+                              const canvasId = `chart_${field}`;
+                              if (allEmpty) {
+                                  document.getElementById("chartsContainer").innerHTML += `
                 <div style="margin-bottom: 40px;">
                     <h3>${fieldLabels[field]}</h3>
                     <p style="color: red;">ไม่พบข้อมูล</p>
                 </div>
             `;
-                          } else {
-                              // ✅ มีข้อมูล: แสดงกราฟ
-                              document.getElementById("chartsContainer").innerHTML += `
+                              } else {
+                                  document.getElementById("chartsContainer").innerHTML += `
                 <div style="margin-bottom: 40px;">
                     <h3>${fieldLabels[field]}</h3>
                     <canvas id="${canvasId}" height="200"></canvas>
                 </div>
             `;
-
-                              new Chart(document.getElementById(canvasId), {
-                                  type: 'bar',
-                                  data: {
-                                      labels: labels,
-                                      datasets: [{
-                                          label: fieldLabels[field],
-                                          data: datasets.map(d => d.data[0]),
-                                          backgroundColor: datasets.map(d => d.backgroundColor)
-                                      }]
-                                  },
-                                  options: {
-                                      responsive: true,
-                                      plugins: {
-                                          legend: {
-                                              display: false
-                                          },
-                                          title: {
-                                              display: false
-                                          }
+                                  new Chart(document.getElementById(canvasId), {
+                                      type: 'bar',
+                                      data: {
+                                          labels: labels,
+                                          datasets: [{
+                                              label: fieldLabels[field],
+                                              data: datasets.map(d => d.data[0]),
+                                              backgroundColor: datasets.map(d => d.backgroundColor)
+                                          }]
                                       },
-                                      scales: {
-                                          y: {
-                                              beginAtZero: true
+                                      options: {
+                                          responsive: true,
+                                          plugins: {
+                                              legend: {
+                                                  display: false
+                                              },
+                                              title: {
+                                                  display: false
+                                              }
+                                          },
+                                          scales: {
+                                              y: {
+                                                  beginAtZero: true
+                                              }
                                           }
                                       }
-                                  }
-                              });
+                                  });
+                              }
                           }
-                      }
 
-                      // 🔵 สีของแต่ละหมวดข้าว
-                      function getColor(category) {
-                          const colors = {
-                              "ข้าวเปลือก": "rgba(255, 99, 132, 0.7)",
-                              "ข้าวสาร": "rgba(54, 162, 235, 0.7)",
-                              "ข้าวกล้อง": "rgba(255, 206, 86, 0.7)",
-                              "ข้าวกล้องงอก": "rgba(75, 192, 192, 0.7)"
-                          };
-                          return colors[category] || "rgba(201, 203, 207, 0.7)";
-                      }
+                          function getColor(category) {
+                              const colors = {
+                                  "ข้าวเปลือก": "rgba(255, 99, 132, 0.7)",
+                                  "ข้าวสาร": "rgba(54, 162, 235, 0.7)",
+                                  "ข้าวกล้อง": "rgba(255, 206, 86, 0.7)",
+                                  "ข้าวกล้องงอก": "rgba(75, 192, 192, 0.7)"
+                              };
+                              return colors[category] || "rgba(201, 203, 207, 0.7)";
+                          }
 
-                      // 🔧 Debug logs (ถ้าต้องการดูข้อมูล)
-                      console.log("chartData:", chartData);
+                          console.log("✅ chartData:", chartData);
+                      });
                   </script>
 
 
