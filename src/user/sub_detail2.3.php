@@ -99,48 +99,59 @@
                         });
                         // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
                         fieldsWithData.forEach(field => {
+                            // ✅ กรองเฉพาะหมวดที่ field นี้มีข้อมูล
+                            const filteredCategories = categories.filter(cat => {
+                                const values = chartData[cat][field] || [];
+                                return values.length > 0;
+                            });
+
+                            // ✅ ข้าม field นี้ถ้าไม่มีหมวดไหนมีข้อมูลเลย
+                            if (filteredCategories.length === 0) return;
+
+                            // ✅ คำนวณค่าเฉลี่ยเฉพาะหมวดที่มีข้อมูล
+                            const data = filteredCategories.map(cat => {
+                                const values = chartData[cat][field];
+                                return values.reduce((a, b) => a + b, 0) / values.length;
+                            });
+
+                            // ✅ ข้ามถ้าค่าเฉลี่ยทั้งหมดเป็น 0 (ไม่จำเป็นเสมอ แต่กันไว้)
+                            if (data.every(val => val === 0)) return;
+
+                            // ✅ สร้างกราฟ
                             const cardWrapper = document.createElement('div');
                             cardWrapper.className = 'bg-white rounded-xl shadow p-4';
 
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
-                            canvas.className = 'w-full h-[300px]'; // ✅ แก้ตรงนี้: ใช้ความสูงแน่นอนแทน aspect-ratio
+                            canvas.className = 'w-full h-[300px]';
 
                             cardWrapper.appendChild(canvas);
                             chartContainer.appendChild(cardWrapper);
 
                             const ctx = canvas.getContext('2d');
 
-                            // เตรียมข้อมูล dataset (หมวดหมู่เป็นแต่ละแท่ง)
-                            const data = categories.map(cat => {
-                                const values = chartData[cat][field] || [];
-                                if (values.length === 0) return 0;
-                                return values.reduce((a, b) => a + b, 0) / values.length;
-                            });
-
-                            // สร้างกราฟแท่งแนวตั้ง (indexAxis: 'x' คือ default)
                             new Chart(ctx, {
                                 type: 'bar',
                                 data: {
-                                    labels: categories,
+                                    labels: filteredCategories,
                                     datasets: [{
                                         label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
                                         data: data,
-                                        backgroundColor: categories.map(() => getRandomColor()),
+                                        backgroundColor: filteredCategories.map(() => getRandomColor()),
                                     }]
                                 },
                                 options: {
-                                    indexAxis: 'x', // เปลี่ยนเป็นแนวตั้ง
                                     responsive: true,
+                                    indexAxis: 'x',
                                     scales: {
-                                        y: { // แกน y สำหรับค่าเฉลี่ย
+                                        y: {
                                             beginAtZero: true,
                                             title: {
                                                 display: true,
                                                 text: 'ค่าเฉลี่ย'
                                             }
                                         },
-                                        x: { // แกน x สำหรับหมวดหมู่
+                                        x: {
                                             title: {
                                                 display: true,
                                                 text: 'หมวดหมู่ข้าว'
@@ -166,6 +177,7 @@
                                 }
                             });
                         });
+
 
 
 
