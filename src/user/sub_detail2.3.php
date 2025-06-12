@@ -25,14 +25,10 @@
                   <div id="chartsContainer"></div>
 
                   <script>
-                      // สมมุติว่า chartData มาจากฝั่ง PHP แล้ว (ถูก echo เป็น JSON)
-                      // ตัวอย่าง chartData:
-                      // chartData = {
-                      //     'ข้าวเปลือก': { seedWeight: [20], length: [8.2], ... },
-                      //     'ข้าวกล้อง': { seedWeight: [18], length: [7.9], ... }
-                      // }
+                      // 🔵 สมมุติว่า chartData ถูกส่งมาจาก PHP ฝั่ง Server
+                      // เช่น: chartData = { 'ข้าวเปลือก': { seedWeight: [20], ... }, ... }
 
-                      // 🟦 ชื่อภาษาไทยของแต่ละฟิลด์ (สำหรับแสดงในกราฟ)
+                      // 🔶 คำอธิบายของแต่ละฟิลด์ (ภาษาไทย)
                       const fieldLabels = {
                           seedWeight: "น้ำหนักเมล็ด (g)",
                           length: "ความยาว (mm)",
@@ -62,16 +58,21 @@
                           stickiness: "ความเหนียว"
                       };
 
-                      // 🔄 Loop เพื่อสร้างกราฟสำหรับแต่ละ field
+                      // 🔁 Loop สร้างกราฟหรือแสดงข้อความ "ไม่พบข้อมูล"
                       for (const field in fieldLabels) {
                           const datasets = [];
                           const labels = [];
+                          let allEmpty = true; // 🟡 ตรวจว่าข้อมูลทั้งหมดว่าง
 
-                          // ดึงค่าจากแต่ละหมวด (ข้าวเปลือก, ข้าวกล้อง ฯลฯ)
                           for (const category in chartData) {
                               const values = chartData[category][field];
-                              if (values && values.length > 0) {
-                                  const avg = values.reduce((a, b) => a + b, 0) / values.length;
+
+                              // คัดกรองเฉพาะค่าที่ valid
+                              const validValues = values?.filter(v => v != null && v !== '' && !isNaN(v) && v !== 0);
+
+                              if (validValues && validValues.length > 0) {
+                                  allEmpty = false;
+                                  const avg = validValues.reduce((a, b) => a + b, 0) / validValues.length;
                                   datasets.push({
                                       label: category,
                                       data: [avg],
@@ -81,8 +82,17 @@
                               }
                           }
 
-                          if (datasets.length > 0) {
-                              const canvasId = `chart_${field}`;
+                          const canvasId = `chart_${field}`;
+                          if (allEmpty) {
+                              // ❌ ไม่มีข้อมูล
+                              document.getElementById("chartsContainer").innerHTML += `
+                <div style="margin-bottom: 40px;">
+                    <h3>${fieldLabels[field]}</h3>
+                    <p style="color: red;">ไม่พบข้อมูล</p>
+                </div>
+            `;
+                          } else {
+                              // ✅ มีข้อมูล: แสดงกราฟ
                               document.getElementById("chartsContainer").innerHTML += `
                 <div style="margin-bottom: 40px;">
                     <h3>${fieldLabels[field]}</h3>
@@ -120,7 +130,7 @@
                           }
                       }
 
-                      // 🔴 ฟังก์ชันสีตามหมวดข้าว
+                      // 🔵 สีของแต่ละหมวดข้าว
                       function getColor(category) {
                           const colors = {
                               "ข้าวเปลือก": "rgba(255, 99, 132, 0.7)",
@@ -131,17 +141,10 @@
                           return colors[category] || "rgba(201, 203, 207, 0.7)";
                       }
 
+                      // 🔧 Debug logs (ถ้าต้องการดูข้อมูล)
                       console.log("chartData:", chartData);
-
-                      for (const field in fieldLabels) {
-                          console.log("⚙️ Field:", field);
-
-                          for (const category in chartData) {
-                              console.log("➡️ Category:", category);
-                              console.log("📊 Values:", chartData[category][field]);
-                          }
-                      }
                   </script>
+
 
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
