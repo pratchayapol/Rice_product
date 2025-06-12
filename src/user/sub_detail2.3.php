@@ -231,7 +231,8 @@
                                             },
                                             bodyFont: {
                                                 family: 'Noto Sans Thai'
-                                            }
+                                            },
+                                            color: '#000'
                                         }
                                     }
                                 }
