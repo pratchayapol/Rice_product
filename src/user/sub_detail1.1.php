@@ -171,8 +171,6 @@ if ($type === "food") {
         if ($stmt->rowCount() > 0) {
             $general_info = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            echo $rice_id = !empty($general_info['rice_id']) ? $general_info['rice_id'] : '';
-
             // แยกเก็บข้อมูลในตัวแปร PHP
             $gs_no = !empty($general_info['gs_no']) ? $general_info['gs_no'] : 'ไม่พบข้อมูล';
             $thai_breed_name = !empty($general_info['thai_breed_name']) ? $general_info['thai_breed_name'] : 'ไม่พบข้อมูล';
