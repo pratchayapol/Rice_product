@@ -159,6 +159,11 @@
                                                 font: {
                                                     family: 'Noto Sans Thai'
                                                 }
+                                            },
+                                            ticks: {
+                                                font: {
+                                                    family: 'Noto Sans Thai'
+                                                }
                                             }
                                         },
                                         x: {
@@ -167,31 +172,48 @@
                                                 font: {
                                                     family: 'Noto Sans Thai'
                                                 }
+                                            },
+                                            ticks: {
+                                                font: {
+                                                    family: 'Noto Sans Thai'
+                                                }
                                             }
                                         }
                                     },
                                     plugins: {
                                         legend: {
-                                            display: false
+                                            display: false,
+                                            labels: {
+                                                font: {
+                                                    family: 'Noto Sans Thai'
+                                                }
+                                            }
                                         },
                                         title: {
                                             display: true,
+                                            text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
                                             font: {
                                                 family: 'Noto Sans Thai'
-                                            },
-                                            text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
+                                            }
                                         },
                                         tooltip: {
                                             callbacks: {
                                                 label: function(context) {
                                                     return `${context.parsed.y.toFixed(2)} ${fieldUnits[field] || ''}`;
                                                 }
+                                            },
+                                            titleFont: {
+                                                family: 'Noto Sans Thai'
+                                            },
+                                            bodyFont: {
+                                                family: 'Noto Sans Thai'
                                             }
                                         }
                                     }
                                 }
                             });
                         });
+
 
 
 
