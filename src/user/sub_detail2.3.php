@@ -123,10 +123,8 @@
 
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
-                            canvas.width = 800; // ✅ กำหนดขนาดกราฟจริง
-                            canvas.height = 300; // ✅ ความสูงคงที่
-
-                            canvas.className = 'w-full'; // ยังคงใช้ Tailwind เพื่อความ responsive ด้านกว้าง
+                            canvas.style.width = '100%'; // ให้กว้างเต็ม container
+                            canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
 
                             cardWrapper.appendChild(canvas);
                             chartContainer.appendChild(cardWrapper);
