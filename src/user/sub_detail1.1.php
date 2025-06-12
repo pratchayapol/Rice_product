@@ -257,9 +257,9 @@ if ($rows) {
     foreach ($rows as $row) {
         $cat = $row['riceCategories'];
         if (in_array($cat, $categories)) {
-            foreach ($row as $field => $value) {
-                if (is_numeric($value)) {
-                    $physicalData[$cat][$field][] = floatval($value);
+            foreach ($fieldLabels as $field => $label) {
+                if (isset($row[$field]) && is_numeric($row[$field])) {
+                    $physicalData[$cat][$field][] = floatval($row[$field]);
                 }
             }
         }
