@@ -34,14 +34,19 @@
                             // 4. สร้างตัวแปรแบบ sampleinfo_ชื่อฟิลด์
                             foreach ($row as $field => $value) {
                                 ${"sampleinfo_" . $field} = $value;
-                            }
+                            } // 2. แสดงผลลัพธ์ทั้งหมด
+                            echo "<h3>ข้อมูล sampleinfo:</h3>";
+                            echo "<table border='1' cellpadding='8' cellspacing='0'>";
+                            echo "<tr><th>ชื่อฟิลด์</th><th>ค่า</th></tr>";
 
-                            // ตัวอย่างใช้งาน
-                            echo "ชื่อพันธุ์ข้าว (TH): " . $sampleinfo_riceVarietiesTH . "<br>";
-                            echo "จังหวัดที่ปลูก: " . $sampleinfo_cropSiteProvince . "<br>";
-                            echo "ปีที่วิเคราะห์: " . $sampleinfo_yearOfAnalysis . "<br>";
+                            foreach ($row as $field => $value) {
+                                echo "<tr>";
+                                echo "<td>sampleinfo_$field</td>";
+                                echo "<td>" . htmlspecialchars($value) . "</td>";
+                                echo "</tr>";
+                            }
                         } else {
-                            echo "ไม่พบข้อมูลของ rice_id: $rice_id";
+                            echo "ไม่พบข้อมูล";
                         }
                     } catch (PDOException $e) {
                         echo "เกิดข้อผิดพลาด: " . $e->getMessage();
