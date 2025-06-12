@@ -21,12 +21,7 @@
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
                   <?php
-                    try {
-                        
-                    } catch (PDOException $e) {
-                        echo "เกิดข้อผิดพลาด: " . $e->getMessage();
-                    }
-
+                    echo $sampleinfo_cropSampleID;  //เป็น PK ของ sampleinfo เพื่อไปหา fk ของ 4 table ที่เหลือ
                     ?>
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">

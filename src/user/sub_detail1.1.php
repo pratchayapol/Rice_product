@@ -236,7 +236,7 @@ if ($row) {
     foreach ($row as $field => $value) {
         ${"sampleinfo_" . $field} = $value;
     }
-    echo $sampleinfo_cropSampleID;  //เป็น PK ของ sampleinfo เพื่อไปหา fk ของ 4 table ที่เหลือ
+    
 } else {
     echo "ไม่พบข้อมูล";
 }
