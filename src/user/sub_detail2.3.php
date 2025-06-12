@@ -55,27 +55,23 @@
 
                   <!-- แผนภูมิแท่ง -->
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <!-- Bar Chart: แคลเซียม -->
-                      <div class="text-center">
-                          <h3 class="font-semibold mb-2">แคลเซียม</h3>
-                          <img src="data:image/png;base64,..." alt="แคลเซียม chart" />
-                          <p class="text-sm text-gray-500">ค่าของข้าวสาร: 19.62 mg/kg</p>
+                      <!-- แคลเซียม -->
+                      <div class="chart-container">
+                          <canvas id="chartCalcium"></canvas>
                       </div>
 
-                      <!-- Bar Chart: ไอโซเควอซิติน -->
-                      <div class="text-center">
-                          <h3 class="font-semibold mb-2">ไอโซเควอซิติน</h3>
-                          <img src="data:image/png;base64,..." alt="ไอโซเควอซิติน chart" />
-                          <p class="text-sm text-gray-500">ค่าของข้าวสาร: 54.06 mg/kg</p>
+                      <!-- ไอโซเควอซิติน -->
+                      <div class="chart-container">
+                          <canvas id="chartIsoquercetin"></canvas>
                       </div>
 
-                      <!-- Bar Chart: เควอซิติน -->
-                      <div class="text-center">
-                          <h3 class="font-semibold mb-2">เควอซิติน</h3>
-                          <img src="data:image/png;base64,..." alt="เควอซิติน chart" />
-                          <p class="text-sm text-gray-500">ค่าของข้าวสาร: 145.34 mg/kg</p>
+                      <!-- เควอซิติน -->
+                      <div class="chart-container">
+                          <canvas id="chartQuercetin"></canvas>
                       </div>
+
                   </div>
+
 
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
@@ -89,5 +85,89 @@
               </div>
           </div>
 
+          <script>
+              const riceTypes = ['ข้าวสาร', 'ข้าวเปลือก', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
+
+              // แคลเซียม
+              new Chart(document.getElementById('chartCalcium'), {
+                  type: 'bar',
+                  data: {
+                      labels: riceTypes,
+                      datasets: [{
+                          label: 'แคลเซียม (mg/kg)',
+                          data: [19.62, 0, 0, 0],
+                          backgroundColor: 'rgba(54, 162, 235, 0.7)'
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      plugins: {
+                          title: {
+                              display: true,
+                              text: 'แคลเซียม'
+                          }
+                      },
+                      scales: {
+                          y: {
+                              beginAtZero: true
+                          }
+                      }
+                  }
+              });
+
+              // ไอโซเควอซิติน
+              new Chart(document.getElementById('chartIsoquercetin'), {
+                  type: 'bar',
+                  data: {
+                      labels: riceTypes,
+                      datasets: [{
+                          label: 'ไอโซเควอซิติน (mg/kg)',
+                          data: [54.06, 0, 0, 0],
+                          backgroundColor: 'rgba(255, 159, 64, 0.7)'
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      plugins: {
+                          title: {
+                              display: true,
+                              text: 'ไอโซเควอซิติน'
+                          }
+                      },
+                      scales: {
+                          y: {
+                              beginAtZero: true
+                          }
+                      }
+                  }
+              });
+
+              // เควอซิติน
+              new Chart(document.getElementById('chartQuercetin'), {
+                  type: 'bar',
+                  data: {
+                      labels: riceTypes,
+                      datasets: [{
+                          label: 'เควอซิติน (mg/kg)',
+                          data: [145.34, 0, 0, 0],
+                          backgroundColor: 'rgba(255, 99, 132, 0.7)'
+                      }]
+                  },
+                  options: {
+                      responsive: true,
+                      plugins: {
+                          title: {
+                              display: true,
+                              text: 'เควอซิติน'
+                          }
+                      },
+                      scales: {
+                          y: {
+                              beginAtZero: true
+                          }
+                      }
+                  }
+              });
+          </script>
       </div>
   </div>
