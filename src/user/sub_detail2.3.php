@@ -1,185 +1,206 @@
-  <div id="nutrition" class="tab-content hidden">
-      <div class="bg-white p-4 rounded-lg">
+<style>
+    #chartContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 กราฟต่อแถว */
+        gap: 30px;
+        /* ระยะห่างระหว่างกราฟ */
+    }
+
+    #chartContainer canvas {
+        width: 100% !important;
+        /* ให้เต็มพื้นที่คอลัมน์ */
+        height: 300px !important;
+        /* กำหนดความสูงกราฟ */
+    }
+</style>
+
+<div id="nutrition" class="tab-content hidden">
+    <div class="bg-white p-4 rounded-lg">
 
 
-          <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-              <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-                  <li class="me-2" role="presentation">
-                      <button class="inline-block p-4 border-b-2 rounded-t-lg" id="sub_tab1-tab" data-tabs-target="#sub_tab1" type="button" role="tab" aria-controls="sub_tab1" aria-selected="false">ข้อมูลทางกายภาพ</button>
-                  </li>
-                  <li class="me-2" role="presentation">
-                      <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="sub_tab2-tab" data-tabs-target="#sub_tab2" type="button" role="tab" aria-controls="sub_tab2" aria-selected="false">ข้อมูลทางโภชนาการ</button>
-                  </li>
-                  <li class="me-2" role="presentation">
-                      <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="sub_tab3-tab" data-tabs-target="#sub_tab3" type="button" role="tab" aria-controls="sub_tab3" aria-selected="false">คุณสมบัติทางเคมี</button>
-                  </li>
-                  <li role="presentation">
-                      <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="sub_tab4-tab" data-tabs-target="#sub_tab4" type="button" role="tab" aria-controls="sub_tab4" aria-selected="false">ข้อมูลสารออกฤทธิ์ทางชีวภาพ</button>
-                  </li>
-              </ul>
-          </div>
-          <div id="default-tab-content">
-              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                  <div id="chartContainer">
-                      <canvas id="physicalChart"></canvas>
-                      <p id="noDataMsg" style="display:none; color: red; font-weight: bold;">ไม่พบข้อมูล</p>
-                  </div>
+        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+            <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg" id="sub_tab1-tab" data-tabs-target="#sub_tab1" type="button" role="tab" aria-controls="sub_tab1" aria-selected="false">ข้อมูลทางกายภาพ</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="sub_tab2-tab" data-tabs-target="#sub_tab2" type="button" role="tab" aria-controls="sub_tab2" aria-selected="false">ข้อมูลทางโภชนาการ</button>
+                </li>
+                <li class="me-2" role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="sub_tab3-tab" data-tabs-target="#sub_tab3" type="button" role="tab" aria-controls="sub_tab3" aria-selected="false">คุณสมบัติทางเคมี</button>
+                </li>
+                <li role="presentation">
+                    <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="sub_tab4-tab" data-tabs-target="#sub_tab4" type="button" role="tab" aria-controls="sub_tab4" aria-selected="false">ข้อมูลสารออกฤทธิ์ทางชีวภาพ</button>
+                </li>
+            </ul>
+        </div>
+        <div id="default-tab-content">
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
+                <div id="chartContainer">
+                    <canvas id="physicalChart"></canvas>
+                    <p id="noDataMsg" style="display:none; color: red; font-weight: bold;">ไม่พบข้อมูล</p>
+                </div>
 
-                  <script>
-                      // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
+                <script>
+                    // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
 
-                      const fieldsToShow = [
-                          "seedWeight", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
-                          "gloss", "whiteness", "transparency", "moisture", "elongationRatio",
-                          "swelling", "peakViscosity", "trough", "breakdown", "finalViscosity",
-                          "setback", "pastingTemp", "gelConsistency", "swellingPower", "hardness", "adhesiveness"
-                      ];
+                    const fieldsToShow = [
+                        "seedWeight", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
+                        "gloss", "whiteness", "transparency", "moisture", "elongationRatio",
+                        "swelling", "peakViscosity", "trough", "breakdown", "finalViscosity",
+                        "setback", "pastingTemp", "gelConsistency", "swellingPower", "hardness", "adhesiveness"
+                    ];
 
-                      const fieldUnits = {
-                          seedWeight: "g/1,000 seeds",
-                          length: "mm",
-                          width: "mm",
-                          thickness: "mm",
-                          seedShapeRatio: "",
-                          chalkiness: "%",
-                          gloss: "",
-                          whiteness: "",
-                          transparency: "",
-                          moisture: "%",
-                          elongationRatio: "",
-                          swelling: "",
-                          peakViscosity: "",
-                          trough: "",
-                          breakdown: "",
-                          finalViscosity: "",
-                          setback: "",
-                          pastingTemp: "°C",
-                          gelConsistency: "mm",
-                          swellingPower: "%",
-                          hardness: "",
-                          adhesiveness: ""
-                      };
+                    const fieldUnits = {
+                        seedWeight: "g/1,000 seeds",
+                        length: "mm",
+                        width: "mm",
+                        thickness: "mm",
+                        seedShapeRatio: "",
+                        chalkiness: "%",
+                        gloss: "",
+                        whiteness: "",
+                        transparency: "",
+                        moisture: "%",
+                        elongationRatio: "",
+                        swelling: "",
+                        peakViscosity: "",
+                        trough: "",
+                        breakdown: "",
+                        finalViscosity: "",
+                        setback: "",
+                        pastingTemp: "°C",
+                        gelConsistency: "mm",
+                        swellingPower: "%",
+                        hardness: "",
+                        adhesiveness: ""
+                    };
 
-                      function hasValidData(data) {
-                          for (const cat in data) {
-                              for (const field in data[cat]) {
-                                  if (data[cat][field].length > 0) {
-                                      return true;
-                                  }
-                              }
-                          }
-                          return false;
-                      }
+                    function hasValidData(data) {
+                        for (const cat in data) {
+                            for (const field in data[cat]) {
+                                if (data[cat][field].length > 0) {
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    }
 
-                      const chartContainer = document.getElementById('chartContainer');
-                      const noDataMsg = document.getElementById('noDataMsg');
+                    const chartContainer = document.getElementById('chartContainer');
+                    const noDataMsg = document.getElementById('noDataMsg');
 
-                      if (!hasValidData(chartData)) {
-                          noDataMsg.style.display = 'block';
-                      } else {
-                          noDataMsg.style.display = 'none';
+                    if (!hasValidData(chartData)) {
+                        noDataMsg.style.display = 'block';
+                    } else {
+                        noDataMsg.style.display = 'none';
 
-                          // หาฟิลด์ที่มีข้อมูลจริง
-                          let fieldsWithData = new Set();
-                          for (const cat in chartData) {
-                              for (const field in chartData[cat]) {
-                                  if (fieldsToShow.includes(field) && chartData[cat][field].length > 0) {
-                                      fieldsWithData.add(field);
-                                  }
-                              }
-                          }
-                          fieldsWithData = Array.from(fieldsWithData);
+                        // หาฟิลด์ที่มีข้อมูลจริง
+                        let fieldsWithData = new Set();
+                        for (const cat in chartData) {
+                            for (const field in chartData[cat]) {
+                                if (fieldsToShow.includes(field) && chartData[cat][field].length > 0) {
+                                    fieldsWithData.add(field);
+                                }
+                            }
+                        }
+                        fieldsWithData = Array.from(fieldsWithData);
 
-                          // หมวดหมู่
-                          const categories = Object.keys(chartData);
+                        // หมวดหมู่
+                        const categories = Object.keys(chartData);
 
-                          // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
-                          fieldsWithData.forEach(field => {
-                              // สร้าง canvas ใหม่
-                              const canvas = document.createElement('canvas');
-                              canvas.id = `chart_${field}`;
-                              canvas.style.marginBottom = '40px';
-                              chartContainer.appendChild(canvas);
+                        // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
+                        fieldsWithData.forEach(field => {
+                            // สร้าง canvas ใหม่
+                            const canvas = document.createElement('canvas');
+                            canvas.id = `chart_${field}`;
+                            // ลบ margin-bottom เดิมออกเพราะเราจะใช้ gap ใน grid แทน
+                            chartContainer.appendChild(canvas);
 
-                              const ctx = canvas.getContext('2d');
+                            const ctx = canvas.getContext('2d');
 
-                              // เตรียมข้อมูล dataset (หมวดหมู่เป็นแต่ละแท่ง)
-                              const data = categories.map(cat => {
-                                  const values = chartData[cat][field] || [];
-                                  if (values.length === 0) return 0;
-                                  return values.reduce((a, b) => a + b, 0) / values.length;
-                              });
+                            // เตรียมข้อมูล dataset (หมวดหมู่เป็นแต่ละแท่ง)
+                            const data = categories.map(cat => {
+                                const values = chartData[cat][field] || [];
+                                if (values.length === 0) return 0;
+                                return values.reduce((a, b) => a + b, 0) / values.length;
+                            });
 
-                              // สร้างกราฟแท่งแนวนอน
-                              new Chart(ctx, {
-                                  type: 'bar',
-                                  data: {
-                                      labels: categories,
-                                      datasets: [{
-                                          label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
-                                          data: data,
-                                          backgroundColor: categories.map(() => getRandomColor()),
-                                      }]
-                                  },
-                                  options: {
-                                      indexAxis: 'y',
-                                      responsive: true,
-                                      scales: {
-                                          x: {
-                                              beginAtZero: true,
-                                              title: {
-                                                  display: true,
-                                                  text: 'ค่าเฉลี่ย'
-                                              }
-                                          },
-                                          y: {
-                                              title: {
-                                                  display: true,
-                                                  text: 'หมวดหมู่ข้าว'
-                                              }
-                                          }
-                                      },
-                                      plugins: {
-                                          legend: {
-                                              display: false
-                                          },
-                                          title: {
-                                              display: true,
-                                              text: `ข้อมูล ${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
-                                          },
-                                          tooltip: {
-                                              callbacks: {
-                                                  label: function(context) {
-                                                      return `${context.parsed.x.toFixed(2)} ${fieldUnits[field] || ''}`;
-                                                  }
-                                              }
-                                          }
-                                      }
-                                  }
-                              });
-                          });
-                      }
-
-                      function getRandomColor() {
-                          const r = Math.floor(Math.random() * 200);
-                          const g = Math.floor(Math.random() * 200);
-                          const b = Math.floor(Math.random() * 200);
-                          return `rgba(${r},${g},${b},0.7)`;
-                      }
-                  </script>
+                            // สร้างกราฟแท่งแนวตั้ง (indexAxis: 'x' คือ default)
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: categories,
+                                    datasets: [{
+                                        label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
+                                        data: data,
+                                        backgroundColor: categories.map(() => getRandomColor()),
+                                    }]
+                                },
+                                options: {
+                                    indexAxis: 'x', // เปลี่ยนเป็นแนวตั้ง
+                                    responsive: true,
+                                    scales: {
+                                        y: { // แกน y สำหรับค่าเฉลี่ย
+                                            beginAtZero: true,
+                                            title: {
+                                                display: true,
+                                                text: 'ค่าเฉลี่ย'
+                                            }
+                                        },
+                                        x: { // แกน x สำหรับหมวดหมู่
+                                            title: {
+                                                display: true,
+                                                text: 'หมวดหมู่ข้าว'
+                                            }
+                                        }
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            display: false
+                                        },
+                                        title: {
+                                            display: true,
+                                            text: `ข้อมูล ${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
+                                        },
+                                        tooltip: {
+                                            callbacks: {
+                                                label: function(context) {
+                                                    return `${context.parsed.y.toFixed(2)} ${fieldUnits[field] || ''}`;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        });
 
 
-              </div>
-              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab2 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-              </div>
-              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab3" role="tabpanel" aria-labelledby="sub_tab3-tab">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab3 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-              </div>
-              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab4" role="tabpanel" aria-labelledby="sub_tab4-tab">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab4 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
-              </div>
-          </div>
 
-      </div>
-  </div>
+
+                    }
+
+                    function getRandomColor() {
+                        const r = Math.floor(Math.random() * 200);
+                        const g = Math.floor(Math.random() * 200);
+                        const b = Math.floor(Math.random() * 200);
+                        return `rgba(${r},${g},${b},0.7)`;
+                    }
+                </script>
+
+
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab2 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab3" role="tabpanel" aria-labelledby="sub_tab3-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab3 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab4" role="tabpanel" aria-labelledby="sub_tab4-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab4 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
