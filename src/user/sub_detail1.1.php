@@ -251,16 +251,20 @@ if ($rows) {
     $physicalData = [];
 
     foreach ($categories as $cat) {
-        $physicalData[$cat] = ['seedWeight' => [], 'length' => [], 'width' => []];
+        $physicalData[$cat] = []; // เตรียม array สำหรับแต่ละหมวด
     }
 
-    // รวมข้อมูลแยกตามหมวด
+    // วนลูปข้อมูลทั้งหมด
     foreach ($rows as $row) {
         $cat = $row['riceCategories'];
+
         if (in_array($cat, $categories)) {
-            $physicalData[$cat]['seedWeight'][] = floatval($row['seedWeight']);
-            $physicalData[$cat]['length'][] = floatval($row['length']);
-            $physicalData[$cat]['width'][] = floatval($row['width']);
+            foreach ($row as $field => $value) {
+                // ข้ามค่าที่ไม่ใช่ตัวเลข เช่น PK หรือ string ที่ไม่เกี่ยว
+                if (is_numeric($value)) {
+                    $physicalData[$cat][$field][] = floatval($value);
+                }
+            }
         }
     }
 
