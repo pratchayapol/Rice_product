@@ -249,7 +249,30 @@ $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if ($rows) {
     $categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
     $physicalData = [];
-
+    $fieldsToShow = [
+        'seedWeight',
+        'length',
+        'width',
+        'thickness',
+        'seedShapeRatio',
+        'chalkiness',
+        'gloss',
+        'whiteness',
+        'transparency',
+        'moisture',
+        'elongationRatio',
+        'swelling',
+        'peakViscosity',
+        'trough',
+        'breakdown',
+        'finalViscosity',
+        'setback',
+        'pastingTemp',
+        'gelConsistency',
+        'swellingPower',
+        'hardness',
+        'adhesiveness'
+    ];
     foreach ($categories as $cat) {
         $physicalData[$cat] = [];
         // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
