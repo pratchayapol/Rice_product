@@ -156,11 +156,17 @@
                                             beginAtZero: true,
                                             title: {
                                                 display: true,
+                                                font: {
+                                                    family: 'Noto Sans Thai'
+                                                }
                                             }
                                         },
                                         x: {
                                             title: {
                                                 display: true,
+                                                font: {
+                                                    family: 'Noto Sans Thai'
+                                                }
                                             }
                                         }
                                     },
@@ -170,6 +176,9 @@
                                         },
                                         title: {
                                             display: true,
+                                            font: {
+                                                family: 'Noto Sans Thai'
+                                            },
                                             text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`
                                         },
                                         tooltip: {
