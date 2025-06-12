@@ -175,13 +175,12 @@
                                                 display: true,
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                },
-                                                color: '#000'
+                                                }
                                             },
                                             ticks: {
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                }
+                                                },color: '#000'
                                             },
                                             grid: {
                                                 display: false // ❌ ลบเส้นแนวนอน
@@ -192,13 +191,12 @@
                                                 display: true,
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                },
-                                                color: '#000'
+                                                }
                                             },
                                             ticks: {
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                }
+                                                },color: '#000'
                                             },
                                             grid: {
                                                 display: false // ❌ ลบเส้นแนวนอน
