@@ -181,6 +181,9 @@
                                                 font: {
                                                     family: 'Noto Sans Thai'
                                                 }
+                                            },
+                                            grid: {
+                                                display: false // ❌ ลบเส้นแนวนอน
                                             }
                                         },
                                         x: {
@@ -194,6 +197,9 @@
                                                 font: {
                                                     family: 'Noto Sans Thai'
                                                 }
+                                            },
+                                            grid: {
+                                                display: false // ❌ ลบเส้นแนวนอน
                                             }
                                         }
                                     },
@@ -211,7 +217,8 @@
                                             text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
                                             font: {
                                                 family: 'Noto Sans Thai'
-                                            }
+                                            },
+                                            color: '#000' // ✅ ทำหัวกราฟให้เป็นสีดำเข้ม
                                         },
                                         tooltip: {
                                             callbacks: {
