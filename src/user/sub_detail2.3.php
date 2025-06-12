@@ -86,9 +86,64 @@
           </div>
 
           <script>
+              // ✅ Plugin สำหรับทำปลายแท่งกลม
+              const roundedBarsPlugin = {
+                  id: 'roundedBars',
+                  afterDatasetDraw(chart) {
+                      const {
+                          ctx
+                      } = chart;
+                      chart.data.datasets.forEach((dataset, i) => {
+                          const meta = chart.getDatasetMeta(i);
+                          meta.data.forEach((bar, index) => {
+                              const radius = 6; // ความมน
+                              const x = bar.x;
+                              const y = bar.y;
+                              const width = bar.width;
+                              const height = bar.base - bar.y;
+
+                              ctx.save();
+                              ctx.fillStyle = dataset.backgroundColor;
+
+                              ctx.beginPath();
+                              ctx.moveTo(x - width / 2, bar.base);
+                              ctx.lineTo(x - width / 2, y + radius);
+                              ctx.quadraticCurveTo(x - width / 2, y, x - width / 2 + radius, y);
+                              ctx.lineTo(x + width / 2 - radius, y);
+                              ctx.quadraticCurveTo(x + width / 2, y, x + width / 2, y + radius);
+                              ctx.lineTo(x + width / 2, bar.base);
+                              ctx.closePath();
+                              ctx.fill();
+                              ctx.restore();
+                          });
+                      });
+                  }
+              };
+
+              // ✅ ข้อมูลทั่วไป
               const riceTypes = ['ข้าวสาร', 'ข้าวเปลือก', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
 
-              // แคลเซียม
+              const baseOptions = (title) => ({
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  animation: {
+                      duration: 1000,
+                      easing: 'easeOutBounce'
+                  },
+                  plugins: {
+                      title: {
+                          display: true,
+                          text: title
+                      }
+                  },
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              });
+
+              // ✅ กราฟแคลเซียม
               new Chart(document.getElementById('chartCalcium'), {
                   type: 'bar',
                   data: {
@@ -99,24 +154,11 @@
                           backgroundColor: 'rgba(54, 162, 235, 0.7)'
                       }]
                   },
-                  options: {
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      plugins: {
-                          title: {
-                              display: true,
-                              text: 'แคลเซียม'
-                          }
-                      },
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
+                  options: baseOptions('แคลเซียม'),
+                  plugins: [roundedBarsPlugin]
               });
 
-              // ไอโซเควอซิติน
+              // ✅ กราฟไอโซเควอซิติน
               new Chart(document.getElementById('chartIsoquercetin'), {
                   type: 'bar',
                   data: {
@@ -127,24 +169,11 @@
                           backgroundColor: 'rgba(255, 159, 64, 0.7)'
                       }]
                   },
-                  options: {
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      plugins: {
-                          title: {
-                              display: true,
-                              text: 'ไอโซเควอซิติน'
-                          }
-                      },
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
+                  options: baseOptions('ไอโซเควอซิติน'),
+                  plugins: [roundedBarsPlugin]
               });
 
-              // เควอซิติน
+              // ✅ กราฟเควอซิติน
               new Chart(document.getElementById('chartQuercetin'), {
                   type: 'bar',
                   data: {
@@ -155,22 +184,10 @@
                           backgroundColor: 'rgba(255, 99, 132, 0.7)'
                       }]
                   },
-                  options: {
-                      responsive: true,
-                      maintainAspectRatio: false,
-                      plugins: {
-                          title: {
-                              display: true,
-                              text: 'เควอซิติน'
-                          }
-                      },
-                      scales: {
-                          y: {
-                              beginAtZero: true
-                          }
-                      }
-                  }
+                  options: baseOptions('เควอซิติน'),
+                  plugins: [roundedBarsPlugin]
               });
           </script>
+
       </div>
   </div>
