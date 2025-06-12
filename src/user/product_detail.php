@@ -91,19 +91,11 @@ if ($id > 0) {
 
                         <!-- Tab Contents -->
                         <div class="relative">
-
-
                             <?php 
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
                             include 'sub_detail2.3.php'; //tab ข้อมูลโภชนาการ
                             ?>
-                        
-
-
-
-
-                          
                         </div>
                     </div>
 
