@@ -251,39 +251,11 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($row) {
     // 3. สร้างตัวแปรแบบ physical_ชื่อฟิลด์
     foreach ($row as $field => $value) {
-        ${"physical_" . $field} = $value;
+        $varName = "physical_" . $field;
+        $$varName = $value;
+
+        echo "<strong>$field</strong>: " . htmlspecialchars($value) . "<br>";
     }
-    $physical_nutritionDBID;
-    $physical_cropSampleID;
-    $physical_riceCategories;
-    $physical_seedWeight;
-    $physical_length;
-    $physical_width;
-    $physical_thickness;
-    $physical_color;
-    $physical_seedShapeRatio;
-    $physical_chalkiness;
-    $physical_gloss;
-    $physical_whiteness;
-    $physical_transparency;
-    $physical_moisture;
-    $physical_elongationRatio;
-    $physical_swelling;
-    $physical_texture;
-    $physical_peakViscosity;
-    $physical_trough;
-    $physical_breakdown;
-    $physical_finalViscosity;
-    $physical_setback;
-    $physical_pastingTemp;
-    $physical_riceFlourViscosity;
-    $physical_precipitation;
-    $physical_retrogradation;
-    $physical_gelConsistency;
-    $physical_swellingPower;
-    $physical_hardness;
-    $physical_adhesiveness;
-    $physical_stickiness;
 } else {
     echo "ไม่พบข้อมูล physical ";
 }
