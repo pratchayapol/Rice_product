@@ -56,17 +56,17 @@
                   <!-- แผนภูมิแท่ง -->
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <!-- แคลเซียม -->
-                      <div class="chart-container">
+                      <div class="chart-container" style="height: 400px;">
                           <canvas id="chartCalcium"></canvas>
                       </div>
 
                       <!-- ไอโซเควอซิติน -->
-                      <div class="chart-container">
+                      <div class="chart-container" style="height: 400px;">
                           <canvas id="chartIsoquercetin"></canvas>
                       </div>
 
                       <!-- เควอซิติน -->
-                      <div class="chart-container">
+                      <div class="chart-container" style="height: 400px;">
                           <canvas id="chartQuercetin"></canvas>
                       </div>
 
