@@ -28,7 +28,7 @@
                     // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
 
                     const fieldsToShow = [
-                        "น้ำหนักเมล็ดข้าว", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
+                        "seedWeight", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
                         "gloss", "whiteness", "transparency", "moisture", "elongationRatio",
                         "swelling", "peakViscosity", "trough", "breakdown", "finalViscosity",
                         "setback", "pastingTemp", "gelConsistency", "swellingPower", "hardness", "adhesiveness"
