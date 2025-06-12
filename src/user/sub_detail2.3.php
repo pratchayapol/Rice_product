@@ -157,8 +157,8 @@
                           backgroundColor: 'rgba(54, 162, 235, 0.7)'
                       }]
                   },
-                  options: baseOptions('แคลเซียม'),
-                  plugins: [roundedBarsPlugin]
+                  options: baseOptions('แคลเซียม')
+
               });
 
               // ✅ กราฟไอโซเควอซิติน
@@ -172,8 +172,7 @@
                           backgroundColor: 'rgba(255, 159, 64, 0.7)'
                       }]
                   },
-                  options: baseOptions('ไอโซเควอซิติน'),
-                  plugins: [roundedBarsPlugin]
+                  options: baseOptions('ไอโซเควอซิติน')
               });
 
               // ✅ กราฟเควอซิติน
@@ -187,8 +186,7 @@
                           backgroundColor: 'rgba(255, 99, 132, 0.7)'
                       }]
                   },
-                  options: baseOptions('เควอซิติน'),
-                  plugins: [roundedBarsPlugin]
+                  options: baseOptions('เควอซิติน')
               });
           </script>
 
