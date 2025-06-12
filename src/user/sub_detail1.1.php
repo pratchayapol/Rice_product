@@ -252,14 +252,18 @@ if ($rows) {
 
     foreach ($categories as $cat) {
         $physicalData[$cat] = [];
+        // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
+        foreach ($fieldsToShow as $field) {
+            $physicalData[$cat][$field] = [];
+        }
     }
 
     foreach ($rows as $row) {
         $cat = $row['riceCategories'];
         if (in_array($cat, $categories)) {
-            foreach ($row as $field => $value) {
-                if (is_numeric($value)) {
-                    $physicalData[$cat][$field][] = floatval($value);
+            foreach ($fieldsToShow as $field) {
+                if (isset($row[$field]) && is_numeric($row[$field])) {
+                    $physicalData[$cat][$field][] = floatval($row[$field]);
                 }
             }
         }
