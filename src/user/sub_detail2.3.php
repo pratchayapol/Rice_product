@@ -175,7 +175,8 @@
                                                 display: true,
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                }
+                                                },
+                                                color: '#000'
                                             },
                                             ticks: {
                                                 font: {
@@ -191,7 +192,8 @@
                                                 display: true,
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                }
+                                                },
+                                                color: '#000'
                                             },
                                             ticks: {
                                                 font: {
@@ -209,8 +211,7 @@
                                             labels: {
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                },
-                                                color: '#000'
+                                                }
                                             }
                                         },
                                         title: {
