@@ -241,7 +241,7 @@ if ($row) {
 }
 
 // table physical (ข้อมูลทางกายภาพ)
-$sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID LIMIT 1";
+$sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
 
