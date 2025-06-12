@@ -1,4 +1,3 @@
-
 <div id="nutrition" class="tab-content hidden">
     <div class="bg-white p-4 rounded-lg">
 
@@ -21,9 +20,8 @@
         </div>
         <div id="default-tab-content">
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                <div id="chartContainer">
-                    <canvas id="physicalChart"></canvas>
-                    <p id="noDataMsg" style="display:none; color: red; font-weight: bold;">ไม่พบข้อมูล</p>
+                <div id="chartContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <p id="noDataMsg" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
                 </div>
 
                 <script>
@@ -99,7 +97,7 @@
                             // สร้าง canvas ใหม่
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
-                            // ลบ margin-bottom เดิมออกเพราะเราจะใช้ gap ใน grid แทน
+                            canvas.className = 'w-full h-[300px]'; // ใช้ Tailwind
                             chartContainer.appendChild(canvas);
 
                             const ctx = canvas.getContext('2d');
