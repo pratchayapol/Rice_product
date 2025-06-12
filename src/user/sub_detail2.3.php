@@ -19,7 +19,7 @@
               </ul>
           </div>
           <div id="default-tab-content">
-              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-orange-200" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
+              <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-indigo-200" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
                   <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                       <!-- Card: ข้าวเปลือก -->
                       <div class="bg-blue-100 p-4 rounded shadow">
