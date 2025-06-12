@@ -28,7 +28,40 @@
                   <script>
                       // chartData ถูกส่งมาจาก PHP แล้ว
 
-                      // ตรวจสอบว่ามีข้อมูลตัวเลขจริงๆ หรือไม่
+                      // ฟิลด์ที่จะแสดง + หน่วย
+                      const fieldsToShow = [
+                          "seedWeight", "length", "width", "thickness", "seedShapeRatio", "chalkiness",
+                          "gloss", "whiteness", "transparency", "moisture", "elongationRatio",
+                          "swelling", "peakViscosity", "trough", "breakdown", "finalViscosity",
+                          "setback", "pastingTemp", "gelConsistency", "swellingPower", "hardness", "adhesiveness"
+                      ];
+
+                      const fieldUnits = {
+                          seedWeight: "g/1,000 seeds",
+                          length: "mm",
+                          width: "mm",
+                          thickness: "mm",
+                          seedShapeRatio: "",
+                          chalkiness: "%",
+                          gloss: "",
+                          whiteness: "",
+                          transparency: "",
+                          moisture: "%",
+                          elongationRatio: "",
+                          swelling: "",
+                          peakViscosity: "",
+                          trough: "",
+                          breakdown: "",
+                          finalViscosity: "",
+                          setback: "",
+                          pastingTemp: "°C",
+                          gelConsistency: "mm",
+                          swellingPower: "%",
+                          hardness: "",
+                          adhesiveness: ""
+                      };
+
+                      // ฟังก์ชันตรวจสอบว่ามีข้อมูลจริงหรือไม่
                       function hasValidData(data) {
                           for (const cat in data) {
                               for (const field in data[cat]) {
@@ -50,28 +83,33 @@
                       } else {
                           noDataMsg.style.display = 'none';
 
-                          // เตรียมข้อมูลสำหรับกราฟ
-                          // สมมติจะเอา field เป็นแกน Y, ค่าเฉลี่ยของแต่ละหมวดหมู่เป็นแกน X
-                          // เพราะ physicalData[category][field] เป็น array ของค่าตัวเลข
-
-                          // รวบรวมฟิลด์ทั้งหมดจาก category แรกที่มีข้อมูล
-                          let allFields = new Set();
+                          // รวบรวมฟิลด์ที่มีข้อมูลจริงและอยู่ใน fieldsToShow เท่านั้น
+                          let allFieldsSet = new Set();
                           for (const cat in chartData) {
                               for (const field in chartData[cat]) {
-                                  allFields.add(field);
+                                  if (fieldsToShow.includes(field) && chartData[cat][field].length > 0) {
+                                      allFieldsSet.add(field);
+                                  }
                               }
                           }
-                          allFields = Array.from(allFields);
+                          const allFields = Array.from(allFieldsSet);
 
-                          // เตรียม datasets ตามหมวดหมู่แต่ละตัว
+                          // แปลงชื่อฟิลด์ + หน่วยสำหรับ label แกน Y
+                          const allFieldsWithUnits = allFields.map(field => {
+                              const unit = fieldUnits[field] ? ` (${fieldUnits[field]})` : "";
+                              return field + unit;
+                          });
+
+                          // หมวดหมู่จากข้อมูล
                           const categories = Object.keys(chartData);
+
+                          // เตรียม dataset
                           const datasets = categories.map(cat => {
                               return {
                                   label: cat,
                                   data: allFields.map(field => {
                                       const values = chartData[cat][field] || [];
                                       if (values.length === 0) return 0;
-                                      // ค่าเฉลี่ย
                                       const avg = values.reduce((a, b) => a + b, 0) / values.length;
                                       return avg;
                                   }),
@@ -79,18 +117,29 @@
                               };
                           });
 
+                          // สร้างกราฟ
                           const physicalChart = new Chart(ctx, {
                               type: 'bar',
                               data: {
-                                  labels: allFields,
+                                  labels: allFieldsWithUnits,
                                   datasets: datasets,
                               },
                               options: {
-                                  indexAxis: 'y', // ทำให้เป็นแผนภูมิแท่งแนวนอน
+                                  indexAxis: 'y', // แผนภูมิแท่งแนวนอน
                                   responsive: true,
                                   scales: {
                                       x: {
                                           beginAtZero: true,
+                                          title: {
+                                              display: true,
+                                              text: 'ค่าเฉลี่ย'
+                                          }
+                                      },
+                                      y: {
+                                          title: {
+                                              display: true,
+                                              text: 'คุณลักษณะทางกายภาพ'
+                                          }
                                       }
                                   },
                                   plugins: {
@@ -99,13 +148,23 @@
                                       },
                                       title: {
                                           display: true,
-                                          text: 'ข้อมูลทางกายภาพตามหมวดหมู่'
+                                          text: 'ข้อมูลทางกายภาพตามหมวดหมู่ข้าว'
+                                      },
+                                      tooltip: {
+                                          callbacks: {
+                                              label: function(context) {
+                                                  const label = context.dataset.label || '';
+                                                  const field = allFields[context.dataIndex];
+                                                  const unit = fieldUnits[field] || '';
+                                                  return `${label}: ${context.parsed.x.toFixed(2)} ${unit}`;
+                                              }
+                                          }
                                       }
                                   }
                               }
                           });
 
-                          // ฟังก์ชันสุ่มสีแบบง่ายๆ
+                          // ฟังก์ชันสุ่มสี
                           function getRandomColor() {
                               const r = Math.floor(Math.random() * 200);
                               const g = Math.floor(Math.random() * 200);
