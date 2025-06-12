@@ -241,21 +241,19 @@ if ($row) {
 }
 
 // table physical (ข้อมูลทางกายภาพ)
-$sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID";
+$sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// 2. ดึงข้อมูล
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if ($row) {
-    // 3. สร้างตัวแปรแบบ physical_ชื่อฟิลด์
-    foreach ($row as $field => $value) {
-        $varName = "physical_" . $field;
-        $$varName = $value;
-
-        echo "<strong>$field</strong>: " . htmlspecialchars($value) . "<br>";
+if ($rows) {
+    foreach ($rows as $row) {
+        echo "nutritionDBID: " . $row['nutritionDBID'] . "<br>";
+        echo "น้ำหนักเมล็ด: " . $row['seedWeight'] . "<br>";
+        echo "ความยาว: " . $row['length'] . "<br>";
+        echo "ความกว้าง: " . $row['width'] . "<br>";
+        echo "<hr>";
     }
 } else {
-    echo "ไม่พบข้อมูล physical ";
+    echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }
