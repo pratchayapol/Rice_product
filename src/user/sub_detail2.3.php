@@ -20,6 +20,7 @@
           </div>
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
+                <?php echo $sampleinfo_cropSampleID; ?>
                   <canvas id="physicalChart" width="100%" height="400"></canvas>
                   <script>
                       const ctx = document.getElementById('physicalChart').getContext('2d');

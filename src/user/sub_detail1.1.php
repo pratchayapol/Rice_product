@@ -253,40 +253,37 @@ if ($row) {
     foreach ($row as $field => $value) {
         ${"physical_" . $field} = $value;
     }
-    $physicalData = [
-        "น้ำหนักเมล็ด (g/1000 เมล็ด)" => $physical_seedWeight,
-        "ความยาว (mm)" => $physical_length,
-        "ความกว้าง (mm)" => $physical_width,
-        "ความหนา (mm)" => $physical_thickness,
-        "สี" => $physical_color,
-        "รูปร่างเมล็ด (ยาว/กว้าง)" => $physical_seedShapeRatio,
-        "ข้าวท้องไข่ (%)" => $physical_chalkiness,
-        "ความเงา" => $physical_gloss,
-        "ความขาว" => $physical_whiteness,
-        "ความโปร่งแสง" => $physical_transparency,
-        "ความชื้น (%)" => $physical_moisture,
-        "การยืดตัวของข้าวสุก" => $physical_elongationRatio,
-        "การพองตัว" => $physical_swelling,
-        "เนื้อสัมผัส" => $physical_texture,
-        "ความหนืดสูงสุด" => $physical_peakViscosity,
-        "ความหนืดต่ำสุด" => $physical_trough,
-        "Breakdown" => $physical_breakdown,
-        "ความหนืดสุดท้าย" => $physical_finalViscosity,
-        "Setback" => $physical_setback,
-        "อุณหภูมิเริ่มเปลี่ยนความหนืด" => $physical_pastingTemp,
-        "ความหนืดแป้งข้าว" => $physical_riceFlourViscosity,
-        "Precipitation" => $physical_precipitation,
-        "Retrogradation" => $physical_retrogradation,
-        "ความคงตัวแป้งสุกปานกลาง (mm)" => $physical_gelConsistency,
-        "กำลังการพองตัว (%)" => $physical_swellingPower,
-        "ความแข็ง" => $physical_hardness,
-        "ความเหนียวหนึบ" => $physical_adhesiveness,
-        "ความเหนียวติด" => $physical_stickiness
-    ];
-
-    // เตรียมข้อมูล JSON
-    $labels = json_encode(array_keys($physicalData), JSON_UNESCAPED_UNICODE);
-    $values = json_encode(array_values($physicalData));
+    $physical_nutritionDBID;
+    $physical_cropSampleID;
+    $physical_riceCategories;
+    $physical_seedWeight;
+    $physical_length;
+    $physical_width;
+    $physical_thickness;
+    $physical_color;
+    $physical_seedShapeRatio;
+    $physical_chalkiness;
+    $physical_gloss;
+    $physical_whiteness;
+    $physical_transparency;
+    $physical_moisture;
+    $physical_elongationRatio;
+    $physical_swelling;
+    $physical_texture;
+    $physical_peakViscosity;
+    $physical_trough;
+    $physical_breakdown;
+    $physical_finalViscosity;
+    $physical_setback;
+    $physical_pastingTemp;
+    $physical_riceFlourViscosity;
+    $physical_precipitation;
+    $physical_retrogradation;
+    $physical_gelConsistency;
+    $physical_swellingPower;
+    $physical_hardness;
+    $physical_adhesiveness;
+    $physical_stickiness;
 } else {
     echo "ไม่พบข้อมูล physical ";
 }
