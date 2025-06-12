@@ -95,11 +95,11 @@
                         // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
                         fieldsWithData.forEach(field => {
                             const cardWrapper = document.createElement('div');
-                            cardWrapper.className = 'bg-white rounded-xl shadow p-4';
+                            cardWrapper.className = 'bg-white dark:bg-gray-900 rounded-xl shadow p-4';
 
                             const canvas = document.createElement('canvas');
                             canvas.id = `chart_${field}`;
-                            canvas.className = 'w-full max-w-full h-[300px]';
+                            canvas.className = 'w-full aspect-[4/3]'; // ปรับความสูงให้พอดีโดยอัตโนมัติ
 
                             cardWrapper.appendChild(canvas);
                             chartContainer.appendChild(cardWrapper);
