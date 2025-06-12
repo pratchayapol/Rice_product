@@ -22,7 +22,8 @@
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-rose-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
 
 
-                  <canvas id="physicalChart" height="120"></canvas>
+                  <div id="chartsContainer"></div>
+
                   <script>
                       // สมมุติว่า chartData มาจากฝั่ง PHP แล้ว (ถูก echo เป็น JSON)
                       // ตัวอย่าง chartData:
@@ -82,7 +83,7 @@
 
                           if (datasets.length > 0) {
                               const canvasId = `chart_${field}`;
-                              document.getElementById("physicalChart").innerHTML += `
+                              document.getElementById("chartsContainer").innerHTML += `
                 <div style="margin-bottom: 40px;">
                     <h3>${fieldLabels[field]}</h3>
                     <canvas id="${canvasId}" height="200"></canvas>
@@ -130,6 +131,7 @@
                           return colors[category] || "rgba(201, 203, 207, 0.7)";
                       }
                   </script>
+
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
                   <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab2 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
