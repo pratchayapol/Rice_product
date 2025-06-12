@@ -82,6 +82,12 @@
                         gelConsistency: "mm",
                         swellingPower: "%",
                     };
+                    const categoryColors = {
+                        "ข้าวกล้อง": "#4c78a8",
+                        "ข้าวกล้องงอก": "#f58518",
+                        "ข้าวสาร": "#e45756",
+                        "ข้าวเปลือก": "#8B4513"
+                    };
 
                     function hasValidData(data) {
                         for (const cat in data) {
@@ -162,7 +168,8 @@
                                     datasets: [{
                                         label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
                                         data: data,
-                                        backgroundColor: filteredCategories.map(() => getRandomColor()),
+                                        backgroundColor: filteredCategories.map(cat => categoryColors[cat] || '#999'),
+
                                     }]
                                 },
                                 options: {
@@ -180,7 +187,8 @@
                                             ticks: {
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                },color: '#000'
+                                                },
+                                                color: '#000'
                                             },
                                             grid: {
                                                 display: false // ❌ ลบเส้นแนวนอน
@@ -196,7 +204,8 @@
                                             ticks: {
                                                 font: {
                                                     family: 'Noto Sans Thai'
-                                                },color: '#000'
+                                                },
+                                                color: '#000'
                                             },
                                             grid: {
                                                 display: false // ❌ ลบเส้นแนวนอน
@@ -243,13 +252,6 @@
 
 
 
-                    }
-
-                    function getRandomColor() {
-                        const r = Math.floor(Math.random() * 200);
-                        const g = Math.floor(Math.random() * 200);
-                        const b = Math.floor(Math.random() * 200);
-                        return `rgba(${r},${g},${b},0.7)`;
                     }
                 </script>
 
