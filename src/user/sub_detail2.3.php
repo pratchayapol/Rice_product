@@ -128,7 +128,10 @@
                   maintainAspectRatio: false,
                   animation: {
                       duration: 1000,
-                      easing: 'easeInOutCubic'
+                      easing: 'easeOutCubic', // หรือแบบอื่น เช่น 'linear', 'easeInQuad', ...
+                      y: {
+                          from: 0 // ค่อย ๆ animate ค่า y จาก 0 ขึ้นไป
+                      }
                   },
                   plugins: {
                       title: {
