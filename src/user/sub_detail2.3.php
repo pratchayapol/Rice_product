@@ -144,7 +144,7 @@
               });
 
               // ✅ กราฟแคลเซียม
-              new Chart(document.getElementById('chartCalcium'), {
+              new Chart(document.getElementById('chartIsoquercetin'), {
                   type: 'bar',
                   data: {
                       labels: riceTypes,
