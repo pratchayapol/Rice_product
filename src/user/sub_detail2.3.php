@@ -84,51 +84,20 @@
                   <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab4 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
               </div>
           </div>
-
           <script>
-              // ✅ Plugin สำหรับทำปลายแท่งกลม
-              const roundedBarsPlugin = {
-                  id: 'roundedBars',
-                  afterDatasetDraw(chart) {
-                      const {
-                          ctx
-                      } = chart;
-                      chart.data.datasets.forEach((dataset, i) => {
-                          const meta = chart.getDatasetMeta(i);
-                          meta.data.forEach((bar, index) => {
-                              const radius = 6; // ความมน
-                              const x = bar.x;
-                              const y = bar.y;
-                              const width = bar.width;
-                              const height = bar.base - bar.y;
-
-                              ctx.save();
-                              ctx.fillStyle = dataset.backgroundColor;
-
-                              ctx.beginPath();
-                              ctx.moveTo(x - width / 2, bar.base);
-                              ctx.lineTo(x - width / 2, y + radius);
-                              ctx.quadraticCurveTo(x - width / 2, y, x - width / 2 + radius, y);
-                              ctx.lineTo(x + width / 2 - radius, y);
-                              ctx.quadraticCurveTo(x + width / 2, y, x + width / 2, y + radius);
-                              ctx.lineTo(x + width / 2, bar.base);
-                              ctx.closePath();
-                              ctx.fill();
-                              ctx.restore();
-                          });
-                      });
-                  }
-              };
-
-              // ✅ ข้อมูลทั่วไป
+              // ✅ ข้อมูลประเภทข้าว
               const riceTypes = ['ข้าวสาร', 'ข้าวเปลือก', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
 
+              // ✅ ฟังก์ชันสร้าง options สำหรับแต่ละกราฟ
               const baseOptions = (title) => ({
                   responsive: true,
                   maintainAspectRatio: false,
                   animation: {
                       duration: 1000,
-                      easing: 'easeOutCubic' // เอา 'y.from' ออก
+                      easing: 'easeOutCubic',
+                      y: {
+                          from: 0 // ✅ ให้ animate ค่า y จาก 0
+                      }
                   },
                   plugins: {
                       title: {
@@ -144,7 +113,7 @@
               });
 
               // ✅ กราฟแคลเซียม
-              new Chart(document.getElementById('chartIsoquercetin'), {
+              new Chart(document.getElementById('chartCalcium'), {
                   type: 'bar',
                   data: {
                       labels: riceTypes,
@@ -154,8 +123,7 @@
                           backgroundColor: 'rgba(54, 162, 235, 0.7)'
                       }]
                   },
-                  options: baseOptions('แคลเซียม'),
-                  plugins: [roundedBarsPlugin] // ✅ ใส่ plugin ตรงนี้
+                  options: baseOptions('แคลเซียม')
               });
 
               // ✅ กราฟไอโซเควอซิติน
@@ -169,8 +137,7 @@
                           backgroundColor: 'rgba(255, 159, 64, 0.7)'
                       }]
                   },
-                  options: baseOptions('ไอโซเควอซิติน'),
-                  plugins: [roundedBarsPlugin] // ✅ ใส่ plugin ตรงนี้
+                  options: baseOptions('ไอโซเควอซิติน')
               });
 
               // ✅ กราฟเควอซิติน
@@ -184,10 +151,10 @@
                           backgroundColor: 'rgba(255, 99, 132, 0.7)'
                       }]
                   },
-                  options: baseOptions('เควอซิติน'),
-                  plugins: [roundedBarsPlugin] // ✅ ใส่ plugin ตรงนี้
+                  options: baseOptions('เควอซิติน')
               });
           </script>
+
 
       </div>
   </div>
