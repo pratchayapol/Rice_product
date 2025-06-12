@@ -20,7 +20,63 @@
           </div>
           <div id="default-tab-content">
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                  <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab1 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                      <!-- Card: ข้าวเปลือก -->
+                      <div class="bg-blue-100 p-4 rounded shadow">
+                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวเปลือก</h2>
+                          <p class="text-center text-gray-600">ไม่มีข้อมูล</p>
+                      </div>
+
+                      <!-- Card: ข้าวสาร -->
+                      <div class="bg-blue-100 p-4 rounded shadow">
+                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวสาร</h2>
+                          <ul class="text-sm text-gray-700 space-y-1">
+                              <li>แคลเซียม: 19.62 mg/kg</li>
+                              <li>ไอโซเควอซิติน: 54.06 mg/kg</li>
+                              <li>เควอซิติน: 145.34 mg/kg</li>
+                              <li>รูติน: 50.12 mg/kg</li>
+                              <li>แคทีชิน: 36.64 mg/kg</li>
+                              <li>กรดแทนนิก: 87.87 mg/kg</li>
+                          </ul>
+                      </div>
+
+                      <!-- Card: ข้าวกล้อง -->
+                      <div class="bg-blue-100 p-4 rounded shadow">
+                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวกล้อง</h2>
+                          <p class="text-center text-gray-600">ไม่มีข้อมูล</p>
+                      </div>
+
+                      <!-- Card: ข้าวกล้องงอก -->
+                      <div class="bg-blue-100 p-4 rounded shadow">
+                          <h2 class="text-lg font-bold mb-2 text-center">ข้าวกล้องงอก</h2>
+                          <p class="text-center text-gray-600">ไม่มีข้อมูล</p>
+                      </div>
+                  </div>
+
+                  <!-- แผนภูมิแท่ง -->
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <!-- Bar Chart: แคลเซียม -->
+                      <div class="text-center">
+                          <h3 class="font-semibold mb-2">แคลเซียม</h3>
+                          <img src="data:image/png;base64,..." alt="แคลเซียม chart" />
+                          <p class="text-sm text-gray-500">ค่าของข้าวสาร: 19.62 mg/kg</p>
+                      </div>
+
+                      <!-- Bar Chart: ไอโซเควอซิติน -->
+                      <div class="text-center">
+                          <h3 class="font-semibold mb-2">ไอโซเควอซิติน</h3>
+                          <img src="data:image/png;base64,..." alt="ไอโซเควอซิติน chart" />
+                          <p class="text-sm text-gray-500">ค่าของข้าวสาร: 54.06 mg/kg</p>
+                      </div>
+
+                      <!-- Bar Chart: เควอซิติน -->
+                      <div class="text-center">
+                          <h3 class="font-semibold mb-2">เควอซิติน</h3>
+                          <img src="data:image/png;base64,..." alt="เควอซิติน chart" />
+                          <p class="text-sm text-gray-500">ค่าของข้าวสาร: 145.34 mg/kg</p>
+                      </div>
+                  </div>
+
               </div>
               <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
                   <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">sub_tab2 tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
