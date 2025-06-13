@@ -48,10 +48,7 @@ if ($id > 0) {
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
 
-        <script>
-            const chartData = <?= json_encode($chartData); ?>;
-            const chartDataNutrition = <?= json_encode($chartDataNutrition); ?>;
-        </script>
+
 
     </head>
 
@@ -100,6 +97,10 @@ if ($id > 0) {
 
                         <!-- Tab Contents -->
                         <div class="relative">
+                            <script>
+                                const chartData = <?= json_encode($chartData); ?>;
+                                const chartDataNutrition = <?= json_encode($chartDataNutrition); ?>;
+                            </script>
                             <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
