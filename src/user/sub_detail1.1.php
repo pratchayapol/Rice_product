@@ -289,7 +289,7 @@ if ($rows1) {
     }
 
     echo "<script>";
-    echo "const chartData = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
+    echo "const chartDataPhysical = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
     echo "</script>";
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
@@ -305,54 +305,54 @@ $rows2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 if ($rows2) {
     $nutritionData = [];
     $fieldsToShow2 = [
-    'totalEnergy',
-    'carbohydrate',
-    'starch',
-    'dietaryFiber',
-    'crudeFiber',
-    'totalSugar',
-    'protein',
-    'totalFat',
-    'saturatedFat',
-    'unsaturatedFat',
-    'saturatedFattyAcid',
-    'monosaturatedFattyAcid',
-    'polysaturatedFattyAcid',
-    'cholesterol',
-    'energyFromFat',
-    'calcium',
-    'iron',
-    'magnesium',
-    'phosphorus',
-    'potassium',
-    'sodium',
-    'zinc',
-    'iodine',
-    'copper',
-    'maganese',
-    'selenium',
-    'aluminium',
-    'vitaminA',
-    'betaCarotene',
-    'vitaminC',
-    'thiamine',
-    'pantothenicAcid',
-    'vitaminB1',
-    'vitaminB2',
-    'riboflavin',
-    'vitaminB3',
-    'vitaminB4',
-    'vitaminB5',
-    'vitaminB6',
-    'allFolate',
-    'folicAcid',
-    'foodFolate',
-    'DFEFolate',
-    'vitaminB12',
-    'retinol',
-    'vitaminE',
-    'vitaminK'
-];
+        'totalEnergy',
+        'carbohydrate',
+        'starch',
+        'dietaryFiber',
+        'crudeFiber',
+        'totalSugar',
+        'protein',
+        'totalFat',
+        'saturatedFat',
+        'unsaturatedFat',
+        'saturatedFattyAcid',
+        'monosaturatedFattyAcid',
+        'polysaturatedFattyAcid',
+        'cholesterol',
+        'energyFromFat',
+        'calcium',
+        'iron',
+        'magnesium',
+        'phosphorus',
+        'potassium',
+        'sodium',
+        'zinc',
+        'iodine',
+        'copper',
+        'maganese',
+        'selenium',
+        'aluminium',
+        'vitaminA',
+        'betaCarotene',
+        'vitaminC',
+        'thiamine',
+        'pantothenicAcid',
+        'vitaminB1',
+        'vitaminB2',
+        'riboflavin',
+        'vitaminB3',
+        'vitaminB4',
+        'vitaminB5',
+        'vitaminB6',
+        'allFolate',
+        'folicAcid',
+        'foodFolate',
+        'DFEFolate',
+        'vitaminB12',
+        'retinol',
+        'vitaminE',
+        'vitaminK'
+    ];
 
     foreach ($categories as $cat) {
         $nutritionData[$cat] = [];
@@ -374,9 +374,8 @@ if ($rows2) {
     }
 
     echo "<script>";
-    echo "const chartData = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
+    echo "const chartDataNutrition = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
     echo "</script>";
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }
-
