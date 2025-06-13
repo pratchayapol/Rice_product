@@ -145,8 +145,9 @@ if ($id > 0) {
                                 }
                             }
                             echo ' <script>
-                            const chartData = <?= json_encode($chartData ?? []); ?>;
-                        </script>';
+    const chartData = <?= json_encode($physicalData ?? []); ?>;
+</script>
+';
                         } else {
                             echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
                         }
@@ -228,9 +229,10 @@ if ($id > 0) {
                                     }
                                 }
                             }
-                            echo ' <script>
-                            const chartDataNutrition = <?= json_encode($chartDataNutrition ?? []); ?>;
-                        </script>';
+                            echo '<script>
+    const chartDataNutrition = <?= json_encode($nutritionData ?? []); ?>;
+</script>
+';
                         } else {
                             echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
                         }
