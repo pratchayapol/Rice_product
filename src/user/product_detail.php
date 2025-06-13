@@ -14,8 +14,6 @@ $type = isset($_GET['type']) ? $_GET['type'] : '';
 
 if ($id > 0) {
 
-    //ไฟล์นี้เป็นการค้นหาข้อมูลแปรรูปผลิตภัณฑ์ทั้ง 3 table และ table rice (ข้อมูลข้าว)
-    include 'sub_detail1.1.php';
 
 
 ?>
@@ -96,12 +94,20 @@ if ($id > 0) {
                         </div>
 
                         <!-- Tab Contents -->
-                        <script>
-                            const chartData = <?= json_encode($chartData ?? []); ?>;
-                            const chartDataNutrition = <?= json_encode($chartDataNutrition ?? []); ?>;
-                        </script>
+
+
 
                         <div class="relative">
+                            <?php
+                            //ไฟล์นี้เป็นการค้นหาข้อมูลแปรรูปผลิตภัณฑ์ทั้ง 3 table และ table rice (ข้อมูลข้าว)
+                            include 'sub_detail1.1.php';
+
+                            ?>
+                            <script>
+                                const chartData = <?= json_encode($chartData ?? []); ?>;
+                                const chartDataNutrition = <?= json_encode($chartDataNutrition ?? []); ?>;
+                            </script>
+
                             <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
