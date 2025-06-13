@@ -20,245 +20,19 @@
         </div>
         <div id="default-tab-content">
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-violet-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
-                <div id="chartContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
+                <div id="chartContainer1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
                     <p id="noDataMsg" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
                 </div>
 
-                <script>
-                    // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
 
-                    const fieldsToShow = [
-                        "seedWeight",
-                        "length",
-                        "width",
-                        "thickness",
-                        "seedShapeRatio",
-                        "chalkiness",
-                        "moisture",
-                        "elongationRatio",
-                        "peakViscosity",
-                        "trough",
-                        "breakdown",
-                        "finalViscosity",
-                        "setback",
-                        "pastingTemp",
-                        "gelConsistency",
-                        "swellingPower",
-                    ];
-
-                    const fieldNamesTH = {
-                        seedWeight: "น้ำหนักเมล็ด",
-                        length: "ความยาว",
-                        width: "ความกว้าง",
-                        thickness: "ความหนา",
-                        seedShapeRatio: "รูปร่างเมล็ด",
-                        chalkiness: "ข้าวท้องไข่",
-                        moisture: "ปริมาณความชื้น",
-                        elongationRatio: "การยืดตัวของข้าวสุก",
-                        peakViscosity: "ความหนืดสูงสุด",
-                        trough: "ความหนืดต่ำสุด",
-                        breakdown: "ความหนืดเปลี่ยนแปลงไปสู่ขั้นสลายตัว",
-                        finalViscosity: "ความหนืดสุดท้าย",
-                        setback: "การคืนตัวของแป้ง",
-                        pastingTemp: "อุณหภูมิที่เริ่มมีการเปลี่ยนแปลงความหนืด",
-                        gelConsistency: "ความคงตัวแป้งสุกปานกลาง",
-                        swellingPower: "ค่าการวิเคราะห์กำลังการพองตัว",
-                    };
-                    const fieldUnits = {
-                        seedWeight: "g/1,000 seeds",
-                        length: "mm",
-                        width: "mm",
-                        thickness: "mm",
-                        seedShapeRatio: "ยาว/กว้าง",
-                        chalkiness: "%",
-                        moisture: "%",
-                        elongationRatio: "",
-                        peakViscosity: "",
-                        trough: "",
-                        breakdown: "",
-                        finalViscosity: "",
-                        setback: "",
-                        pastingTemp: "°C",
-                        gelConsistency: "mm",
-                        swellingPower: "%",
-                    };
-                    const categoryColors = {
-                        "ข้าวกล้อง": "#4c78a8",
-                        "ข้าวกล้องงอก": "#f58518",
-                        "ข้าวสาร": "#e45756",
-                        "ข้าวเปลือก": "#8B4513"
-                    };
-
-                    function hasValidData(data) {
-                        for (const cat in data) {
-                            for (const field in data[cat]) {
-                                if (data[cat][field].length > 0) {
-                                    return true;
-                                }
-                            }
-                        }
-                        return false;
-                    }
-
-                    const chartContainer = document.getElementById('chartContainer');
-                    const noDataMsg = document.getElementById('noDataMsg');
-
-                    if (!hasValidData(chartData)) {
-                        noDataMsg.style.display = 'block';
-                    } else {
-                        noDataMsg.style.display = 'none';
-
-                        // หาฟิลด์ที่มีข้อมูลจริง
-                        let fieldsWithData = new Set();
-                        for (const cat in chartData) {
-                            for (const field in chartData[cat]) {
-                                if (fieldsToShow.includes(field) && chartData[cat][field].length > 0) {
-                                    fieldsWithData.add(field);
-                                }
-                            }
-                        }
-                        fieldsWithData = Array.from(fieldsWithData);
-
-
-                        // หมวดหมู่ที่มีข้อมูลอย่างน้อย 1 ฟิลด์ใน fieldsToShow
-                        const categories = Object.keys(chartData).filter(cat => {
-                            return fieldsToShow.some(field => {
-                                const values = chartData[cat][field];
-                                return values && values.length > 0;
-                            });
-                        });
-                        // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
-                        fieldsWithData.forEach(field => {
-                            // ✅ กรองเฉพาะหมวดที่ field นี้มีข้อมูล
-                            const filteredCategories = categories.filter(cat => {
-                                const values = chartData[cat][field] || [];
-                                return values.length > 0;
-                            });
-
-                            // ✅ ข้าม field นี้ถ้าไม่มีหมวดไหนมีข้อมูลเลย
-                            if (filteredCategories.length === 0) return;
-
-                            // ✅ คำนวณค่าเฉลี่ยเฉพาะหมวดที่มีข้อมูล
-                            const data = filteredCategories.map(cat => {
-                                const values = chartData[cat][field];
-                                return values.reduce((a, b) => a + b, 0) / values.length;
-                            });
-
-                            // ✅ ข้ามถ้าค่าเฉลี่ยทั้งหมดเป็น 0 (ไม่จำเป็นเสมอ แต่กันไว้)
-                            if (data.every(val => val === 0)) return;
-
-                            // ✅ สร้างกราฟ
-                            const cardWrapper = document.createElement('div');
-                            cardWrapper.className = 'bg-white rounded-xl shadow p-4';
-
-                            const canvas = document.createElement('canvas');
-                            canvas.id = `chart_${field}`;
-                            canvas.style.width = '100%'; // ให้กว้างเต็ม container
-                            canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
-
-                            cardWrapper.appendChild(canvas);
-                            chartContainer.appendChild(cardWrapper);
-
-                            const ctx = canvas.getContext('2d');
-
-                            new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: filteredCategories,
-                                    datasets: [{
-                                        label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
-                                        data: data,
-                                        backgroundColor: filteredCategories.map(cat => categoryColors[cat] || '#999'),
-
-                                    }]
-                                },
-                                options: {
-                                    responsive: true,
-                                    indexAxis: 'x',
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true,
-                                            title: {
-                                                display: true,
-                                                font: {
-                                                    family: 'Noto Sans Thai'
-                                                }
-                                            },
-                                            ticks: {
-                                                font: {
-                                                    family: 'Noto Sans Thai'
-                                                },
-                                                color: '#000'
-                                            },
-                                            grid: {
-                                                display: false // ❌ ลบเส้นแนวนอน
-                                            }
-                                        },
-                                        x: {
-                                            title: {
-                                                display: true,
-                                                font: {
-                                                    family: 'Noto Sans Thai'
-                                                }
-                                            },
-                                            ticks: {
-                                                font: {
-                                                    family: 'Noto Sans Thai'
-                                                },
-                                                color: '#000'
-                                            },
-                                            grid: {
-                                                display: false // ❌ ลบเส้นแนวนอน
-                                            }
-                                        }
-                                    },
-                                    plugins: {
-                                        legend: {
-                                            display: false,
-                                            labels: {
-                                                font: {
-                                                    family: 'Noto Sans Thai'
-                                                }
-                                            }
-                                        },
-                                        title: {
-                                            display: true,
-                                            text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
-                                            font: {
-                                                family: 'Noto Sans Thai'
-                                            },
-                                            color: '#000' // ✅ ทำหัวกราฟให้เป็นสีดำเข้ม
-                                        },
-                                        tooltip: {
-                                            callbacks: {
-                                                label: function(context) {
-                                                    return `${context.parsed.y.toFixed(2)} ${fieldUnits[field] || ''}`;
-                                                }
-                                            },
-                                            titleFont: {
-                                                family: 'Noto Sans Thai'
-                                            },
-                                            bodyFont: {
-                                                family: 'Noto Sans Thai'
-                                            }
-                                        }
-                                    }
-                                }
-                            });
-                        });
-
-
-
-
-
-
-                    }
-                </script>
 
 
             </div>
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-lime-100" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
-                <p class="text-sm text-gray-500 dark:text-gray-400">รอดำเนินการ 13 มิถุนายน 2568</p>
+                <div id="chartContainer2" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto mt-10">
+                    <p id="noDataMsg2" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
+                </div>
+
             </div>
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-red-100" id="sub_tab3" role="tabpanel" aria-labelledby="sub_tab3-tab">
                 <p class="text-sm text-gray-500 dark:text-gray-400">รอดำเนินการ 13 มิถุนายน 2568</p>
@@ -270,3 +44,233 @@
 
     </div>
 </div>
+
+<script>
+    const fieldNamesTH2 = {
+        totalEnergy: "พลังงานทั้งหมด",
+        carbohydrate: "คาร์โบไฮเดรต",
+        starch: "ปริมาณแป้ง",
+        dietaryFiber: "ใยอาหาร",
+        crudeFiber: "กากใยอาหาร",
+        totalSugar: "น้ำตาล",
+        protein: "โปรตีน",
+        totalFat: "ไขมันทั้งหมด",
+        saturatedFat: "ไขมันอิ่มตัว",
+        unsaturatedFat: "ไขมันไม่อิ่มตัว",
+        saturatedFattyAcid: "กรดไขมันอิ่มตัว",
+        monosaturatedFattyAcid: "กรดไขมันอิ่มตัวเชิงเดี่ยว",
+        polysaturatedFattyAcid: "กรดไขมันอิ่มตัวหลายระดับ",
+        cholesterol: "คอเลสเตอรอล",
+        energyFromFat: "พลังงานจากไขมัน",
+        calcium: "แคลเซียม",
+        iron: "เหล็ก",
+        magnesium: "แมกนีเซียม",
+        phosphorus: "ฟอสฟอรัส",
+        potassium: "โพแทสเซียม",
+        sodium: "โซเดียม",
+        zinc: "สังกะสี",
+        iodine: "ไอโอดีน",
+        copper: "ทองแดง",
+        maganese: "แมงกานีส",
+        selenium: "ซีลีเนียม",
+        aluminium: "อะลูมิเนียม",
+        vitaminA: "วิตามินเอ",
+        betaCarotene: "เบต้าแคโรทีน",
+        vitaminC: "วิตามินซี",
+        thiamine: "ไทอามีน",
+        pantothenicAcid: "กรดแพนโททีนิก",
+        vitaminB1: "วิตามินบี1",
+        vitaminB2: "วิตามินบี2",
+        riboflavin: "ไรโบฟลาวิน",
+        vitaminB3: "วิตามินบี3",
+        vitaminB4: "วิตามินบี4",
+        vitaminB5: "วิตามินบี5",
+        vitaminB6: "วิตามินบี6",
+        allFolate: "โฟเลตทั้งหมด",
+        folicAcid: "กรดโฟลิก",
+        foodFolate: "อาหารโฟเลต",
+        DFEFolate: "ดีเอฟอีโฟเลต",
+        vitaminB12: "วิตามินบี12",
+        retinol: "เรตินอล",
+        vitaminE: "วิตามินอี",
+        vitaminK: "วิตามินเค"
+    };
+
+    const fieldUnits2 = {
+        totalEnergy: "kcal/100g",
+        carbohydrate: "g/100g",
+        starch: "g/100g",
+        dietaryFiber: "g/100g",
+        crudeFiber: "g/100g",
+        totalSugar: "g/100g",
+        protein: "g/100g",
+        totalFat: "g/100g",
+        saturatedFat: "g/100g",
+        unsaturatedFat: "g/100g",
+        saturatedFattyAcid: "g",
+        monosaturatedFattyAcid: "g",
+        polysaturatedFattyAcid: "g",
+        cholesterol: "mg",
+        energyFromFat: "kcal/100g",
+        calcium: "mg/kg",
+        iron: "mg/kg",
+        magnesium: "mg/kg",
+        phosphorus: "mg/kg",
+        potassium: "mg/kg",
+        sodium: "mg/kg",
+        zinc: "mg/kg",
+        iodine: "mg/kg",
+        copper: "mg/kg",
+        maganese: "mg/kg",
+        selenium: "mg/kg",
+        aluminium: "mg/kg",
+        vitaminA: "µg",
+        betaCarotene: "mg/kg",
+        vitaminC: "mg",
+        thiamine: "mg",
+        pantothenicAcid: "mg",
+        vitaminB1: "mg/kg",
+        vitaminB2: "mg/kg",
+        riboflavin: "mg",
+        vitaminB3: "mg",
+        vitaminB4: "mg",
+        vitaminB5: "mg",
+        vitaminB6: "mg",
+        allFolate: "µg",
+        folicAcid: "µg",
+        foodFolate: "µg",
+        DFEFolate: "µg",
+        vitaminB12: "µg",
+        retinol: "µg",
+        vitaminE: "mg/kg",
+        vitaminK: "µg"
+    };
+
+    const chartContainer2 = document.getElementById('chartContainer2');
+    const noDataMsg2 = document.getElementById('noDataMsg2');
+
+    if (!hasValidData(chartData)) {
+        noDataMsg2.style.display = 'block';
+    } else {
+        noDataMsg2.style.display = 'none';
+
+        let fieldsWithData2 = new Set();
+        for (const cat in chartData) {
+            for (const field in chartData[cat]) {
+                if (fieldsToShow2.includes(field) && chartData[cat][field].length > 0) {
+                    fieldsWithData2.add(field);
+                }
+            }
+        }
+        fieldsWithData2 = Array.from(fieldsWithData2);
+
+        const categories2 = Object.keys(chartData).filter(cat => {
+            return fieldsToShow2.some(field => {
+                const values = chartData[cat][field];
+                return values && values.length > 0;
+            });
+        });
+
+        fieldsWithData2.forEach(field => {
+            const filteredCategories2 = categories2.filter(cat => {
+                const values = chartData[cat][field] || [];
+                return values.length > 0;
+            });
+
+            if (filteredCategories2.length === 0) return;
+
+            const data = filteredCategories2.map(cat => {
+                const values = chartData[cat][field];
+                return values.reduce((a, b) => a + b, 0) / values.length;
+            });
+
+            if (data.every(val => val === 0)) return;
+
+            const cardWrapper = document.createElement('div');
+            cardWrapper.className = 'bg-white rounded-xl shadow p-4';
+
+            const canvas = document.createElement('canvas');
+            canvas.id = `chart2_${field}`;
+            canvas.style.width = '100%';
+            canvas.style.height = '300px';
+
+            cardWrapper.appendChild(canvas);
+            chartContainer2.appendChild(cardWrapper);
+
+            const ctx = canvas.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: filteredCategories2,
+                    datasets: [{
+                        label: `${field}${fieldUnits2[field] ? ' (' + fieldUnits2[field] + ')' : ''}`,
+                        data: data,
+                        backgroundColor: filteredCategories2.map(cat => categoryColors[cat] || '#999'),
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    indexAxis: 'x',
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Noto Sans Thai'
+                                },
+                                color: '#000'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true
+                            },
+                            ticks: {
+                                font: {
+                                    family: 'Noto Sans Thai'
+                                },
+                                color: '#000'
+                            },
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: `${fieldNamesTH2[field] || field}${fieldUnits2[field] ? ' (' + fieldUnits2[field] + ')' : ''}`,
+                            font: {
+                                family: 'Noto Sans Thai'
+                            },
+                            color: '#000'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y.toFixed(2)} ${fieldUnits2[field] || ''}`;
+                                }
+                            },
+                            titleFont: {
+                                family: 'Noto Sans Thai'
+                            },
+                            bodyFont: {
+                                family: 'Noto Sans Thai'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    }
+</script>

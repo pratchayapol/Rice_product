@@ -240,16 +240,18 @@ if ($row) {
 } else {
 }
 
+
+$categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
+
 // table physical (ข้อมูลทางกายภาพ)
 $sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
 $stmt = $pdo->prepare($sql);
 $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
-$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rows1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($rows) {
-    $categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
+if ($rows1) {
     $physicalData = [];
-    $fieldsToShow = [
+    $fieldsToShow1 = [
         'seedWeight',
         'length',
         'width',
@@ -270,15 +272,15 @@ if ($rows) {
     foreach ($categories as $cat) {
         $physicalData[$cat] = [];
         // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
-        foreach ($fieldsToShow as $field) {
+        foreach ($fieldsToShow1 as $field) {
             $physicalData[$cat][$field] = [];
         }
     }
 
-    foreach ($rows as $row) {
+    foreach ($rows1 as $row) {
         $cat = $row['riceCategories'];
         if (in_array($cat, $categories)) {
-            foreach ($fieldsToShow as $field) {
+            foreach ($fieldsToShow1 as $field) {
                 if (isset($row[$field]) && is_numeric($row[$field])) {
                     $physicalData[$cat][$field][] = floatval($row[$field]);
                 }
@@ -292,3 +294,89 @@ if ($rows) {
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }
+
+
+//table nutrition ข้อมูลโภชนาการ
+$sql = "SELECT * FROM nutrition WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
+$stmt = $pdo->prepare($sql);
+$stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+$rows2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+if ($rows2) {
+    $nutritionData = [];
+    $fieldsToShow2 = [
+    'totalEnergy',
+    'carbohydrate',
+    'starch',
+    'dietaryFiber',
+    'crudeFiber',
+    'totalSugar',
+    'protein',
+    'totalFat',
+    'saturatedFat',
+    'unsaturatedFat',
+    'saturatedFattyAcid',
+    'monosaturatedFattyAcid',
+    'polysaturatedFattyAcid',
+    'cholesterol',
+    'energyFromFat',
+    'calcium',
+    'iron',
+    'magnesium',
+    'phosphorus',
+    'potassium',
+    'sodium',
+    'zinc',
+    'iodine',
+    'copper',
+    'maganese',
+    'selenium',
+    'aluminium',
+    'vitaminA',
+    'betaCarotene',
+    'vitaminC',
+    'thiamine',
+    'pantothenicAcid',
+    'vitaminB1',
+    'vitaminB2',
+    'riboflavin',
+    'vitaminB3',
+    'vitaminB4',
+    'vitaminB5',
+    'vitaminB6',
+    'allFolate',
+    'folicAcid',
+    'foodFolate',
+    'DFEFolate',
+    'vitaminB12',
+    'retinol',
+    'vitaminE',
+    'vitaminK'
+];
+
+    foreach ($categories as $cat) {
+        $nutritionData[$cat] = [];
+        // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
+        foreach ($fieldsToShow2 as $field) {
+            $nutritionData[$cat][$field] = [];
+        }
+    }
+
+    foreach ($rows2 as $row) {
+        $cat = $row['riceCategories'];
+        if (in_array($cat, $categories)) {
+            foreach ($fieldsToShow2 as $field) {
+                if (isset($row[$field]) && is_numeric($row[$field])) {
+                    $nutritionData[$cat][$field][] = floatval($row[$field]);
+                }
+            }
+        }
+    }
+
+    echo "<script>";
+    echo "const chartData = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
+    echo "</script>";
+} else {
+    echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+}
+
