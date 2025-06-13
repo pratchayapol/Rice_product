@@ -288,9 +288,7 @@ if ($rows1) {
         }
     }
 
-    echo "<script>";
-    echo "const chartDataPhysical = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
-    echo "</script>";
+
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }
@@ -373,9 +371,7 @@ if ($rows2) {
         }
     }
 
-    echo "<script>";
-    echo "const chartDataNutrition = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
-    echo "</script>";
+
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }

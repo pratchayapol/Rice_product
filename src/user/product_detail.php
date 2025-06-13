@@ -96,14 +96,16 @@ if ($id > 0) {
                         </div>
 
                         <!-- Tab Contents -->
+                        <script>
+                            const chartData = <?= json_encode($chartData ?? []); ?>;
+                            const chartDataNutrition = <?= json_encode($chartDataNutrition ?? []); ?>;
+                        </script>
+
                         <div class="relative">
-                            <script>
-                                const chartData = <?= json_encode($chartData); ?>;
-                                const chartDataNutrition = <?= json_encode($chartDataNutrition); ?>;
-                            </script>
                             <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
+
                             include 'sub_detail2.3.php'; //tab ข้อมูลโภชนาการ
                             ?>
                         </div>
