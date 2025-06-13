@@ -14,6 +14,8 @@ $type = isset($_GET['type']) ? $_GET['type'] : '';
 
 if ($id > 0) {
 
+    //ไฟล์นี้เป็นการค้นหาข้อมูลแปรรูปผลิตภัณฑ์ทั้ง 3 table และ table rice (ข้อมูลข้าว)
+    include 'sub_detail1.1.php';
 
 
 ?>
@@ -94,20 +96,149 @@ if ($id > 0) {
                         </div>
 
                         <!-- Tab Contents -->
+                        <?php
+
+                        $categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
+
+                        // table physical (ข้อมูลทางกายภาพ)
+                        $sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+                        $rows1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($rows1) {
+                            $physicalData = [];
+                            $fieldsToShow1 = [
+                                'seedWeight',
+                                'length',
+                                'width',
+                                'thickness',
+                                'seedShapeRatio',
+                                'chalkiness',
+                                'moisture',
+                                'elongationRatio',
+                                'peakViscosity',
+                                'trough',
+                                'breakdown',
+                                'finalViscosity',
+                                'setback',
+                                'pastingTemp',
+                                'gelConsistency',
+                                'swellingPower',
+                            ];
+                            foreach ($categories as $cat) {
+                                $physicalData[$cat] = [];
+                                // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
+                                foreach ($fieldsToShow1 as $field) {
+                                    $physicalData[$cat][$field] = [];
+                                }
+                            }
+
+                            foreach ($rows1 as $row) {
+                                $cat = $row['riceCategories'];
+                                if (in_array($cat, $categories)) {
+                                    foreach ($fieldsToShow1 as $field) {
+                                        if (isset($row[$field]) && is_numeric($row[$field])) {
+                                            $physicalData[$cat][$field][] = floatval($row[$field]);
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+                        }
 
 
+                        //table nutrition ข้อมูลโภชนาการ
+                        $sql = "SELECT * FROM nutrition WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+                        $rows2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                        if ($rows2) {
+                            $nutritionData = [];
+                            $fieldsToShow2 = [
+                                'totalEnergy',
+                                'carbohydrate',
+                                'starch',
+                                'dietaryFiber',
+                                'crudeFiber',
+                                'totalSugar',
+                                'protein',
+                                'totalFat',
+                                'saturatedFat',
+                                'unsaturatedFat',
+                                'saturatedFattyAcid',
+                                'monosaturatedFattyAcid',
+                                'polysaturatedFattyAcid',
+                                'cholesterol',
+                                'energyFromFat',
+                                'calcium',
+                                'iron',
+                                'magnesium',
+                                'phosphorus',
+                                'potassium',
+                                'sodium',
+                                'zinc',
+                                'iodine',
+                                'copper',
+                                'maganese',
+                                'selenium',
+                                'aluminium',
+                                'vitaminA',
+                                'betaCarotene',
+                                'vitaminC',
+                                'thiamine',
+                                'pantothenicAcid',
+                                'vitaminB1',
+                                'vitaminB2',
+                                'riboflavin',
+                                'vitaminB3',
+                                'vitaminB4',
+                                'vitaminB5',
+                                'vitaminB6',
+                                'allFolate',
+                                'folicAcid',
+                                'foodFolate',
+                                'DFEFolate',
+                                'vitaminB12',
+                                'retinol',
+                                'vitaminE',
+                                'vitaminK'
+                            ];
+
+                            foreach ($categories as $cat) {
+                                $nutritionData[$cat] = [];
+                                // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
+                                foreach ($fieldsToShow2 as $field) {
+                                    $nutritionData[$cat][$field] = [];
+                                }
+                            }
+
+                            foreach ($rows2 as $row) {
+                                $cat = $row['riceCategories'];
+                                if (in_array($cat, $categories)) {
+                                    foreach ($fieldsToShow2 as $field) {
+                                        if (isset($row[$field]) && is_numeric($row[$field])) {
+                                            $nutritionData[$cat][$field][] = floatval($row[$field]);
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+                        }
+
+
+
+
+                        ?>
+                        <script>
+                            const chartData = <?= json_encode($chartData ?? []); ?>;
+                            const chartDataNutrition = <?= json_encode($chartDataNutrition ?? []); ?>;
+                        </script>
 
                         <div class="relative">
-                            <?php
-                            //ไฟล์นี้เป็นการค้นหาข้อมูลแปรรูปผลิตภัณฑ์ทั้ง 3 table และ table rice (ข้อมูลข้าว)
-                            include 'sub_detail1.1.php';
-
-                            ?>
-                            <script>
-                                const chartData = <?= json_encode($chartData ?? []); ?>;
-                                const chartDataNutrition = <?= json_encode($chartDataNutrition ?? []); ?>;
-                            </script>
-
                             <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
