@@ -379,3 +379,5 @@ if ($rows2) {
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
 }
+
+

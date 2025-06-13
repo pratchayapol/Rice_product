@@ -47,6 +47,12 @@ if ($id > 0) {
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
+
+        <script>
+            const chartData = <?= json_encode($chartData); ?>;
+            const chartDataNutrition = <?= json_encode($chartDataNutrition); ?>;
+        </script>
+
     </head>
 
     <body class="bg t1">
