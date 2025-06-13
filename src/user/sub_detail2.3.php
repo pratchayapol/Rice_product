@@ -21,7 +21,7 @@
         <div id="default-tab-content">
             <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-violet-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
                 <div id="chartContainer1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
-                    <p id="noDataMsg" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
+                    <p id="noDataMsg1" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
                 </div>
 
 
