@@ -230,7 +230,7 @@ $stmt->execute();
 
 // 3. ดึงข้อมูลออกมา
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+$sampleinfo_cropSampleID = null;
 if ($row) {
     // 4. สร้างตัวแปรแบบ sampleinfo_ชื่อฟิลด์
     foreach ($row as $field => $value) {
