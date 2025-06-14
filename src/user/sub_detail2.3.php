@@ -1447,7 +1447,7 @@
                    data: {
                        labels: filteredCategories4,
                        datasets: [{
-                           label: `${field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
+                           label: `${field}${fieldUnits4[field] ? ' (' + fieldUnits4[field] + ')' : ''}`,
                            data: data,
                            backgroundColor: filteredCategories4.map(cat => categoryColors[cat] || '#999'),
 
@@ -1504,7 +1504,7 @@
                            },
                            title: {
                                display: true,
-                               text: `${fieldNamesTH3[field] || field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
+                               text: `${fieldNamesTH4[field] || field}${fieldUnits4[field] ? ' (' + fieldUnits4[field] + ')' : ''}`,
                                font: {
                                    family: 'Noto Sans Thai'
                                },
@@ -1513,7 +1513,7 @@
                            tooltip: {
                                callbacks: {
                                    label: function(context) {
-                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits3[field] || ''}`;
+                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits4[field] || ''}`;
                                    }
                                },
                                titleFont: {
