@@ -51,7 +51,7 @@
         echo "const chartData1 = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
         echo "</script>";
     } else {
-        echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+        // echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
 
@@ -136,7 +136,7 @@
         echo "const chartData2 = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
         echo "</script>";
     } else {
-        echo "ไม่พบข้อมูล nutrition สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+        // echo "ไม่พบข้อมูล nutrition สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
     // 3.table chemical (ข้อมูลคุณสมบัติทางเคมี)
@@ -185,7 +185,7 @@
         echo "const chartData3 = " . json_encode($chemicalData, JSON_UNESCAPED_UNICODE) . ";";
         echo "</script>";
     } else {
-        echo "ไม่พบข้อมูล chemical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+        // echo "ไม่พบข้อมูล chemical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
     // 4. table bioactive ออกฤทธิ์ทางชีวภาพ
@@ -295,7 +295,7 @@
         echo "const chartData4 = " . json_encode($bioactiveData, JSON_UNESCAPED_UNICODE) . ";";
         echo "</script>";
     } else {
-        echo "ไม่พบข้อมูล bioactive สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+        // echo "ไม่พบข้อมูล bioactive สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
     ?>
 
