@@ -54,7 +54,7 @@
         echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
-    // table physical (ข้อมูลทางกายภาพ)
+    // 1.table physical (ข้อมูลทางกายภาพ)
     $sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
@@ -107,7 +107,7 @@
     }
 
 
-    //table nutrition ข้อมูลโภชนาการ
+    // 2.table nutrition (ข้อมูลโภชนาการ)
     $sql = "SELECT * FROM nutrition WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
@@ -191,7 +191,7 @@
         echo "ไม่พบข้อมูล nutrition สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
-    //table chemical ข้อมูลคุณสมบัติทางเคมี
+    // 3.table chemical (ข้อมูลคุณสมบัติทางเคมี)
     $sql = "SELECT * FROM chemical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
@@ -240,8 +240,115 @@
         echo "ไม่พบข้อมูล chemical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
+    // 4. table bioactive ออกฤทธิ์ทางชีวภาพ
+    $sql = "SELECT * FROM bioactive WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+    $rows4 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($rows4) {
+        $bioactiveData = [];
+        $fieldsToShow4 = [
+            'ferulicAcid',
+            'totalTocopherol',
+            'tocopherolAlpha',
+            'tocopherolBeta',
+            'tocopherolGamma',
+            'tocopherolDelta',
+            'tocotrienolAlpha',
+            'tocotrienolBeta',
+            'tocotrienolGamma',
+            'tocotrienolDelta',
+            'prolamine',
+            'albumin',
+            'globulin',
+            'glutenin',
+            'omega3',
+            'omega6',
+            'omega9',
+            'tryptophan',
+            'threonine',
+            'isoleucine',
+            'leucine',
+            'lysine',
+            'methionine',
+            'custeine',
+            'phenylalanine',
+            'tyrosine',
+            'valine',
+            'arginine',
+            'histidine',
+            'alanine',
+            'asparticAcid',
+            'glutamicAcid',
+            'glycine',
+            'proline',
+            'serine',
+            'cerine',
+            'caffeine',
+            'theobromine',
+            'betaCarotene',
+            'alphaCarotene',
+            'betaCryptoxanthin',
+            'lycopene',
+            'luteinZeaxanthin',
+            'biotin',
+            'gammaOryzanol',
+            'phenolicCompounds',
+            'totalAntioxidant',
+            'gallicAcid',
+            'eriodictyol',
+            'anthocyanin',
+            'apigenin',
+            'isoquercetin',
+            'hydroquinin',
+            'quercetin',
+            'Kaempferol',
+            'rutin',
+            'catechin',
+            'tannicAcid',
+            'totalFlavonoid',
+            'GABA',
+            'genistein',
+            'daidzein',
+            'genistin',
+            'daidzin',
+            'quercitin3BDglucoside',
+            'peonidin3Oglucoside',
+            'oenin',
+            'anthocyanin3glucoside',
+            'callistephin',
+            'keracyanin',
+            'kuromanin',
+            'malvidin3galactoside'
+        ];
 
 
+        foreach ($categories as $cat) {
+            $bioactiveData[$cat] = [];
+            // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
+            foreach ($fieldsToShow4 as $field) {
+                $bioactiveData[$cat][$field] = [];
+            }
+        }
+
+        foreach ($rows4 as $row) {
+            $cat = $row['riceCategories'];
+            if (in_array($cat, $categories)) {
+                foreach ($fieldsToShow4 as $field) {
+                    if (isset($row[$field]) && is_numeric($row[$field])) {
+                        $bioactiveData[$cat][$field][] = floatval($row[$field]);
+                    }
+                }
+            }
+        }
+
+        echo "<script>";
+        echo "const chartData4 = " . json_encode($bioactiveData, JSON_UNESCAPED_UNICODE) . ";";
+        echo "</script>";
+    } else {
+        echo "ไม่พบข้อมูล bioactive สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+    }
     ?>
 
    <div id="nutrition" class="tab-content hidden">
@@ -956,6 +1063,393 @@
                            label: `${field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
                            data: data,
                            backgroundColor: filteredCategories3.map(cat => categoryColors[cat] || '#999'),
+
+                       }]
+                   },
+                   options: {
+                       responsive: true,
+                       indexAxis: 'x',
+                       scales: {
+                           y: {
+                               beginAtZero: true,
+                               title: {
+                                   display: true,
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   }
+                               },
+                               ticks: {
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   },
+                                   color: '#000'
+                               },
+                               grid: {
+                                   display: false // ❌ ลบเส้นแนวนอน
+                               }
+                           },
+                           x: {
+                               title: {
+                                   display: true,
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   }
+                               },
+                               ticks: {
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   },
+                                   color: '#000'
+                               },
+                               grid: {
+                                   display: false // ❌ ลบเส้นแนวนอน
+                               }
+                           }
+                       },
+                       plugins: {
+                           legend: {
+                               display: false,
+                               labels: {
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   }
+                               }
+                           },
+                           title: {
+                               display: true,
+                               text: `${fieldNamesTH3[field] || field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
+                               font: {
+                                   family: 'Noto Sans Thai'
+                               },
+                               color: '#000' // ✅ ทำหัวกราฟให้เป็นสีดำเข้ม
+                           },
+                           tooltip: {
+                               callbacks: {
+                                   label: function(context) {
+                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits3[field] || ''}`;
+                                   }
+                               },
+                               titleFont: {
+                                   family: 'Noto Sans Thai'
+                               },
+                               bodyFont: {
+                                   family: 'Noto Sans Thai'
+                               }
+                           }
+                       }
+                   }
+               });
+           });
+       }
+
+
+       // chartData4 ถูกส่งมาจาก PHP มาแล้ว 
+       const fieldsToShow4 = [
+           'ferulicAcid',
+           'totalTocopherol',
+           'tocopherolAlpha',
+           'tocopherolBeta',
+           'tocopherolGamma',
+           'tocopherolDelta',
+           'tocotrienolAlpha',
+           'tocotrienolBeta',
+           'tocotrienolGamma',
+           'tocotrienolDelta',
+           'prolamine',
+           'albumin',
+           'globulin',
+           'glutenin',
+           'omega3',
+           'omega6',
+           'omega9',
+           'tryptophan',
+           'threonine',
+           'isoleucine',
+           'leucine',
+           'lysine',
+           'methionine',
+           'custeine',
+           'phenylalanine',
+           'tyrosine',
+           'valine',
+           'arginine',
+           'histidine',
+           'alanine',
+           'asparticAcid',
+           'glutamicAcid',
+           'glycine',
+           'proline',
+           'serine',
+           'cerine',
+           'caffeine',
+           'theobromine',
+           'betaCarotene',
+           'alphaCarotene',
+           'betaCryptoxanthin',
+           'lycopene',
+           'luteinZeaxanthin',
+           'biotin',
+           'gammaOryzanol',
+           'phenolicCompounds',
+           'totalAntioxidant',
+           'gallicAcid',
+           'eriodictyol',
+           'anthocyanin',
+           'apigenin',
+           'isoquercetin',
+           'hydroquinin',
+           'quercetin',
+           'Kaempferol',
+           'rutin',
+           'catechin',
+           'tannicAcid',
+           'totalFlavonoid',
+           'GABA',
+           'genistein',
+           'daidzein',
+           'genistin',
+           'daidzin',
+           'quercitin3BDglucoside',
+           'peonidin3Oglucoside',
+           'oenin',
+           'anthocyanin3glucoside',
+           'callistephin',
+           'keracyanin',
+           'kuromanin',
+           'malvidin3galactoside'
+       ];
+
+       const fieldNamesTH4 = {
+           ferulicAcid: "กรดเฟอรูลิก",
+           totalTocopherol: "โทโคฟีรอลรวม",
+           tocopherolAlpha: "โทโคฟีรอล, แอลฟา",
+           tocopherolBeta: "โทโคฟีรอล, เบต้า",
+           tocopherolGamma: "โทโคฟีรอล, แกรมม่า",
+           tocopherolDelta: "โทโคฟีรอล, เดลต้า",
+           tocotrienolAlpha: "โทโคไตรอีนอล, แอลฟา",
+           tocotrienolBeta: "โทโคไตรอีนอล, เบต้า",
+           tocotrienolGamma: "โทโคไตรอีนอล, แกมม่า",
+           tocotrienolDelta: "โทโคไตรอีนอล, เดลต้า",
+           prolamine: "โพรลามีน",
+           albumin: "อัลบูมิน",
+           globulin: "โกลบูลิน",
+           glutenin: "กลูเตนิน",
+           omega3: "โอเมก้า 3",
+           omega6: "โอเมก้า 6",
+           omega9: "โอเมก้า 9",
+           tryptophan: "ทริปโทเฟน",
+           threonine: "ทรีโอนีน",
+           isoleucine: "ไอโซลิวซีน",
+           leucine: "ลิวซีน",
+           lysine: "ไลซีน",
+           methionine: "เมไทโอนีน",
+           custeine: "ซีสทีน",
+           phenylalanine: "เฟนีลอะลานีน",
+           tyrosine: "ไทโรซีน",
+           valine: "วาลีน",
+           arginine: "อาร์จินีน",
+           histidine: "ฮีสทิดีน",
+           alanine: "อะลานีน",
+           asparticAcid: "กรดแอสพาร์ติก",
+           glutamicAcid: "กรดกลูแทมิก",
+           glycine: "ไกลซีน",
+           proline: "โพรลีน",
+           serine: "ซีรีน",
+           cerine: "เซอลีน",
+           caffeine: "คาเฟอีน",
+           theobromine: "ธีโอโบรมีน",
+           betaCarotene: "เบต้าแคโรทีน",
+           alphaCarotene: "อัลฟาแคโรทีน",
+           betaCryptoxanthin: "เบตาคริปโตแซนธิน",
+           lycopene: "ไลโคปีน",
+           luteinZeaxanthin: "ลูทีนและซีแซนทีน",
+           biotin: "ไบโอติน",
+           gammaOryzanol: "แกมมาโอโรซานอล",
+           phenolicCompounds: "สารประกอบฟีนอลทั้งหมด",
+           totalAntioxidant: "สารต้านอนุมูลอิสระทั้งหมด",
+           gallicAcid: "แกลลิก",
+           eriodictyol: "อีริโอดิคทิออล",
+           anthocyanin: "แอนโทไซยานิน",
+           apigenin: "อพิจินิน",
+           isoquercetin: "ไอโซเควอซิทิน",
+           hydroquinin: "ไฮโดรควิโนน",
+           quercetin: "เควอซิทิน",
+           Kaempferol: "แคมพ์เฟอรอล",
+           rutin: "รูติน",
+           catechin: "แคทีซิน",
+           tannicAcid: "กรดแทนนิก",
+           totalFlavonoid: "ฟลาโวนอยด์รวม",
+           GABA: "กาบา",
+           genistein: "เจนิสทีน",
+           daidzein: "ไดด์เซอีน",
+           genistin: "เจนิสติน",
+           daidzin: "ไดด์ซิน",
+           quercitin3BDglucoside: "เควอซิทิน-3-β-D-กลูโคไซด์",
+           peonidin3Oglucoside: "พีโอนิดิน-3-O-กลูโคไซด์",
+           oenin: "โอนิน",
+           anthocyanin3glucoside: "แอนโทไซยานิน-3-กลูโคไซด์",
+           callistephin: "แคลลิสเทฟิน",
+           keracyanin: "เคราซัยยานิน",
+           kuromanin: "คุโรมานิน",
+           malvidin3galactoside: "มัลวิดิน-3-กาแลกโตไซด์"
+       };
+
+       const fieldUnits4 = {
+           ferulicAcid: "mg/kg",
+           totalTocopherol: "mg/100g",
+           tocopherolAlpha: "mg/100g",
+           tocopherolBeta: "mg/100g",
+           tocopherolGamma: "mg/100g",
+           tocopherolDelta: "mg/100g",
+           tocotrienolAlpha: "mg/100g",
+           tocotrienolBeta: "mg/100g",
+           tocotrienolGamma: "mg/100g",
+           tocotrienolDelta: "mg/100g",
+           prolamine: "%",
+           albumin: "%",
+           globulin: "%",
+           glutenin: "%",
+           omega3: "mg/100g",
+           omega6: "mg/100g",
+           omega9: "mg/100g",
+           tryptophan: "mg/100g",
+           threonine: "mg/100g",
+           isoleucine: "mg/100g",
+           leucine: "mg/100g",
+           lysine: "mg/100g",
+           methionine: "mg/100g",
+           custeine: "mg/100g",
+           phenylalanine: "mg/100g",
+           tyrosine: "mg/100g",
+           valine: "mg/100g",
+           arginine: "mg/100g",
+           histidine: "mg/100g",
+           alanine: "mg/100g",
+           asparticAcid: "mg/100g",
+           glutamicAcid: "mg/100g",
+           glycine: "mg/100g",
+           proline: "mg/100g",
+           serine: "mg/100g",
+           cerine: "mg/100g",
+           caffeine: "mg/100g",
+           theobromine: "mg/100g",
+           betaCarotene: "µg",
+           alphaCarotene: "µg",
+           betaCryptoxanthin: "µg",
+           lycopene: "µg",
+           luteinZeaxanthin: "µg",
+           biotin: "µg",
+           gammaOryzanol: "mg/100g",
+           phenolicCompounds: "mg GAE/g",
+           totalAntioxidant: "µmol TE/g",
+           gallicAcid: "mg/100g",
+           eriodictyol: "mg/100g",
+           anthocyanin: "mg/100g",
+           apigenin: "mg/100g",
+           isoquercetin: "mg/100g",
+           hydroquinin: "mg/100g",
+           quercetin: "mg/100g",
+           Kaempferol: "mg/100g",
+           rutin: "mg/100g",
+           catechin: "mg/100g",
+           tannicAcid: "mg/100g",
+           totalFlavonoid: "mg QE/g",
+           GABA: "mg/100g",
+           genistein: "mg/100g",
+           daidzein: "mg/100g",
+           genistin: "mg/100g",
+           daidzin: "mg/100g",
+           quercitin3BDglucoside: "mg/100g",
+           peonidin3Oglucoside: "mg/100g",
+           oenin: "mg/100g",
+           anthocyanin3glucoside: "mg/100g",
+           callistephin: "mg/100g",
+           keracyanin: "mg/100g",
+           kuromanin: "mg/100g",
+           malvidin3galactoside: "mg/100g"
+       };
+
+       function hasValidData4(data) {
+           for (const cat in data) {
+               for (const field in data[cat]) {
+                   if (data[cat][field].length > 0) {
+                       return true;
+                   }
+               }
+           }
+           return false;
+       }
+
+
+       const chartContainer4 = document.getElementById('chartContainer4');
+       const noDataMsg4 = document.getElementById('noDataMsg4');
+
+       if (!hasValidData4(chartData4)) {
+           noDataMsg4.style.display = 'block';
+       } else {
+           noDataMsg4.style.display = 'none';
+
+           // หาฟิลด์ที่มีข้อมูลจริง
+           let fieldsWithData4 = new Set();
+           for (const cat in chartData4) {
+               for (const field in chartData4[cat]) {
+                   if (fieldsToShow4.includes(field) && chartData4[cat][field].length > 0) {
+                       fieldsWithData4.add(field);
+                   }
+               }
+           }
+           fieldsWithData4 = Array.from(fieldsWithData4);
+
+
+           // หมวดหมู่ที่มีข้อมูลอย่างน้อย 1 ฟิลด์ใน fieldsToShow4
+           const categories = Object.keys(chartData4).filter(cat => {
+               return fieldsToShow4.some(field => {
+                   const values = chartData4[cat][field];
+                   return values && values.length > 0;
+               });
+           });
+           // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
+           fieldsWithData4.forEach(field => {
+               // ✅ กรองเฉพาะหมวดที่ field นี้มีข้อมูล
+               const filteredCategories4 = categories.filter(cat => {
+                   const values = chartData4[cat][field] || [];
+                   return values.length > 0;
+               });
+
+               // ✅ ข้าม field นี้ถ้าไม่มีหมวดไหนมีข้อมูลเลย
+               if (filteredCategories4.length === 0) return;
+
+               // ✅ คำนวณค่าเฉลี่ยเฉพาะหมวดที่มีข้อมูล
+               const data = filteredCategories4.map(cat => {
+                   const values = chartData4[cat][field];
+                   return values.reduce((a, b) => a + b, 0) / values.length;
+               });
+
+               // ✅ ข้ามถ้าค่าเฉลี่ยทั้งหมดเป็น 0 (ไม่จำเป็นเสมอ แต่กันไว้)
+               if (data.every(val => val === 0)) return;
+
+               // ✅ สร้างกราฟ
+               const cardWrapper3 = document.createElement('div');
+               cardWrapper3.className = 'bg-white rounded-xl shadow p-4';
+
+               const canvas = document.createElement('canvas');
+               canvas.id = `chart4_${field}`;
+               canvas.style.width = '100%'; // ให้กว้างเต็ม container
+               canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
+
+               cardWrapper3.appendChild(canvas);
+               chartContainer4.appendChild(cardWrapper3);
+
+               const ctx = canvas.getContext('2d');
+
+               new Chart(ctx, {
+                   type: 'bar',
+                   data: {
+                       labels: filteredCategories4,
+                       datasets: [{
+                           label: `${field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
+                           data: data,
+                           backgroundColor: filteredCategories4.map(cat => categoryColors[cat] || '#999'),
 
                        }]
                    },
