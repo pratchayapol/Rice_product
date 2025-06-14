@@ -317,7 +317,7 @@ if ($rows2) {
                         return false;
                     }
 
-                    const chartContainer = document.getElementById('chartContainer');
+                    const chartContainer1 = document.getElementById('chartContainer1');
                     const noDataMsg = document.getElementById('noDataMsg');
 
                     if (!hasValidData(chartData)) {
@@ -374,7 +374,7 @@ if ($rows2) {
                             canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
 
                             cardWrapper.appendChild(canvas);
-                            chartContainer.appendChild(cardWrapper);
+                            chartContainer1.appendChild(cardWrapper);
 
                             const ctx = canvas.getContext('2d');
 
