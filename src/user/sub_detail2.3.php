@@ -191,6 +191,54 @@
         echo "ไม่พบข้อมูล nutrition สำหรับ cropSampleID = $sampleinfo_cropSampleID";
     }
 
+    //table chemical ข้อมูลคุณสมบัติทางเคมี
+    $sql = "SELECT * FROM chemical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
+    $rows3 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($rows3) {
+        $chemicalData = [];
+        $fieldsToShow3 = [
+            'amylose',
+            'solubleAmyloseContent',
+            'amylopectin',
+            'alkaliSpreading',
+            'water_moisture',
+            'aromaBySensory',
+            'content2AP',
+            'RAG',
+            'SAG',
+            'TG',
+            'ash'
+        ];
+
+
+        foreach ($categories as $cat) {
+            $chemicalData[$cat] = [];
+            // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
+            foreach ($fieldsToShow3 as $field) {
+                $chemicalData[$cat][$field] = [];
+            }
+        }
+
+        foreach ($rows3 as $row) {
+            $cat = $row['riceCategories'];
+            if (in_array($cat, $categories)) {
+                foreach ($fieldsToShow3 as $field) {
+                    if (isset($row[$field]) && is_numeric($row[$field])) {
+                        $chemicalData[$cat][$field][] = floatval($row[$field]);
+                    }
+                }
+            }
+        }
+
+        echo "<script>";
+        echo "const chartData3 = " . json_encode($chemicalData, JSON_UNESCAPED_UNICODE) . ";";
+        echo "</script>";
+    } else {
+        echo "ไม่พบข้อมูล chemical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
+    }
 
 
 
@@ -230,15 +278,16 @@
                    <div id="chartContainer2" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
                        <p id="noDataMsg2" class="text-red-600 font-bold col-span-full hidden">ไม่มีข้อมูลโภชนาการสำหรับแสดง</p>
                    </div>
-
-                   <div id="noDataMsg2" style="display:none;" class="text-red-600 mb-4">ไม่มีข้อมูลโภชนาการสำหรับแสดง</div>
-                   <div id="chartContainer2" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
                </div>
                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-red-100" id="sub_tab3" role="tabpanel" aria-labelledby="sub_tab3-tab">
-                   <p class="text-sm text-gray-500 dark:text-gray-400">รอดำเนินการ 13 มิถุนายน 2568</p>
+                   <div id="chartContainer3" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
+                       <p id="noDataMsg3" class="text-red-600 font-bold col-span-full hidden">ไม่มีข้อมูลคุณสมบัติทางเคมีสำหรับแสดง</p>
+                   </div>
                </div>
                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-green-100" id="sub_tab4" role="tabpanel" aria-labelledby="sub_tab4-tab">
-                   <p class="text-sm text-gray-500 dark:text-gray-400">รอดำเนินการ 13 มิถุนายน 2568</p>
+                   <div id="chartContainer4" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
+                       <p id="noDataMsg4" class="text-red-600 font-bold col-span-full hidden">ไม่มีข้อมูลสารออกฤทธิ์ทางชีวภาพสำหรับแสดง</p>
+                   </div>
                </div>
            </div>
 
@@ -246,7 +295,7 @@
    </div>
 
    <script>
-       // สมมติ chartData1 ถูกส่งมาจาก PHP มาแล้ว
+       // chartData1 ถูกส่งมาจาก PHP มาแล้ว
 
        const fieldsToShow1 = [
            "seedWeight",
@@ -472,8 +521,7 @@
 
 
 
-       // chartData2 โภชนาการ
-
+       // chartData2 ถูกส่งมาจาก PHP มาแล้ว
        const fieldsToShow2 = [
            'totalEnergy',
            'carbohydrate',
@@ -769,6 +817,209 @@
                                callbacks: {
                                    label: function(context) {
                                        return `${context.parsed.y.toFixed(2)} ${fieldUnits2[field] || ''}`;
+                                   }
+                               },
+                               titleFont: {
+                                   family: 'Noto Sans Thai'
+                               },
+                               bodyFont: {
+                                   family: 'Noto Sans Thai'
+                               }
+                           }
+                       }
+                   }
+               });
+           });
+       }
+
+
+       // chartData3 ถูกส่งมาจาก PHP มาแล้ว
+       const fieldsToShow3 = [
+           'amylose',
+           'solubleAmyloseContent',
+           'amylopectin',
+           'alkaliSpreading',
+           'water_moisture',
+           'aromaBySensory',
+           'content2AP',
+           'RAG',
+           'SAG',
+           'TG',
+           'ash'
+       ];
+
+       const fieldNamesTH3 = {
+           amylose: "อไมโลส (%)",
+           solubleAmyloseContent: "อไมโลสที่ละลายน้ำ (%)",
+           amylopectin: "อะไมโลเพกติน",
+           alkaliSpreading: "การสลายแป้งในด่าง",
+           water_moisture: "ปริมาณน้ำ/ความชื้น (g/100g)",
+           aromaBySensory: "กลิ่นหอม (การประเมินทางประสาทสัมผัส)",
+           content2AP: "ปริมาณ 2-AP",
+           RAG: "RAG (g/100g)",
+           SAG: "SAG (g/100g)",
+           TG: "TG (g/100g)",
+           ash: "เถ้า (g/100g)"
+       };
+
+       const fieldUnits3 = {
+           amylose: "%",
+           solubleAmyloseContent: "%",
+           amylopectin: "", // หน่วยไม่ระบุชัด อาจเป็น % ถ้ามีข้อมูลเพิ่มเติมแจ้งได้
+           alkaliSpreading: "", // ค่าคะแนน ไม่มีหน่วย
+           water_moisture: "g/100g",
+           aromaBySensory: "", // ค่าคะแนนประเมิน ไม่มีหน่วย
+           content2AP: "µg/kg", // หน่วยมาตรฐานของ 2-AP
+           RAG: "g/100g",
+           SAG: "g/100g",
+           TG: "g/100g",
+           ash: "g/100g"
+       };
+
+       function hasValidData3(data) {
+           for (const cat in data) {
+               for (const field in data[cat]) {
+                   if (data[cat][field].length > 0) {
+                       return true;
+                   }
+               }
+           }
+           return false;
+       }
+
+       const chartContainer3 = document.getElementById('chartContainer3');
+       const noDataMsg3 = document.getElementById('noDataMsg3');
+
+       if (!hasValidData3(chartData3)) {
+           noDataMsg3.style.display = 'block';
+       } else {
+           noDataMsg3.style.display = 'none';
+
+           // หาฟิลด์ที่มีข้อมูลจริง
+           let fieldsWithData3 = new Set();
+           for (const cat in chartData3) {
+               for (const field in chartData3[cat]) {
+                   if (fieldsToShow3.includes(field) && chartData3[cat][field].length > 0) {
+                       fieldsWithData3.add(field);
+                   }
+               }
+           }
+           fieldsWithData3 = Array.from(fieldsWithData3);
+
+
+           // หมวดหมู่ที่มีข้อมูลอย่างน้อย 1 ฟิลด์ใน fieldsToShow3
+           const categories = Object.keys(chartData3).filter(cat => {
+               return fieldsToShow3.some(field => {
+                   const values = chartData3[cat][field];
+                   return values && values.length > 0;
+               });
+           });
+           // สร้างกราฟแยก 1 ฟิลด์ 1 กราฟ
+           fieldsWithData3.forEach(field => {
+               // ✅ กรองเฉพาะหมวดที่ field นี้มีข้อมูล
+               const filteredCategories3 = categories.filter(cat => {
+                   const values = chartData3[cat][field] || [];
+                   return values.length > 0;
+               });
+
+               // ✅ ข้าม field นี้ถ้าไม่มีหมวดไหนมีข้อมูลเลย
+               if (filteredCategories3.length === 0) return;
+
+               // ✅ คำนวณค่าเฉลี่ยเฉพาะหมวดที่มีข้อมูล
+               const data = filteredCategories3.map(cat => {
+                   const values = chartData3[cat][field];
+                   return values.reduce((a, b) => a + b, 0) / values.length;
+               });
+
+               // ✅ ข้ามถ้าค่าเฉลี่ยทั้งหมดเป็น 0 (ไม่จำเป็นเสมอ แต่กันไว้)
+               if (data.every(val => val === 0)) return;
+
+               // ✅ สร้างกราฟ
+               const cardWrapper3 = document.createElement('div');
+               cardWrapper3.className = 'bg-white rounded-xl shadow p-4';
+
+               const canvas = document.createElement('canvas');
+               canvas.id = `chart3_${field}`;
+               canvas.style.width = '100%'; // ให้กว้างเต็ม container
+               canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
+
+               cardWrapper3.appendChild(canvas);
+               chartContainer3.appendChild(cardWrapper3);
+
+               const ctx = canvas.getContext('2d');
+
+               new Chart(ctx, {
+                   type: 'bar',
+                   data: {
+                       labels: filteredCategories3,
+                       datasets: [{
+                           label: `${field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
+                           data: data,
+                           backgroundColor: filteredCategories3.map(cat => categoryColors[cat] || '#999'),
+
+                       }]
+                   },
+                   options: {
+                       responsive: true,
+                       indexAxis: 'x',
+                       scales: {
+                           y: {
+                               beginAtZero: true,
+                               title: {
+                                   display: true,
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   }
+                               },
+                               ticks: {
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   },
+                                   color: '#000'
+                               },
+                               grid: {
+                                   display: false // ❌ ลบเส้นแนวนอน
+                               }
+                           },
+                           x: {
+                               title: {
+                                   display: true,
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   }
+                               },
+                               ticks: {
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   },
+                                   color: '#000'
+                               },
+                               grid: {
+                                   display: false // ❌ ลบเส้นแนวนอน
+                               }
+                           }
+                       },
+                       plugins: {
+                           legend: {
+                               display: false,
+                               labels: {
+                                   font: {
+                                       family: 'Noto Sans Thai'
+                                   }
+                               }
+                           },
+                           title: {
+                               display: true,
+                               text: `${fieldNamesTH3[field] || field}${fieldUnits3[field] ? ' (' + fieldUnits3[field] + ')' : ''}`,
+                               font: {
+                                   family: 'Noto Sans Thai'
+                               },
+                               color: '#000' // ✅ ทำหัวกราฟให้เป็นสีดำเข้ม
+                           },
+                           tooltip: {
+                               callbacks: {
+                                   label: function(context) {
+                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits3[field] || ''}`;
                                    }
                                },
                                titleFont: {
