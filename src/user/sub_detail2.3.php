@@ -263,7 +263,7 @@
            "swellingPower",
        ];
 
-       const fieldNamesTH = {
+       const fieldNamesTH1 = {
            seedWeight: "น้ำหนักเมล็ด",
            length: "ความยาว",
            width: "ความกว้าง",
@@ -281,7 +281,7 @@
            gelConsistency: "ความคงตัวแป้งสุกปานกลาง",
            swellingPower: "ค่าการวิเคราะห์กำลังการพองตัว",
        };
-       const fieldUnits = {
+       const fieldUnits1 = {
            seedWeight: "g/1,000 seeds",
            length: "mm",
            width: "mm",
@@ -299,6 +299,7 @@
            gelConsistency: "mm",
            swellingPower: "%",
        };
+
        const categoryColors = {
            "ข้าวกล้อง": "#4c78a8",
            "ข้าวกล้องงอก": "#f58518",
@@ -383,7 +384,7 @@
                    data: {
                        labels: filteredCategories1,
                        datasets: [{
-                           label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
+                           label: `${field}${fieldUnits1[field] ? ' (' + fieldUnits1[field] + ')' : ''}`,
                            data: data,
                            backgroundColor: filteredCategories1.map(cat => categoryColors[cat] || '#999'),
 
@@ -440,7 +441,7 @@
                            },
                            title: {
                                display: true,
-                               text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
+                               text: `${fieldNamesTH1[field] || field}${fieldUnits1[field] ? ' (' + fieldUnits1[field] + ')' : ''}`,
                                font: {
                                    family: 'Noto Sans Thai'
                                },
@@ -449,7 +450,7 @@
                            tooltip: {
                                callbacks: {
                                    label: function(context) {
-                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits[field] || ''}`;
+                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits1[field] || ''}`;
                                    }
                                },
                                titleFont: {
@@ -518,6 +519,107 @@
            'vitaminE',
            'vitaminK'
        ];
+
+       const fieldNamesTH2 = {
+           totalEnergy: "พลังงานรวม",
+           carbohydrate: "คาร์โบไฮเดรต",
+           starch: "แป้ง",
+           dietaryFiber: "ใยอาหารทั้งหมด",
+           crudeFiber: "ใยอาหารหยาบ",
+           totalSugar: "น้ำตาลทั้งหมด",
+           protein: "โปรตีน",
+           totalFat: "ไขมันทั้งหมด",
+           saturatedFat: "ไขมันอิ่มตัว",
+           unsaturatedFat: "ไขมันไม่อิ่มตัว",
+           saturatedFattyAcid: "กรดไขมันอิ่มตัว",
+           monosaturatedFattyAcid: "กรดไขมันไม่อิ่มตัวตำแหน่งเดียว",
+           polysaturatedFattyAcid: "กรดไขมันไม่อิ่มตัวหลายตำแหน่ง",
+           cholesterol: "คอเลสเตอรอล",
+           energyFromFat: "พลังงานจากไขมัน",
+           calcium: "แคลเซียม",
+           iron: "เหล็ก",
+           magnesium: "แมกนีเซียม",
+           phosphorus: "ฟอสฟอรัส",
+           potassium: "โพแทสเซียม",
+           sodium: "โซเดียม",
+           zinc: "สังกะสี",
+           iodine: "ไอโอดีน",
+           copper: "ทองแดง",
+           maganese: "แมงกานีส",
+           selenium: "ซีลีเนียม",
+           aluminium: "อะลูมิเนียม",
+           vitaminA: "วิตามินเอ",
+           betaCarotene: "เบต้าแคโรทีน",
+           vitaminC: "วิตามินซี",
+           thiamine: "ไทอามีน (วิตามินบี1)",
+           pantothenicAcid: "กรดแพนโทเธนิก",
+           vitaminB1: "วิตามินบี1",
+           vitaminB2: "วิตามินบี2",
+           riboflavin: "ไรโบฟลาวิน",
+           vitaminB3: "วิตามินบี3",
+           vitaminB4: "วิตามินบี4",
+           vitaminB5: "วิตามินบี5",
+           vitaminB6: "วิตามินบี6",
+           allFolate: "โฟเลตทั้งหมด",
+           folicAcid: "กรดโฟลิก",
+           foodFolate: "โฟเลตจากอาหาร",
+           DFEFolate: "โฟเลตเทียบเท่า DFE",
+           vitaminB12: "วิตามินบี12",
+           retinol: "เรตินอล",
+           vitaminE: "วิตามินอี",
+           vitaminK: "วิตามินเค"
+       };
+
+       const fieldUnits2 = {
+           totalEnergy: "kcal",
+           carbohydrate: "g",
+           starch: "g",
+           dietaryFiber: "g",
+           crudeFiber: "g",
+           totalSugar: "g",
+           protein: "g",
+           totalFat: "g",
+           saturatedFat: "g",
+           unsaturatedFat: "g",
+           saturatedFattyAcid: "g",
+           monosaturatedFattyAcid: "g",
+           polysaturatedFattyAcid: "g",
+           cholesterol: "mg",
+           energyFromFat: "kcal",
+           calcium: "mg",
+           iron: "mg",
+           magnesium: "mg",
+           phosphorus: "mg",
+           potassium: "mg",
+           sodium: "mg",
+           zinc: "mg",
+           iodine: "µg",
+           copper: "mg",
+           maganese: "mg",
+           selenium: "µg",
+           aluminium: "mg",
+           vitaminA: "µg RAE",
+           betaCarotene: "µg",
+           vitaminC: "mg",
+           thiamine: "mg",
+           pantothenicAcid: "mg",
+           vitaminB1: "mg",
+           vitaminB2: "mg",
+           riboflavin: "mg",
+           vitaminB3: "mg",
+           vitaminB4: "mg",
+           vitaminB5: "mg",
+           vitaminB6: "mg",
+           allFolate: "µg",
+           folicAcid: "µg",
+           foodFolate: "µg",
+           DFEFolate: "µg DFE",
+           vitaminB12: "µg",
+           retinol: "µg",
+           vitaminE: "mg α-TE",
+           vitaminK: "µg"
+       };
+
 
        function hasValidData2(data) {
            for (const cat in data) {
@@ -596,7 +698,7 @@
                    data: {
                        labels: filteredCategories2,
                        datasets: [{
-                           label: `${field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
+                           label: `${field}${fieldUnits2[field] ? ' (' + fieldUnits2[field] + ')' : ''}`,
                            data: data,
                            backgroundColor: filteredCategories2.map(cat => categoryColors[cat] || '#999'),
 
@@ -653,7 +755,7 @@
                            },
                            title: {
                                display: true,
-                               text: `${fieldNamesTH[field] || field}${fieldUnits[field] ? ' (' + fieldUnits[field] + ')' : ''}`,
+                               text: `${fieldNamesTH2[field] || field}${fieldUnits2[field] ? ' (' + fieldUnits2[field] + ')' : ''}`,
                                font: {
                                    family: 'Noto Sans Thai'
                                },
@@ -662,7 +764,7 @@
                            tooltip: {
                                callbacks: {
                                    label: function(context) {
-                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits[field] || ''}`;
+                                       return `${context.parsed.y.toFixed(2)} ${fieldUnits2[field] || ''}`;
                                    }
                                },
                                titleFont: {
