@@ -219,7 +219,7 @@
            <div id="default-tab-content">
                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-violet-100" id="sub_tab1" role="tabpanel" aria-labelledby="sub_tab1-tab">
                    <div id="chartContainer1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
-                       <p id="noDataMsg1" class="text-red-600 font-bold col-span-full hidden">ไม่พบข้อมูล</p>
+                       <p id="noDataMsg1" class="text-red-600 font-bold col-span-full hidden">ไม่มีข้อมูลข้อมูลทางกายภาพสำหรับแสดง</p>
                    </div>
 
 
@@ -227,6 +227,10 @@
 
                </div>
                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-lime-100" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
+                   <div id="chartContainer2" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
+                       <p id="noDataMsg2" class="text-red-600 font-bold col-span-full hidden">ไม่มีข้อมูลโภชนาการสำหรับแสดง</p>
+                   </div>
+
                    <div id="noDataMsg2" style="display:none;" class="text-red-600 mb-4">ไม่มีข้อมูลโภชนาการสำหรับแสดง</div>
                    <div id="chartContainer2" class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"></div>
                </div>
