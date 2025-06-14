@@ -904,17 +904,17 @@
        ];
 
        const fieldNamesTH3 = {
-           amylose: "อไมโลส (%)",
-           solubleAmyloseContent: "อไมโลสที่ละลายน้ำ (%)",
+           amylose: "อไมโลส",
+           solubleAmyloseContent: "อไมโลสที่ละลายน้ำ",
            amylopectin: "อะไมโลเพกติน",
            alkaliSpreading: "การสลายแป้งในด่าง",
-           water_moisture: "ปริมาณน้ำ/ความชื้น (g/100g)",
+           water_moisture: "ปริมาณน้ำ/ความชื้น",
            aromaBySensory: "กลิ่นหอม (การประเมินทางประสาทสัมผัส)",
            content2AP: "ปริมาณ 2-AP",
-           RAG: "RAG (g/100g)",
-           SAG: "SAG (g/100g)",
-           TG: "TG (g/100g)",
-           ash: "เถ้า (g/100g)"
+           RAG: "RAG",
+           SAG: "SAG",
+           TG: "TG",
+           ash: "เถ้า"
        };
 
        const fieldUnits3 = {
