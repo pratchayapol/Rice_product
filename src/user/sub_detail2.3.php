@@ -47,7 +47,7 @@
             }
         }
         echo ' <script>
-    const chartData = <?= json_encode($physicalData ?? []); ?>;
+    const chartData1 = <?= json_encode($physicalData ?? []); ?>;
 </script>
 ';
     } else {
@@ -100,7 +100,7 @@ if ($rows1) {
     }
 
     echo "<script>";
-    echo "const chartData = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
+    echo "const chartData1 = " . json_encode($physicalData, JSON_UNESCAPED_UNICODE) . ";";
     echo "</script>";
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
@@ -185,7 +185,7 @@ if ($rows2) {
     }
 
     echo "<script>";
-    echo "const chartData = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
+    echo "const chartData1 = " . json_encode($nutritionData, JSON_UNESCAPED_UNICODE) . ";";
     echo "</script>";
 } else {
     echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
@@ -242,7 +242,7 @@ if ($rows2) {
    </div>
 
   <script>
-                    // สมมติ chartData ถูกส่งมาจาก PHP มาแล้ว
+                    // สมมติ chartData1 ถูกส่งมาจาก PHP มาแล้ว
 
                     const fieldsToShow = [
                         "seedWeight",
@@ -320,16 +320,16 @@ if ($rows2) {
                     const chartContainer1 = document.getElementById('chartContainer1');
                     const noDataMsg = document.getElementById('noDataMsg');
 
-                    if (!hasValidData(chartData)) {
+                    if (!hasValidData(chartData1)) {
                         noDataMsg.style.display = 'block';
                     } else {
                         noDataMsg.style.display = 'none';
 
                         // หาฟิลด์ที่มีข้อมูลจริง
                         let fieldsWithData = new Set();
-                        for (const cat in chartData) {
-                            for (const field in chartData[cat]) {
-                                if (fieldsToShow.includes(field) && chartData[cat][field].length > 0) {
+                        for (const cat in chartData1) {
+                            for (const field in chartData1[cat]) {
+                                if (fieldsToShow.includes(field) && chartData1[cat][field].length > 0) {
                                     fieldsWithData.add(field);
                                 }
                             }
@@ -338,9 +338,9 @@ if ($rows2) {
 
 
                         // หมวดหมู่ที่มีข้อมูลอย่างน้อย 1 ฟิลด์ใน fieldsToShow
-                        const categories = Object.keys(chartData).filter(cat => {
+                        const categories = Object.keys(chartData1).filter(cat => {
                             return fieldsToShow.some(field => {
-                                const values = chartData[cat][field];
+                                const values = chartData1[cat][field];
                                 return values && values.length > 0;
                             });
                         });
@@ -348,7 +348,7 @@ if ($rows2) {
                         fieldsWithData.forEach(field => {
                             // ✅ กรองเฉพาะหมวดที่ field นี้มีข้อมูล
                             const filteredCategories = categories.filter(cat => {
-                                const values = chartData[cat][field] || [];
+                                const values = chartData1[cat][field] || [];
                                 return values.length > 0;
                             });
 
@@ -357,7 +357,7 @@ if ($rows2) {
 
                             // ✅ คำนวณค่าเฉลี่ยเฉพาะหมวดที่มีข้อมูล
                             const data = filteredCategories.map(cat => {
-                                const values = chartData[cat][field];
+                                const values = chartData1[cat][field];
                                 return values.reduce((a, b) => a + b, 0) / values.length;
                             });
 
