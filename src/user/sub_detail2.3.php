@@ -369,7 +369,7 @@
                cardWrapper1.className = 'bg-white rounded-xl shadow p-4';
 
                const canvas = document.createElement('canvas');
-               canvas.id = `chart_${field}`;
+               canvas.id = `chart1_${field}`;
                canvas.style.width = '100%'; // ให้กว้างเต็ม container
                canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
 
@@ -469,7 +469,7 @@
 
        // chartData2 โภชนาการ
 
-       $fieldsToShow2 = [
+       const fieldsToShow2 = [
            'totalEnergy',
            'carbohydrate',
            'starch',
@@ -582,7 +582,7 @@
                cardWrapper2.className = 'bg-white rounded-xl shadow p-4';
 
                const canvas = document.createElement('canvas');
-               canvas.id = `chart_${field}`;
+               canvas.id = `chart2_${field}`;
                canvas.style.width = '100%'; // ให้กว้างเต็ม container
                canvas.style.height = '300px'; // กำหนดความสูงแบบตรงๆ ด้วย style
 
