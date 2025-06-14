@@ -2,58 +2,6 @@
 
     $categories = ['ข้าวเปลือก', 'ข้าวสาร', 'ข้าวกล้อง', 'ข้าวกล้องงอก'];
 
-    // table physical (ข้อมูลทางกายภาพ)
-    $sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['cropSampleID' => $sampleinfo_cropSampleID]);
-    $rows1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    if ($rows1) {
-        $physicalData = [];
-        $fieldsToShow1 = [
-            'seedWeight',
-            'length',
-            'width',
-            'thickness',
-            'seedShapeRatio',
-            'chalkiness',
-            'moisture',
-            'elongationRatio',
-            'peakViscosity',
-            'trough',
-            'breakdown',
-            'finalViscosity',
-            'setback',
-            'pastingTemp',
-            'gelConsistency',
-            'swellingPower',
-        ];
-        foreach ($categories as $cat) {
-            $physicalData[$cat] = [];
-            // เตรียม key สำหรับแต่ละฟิลด์เป็น array ว่าง
-            foreach ($fieldsToShow1 as $field) {
-                $physicalData[$cat][$field] = [];
-            }
-        }
-
-        foreach ($rows1 as $row) {
-            $cat = $row['riceCategories'];
-            if (in_array($cat, $categories)) {
-                foreach ($fieldsToShow1 as $field) {
-                    if (isset($row[$field]) && is_numeric($row[$field])) {
-                        $physicalData[$cat][$field][] = floatval($row[$field]);
-                    }
-                }
-            }
-        }
-        echo ' <script>
-    const chartData1 = <?= json_encode($physicalData ?? []); ?>;
-</script>
-';
-    } else {
-        echo "ไม่พบข้อมูล physical สำหรับ cropSampleID = $sampleinfo_cropSampleID";
-    }
-
     // 1.table physical (ข้อมูลทางกายภาพ)
     $sql = "SELECT * FROM physical WHERE cropSampleID = :cropSampleID ORDER BY nutritionDBID ASC";
     $stmt = $pdo->prepare($sql);
