@@ -117,7 +117,7 @@ $products_cosmetic = $stmt->fetchAll();
                                             <?php foreach ($products_food as $product_food): ?>
                                                 <tr class="hover:bg-yellow-50 transition">
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <img src="<?= htmlspecialchars($product_food['picture']) ?: '../image/rice_product/A.jpg' ?>"
+                                                        <img src="<?= htmlspecialchars($product_food['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
                                                             alt="<?= htmlspecialchars($product_food['product_name']) ?>"
                                                             class="w-24 h-16 object-cover rounded shadow" />
                                                     </td>
@@ -172,7 +172,7 @@ $products_cosmetic = $stmt->fetchAll();
                                             <?php foreach ($products_cosmetic as $product_cosmetic): ?>
                                                 <tr class="hover:bg-yellow-50 transition">
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <img src="<?= htmlspecialchars($product_cosmetic['picture']) ?: '../image/rice_product/A.jpg' ?>"
+                                                        <img src="<?= htmlspecialchars($product_cosmetic['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
                                                             alt="<?= htmlspecialchars($product_cosmetic['product_name']) ?>"
                                                             class="w-24 h-16 object-cover rounded shadow" />
                                                     </td>
