@@ -108,7 +108,7 @@ $products_medical = $stmt->fetchAll();
                                     ผลิตภัณฑ์อาหาร
                                 </h3>
                                 <div class="flex justify-end mb-4">
-                                    <a href="add_product_food"
+                                    <a href="add_product?type=food"
                                         class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
@@ -168,6 +168,12 @@ $products_medical = $stmt->fetchAll();
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
                                     ผลิตภัณฑ์เวชสำอาง
                                 </h3>
+                                <div class="flex justify-end mb-4">
+                                    <a href="add_product?type=cosmetic"
+                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        เพิ่มผลิตภัณฑ์
+                                    </a>
+                                </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable2" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-violet-200 text-gray-800">
@@ -226,6 +232,12 @@ $products_medical = $stmt->fetchAll();
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-sky-300 px-4 py-2 rounded-full shadow-md">
                                     ผลิตภัณฑ์ทางการแพทย์
                                 </h3>
+                                <div class="flex justify-end mb-4">
+                                    <a href="add_product?type=medical"
+                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        เพิ่มผลิตภัณฑ์
+                                    </a>
+                                </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-sky-200 text-gray-800">
