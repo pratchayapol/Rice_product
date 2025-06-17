@@ -49,7 +49,7 @@ $products = $stmt->fetchAll();
             <div class="bg-white p-10 rounded-2xl shadow-xl w-full text-center">
                 <div class="flex flex-col md:flex-row gap-6">
                     <!-- เมนูด้านซ้าย -->
-                    
+
 
                     <!-- เนื้อหาหลักฝั่งขวา -->
                     <div class="w-full flex flex-col">
@@ -57,7 +57,7 @@ $products = $stmt->fetchAll();
                             ผลิตภัณฑ์อาหาร
                         </h3>
                         <div class="overflow-x-auto p-6">
-                            <table class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                            <table id="productTable" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                 <thead class="bg-rose-200 text-gray-800">
                                     <tr>
                                         <th class="border border-gray-300 px-4 py-2">รูปสินค้า</th>
@@ -99,9 +99,27 @@ $products = $stmt->fetchAll();
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready(function() {
+                $('#productTable').DataTable({
+                    language: {
+                        search: "ค้นหา:",
+                        lengthMenu: "แสดง _MENU_ รายการต่อหน้า",
+                        info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
+                        paginate: {
+                            first: "หน้าแรก",
+                            last: "หน้าสุดท้าย",
+                            next: "ถัดไป",
+                            previous: "ก่อนหน้า"
+                        },
+                        zeroRecords: "ไม่พบข้อมูลที่ค้นหา",
+                    }
+                });
+            });
+        </script>
 
     </div>
-      <?php include '../loadtab/f.php'; ?>
+    <?php include '../loadtab/f.php'; ?>
 </body>
 
 </html>
