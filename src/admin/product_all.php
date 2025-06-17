@@ -43,6 +43,10 @@ $products_food = $stmt->fetchAll();
 
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 </head>
 
 <body class="bg t1">
