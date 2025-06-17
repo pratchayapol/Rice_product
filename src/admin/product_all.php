@@ -55,44 +55,60 @@ $products_food = $stmt->fetchAll();
     <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="w-full px-6"> <!-- ขยายเต็มจอและมี padding ขอบ -->
             <div class="bg-white p-10 rounded-2xl shadow-xl w-full text-center">
-                <div class="flex flex-col md:flex-row gap-6">
-                    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-                            <li class="me-2" role="presentation">
-                                <button class="inline-block p-4 border-b-2 rounded-t-lg active"
-                                    id="sub_tab1-tab"
-                                    data-tabs-target="#sub_tab1"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="sub_tab1"
-                                    aria-selected="true">ข้อมูลทางกายภาพ</button>
-                            </li>
-                            <li class="me-2" role="presentation">
-                                <button class="inline-block p-4 border-b-2 rounded-t-lg"
-                                    id="sub_tab2-tab"
-                                    data-tabs-target="#sub_tab2"
-                                    type="button"
-                                    role="tab"
-                                    aria-controls="sub_tab2"
-                                    aria-selected="false">ข้อมูลทางโภชนาการ</button>
-                            </li>
-                        </ul>
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg active"
+                                id="sub_tab1-tab"
+                                data-tabs-target="#sub_tab1"
+                                type="button"
+                                role="tab"
+                                aria-controls="sub_tab1"
+                                aria-selected="true">ข้อมูลทางกายภาพ</button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg"
+                                id="sub_tab2-tab"
+                                data-tabs-target="#sub_tab2"
+                                type="button"
+                                role="tab"
+                                aria-controls="sub_tab2"
+                                aria-selected="false">ข้อมูลทางโภชนาการ</button>
+                        </li>
+                    </ul>
 
+                </div>
+                <div id="default-tab-content">
+                    <div class="p-4 rounded-lg bg-gray-50 dark:bg-violet-100"
+                        id="sub_tab1"
+                        role="tabpanel"
+                        aria-labelledby="sub_tab1-tab">
+                        <!-- เนื้อหา tab 1 -->
                     </div>
-                    <div id="default-tab-content">
-                        <div class="p-4 rounded-lg bg-gray-50 dark:bg-violet-100"
-                            id="sub_tab1"
-                            role="tabpanel"
-                            aria-labelledby="sub_tab1-tab">
-                            <!-- เนื้อหา tab 1 -->
-                        </div>
-                        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-violet-100"
-                            id="sub_tab2"
-                            role="tabpanel"
-                            aria-labelledby="sub_tab2-tab">
-                            <!-- เนื้อหา tab 2 -->
-                        </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-violet-100"
+                        id="sub_tab2"
+                        role="tabpanel"
+                        aria-labelledby="sub_tab2-tab">
+                        <!-- เนื้อหา tab 2 -->
                     </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="flex flex-col md:flex-row gap-6">
+
                     <div class="w-full flex flex-col">
                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
                             ผลิตภัณฑ์อาหาร
