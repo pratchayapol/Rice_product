@@ -217,12 +217,12 @@ $products_medical = $stmt->fetchAll();
                         <!-- เนื้อหา tab 3 -->
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="w-full flex flex-col">
-                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
+                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-sky-300 px-4 py-2 rounded-full shadow-md">
                                     ผลิตภัณฑ์ทางการแพทย์
                                 </h3>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
-                                        <thead class="bg-violet-200 text-gray-800">
+                                        <thead class="bg-sky-200 text-gray-800">
                                             <tr>
                                                 <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
