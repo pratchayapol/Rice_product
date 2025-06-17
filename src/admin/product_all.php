@@ -104,7 +104,7 @@ $products_cosmetic = $stmt->fetchAll();
                                     ผลิตภัณฑ์อาหาร
                                 </h3>
                                 <div class="overflow-x-auto p-6">
-                                    <table id="productTable" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                                    <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-rose-200 text-gray-800">
                                             <tr>
                                                 <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
@@ -159,7 +159,7 @@ $products_cosmetic = $stmt->fetchAll();
                                     ผลิตภัณฑ์เวชสำอาง
                                 </h3>
                                 <div class="overflow-x-auto p-6">
-                                    <table id="productTable" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                                    <table id="productTable2" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-violet-200 text-gray-800">
                                             <tr>
                                                 <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
@@ -233,7 +233,24 @@ $products_cosmetic = $stmt->fetchAll();
         </div>
         <script>
             $(document).ready(function() {
-                $('#productTable').DataTable({
+                $('#productTable1').DataTable({
+                    language: {
+                        search: "ค้นหา:",
+                        lengthMenu: "แสดง _MENU_ รายการต่อหน้า",
+                        info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
+                        paginate: {
+                            first: "หน้าแรก",
+                            last: "หน้าสุดท้าย",
+                            next: "ถัดไป",
+                            previous: "ก่อนหน้า"
+                        },
+                        zeroRecords: "ไม่พบข้อมูลที่ค้นหา",
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                $('#productTable2').DataTable({
                     language: {
                         search: "ค้นหา:",
                         lengthMenu: "แสดง _MENU_ รายการต่อหน้า",
