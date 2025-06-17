@@ -64,7 +64,7 @@ $products_food = $stmt->fetchAll();
                                 type="button"
                                 role="tab"
                                 aria-controls="sub_tab1"
-                                aria-selected="true">ข้อมูลทางกายภาพ</button>
+                                aria-selected="true">ผลิตภัณฑ์อาหาร</button>
                         </li>
                         <li class="me-2" role="presentation">
                             <button class="inline-block p-4 border-b-2 rounded-t-lg"
@@ -73,7 +73,16 @@ $products_food = $stmt->fetchAll();
                                 type="button"
                                 role="tab"
                                 aria-controls="sub_tab2"
-                                aria-selected="false">ข้อมูลทางโภชนาการ</button>
+                                aria-selected="false">ผลิตภัณฑ์เวชสำอาง</button>
+                        </li>
+                        <li class="me-2" role="presentation">
+                            <button class="inline-block p-4 border-b-2 rounded-t-lg"
+                                id="sub_tab3-tab"
+                                data-tabs-target="#sub_tab3"
+                                type="button"
+                                role="tab"
+                                aria-controls="sub_tab3"
+                                aria-selected="false">ผลิตภัณฑ์ทางการแพทย์</button>
                         </li>
                     </ul>
 
@@ -83,6 +92,62 @@ $products_food = $stmt->fetchAll();
                         id="sub_tab1"
                         role="tabpanel"
                         aria-labelledby="sub_tab1-tab">
+                        <!-- เนื้อหา tab 1 -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-full flex flex-col">
+                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
+                                    ผลิตภัณฑ์อาหาร
+                                </h3>
+                                <div class="overflow-x-auto p-6">
+                                    <table id="productTable" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                                        <thead class="bg-rose-200 text-gray-800">
+                                            <tr>
+                                                <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2">ชื่อสินค้า</th>
+                                                <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white">
+                                            <?php foreach ($products_food as $product_food): ?>
+                                                <tr class="hover:bg-yellow-50 transition">
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <img src="<?= htmlspecialchars($product_food['picture']) ?: '../image/rice_product/A.jpg' ?>"
+                                                            alt="<?= htmlspecialchars($product_food['product_name']) ?>"
+                                                            class="w-24 h-16 object-cover rounded shadow" />
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <?= htmlspecialchars($product_food['product_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <?= htmlspecialchars($product_food['rice_variety_th_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <a href="product_detail?id=<?= urlencode($product_food['food_product_id']) ?>&type=food"
+                                                            class="text-blue-600 hover:underline">
+                                                            รายละเอียด
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <!-- Pagination (responsive) -->
+                                <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="hidden p-4 rounded-lg"
+                        id="sub_tab2"
+                        role="tabpanel"
+                        aria-labelledby="sub_tab2-tab">
+                        <!-- เนื้อหา tab 2 -->
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="w-full flex flex-col">
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
@@ -130,12 +195,17 @@ $products_food = $stmt->fetchAll();
                                 <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
                             </div>
                         </div>
+
+
                     </div>
+
+
+
                     <div class="hidden p-4 rounded-lg"
-                        id="sub_tab2"
+                        id="sub_tab3"
                         role="tabpanel"
-                        aria-labelledby="sub_tab2-tab">
-                        <!-- เนื้อหา tab 2 -->
+                        aria-labelledby="sub_tab3-tab">
+                        <!-- เนื้อหา tab 3 -->
                     </div>
                 </div>
 
