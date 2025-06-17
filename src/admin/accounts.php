@@ -102,6 +102,9 @@ $accounts = $stmt->fetchAll();
                                             <td class="border border-gray-300 px-4 py-2 text-center">
                                                 <?= !empty($account['line_user_id']) ? htmlspecialchars($account['line_user_id']) : '-' ?>
                                             </td>
+                                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                                <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
+                                            </td>
                                             <td class="border border-gray-300 px-4 py-2">
                                                 
 
