@@ -36,6 +36,7 @@ $products = $stmt->fetchAll();
     <!-- animation -->
     <link rel="stylesheet" href="../css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body class="bg t1">
@@ -100,129 +101,7 @@ $products = $stmt->fetchAll();
         </div>
 
     </div>
-    <script>
-        $(document).ready(function() {
-            let currentSearch = '';
-            let currentType = '';
-            let currentPage = 1;
-
-            function fetchProducts(search = '', type = '', page = 1) {
-                $.get('fetch_products_food.php', {
-                    search: search,
-                    type: type,
-                    page: page
-                }, function(response) {
-                    const {
-                        products,
-                        total,
-                        perPage,
-                        currentPage: returnedPage
-                    } = response;
-                    currentPage = returnedPage; // อัปเดต currentPage จาก response
-
-                    let html = '';
-                    if (products.length === 0) {
-                        html = '<p class="text-gray-500 col-span-3">ไม่พบข้อมูล</p>';
-                    } else {
-                        products.forEach(product => {
-                            html += `
-                    <a href="product_detail?id=${product.food_product_id}&type=food"
-                        class="bg-rose-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
-                        <img src="${product.picture || '../image/rice_product/A.jpg'}"
-                            alt="${product.product_name}" class="rounded-xl mb-4 w-full h-40 object-cover" />
-                        <div class="flex flex-col gap-2 w-full">
-                            <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white text-center">
-                                ${product.product_name}
-                            </div>
-                            <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white text-center">
-                                ${product.rice_variety_th_name}
-                            </div>
-                        </div>
-                    </a>`;
-                        });
-                    }
-                    $('.grid').html(html);
-
-                    // 👉 สร้าง pagination พร้อม Prev / Next และย่อหน้าหลายๆ หน้า
-                    const totalPages = Math.ceil(total / perPage);
-                    let paginationHtml = '';
-
-                    const createBtn = (i) => `
-                    <button class="px-3 py-1 rounded ${i === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200 hover:bg-gray-300'}"
-                        onclick="goToPage(${i})">${i}</button>`;
-
-                    const addEllipsis = () => `<span class="px-3 py-1 text-gray-400">...</span>`;
-
-                    // Prev button
-                    if (currentPage > 1) {
-                        paginationHtml += `<button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" onclick="goToPage(${currentPage - 1})">&laquo; Prev</button>`;
-                    }
-
-                    const maxVisible = 5;
-                    let start = Math.max(2, currentPage - 1);
-                    let end = Math.min(totalPages - 1, currentPage + 1);
-
-                    if (currentPage <= 3) {
-                        start = 2;
-                        end = Math.min(totalPages - 1, 5);
-                    } else if (currentPage >= totalPages - 2) {
-                        start = Math.max(2, totalPages - 4);
-                        end = totalPages - 1;
-                    }
-
-                    // Always show first page
-                    paginationHtml += createBtn(1);
-
-                    if (start > 2) {
-                        paginationHtml += addEllipsis();
-                    }
-
-                    for (let i = start; i <= end; i++) {
-                        paginationHtml += createBtn(i);
-                    }
-
-                    if (end < totalPages - 1) {
-                        paginationHtml += addEllipsis();
-                    }
-
-                    if (totalPages > 1) {
-                        paginationHtml += createBtn(totalPages);
-                    }
-
-                    // Next button
-                    if (currentPage < totalPages) {
-                        paginationHtml += `<button class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300" onclick="goToPage(${currentPage + 1})">Next &raquo;</button>`;
-                    }
-
-                    $('.pagination').html(paginationHtml);
-                });
-            }
-
-            // ใช้ global function สำหรับปุ่ม
-            window.goToPage = function(page) {
-                currentPage = page;
-                fetchProducts(currentSearch, currentType, currentPage);
-            }
-
-            $('#searchInput').on('input', function() {
-                currentSearch = $(this).val();
-                currentPage = 1;
-                fetchProducts(currentSearch, currentType, currentPage);
-            });
-
-            $('.filter-btn').on('click', function() {
-                currentType = $(this).data('type');
-                currentPage = 1;
-                fetchProducts(currentSearch, currentType, currentPage);
-            });
-
-            // โหลดครั้งแรก
-            fetchProducts();
-        });
-    </script>
-
-
-    <?php include '../loadtab/f.php'; ?>
+      <?php include '../loadtab/f.php'; ?>
 </body>
 
 </html>
