@@ -24,49 +24,11 @@ $paginator = new Paginator($totalItems, $cardsPerPage, $currentPage, $urlPattern
 
 // ดึงข้อมูลสินค้าของหน้าปัจจุบัน
 $offset = ($currentPage - 1) * $cardsPerPage;
-
-$sql = "
-    SELECT 
-        food_product_id AS product_id,
-        'food' AS product_type,
-        product_name,
-        product_group,
-        rice_variety_th_name,
-        rice_variety_en_name
-    FROM food_product
-
-    UNION ALL
-
-    SELECT 
-        cosmetic_product_id,
-        'cosmetic',
-         product_name,
-        product_group,
-        rice_variety_th_name,
-        rice_variety_en_name
-    FROM cosmetic_product
-
-    UNION ALL
-
-    SELECT 
-        medical_product_id,
-        'medical',
-         product_name,
-        product_group,
-        rice_variety_th_name,
-        rice_variety_en_name
-    FROM medical_product
-
-    ORDER BY product_id
-    LIMIT :limit OFFSET :offset
-";
-
-$stmt = $pdo->prepare($sql);
+$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $products = $stmt->fetchAll();
-
 ?>
 <!DOCTYPE html>
 <html lang="th">
