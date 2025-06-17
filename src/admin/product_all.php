@@ -20,6 +20,10 @@ $stmt = $pdo->prepare("SELECT * FROM cosmetic_product ORDER BY cosmetic_product_
 $stmt->execute();
 $products_cosmetic = $stmt->fetchAll();
 
+$stmt = $pdo->prepare("SELECT * FROM medical_product ORDER BY medical_product_id");
+$stmt->execute();
+$products_medical = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -211,6 +215,54 @@ $products_cosmetic = $stmt->fetchAll();
                         role="tabpanel"
                         aria-labelledby="sub_tab3-tab">
                         <!-- เนื้อหา tab 3 -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-full flex flex-col">
+                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
+                                    ผลิตภัณฑ์ทางการแพทย์
+                                </h3>
+                                <div class="overflow-x-auto p-6">
+                                    <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                                        <thead class="bg-violet-200 text-gray-800">
+                                            <tr>
+                                                <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white">
+                                            <?php foreach ($products_medical as $product_medical): ?>
+                                                <tr class="hover:bg-yellow-50 transition">
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <img src="<?= htmlspecialchars($product_medical['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
+                                                            alt="<?= htmlspecialchars($product_medical['product_name']) ?>"
+                                                            class="w-24 h-16 object-cover rounded shadow" />
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <?= htmlspecialchars($product_medical['product_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <?= htmlspecialchars($product_medical['rice_variety_th_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <a href="product_detail?id=<?= urlencode($product_medical['medical_product_id']) ?>&type=medical"
+                                                            class="text-blue-600 hover:underline">
+                                                            รายละเอียด
+                                                        </a>
+
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <!-- Pagination (responsive) -->
+                                <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -251,6 +303,23 @@ $products_cosmetic = $stmt->fetchAll();
 
             $(document).ready(function() {
                 $('#productTable2').DataTable({
+                    language: {
+                        search: "ค้นหา:",
+                        lengthMenu: "แสดง _MENU_ รายการต่อหน้า",
+                        info: "แสดง _START_ ถึง _END_ จากทั้งหมด _TOTAL_ รายการ",
+                        paginate: {
+                            first: "หน้าแรก",
+                            last: "หน้าสุดท้าย",
+                            next: "ถัดไป",
+                            previous: "ก่อนหน้า"
+                        },
+                        zeroRecords: "ไม่พบข้อมูลที่ค้นหา",
+                    }
+                });
+            });
+
+            $(document).ready(function() {
+                $('#productTable3').DataTable({
                     language: {
                         search: "ค้นหา:",
                         lengthMenu: "แสดง _MENU_ รายการต่อหน้า",
