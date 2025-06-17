@@ -12,17 +12,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 include '../connect/dbcon.php';
 
-$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id");
+$stmt = $pdo->prepare("SELECT * FROM accounts");
 $stmt->execute();
-$products_food = $stmt->fetchAll();
-
-$stmt = $pdo->prepare("SELECT * FROM cosmetic_product ORDER BY cosmetic_product_id");
-$stmt->execute();
-$products_cosmetic = $stmt->fetchAll();
-
-$stmt = $pdo->prepare("SELECT * FROM medical_product ORDER BY medical_product_id");
-$stmt->execute();
-$products_medical = $stmt->fetchAll();
+$accounts = $stmt->fetchAll();
 
 ?>
 <!DOCTYPE html>
@@ -31,7 +23,7 @@ $products_medical = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลิตภัณฑ์อาหาร</title>
+    <title>จัดการบัญชีผู้ใช้งาน</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -64,244 +56,72 @@ $products_medical = $stmt->fetchAll();
     <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="w-full px-6"> <!-- ขยายเต็มจอและมี padding ขอบ -->
             <div class="bg-white p-10 rounded-2xl shadow-xl w-full text-center">
-                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-                        <li class="me-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 rounded-t-lg active"
-                                id="sub_tab1-tab"
-                                data-tabs-target="#sub_tab1"
-                                type="button"
-                                role="tab"
-                                aria-controls="sub_tab1"
-                                aria-selected="true">ผลิตภัณฑ์อาหาร</button>
-                        </li>
-                        <li class="me-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 rounded-t-lg"
-                                id="sub_tab2-tab"
-                                data-tabs-target="#sub_tab2"
-                                type="button"
-                                role="tab"
-                                aria-controls="sub_tab2"
-                                aria-selected="false">ผลิตภัณฑ์เวชสำอาง</button>
-                        </li>
-                        <li class="me-2" role="presentation">
-                            <button class="inline-block p-4 border-b-2 rounded-t-lg"
-                                id="sub_tab3-tab"
-                                data-tabs-target="#sub_tab3"
-                                type="button"
-                                role="tab"
-                                aria-controls="sub_tab3"
-                                aria-selected="false">ผลิตภัณฑ์ทางการแพทย์</button>
-                        </li>
-                    </ul>
-
-                </div>
-                <div id="default-tab-content">
-                    <div class="p-4 rounded-lg"
-                        id="sub_tab1"
-                        role="tabpanel"
-                        aria-labelledby="sub_tab1-tab">
-                        <!-- เนื้อหา tab 1 -->
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="w-full flex flex-col">
-                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
-                                    ผลิตภัณฑ์อาหาร
-                                </h3>
-                                <div class="flex justify-end mb-4">
-                                    <a href="add_product?type=food"
-                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
-                                        เพิ่มผลิตภัณฑ์
-                                    </a>
-                                </div>
-                                <div class="overflow-x-auto p-6">
-                                    <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
-                                        <thead class="bg-rose-200 text-gray-800">
-                                            <tr>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody class="bg-white">
-                                            <?php foreach ($products_food as $product_food): ?>
-                                                <tr class="hover:bg-yellow-50 transition">
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <img src="<?= htmlspecialchars($product_food['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
-                                                                alt="<?= htmlspecialchars($product_food['product_name']) ?>"
-                                                                class="w-24 h-16 object-cover rounded shadow" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_food['product_name']) ?>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_food['rice_variety_th_name']) ?>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <a href="product_detail?id=<?= urlencode($product_food['food_product_id']) ?>&type=food"
-                                                                class="inline-block bg-rose-300 hover:bg-rose-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
-                                                                รายละเอียด
-                                                            </a>
-                                                        </div>
-
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
 
 
-                                <!-- Pagination (responsive) -->
-                                <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
-                            </div>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="w-full flex flex-col">
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
+                            ผลิตภัณฑ์อาหาร
+                        </h3>
+                        <div class="flex justify-end mb-4">
+                            <a href="add_product?type=food"
+                                class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                เพิ่มผลิตภัณฑ์
+                            </a>
+                        </div>
+                        <div class="overflow-x-auto p-6">
+                            <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                                <thead class="bg-rose-200 text-gray-800">
+                                    <tr>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">ภาพโปรไฟล์</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อบัญชีผู้ใช้</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">อีเมล</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">หมายเลข id line</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">สิทธิ์การใช้งาน</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">แก้ไขสิทธิ์การใช้งาน</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody class="bg-white">
+                                    <?php foreach ($accounts as $account): ?>
+                                        <tr class="hover:bg-yellow-50 transition">
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <div class="flex justify-center items-center">
+                                                    <img src="<?= htmlspecialchars($account['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
+                                                        alt="<?= htmlspecialchars($account['name']) ?>"
+                                                        class="w-24 h-24 object-cover rounded-full shadow" />
+
+                                                </div>
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <?= htmlspecialchars($account['name']) ?>
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <?= htmlspecialchars($account['email']) ?>
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <?= htmlspecialchars($account['line_user_id']) ?>
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <div class="flex justify-center items-center">
+                                                    <a href="product_detail?id=<?= urlencode($account['food_product_id']) ?>&type=food"
+                                                        class="inline-block bg-rose-300 hover:bg-rose-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
+                                                        รายละเอียด
+                                                    </a>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
 
 
-                    </div>
-                    <div class="hidden p-4 rounded-lg"
-                        id="sub_tab2"
-                        role="tabpanel"
-                        aria-labelledby="sub_tab2-tab">
-                        <!-- เนื้อหา tab 2 -->
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="w-full flex flex-col">
-                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
-                                    ผลิตภัณฑ์เวชสำอาง
-                                </h3>
-                                <div class="flex justify-end mb-4">
-                                    <a href="add_product?type=cosmetic"
-                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
-                                        เพิ่มผลิตภัณฑ์
-                                    </a>
-                                </div>
-                                <div class="overflow-x-auto p-6">
-                                    <table id="productTable2" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
-                                        <thead class="bg-violet-200 text-gray-800">
-                                            <tr>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody class="bg-white">
-                                            <?php foreach ($products_cosmetic as $product_cosmetic): ?>
-                                                <tr class="hover:bg-yellow-50 transition">
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <img src="<?= htmlspecialchars($product_cosmetic['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
-                                                                alt="<?= htmlspecialchars($product_cosmetic['product_name']) ?>"
-                                                                class="w-24 h-16 object-cover rounded shadow" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_cosmetic['product_name']) ?>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <a href="product_detail?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>&type=cosmetic"
-                                                                class="inline-block bg-violet-300 hover:bg-violet-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
-                                                                รายละเอียด
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-
-                                <!-- Pagination (responsive) -->
-                                <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div class="hidden p-4 rounded-lg"
-                        id="sub_tab3"
-                        role="tabpanel"
-                        aria-labelledby="sub_tab3-tab">
-                        <!-- เนื้อหา tab 3 -->
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="w-full flex flex-col">
-                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-sky-300 px-4 py-2 rounded-full shadow-md">
-                                    ผลิตภัณฑ์ทางการแพทย์
-                                </h3>
-                                <div class="flex justify-end mb-4">
-                                    <a href="add_product?type=medical"
-                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
-                                        เพิ่มผลิตภัณฑ์
-                                    </a>
-                                </div>
-                                <div class="overflow-x-auto p-6">
-                                    <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
-                                        <thead class="bg-sky-200 text-gray-800">
-                                            <tr>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
-                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
-                                            </tr>
-
-                                        </thead>
-                                        <tbody class="bg-white">
-                                            <?php foreach ($products_medical as $product_medical): ?>
-                                                <tr class="hover:bg-yellow-50 transition">
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <img src="<?= htmlspecialchars($product_medical['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
-                                                                alt="<?= htmlspecialchars($product_medical['product_name']) ?>"
-                                                                class="w-24 h-16 object-cover rounded shadow" />
-                                                        </div>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_medical['product_name']) ?>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_medical['rice_variety_th_name']) ?>
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <a href="product_detail?id=<?= urlencode($product_medical['medical_product_id']) ?>&type=medical"
-                                                                class="inline-block bg-sky-300 hover:bg-sky-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
-                                                                รายละเอียด
-                                                            </a>
-                                                        </div>
-
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-
-                                <!-- Pagination (responsive) -->
-                                <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
-                            </div>
-                        </div>
-
+                        <!-- Pagination (responsive) -->
+                        <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
                     </div>
                 </div>
-
-
-
-
-
 
 
 
