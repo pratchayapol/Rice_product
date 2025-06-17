@@ -324,10 +324,6 @@
                    <div id="chartContainer1" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
                        <p id="noDataMsg1" class="text-red-600 font-bold col-span-full hidden">ไม่มีข้อมูลข้อมูลทางกายภาพสำหรับแสดง</p>
                    </div>
-
-
-
-
                </div>
                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-lime-100" id="sub_tab2" role="tabpanel" aria-labelledby="sub_tab2-tab">
                    <div id="chartContainer2" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto">
