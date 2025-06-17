@@ -11,22 +11,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 include '../connect/dbcon.php';
-// แสดง 6 card ต่อ 1 หน้า
-$cardsPerPage = 6;
-$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-// ดึงจำนวนสินค้าทั้งหมด
-$totalItems = $pdo->query("SELECT COUNT(*) FROM food_product")->fetchColumn();
-
-// สร้าง paginator
-$urlPattern = '?page=(:num)';
-$paginator = new Paginator($totalItems, $cardsPerPage, $currentPage, $urlPattern);
-
-// ดึงข้อมูลสินค้าของหน้าปัจจุบัน
-$offset = ($currentPage - 1) * $cardsPerPage;
 $stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
-$stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $products = $stmt->fetchAll();
 ?>
