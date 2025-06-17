@@ -183,7 +183,7 @@ $products_cosmetic = $stmt->fetchAll();
                                                         <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['food_cosmetic_id']) ?>&type=cosmetic"
+                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>&type=cosmetic"
                                                             class="text-blue-600 hover:underline">
                                                             รายละเอียด
                                                         </a>
