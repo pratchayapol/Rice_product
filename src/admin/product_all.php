@@ -139,9 +139,10 @@ $products_medical = $stmt->fetchAll();
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <a href="product_detail?id=<?= urlencode($product_food['food_product_id']) ?>&type=food"
-                                                            class="text-blue-600 hover:underline">
+                                                            class="inline-block bg-rose-300 hover:bg-rose-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
                                                             รายละเอียด
                                                         </a>
+
 
                                                     </td>
                                                 </tr>
@@ -199,8 +200,8 @@ $products_medical = $stmt->fetchAll();
                                                         <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>&type=cosmetic"
-                                                            class="text-blue-600 hover:underline">
+                                                         <a href="product_detail?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>&type=cosmetic"
+                                                            class="inline-block bg-violet-300 hover:bg-violet-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
                                                             รายละเอียด
                                                         </a>
 
@@ -264,9 +265,10 @@ $products_medical = $stmt->fetchAll();
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <a href="product_detail?id=<?= urlencode($product_medical['medical_product_id']) ?>&type=medical"
-                                                            class="text-blue-600 hover:underline">
+                                                            class="inline-block bg-sky-300 hover:bg-sky-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
                                                             รายละเอียด
                                                         </a>
+
 
                                                     </td>
                                                 </tr>
