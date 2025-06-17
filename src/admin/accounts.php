@@ -61,9 +61,9 @@ $accounts = $stmt->fetchAll();
                 <div class="flex flex-col md:flex-row gap-6">
                     <div class="w-full flex flex-col">
                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
-                           จัดการบัญชีผู้ใช้งาน
+                            จัดการบัญชีผู้ใช้งาน
                         </h3>
-                        
+
                         <div class="overflow-x-auto p-6">
                             <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                 <thead class="bg-rose-200 text-gray-800">
@@ -101,8 +101,7 @@ $accounts = $stmt->fetchAll();
                                                 <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                                
-
+                                                <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
