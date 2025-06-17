@@ -12,7 +12,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 include '../connect/dbcon.php';
 
-$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
+$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id");
 $stmt->execute();
 $products = $stmt->fetchAll();
 ?>
