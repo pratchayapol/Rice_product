@@ -127,9 +127,11 @@ $products_medical = $stmt->fetchAll();
                                             <?php foreach ($products_food as $product_food): ?>
                                                 <tr class="hover:bg-yellow-50 transition">
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <img src="<?= htmlspecialchars($product_food['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
-                                                            alt="<?= htmlspecialchars($product_food['product_name']) ?>"
-                                                            class="w-24 h-16 object-cover rounded shadow" />
+                                                        <div class="flex justify-center items-center">
+                                                            <img src="<?= htmlspecialchars($product_food['picture'] ?? '') ?: '../image/rice_product/A.jpg' ?>"
+                                                                alt="<?= htmlspecialchars($product_food['product_name']) ?>"
+                                                                class="w-24 h-16 object-cover rounded shadow" />
+                                                        </div>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <?= htmlspecialchars($product_food['product_name']) ?>
@@ -200,7 +202,7 @@ $products_medical = $stmt->fetchAll();
                                                         <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                         <a href="product_detail?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>&type=cosmetic"
+                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>&type=cosmetic"
                                                             class="inline-block bg-violet-300 hover:bg-violet-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
                                                             รายละเอียด
                                                         </a>
