@@ -103,10 +103,11 @@ $products_food = $stmt->fetchAll();
                                                         <?= htmlspecialchars($product_food['rice_variety_th_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <a href="product_detail?id=<?= urlencode($product['food_product_food_id']) ?>&type=food"
+                                                        <a href="product_detail?id=<?= urlencode($product_food['food_product_id']) ?>&type=food"
                                                             class="text-blue-600 hover:underline">
                                                             รายละเอียด
                                                         </a>
+
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
