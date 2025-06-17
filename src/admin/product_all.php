@@ -14,7 +14,7 @@ include '../connect/dbcon.php';
 
 $stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id");
 $stmt->execute();
-$products = $stmt->fetchAll();
+$products_food = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -73,21 +73,21 @@ $products = $stmt->fetchAll();
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white">
-                                    <?php foreach ($products as $product): ?>
+                                    <?php foreach ($products_food as $product_food): ?>
                                         <tr class="hover:bg-yellow-50 transition">
                                             <td class="border border-gray-300 px-4 py-2">
-                                                <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
-                                                    alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                                <img src="<?= htmlspecialchars($product_food['picture']) ?: '../image/rice_product/A.jpg' ?>"
+                                                    alt="<?= htmlspecialchars($product_food['product_name']) ?>"
                                                     class="w-24 h-16 object-cover rounded shadow" />
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                                <?= htmlspecialchars($product['product_name']) ?>
+                                                <?= htmlspecialchars($product_food['product_name']) ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                                <?= htmlspecialchars($product['rice_variety_th_name']) ?>
+                                                <?= htmlspecialchars($product_food['rice_variety_th_name']) ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
+                                                <a href="product_detail?id=<?= urlencode($product['food_product_food_id']) ?>&type=food"
                                                     class="text-blue-600 hover:underline">
                                                     รายละเอียด
                                                 </a>
