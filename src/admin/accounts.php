@@ -96,11 +96,11 @@ $accounts = $stmt->fetchAll();
                                             <td class="border border-gray-300 px-4 py-2">
                                                 <?= htmlspecialchars($account['name']) ?>
                                             </td>
-                                            <td class="border border-gray-300 px-4 py-2">
-                                                <?= htmlspecialchars($account['email']) ?>
+                                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                                <?= !empty($account['email']) ? htmlspecialchars($account['email']) : '-' ?>
                                             </td>
-                                            <td class="border border-gray-300 px-4 py-2">
-                                                <?= htmlspecialchars($account['line_user_id']) ?>
+                                            <td class="border border-gray-300 px-4 py-2 text-center">
+                                                <?= !empty($account['line_user_id']) ? htmlspecialchars($account['line_user_id']) : '-' ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
                                                 <div class="flex justify-center items-center">
