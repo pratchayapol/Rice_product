@@ -44,8 +44,6 @@ $products_food = $stmt->fetchAll();
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
     <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 </head>
 
@@ -145,6 +143,46 @@ $products_food = $stmt->fetchAll();
             </div>
         </div>
     </div>
+
+    <!-- Modal เต็มจอ (ใช้ร่วมกัน) -->
+    <div id="imageModal"
+        class="fixed inset-0 z-50 bg-black bg-opacity-80 flex items-center justify-center hidden"
+        onclick="closeImageModal()">
+        <img id="modalImage" src="" alt="รูปเต็ม" class="max-w-full max-h-full rounded shadow-lg">
+    </div>
+
+
+
+
+    <script>
+        function openImageModal(src) {
+            const modal = document.getElementById("imageModal");
+            const img = document.getElementById("modalImage");
+            img.src = src;
+            modal.classList.remove("hidden");
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById("imageModal");
+            modal.classList.add("hidden");
+        }
+
+        function showTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('bg-yellow-600', 'text-white');
+                button.classList.add('bg-yellow-400', 'text-black');
+            });
+            btn.classList.remove('bg-yellow-400', 'text-black');
+            btn.classList.add('bg-yellow-600', 'text-white');
+        }
+
+        // แสดงแท็บแรกเมื่อโหลด
+        window.onload = () => showTab('method', document.querySelector('.tab-button'));
+    </script>
+
     <?php include '../loadtab/f.php'; ?>
 </body>
 
