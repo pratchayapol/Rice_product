@@ -117,11 +117,12 @@ $products_medical = $stmt->fetchAll();
                                     <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-rose-200 text-gray-800">
                                             <tr>
-                                                <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
-                                                <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
                                             </tr>
+
                                         </thead>
                                         <tbody class="bg-white">
                                             <?php foreach ($products_food as $product_food): ?>
@@ -182,11 +183,12 @@ $products_medical = $stmt->fetchAll();
                                     <table id="productTable2" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-violet-200 text-gray-800">
                                             <tr>
-                                                <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
-                                                <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
                                             </tr>
+
                                         </thead>
                                         <tbody class="bg-white">
                                             <?php foreach ($products_cosmetic as $product_cosmetic): ?>
@@ -249,11 +251,12 @@ $products_medical = $stmt->fetchAll();
                                     <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-sky-200 text-gray-800">
                                             <tr>
-                                                <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
-                                                <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
                                             </tr>
+
                                         </thead>
                                         <tbody class="bg-white">
                                             <?php foreach ($products_medical as $product_medical): ?>
