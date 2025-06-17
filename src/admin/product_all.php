@@ -15,6 +15,11 @@ include '../connect/dbcon.php';
 $stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id");
 $stmt->execute();
 $products_food = $stmt->fetchAll();
+
+$stmt = $pdo->prepare("SELECT * FROM cosmetic_product ORDER BY cosmetic_product_id");
+$stmt->execute();
+$products_cosmetic = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -103,7 +108,7 @@ $products_food = $stmt->fetchAll();
                                         <thead class="bg-rose-200 text-gray-800">
                                             <tr>
                                                 <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
-                                                <th class="border border-gray-300 px-4 py-2">ชื่อสินค้า</th>
+                                                <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
                                                 <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
                                             </tr>
@@ -150,35 +155,35 @@ $products_food = $stmt->fetchAll();
                         <!-- เนื้อหา tab 2 -->
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="w-full flex flex-col">
-                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
-                                    ผลิตภัณฑ์อาหาร
+                                <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
+                                    ผลิตภัณฑ์ผลิตภัณฑ์เวชสำอาง
                                 </h3>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
-                                        <thead class="bg-rose-200 text-gray-800">
+                                        <thead class="bg-violet-200 text-gray-800">
                                             <tr>
-                                                <th class="border border-gray-300 px-4 py-2">รูปสินค้า</th>
-                                                <th class="border border-gray-300 px-4 py-2">ชื่อสินค้า</th>
+                                                <th class="border border-gray-300 px-4 py-2">รูปผลิตภัณฑ์</th>
+                                                <th class="border border-gray-300 px-4 py-2">ชื่อผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
                                                 <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                            <?php foreach ($products_food as $product_food): ?>
+                                            <?php foreach ($products_cosmetic as $product_cosmetic): ?>
                                                 <tr class="hover:bg-yellow-50 transition">
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <img src="<?= htmlspecialchars($product_food['picture']) ?: '../image/rice_product/A.jpg' ?>"
-                                                            alt="<?= htmlspecialchars($product_food['product_name']) ?>"
+                                                        <img src="<?= htmlspecialchars($product_cosmetic['picture']) ?: '../image/rice_product/A.jpg' ?>"
+                                                            alt="<?= htmlspecialchars($product_cosmetic['product_name']) ?>"
                                                             class="w-24 h-16 object-cover rounded shadow" />
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_food['product_name']) ?>
+                                                        <?= htmlspecialchars($product_cosmetic['product_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <?= htmlspecialchars($product_food['rice_variety_th_name']) ?>
+                                                        <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <a href="product_detail?id=<?= urlencode($product_food['food_product_id']) ?>&type=food"
+                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['food_product_id']) ?>&type=food"
                                                             class="text-blue-600 hover:underline">
                                                             รายละเอียด
                                                         </a>
