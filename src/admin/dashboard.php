@@ -160,19 +160,19 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         </div>
 
                         <!-- กล่องผลิตภัณฑ์อาหาร -->
-                        <a href="product_food" class="block border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#ffd8c3] transform transition-transform duration-300 hover:scale-105 cursor-pointer">
+                        <a href="#" class="block border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#ffd8c3] transform transition-transform duration-300 hover:scale-105 cursor-pointer">
                             <p class="text-xl">ผลิตภัณฑ์อาหาร</p>
                             <p id="foodCount" class="text-3xl font-bold">0</p>
                         </a>
 
                         <!-- กล่องเวชสำอาง -->
-                        <a href="product_cosmetic" class="block border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#fff2fc] transform transition-transform duration-300 hover:scale-105 cursor-pointer">
+                        <a href="#" class="block border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#fff2fc] transform transition-transform duration-300 hover:scale-105 cursor-pointer">
                             <p class="text-xl">ผลิตภัณฑ์เวชสำอาง</p>
                             <p id="cosmeticCount" class="text-3xl font-bold">0</p>
                         </a>
 
                         <!-- กล่องผลิตภัณฑ์ทางการแพทย์ -->
-                        <a href="product_medical" class="block border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#e6f5ff] transform transition-transform duration-300 hover:scale-105 cursor-pointer">
+                        <a href="#" class="block border rounded-xl shadow p-4 flex flex-col items-center justify-center text-center bg-[#e6f5ff] transform transition-transform duration-300 hover:scale-105 cursor-pointer">
                             <p class="text-xl">ผลิตภัณฑ์ทางการแพทย์</p>
                             <p id="medicalCount" class="text-3xl font-bold">0</p>
                         </a>
