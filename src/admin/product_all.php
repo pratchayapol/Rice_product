@@ -163,28 +163,42 @@ $products = $stmt->fetchAll();
                         <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
                             ผลิตภัณฑ์อาหาร
                         </h3>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-                            <?php foreach ($products as $product): ?>
-                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
-                                    class="bg-rose-100 rounded-2xl shadow p-4 flex flex-col items-center transform transition hover:scale-105 hover:shadow-lg">
-
-                                    <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
-                                        alt="<?= htmlspecialchars($product['product_name']) ?>"
-                                        class="rounded-xl mb-4 w-full h-40 object-cover" />
-
-                                    <div class="flex flex-col gap-2 w-full">
-                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
-                                            <?= htmlspecialchars($product['product_name']) ?>
-                                        </div>
-                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
-                                            <?= htmlspecialchars($product['rice_variety_th_name']) ?>
-                                        </div>
-                                    </div>
-
-                                </a>
-                            <?php endforeach; ?>
+                        <div class="overflow-x-auto p-6">
+                            <table class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                                <thead class="bg-rose-200 text-gray-800">
+                                    <tr>
+                                        <th class="border border-gray-300 px-4 py-2">รูปสินค้า</th>
+                                        <th class="border border-gray-300 px-4 py-2">ชื่อสินค้า</th>
+                                        <th class="border border-gray-300 px-4 py-2">สายพันธุ์ข้าว</th>
+                                        <th class="border border-gray-300 px-4 py-2">ดูรายละเอียด</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <?php foreach ($products as $product): ?>
+                                        <tr class="hover:bg-yellow-50 transition">
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <img src="<?= htmlspecialchars($product['picture']) ?: '../image/rice_product/A.jpg' ?>"
+                                                    alt="<?= htmlspecialchars($product['product_name']) ?>"
+                                                    class="w-24 h-16 object-cover rounded shadow" />
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <?= htmlspecialchars($product['product_name']) ?>
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <?= htmlspecialchars($product['rice_variety_th_name']) ?>
+                                            </td>
+                                            <td class="border border-gray-300 px-4 py-2">
+                                                <a href="product_detail?id=<?= urlencode($product['food_product_id']) ?>&type=food"
+                                                    class="text-blue-600 hover:underline">
+                                                    รายละเอียด
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
+
 
                         <!-- Pagination (responsive) -->
                         <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
