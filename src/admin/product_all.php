@@ -156,7 +156,7 @@ $products_cosmetic = $stmt->fetchAll();
                         <div class="flex flex-col md:flex-row gap-6">
                             <div class="w-full flex flex-col">
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
-                                    ผลิตภัณฑ์ผลิตภัณฑ์เวชสำอาง
+                                    ผลิตภัณฑ์เวชสำอาง
                                 </h3>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
@@ -183,7 +183,7 @@ $products_cosmetic = $stmt->fetchAll();
                                                         <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
-                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['food_product_id']) ?>&type=food"
+                                                        <a href="product_detail?id=<?= urlencode($product_cosmetic['food_cosmetic_id']) ?>&type=cosmetic"
                                                             class="text-blue-600 hover:underline">
                                                             รายละเอียด
                                                         </a>
