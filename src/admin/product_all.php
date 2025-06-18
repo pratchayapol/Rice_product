@@ -150,178 +150,137 @@ $products_medical = $stmt->fetchAll();
                                                             </button>
                                                         </div>
 
-                                                    </td>
-                                                    <td class="border border-gray-300 px-4 py-2">
-                                                        <div class="flex justify-center items-center">
-                                                            <a href="product_detail?id=<?= urlencode($product_food['food_product_id']) ?>&type=food"
-                                                                class="inline-block bg-rose-300 hover:bg-rose-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
-                                                                รายละเอียด
-                                                            </a>
-                                                        </div>
+                                                        <!-- Modal -->
+                                                        <div id="modal-<?= $product_food['food_product_id'] ?>" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                                                            <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
+                                                                <button
+                                                                    onclick="closeModal('modal-<?= $product_food['food_product_id'] ?>')"
+                                                                    class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
 
+                                                                <h2 class="text-xl font-semibold mb-4">แก้ไขข้อมูลผลิตภัณฑ์</h2>
+
+                                                                <form method="POST" action="update_product.php" enctype="multipart/form-data" class="space-y-4">
+
+                                                                    <!-- ชื่อผลิตภัณฑ์ -->
+                                                                    <div>
+                                                                        <label for="product_name_th_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
+                                                                        <input type="text" id="product_name_th_<?= $product_food['food_product_id'] ?>" name="product_name_th" class="w-full border rounded px-3 py-2" required value="<?= htmlspecialchars($product_food['product_name'] ?? '') ?>">
+                                                                    </div>
+
+                                                                    <!-- ชื่อผลิตภัณฑ์อังกฤษแบบไทย -->
+                                                                    <div>
+                                                                        <label for="product_name_eng_thai_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์อังกฤษแบบไทย</label>
+                                                                        <input type="text" id="product_name_eng_thai_<?= $product_food['food_product_id'] ?>" name="product_name_eng_thai" class="w-full border rounded px-3 py-2" required value="<?= htmlspecialchars($product_food['product_name_eng_thai'] ?? '') ?>">
+                                                                    </div>
+
+                                                                    <!-- ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง) -->
+                                                                    <div>
+                                                                        <label for="product_name_eng_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง)</label>
+                                                                        <input type="text" id="product_name_eng_<?= $product_food['food_product_id'] ?>" name="product_name_eng" class="w-full border rounded px-3 py-2" required value="<?= htmlspecialchars($product_food['product_name_eng'] ?? '') ?>">
+                                                                    </div>
+
+                                                                    <!-- ประเภท -->
+                                                                    <div>
+                                                                        <label for="category_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
+                                                                        <select id="category_<?= $product_food['food_product_id'] ?>" name="category" class="w-full border rounded px-3 py-2" required>
+                                                                            <option value="">-- กรุณาเลือกประเภท --</option>
+                                                                            <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= ($product_food['category'] ?? '') === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
+                                                                            <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= ($product_food['category'] ?? '') === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
+                                                                            <option value="ผลิตภัณฑ์จากการหมัก" <?= ($product_food['category'] ?? '') === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
+                                                                            <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= ($product_food['category'] ?? '') === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <!-- กลุ่มย่อย -->
+                                                                    <div>
+                                                                        <label for="subcategory_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
+                                                                        <select id="subcategory_<?= $product_food['food_product_id'] ?>" name="subcategory" class="w-full border rounded px-3 py-2" required>
+                                                                            <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
+                                                                            <option value="อาหาร" <?= ($product_food['subcategory'] ?? '') === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
+                                                                            <option value="ขนม" <?= ($product_food['subcategory'] ?? '') === 'ขนม' ? 'selected' : '' ?>>ขนม</option>
+                                                                            <option value="เครื่องดื่ม" <?= ($product_food['subcategory'] ?? '') === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
+                                                                            <option value="เครื่องปรุงรส" <?= ($product_food['subcategory'] ?? '') === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <!-- กลุ่มพันธุ์ข้าวภาษาไทย -->
+                                                                    <div>
+                                                                        <label for="rice_group_th_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
+                                                                        <input type="text" id="rice_group_th_<?= $product_food['food_product_id'] ?>" name="rice_group_th" class="w-full border rounded px-3 py-2" value="<?= htmlspecialchars($product_food['rice_group_th'] ?? 'ข้าวอื่น ๆ') ?>" required>
+                                                                    </div>
+
+                                                                    <!-- กลุ่มพันธุ์ข้าวภาษาอังกฤษ -->
+                                                                    <div>
+                                                                        <label for="rice_group_eng_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาอังกฤษ</label>
+                                                                        <input type="text" id="rice_group_eng_<?= $product_food['food_product_id'] ?>" name="rice_group_eng" class="w-full border rounded px-3 py-2" value="<?= htmlspecialchars($product_food['rice_group_eng'] ?? 'ข้าวอื่น ๆ') ?>" required>
+                                                                    </div>
+
+                                                                    <!-- ที่มา URL -->
+                                                                    <div>
+                                                                        <label for="source_url_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">ที่มา URL <span class="text-gray-500">(วางลิงค์ข้อมูล)</span></label>
+                                                                        <input type="url" id="source_url_<?= $product_food['food_product_id'] ?>" name="source_url" placeholder="https://example.com" class="w-full border rounded px-3 py-2" value="<?= htmlspecialchars($product_food['source_url'] ?? '') ?>">
+                                                                    </div>
+
+                                                                    <!-- ที่มา -->
+                                                                    <div>
+                                                                        <label for="source_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-500">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
+                                                                        <input type="text" id="source_<?= $product_food['food_product_id'] ?>" name="source" class="w-full border rounded px-3 py-2" value="<?= htmlspecialchars($product_food['source'] ?? '') ?>">
+                                                                    </div>
+
+                                                                    <!-- วัตถุดิบและอุปกรณ์ (ckeditor) -->
+                                                                    <div>
+                                                                        <label for="ingredients_th_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
+                                                                        <textarea id="ingredients_th_<?= $product_food['food_product_id'] ?>" name="ingredients_th" class="w-full border rounded px-3 py-2" rows="5"><?= htmlspecialchars($product_food['ingredients_th'] ?? '') ?></textarea>
+                                                                    </div>
+
+                                                                    <!-- วิธีทำ (ckeditor) -->
+                                                                    <div>
+                                                                        <label for="method_th_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ</label>
+                                                                        <textarea id="method_th_<?= $product_food['food_product_id'] ?>" name="method_th" class="w-full border rounded px-3 py-2" rows="5"><?= htmlspecialchars($product_food['method_th'] ?? '') ?></textarea>
+                                                                    </div>
+
+                                                                    <!-- วัตถุดิบและอุปกรณ์ ภาษาอังกฤษ (ckeditor) -->
+                                                                    <div>
+                                                                        <label for="ingredients_en_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์ ภาษาอังกฤษ</label>
+                                                                        <textarea id="ingredients_en_<?= $product_food['food_product_id'] ?>" name="ingredients_en" class="w-full border rounded px-3 py-2" rows="5"><?= htmlspecialchars($product_food['ingredients_en'] ?? '') ?></textarea>
+                                                                    </div>
+
+                                                                    <!-- วิธีทำ ภาษาอังกฤษ (ckeditor) -->
+                                                                    <div>
+                                                                        <label for="method_en_<?= $product_food['food_product_id'] ?>" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ ภาษาอังกฤษ</label>
+                                                                        <textarea id="method_en_<?= $product_food['food_product_id'] ?>" name="method_en" class="w-full border rounded px-3 py-2" rows="5"><?= htmlspecialchars($product_food['method_en'] ?? '') ?></textarea>
+                                                                    </div>
+
+                                                                    <input type="hidden" name="food_product_id" value="<?= $product_food['food_product_id'] ?>">
+
+                                                                    <div class="text-right">
+                                                                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded">
+                                                                            บันทึกข้อมูล
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
+
+                                        <!-- Load CKEditor only once -->
+                                        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+                                        <script>
+                                            <?php foreach ($products_food as $product_food): ?>
+                                                ClassicEditor.create(document.querySelector('#ingredients_th_<?= $product_food['food_product_id'] ?>')).catch(error => console.error(error));
+                                                ClassicEditor.create(document.querySelector('#method_th_<?= $product_food['food_product_id'] ?>')).catch(error => console.error(error));
+                                                ClassicEditor.create(document.querySelector('#ingredients_en_<?= $product_food['food_product_id'] ?>')).catch(error => console.error(error));
+                                                ClassicEditor.create(document.querySelector('#method_en_<?= $product_food['food_product_id'] ?>')).catch(error => console.error(error));
+                                            <?php endforeach; ?>
+                                        </script>
+
                                     </table>
                                 </div>
 
-                                <!-- Modal -->
-                                <div id="modal-<?= $product_food['food_product_id'] ?>" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-                                    <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
-                                        <button
-                                            onclick="closeModal('modal-<?= $product_food['food_product_id'] ?>')"
-                                            class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
 
-                                        <h2 class="text-xl font-semibold mb-4">แก้ไขข้อมูลผลิตภัณฑ์</h2>
-
-                                        <form method="POST" action="update_product.php" enctype="multipart/form-data" class="space-y-4">
-
-                                            <!-- ชื่อผลิตภัณฑ์ -->
-                                            <div>
-                                                <label for="product_name_th" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
-                                                <input type="text" id="product_name_th" name="product_name_th" class="w-full border rounded px-3 py-2" required>
-                                            </div>
-
-                                            <!-- ชื่อผลิตภัณฑ์อังกฤษแบบไทย -->
-                                            <div>
-                                                <label for="product_name_eng_thai" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์อังกฤษแบบไทย</label>
-                                                <input type="text" id="product_name_eng_thai" name="product_name_eng_thai" class="w-full border rounded px-3 py-2" required>
-                                            </div>
-
-                                            <!-- ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง) -->
-                                            <div>
-                                                <label for="product_name_eng" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง)</label>
-                                                <input type="text" id="product_name_eng" name="product_name_eng" class="w-full border rounded px-3 py-2" required>
-                                            </div>
-
-                                            <!-- ประเภท -->
-                                            <div>
-                                                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
-                                                <select id="category" name="category" class="w-full border rounded px-3 py-2" required>
-                                                    <option value="">-- กรุณาเลือกประเภท --</option>
-                                                    <option value="ผลิตภัณฑ์จากเมล็ดข้าว">ผลิตภัณฑ์จากเมล็ดข้าว</option>
-                                                    <option value="ผลิตภัณฑ์จากแป้งข้าว">ผลิตภัณฑ์จากแป้งข้าว</option>
-                                                    <option value="ผลิตภัณฑ์จากการหมัก">ผลิตภัณฑ์จากการหมัก</option>
-                                                    <option value="ผลิตภัณฑ์จากส่วนอื่นๆ">ผลิตภัณฑ์จากส่วนอื่นๆ</option>
-                                                </select>
-                                            </div>
-
-                                            <!-- กลุ่มย่อย -->
-                                            <div>
-                                                <label for="subcategory" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
-                                                <select id="subcategory" name="subcategory" class="w-full border rounded px-3 py-2" required>
-                                                    <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
-                                                    <option value="อาหาร">อาหาร</option>
-                                                    <option value="ขนม">ขนม</option>
-                                                    <option value="เครื่องดื่ม">เครื่องดื่ม</option>
-                                                    <option value="เครื่องปรุงรส">เครื่องปรุงรส</option>
-                                                </select>
-                                            </div>
-
-                                            <!-- กลุ่มพันธุ์ข้าวภาษาไทย -->
-                                            <div>
-                                                <label for="rice_group_th" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
-                                                <input type="text" id="rice_group_th" name="rice_group_th" class="w-full border rounded px-3 py-2" value="ข้าวอื่น ๆ" required>
-                                            </div>
-
-                                            <!-- กลุ่มพันธุ์ข้าวภาษาอังกฤษ -->
-                                            <div>
-                                                <label for="rice_group_eng" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาอังกฤษ</label>
-                                                <input type="text" id="rice_group_eng" name="rice_group_eng" class="w-full border rounded px-3 py-2" value="ข้าวอื่น ๆ" required>
-                                            </div>
-
-                                            <!-- ที่มา URL -->
-                                            <div>
-                                                <label for="source_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา URL <span class="text-gray-500">(วางลิงค์ข้อมูล)</span></label>
-                                                <input type="url" id="source_url" name="source_url" placeholder="https://example.com" class="w-full border rounded px-3 py-2">
-                                            </div>
-
-                                            <!-- ที่มา -->
-                                            <div>
-                                                <label for="source" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-500">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
-                                                <input type="text" id="source" name="source" class="w-full border rounded px-3 py-2">
-                                            </div>
-
-                                            <!-- วัตถุดิบและอุปกรณ์ (ckeditor) -->
-                                            <div>
-                                                <label for="ingredients_th" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
-                                                <textarea id="ingredients_th" name="ingredients_th" class="w-full border rounded px-3 py-2" rows="5"></textarea>
-                                            </div>
-
-                                            <!-- วิธีทำ (ckeditor) -->
-                                            <div>
-                                                <label for="method_th" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ</label>
-                                                <textarea id="method_th" name="method_th" class="w-full border rounded px-3 py-2" rows="5"></textarea>
-                                            </div>
-
-                                            <!-- วัตถุดิบและอุปกรณ์ภาษาอังกฤษ (ckeditor) -->
-                                            <div>
-                                                <label for="ingredients_en" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์ภาษาอังกฤษ</label>
-                                                <textarea id="ingredients_en" name="ingredients_en" class="w-full border rounded px-3 py-2" rows="5"></textarea>
-                                            </div>
-
-                                            <!-- วิธีทำภาษาอังกฤษ (ckeditor) -->
-                                            <div>
-                                                <label for="method_en" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำภาษาอังกฤษ</label>
-                                                <textarea id="method_en" name="method_en" class="w-full border rounded px-3 py-2" rows="5"></textarea>
-                                            </div>
-
-                                            <!-- ภาพผลิตภัณฑ์ (ไฟล์) -->
-                                            <div>
-                                                <label for="product_image" class="block text-sm font-medium text-gray-700 mb-1">ภาพผลิตภัณฑ์ (ไฟล์ภาพ 1 รูป)</label>
-                                                <input type="file" id="product_image" name="product_image" accept="image/*" class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-rose-50 file:text-rose-700
-      hover:file:bg-rose-100
-    ">
-                                            </div>
-
-                                            <div class="flex justify-end">
-                                                <button type="submit" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold py-2 px-6 rounded-lg shadow">
-                                                    บันทึก
-                                                </button>
-                                            </div>
-
-                                        </form>
-
-                                        <!-- CKEditor 5 CDN -->
-                                        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
-                                        <script>
-                                            ClassicEditor
-                                                .create(document.querySelector('#ingredients_th'))
-                                                .catch(error => {
-                                                    console.error(error);
-                                                });
-                                            ClassicEditor
-                                                .create(document.querySelector('#method_th'))
-                                                .catch(error => {
-                                                    console.error(error);
-                                                });
-                                            ClassicEditor
-                                                .create(document.querySelector('#ingredients_en'))
-                                                .catch(error => {
-                                                    console.error(error);
-                                                });
-                                            ClassicEditor
-                                                .create(document.querySelector('#method_en'))
-                                                .catch(error => {
-                                                    console.error(error);
-                                                });
-                                        </script>
-                                    </div>
-                                </div>
-
-                                <script>
-                                    function openModal(id) {
-                                        document.getElementById(id).classList.remove('hidden');
-                                    }
-
-                                    function closeModal(id) {
-                                        document.getElementById(id).classList.add('hidden');
-                                    }
-                                </script>
                                 <!-- Pagination (responsive) -->
                                 <div class="pagination flex flex-wrap justify-center md:justify-end mt-6 space-x-2"></div>
                             </div>
