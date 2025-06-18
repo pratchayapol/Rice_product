@@ -437,32 +437,59 @@ if (!empty($products_food['rice_id'])) {
         }
 
         // รวมคำสั่ง SQL สำหรับอัปเดต
-        $sql = "UPDATE food_product SET
-                product_name = :product_name,
-                product_name_th = :product_name_th,
-                product_name_en = :product_name_en,
-                product_group = :product_group,
-                category = :category,
-                rice_id = :rice_id,
-                rice_variety_th_name = :thai_name,
-                rice_variety_en_name = :english_name,
-                rice_variety_group_th_name = :rice_variety_group_th_name,
-                rice_variety_group_en_name = :rice_variety_group_en_name,
-                source_url = :source_url,
-                source = :source,
-                ingredients_and_equipment = :ingredients_and_equipment,
-                instructions = :instructions,
-                ingredients_and_equipment_en = :ingredients_and_equipment_en,
-                instructions_en = :instructions_en";
+        $fieldsToUpdate = [
+            "product_name = :product_name",
+            "product_name_th = :product_name_th",
+            "product_name_en = :product_name_en",
+            "product_group = :product_group",
+            "category = :category",
+            "rice_id = :rice_id",
+            "rice_variety_group_th_name = :rice_variety_group_th_name",
+            "rice_variety_group_en_name = :rice_variety_group_en_name",
+            "source_url = :source_url",
+            "source = :source",
+            "ingredients_and_equipment = :ingredients_and_equipment",
+            "instructions = :instructions",
+            "ingredients_and_equipment_en = :ingredients_and_equipment_en",
+            "instructions_en = :instructions_en"
+        ];
 
-        // เพิ่มเฉพาะภาพหากมีการอัปโหลด
-        if (!empty($picture_path)) {
-            $sql .= ", picture = :picture";
+        // เพิ่มเฉพาะค่าที่มีจริง
+        $params = [
+            ':product_name' => $product_name,
+            ':product_name_th' => $product_name_th,
+            ':product_name_en' => $product_name_en,
+            ':product_group' => $product_group,
+            ':category' => $category,
+            ':rice_id' => $rice_id,
+            ':rice_variety_group_th_name' => $rice_variety_group_th_name,
+            ':rice_variety_group_en_name' => $rice_variety_group_en_name,
+            ':source_url' => $source_url,
+            ':source' => $source,
+            ':ingredients_and_equipment' => $ingredients_and_equipment,
+            ':instructions' => $instructions,
+            ':ingredients_and_equipment_en' => $ingredients_and_equipment_en,
+            ':instructions_en' => $instructions_en,
+            ':food_product_id' => $food_product_id
+        ];
+
+        if (!empty($_POST['thai_name'])) {
+            $fieldsToUpdate[] = "rice_name_th = :thai_name";
+            $params[':thai_name'] = $_POST['thai_name'];
         }
 
-        $sql .= " WHERE food_product_id = :food_product_id";
+        if (!empty($_POST['english_name'])) {
+            $fieldsToUpdate[] = "rice_name_en = :english_name";
+            $params[':english_name'] = $_POST['english_name'];
+        }
 
-        // เตรียมคำสั่งและ bind ค่าต่าง ๆ
+        if (!empty($picture_path)) {
+            $fieldsToUpdate[] = "picture = :picture";
+            $params[':picture'] = $picture_path;
+        }
+
+        // รวม SQL UPDATE
+        $sql = "UPDATE food_product SET " . implode(", ", $fieldsToUpdate) . " WHERE food_product_id = :food_product_id";
         $stmt = $pdo->prepare($sql);
 
         $stmt->bindParam(':product_name', $product_name);
@@ -490,23 +517,23 @@ if (!empty($products_food['rice_id'])) {
 
         // ดำเนินการอัปเดต
         if ($stmt->execute()) {
-             ?>
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'สำเร็จ',
-                            text: 'อัปเดตข้อมูลผลิตภัณฑ์เรียบร้อยแล้ว',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'ตกลง'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.href = 'edit_product_food?id=<?php echo $food_product_id ;?>'; // เปลี่ยนไปหน้า accounts
-                            }
-                        });
+    ?>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'สำเร็จ',
+                        text: 'อัปเดตข้อมูลผลิตภัณฑ์เรียบร้อยแล้ว',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'ตกลง'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = 'edit_product_food?id=<?php echo $food_product_id; ?>'; // เปลี่ยนไปหน้า accounts
+                        }
                     });
-                </script>
+                });
+            </script>
     <?php
         } else {
             echo "เกิดข้อผิดพลาดในการอัปเดตข้อมูล";
