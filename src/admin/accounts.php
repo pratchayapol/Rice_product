@@ -101,12 +101,11 @@ $accounts = $stmt->fetchAll();
                                                 <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                                <?= !empty($account['id_account']) ? htmlspecialchars($account['id_account']) : '-' ?>
-
+                                    
                                                 <!-- ปุ่มเปิด Modal -->
                                                 <button
                                                     onclick="openModal('modal-<?= $account['id_account'] ?>')"
-                                                    class="mt-2 inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow transition">
+                                                    class="mt-2 inline-flex items-center px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-full shadow transition">
                                                     แก้ไขสิทธิ์การใช้งาน
                                                 </button>
 
