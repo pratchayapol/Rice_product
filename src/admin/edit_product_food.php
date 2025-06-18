@@ -178,8 +178,9 @@ if (!empty($products_food['rice_id'])) {
 
                     <!-- ซ่อนค่า rice_id จริงไว้ส่ง -->
                     <input type="hidden" id="rice_id" name="rice_id" value="<?= htmlspecialchars($riceIdValue) ?>" />
-                    <input type="hidden" id="thai_name" name="thai_name" value="<?= htmlspecialchars($thaiNameValue) ?>" />
-                    <input type="hidden" id="english_name" name="english_name" value="<?= htmlspecialchars($englishNameValue) ?>" />
+                    <input type="hidden" id="thai_name" name="thai_name" value="<?= htmlspecialchars($thaiNameValue ?? '') ?>" />
+                    <input type="hidden" id="english_name" name="english_name" value="<?= htmlspecialchars($englishNameValue ?? '') ?>" />
+
                 </div>
 
                 <script>
