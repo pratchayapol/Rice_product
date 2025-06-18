@@ -28,6 +28,21 @@ $products_food = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!$products_food) {
     exit('ไม่พบข้อมูลผลิตภัณฑ์ที่ต้องการแก้ไข');
 }
+
+if (!empty($products_food['rice_id'])) {
+    // ดึงข้อมูลชื่อพันธุ์ข้าว
+    $stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
+    $stmt->execute([$products_food['rice_id']]);
+    $rice = $stmt->fetch();
+
+    if ($rice) {
+        $riceNameLabel = $rice['thai_breed_name'];
+        if (!empty($rice['english_breed_name'])) {
+            $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
+        }
+        $riceIdValue = $products_food['rice_id'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -153,6 +168,7 @@ if (!$products_food) {
                     <!-- input แสดงชื่อพันธุ์ข้าว -->
                     <input type="text" id="rice_group_th" name="rice_group_th"
                         list="riceSuggestions"
+                        value="<?= htmlspecialchars($riceNameLabel) ?>"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
                         oninput="fetchRiceSuggestions(this.value)" autocomplete="off" />
 
@@ -160,7 +176,7 @@ if (!$products_food) {
                     <datalist id="riceSuggestions"></datalist>
 
                     <!-- ซ่อนค่า rice_id จริงไว้ส่ง -->
-                    <input type="hidden" id="rice_id" name="rice_id" />
+                    <input type="hidden" id="rice_id" name="rice_id" value="<?= htmlspecialchars($riceIdValue) ?>" />
                 </div>
                 <script>
                     function fetchRiceSuggestions(query) {
