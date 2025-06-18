@@ -32,7 +32,7 @@ $products_food = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>จัดการผลิตภัณฑ์ทั้งหมด</title>
+    <title>แก้ไขข้อมูลผลิตภัณฑ์</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
