@@ -101,7 +101,53 @@ $accounts = $stmt->fetchAll();
                                                 <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                                <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
+                                                <?= !empty($account['id_account']) ? htmlspecialchars($account['id_account']) : '-' ?>
+
+                                                <!-- ปุ่มเปิด Modal -->
+                                                <button
+                                                    onclick="openModal('modal-<?= $account['id_account'] ?>')"
+                                                    class="mt-2 bg-blue-600 hover:bg-blue-700 text-white text-sm px-3 py-1 rounded">
+                                                    แก้ไขสิทธิ์การใช้งาน
+                                                </button>
+
+                                                <!-- Modal -->
+                                                <div
+                                                    id="modal-<?= $account['id_account'] ?>"
+                                                    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 hidden">
+                                                    <div class="bg-white rounded-xl p-6 w-full max-w-md shadow-lg relative">
+                                                        <h2 class="text-xl font-semibold mb-4">แก้ไขสิทธิ์การใช้งาน</h2>
+                                                        <form method="POST" action="update_role.php">
+                                                            <input type="hidden" name="id_account" value="<?= htmlspecialchars($account['id_account']) ?>">
+
+                                                            <label for="role-<?= $account['id_account'] ?>" class="block text-sm font-medium text-gray-700 mb-1">เลือกสิทธิ์</label>
+                                                            <select name="role" id="role-<?= $account['id_account'] ?>" class="w-full border rounded-lg px-3 py-2 mb-4">
+                                                                <option value="User">User</option>
+                                                                <option value="Admin">Admin</option>
+                                                            </select>
+
+                                                            <div class="flex justify-end gap-2">
+                                                                <button
+                                                                    type="button"
+                                                                    onclick="closeModal('modal-<?= $account['id_account'] ?>')"
+                                                                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg">
+                                                                    ยกเลิก
+                                                                </button>
+                                                                <button
+                                                                    type="submit"
+                                                                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">
+                                                                    บันทึก
+                                                                </button>
+                                                            </div>
+                                                        </form>
+
+                                                        <!-- ปุ่มปิดมุมขวาบน -->
+                                                        <button
+                                                            onclick="closeModal('modal-<?= $account['id_account'] ?>')"
+                                                            class="absolute top-2 right-2 text-gray-500 hover:text-black text-lg font-bold">
+                                                            &times;
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
