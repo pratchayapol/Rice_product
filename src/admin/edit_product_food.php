@@ -76,34 +76,34 @@ if (!$products_food) {
                 <!-- ชื่อผลิตภัณฑ์ -->
                 <div>
                     <label for="product_name_th" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
-                    <input type="text" id="product_name_th" name="product_name_th" value="<?= htmlspecialchars($products_food['product_name_th']) ?>" required
+                    <input type="text" id="product_name_th" name="product_name_th" value="<?= htmlspecialchars($products_food['product_name']) ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์อังกฤษแบบไทย -->
                 <div>
                     <label for="product_name_eng_thai" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์อังกฤษแบบไทย</label>
-                    <input type="text" id="product_name_eng_thai" name="product_name_eng_thai" value="<?= htmlspecialchars($products_food['product_name_eng_thai']) ?>" required
+                    <input type="text" id="product_name_eng_thai" name="product_name_eng_thai" value="<?= htmlspecialchars($products_food['product_name_th']) ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์ภาษาอังกฤษ -->
                 <div>
                     <label for="product_name_eng" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง)</label>
-                    <input type="text" id="product_name_eng" name="product_name_eng" value="<?= htmlspecialchars($products_food['product_name_eng']) ?>" required
+                    <input type="text" id="product_name_eng" name="product_name_eng" value="<?= htmlspecialchars($products_food['product_name_en']) ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ประเภท -->
                 <div>
-                    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
-                    <select id="category" name="category" required
+                    <label for="product_group" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
+                    <select id="product_group" name="product_group" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกประเภท --</option>
-                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $products_food['category'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
-                        <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $products_food['category'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
-                        <option value="ผลิตภัณฑ์จากการหมัก" <?= $products_food['category'] === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
-                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= $products_food['category'] === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
+                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
+                        <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
+                        <option value="ผลิตภัณฑ์จากการหมัก" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
+                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
                     </select>
                 </div>
 
@@ -113,24 +113,24 @@ if (!$products_food) {
                     <select id="subcategory" name="subcategory" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
-                        <option value="อาหาร" <?= $products_food['subcategory'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
-                        <option value="ขนม" <?= $products_food['subcategory'] === 'ขนม' ? 'selected' : '' ?>>ขนม</option>
-                        <option value="เครื่องดื่ม" <?= $products_food['subcategory'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
-                        <option value="เครื่องปรุงรส" <?= $products_food['subcategory'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
+                        <option value="อาหาร" <?= $products_food['category'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
+                        <option value="ขนม" <?= $products_food['category'] === 'ขนม' ? 'selected' : '' ?>>ขนม</option>
+                        <option value="เครื่องดื่ม" <?= $products_food['category'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
+                        <option value="เครื่องปรุงรส" <?= $products_food['category'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
                     </select>
                 </div>
 
                 <!-- กลุ่มพันธุ์ข้าวภาษาไทย -->
                 <div>
                     <label for="rice_group_th" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
-                    <input type="text" id="rice_group_th" name="rice_group_th" value="<?= htmlspecialchars($products_food['rice_group_th'] ?? 'ข้าวอื่น ๆ') ?>" required
+                    <input type="text" id="rice_group_th" name="rice_group_th" value="<?= htmlspecialchars($products_food['rice_variety_group_th_name'] ?? 'ข้าวอื่น ๆ') ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- กลุ่มพันธุ์ข้าวภาษาอังกฤษ -->
                 <div>
                     <label for="rice_group_eng" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาอังกฤษ</label>
-                    <input type="text" id="rice_group_eng" name="rice_group_eng" value="<?= htmlspecialchars($products_food['rice_group_eng'] ?? 'ข้าวอื่น ๆ') ?>" required
+                    <input type="text" id="rice_group_eng" name="rice_group_eng" value="<?= htmlspecialchars($products_food['rice_variety_group_en_name'] ?? 'ข้าวอื่น ๆ') ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -152,28 +152,28 @@ if (!$products_food) {
                 <div>
                     <label for="ingredients_th" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
                     <textarea id="ingredients_th" name="ingredients_th" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_th']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_and_equipment']) ?></textarea>
                 </div>
 
                 <!-- วิธีทำ -->
                 <div>
                     <label for="method_th" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ</label>
                     <textarea id="method_th" name="method_th" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['method_th']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['instructions']) ?></textarea>
                 </div>
 
                 <!-- วัตถุดิบและอุปกรณ์ภาษาอังกฤษ -->
                 <div>
                     <label for="ingredients_en" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์ภาษาอังกฤษ</label>
                     <textarea id="ingredients_en" name="ingredients_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_en']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_and_equipment_en']) ?></textarea>
                 </div>
 
                 <!-- วิธีทำภาษาอังกฤษ -->
                 <div>
                     <label for="method_en" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำภาษาอังกฤษ</label>
                     <textarea id="method_en" name="method_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['method_en']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['instructions_en']) ?></textarea>
                 </div>
 
                 <!-- ภาพผลิตภัณฑ์ -->
