@@ -101,14 +101,14 @@ $accounts = $stmt->fetchAll();
                                                 <?= !empty($account['role']) ? htmlspecialchars($account['role']) : '-' ?>
                                             </td>
                                             <td class="border border-gray-300 px-4 py-2">
-                                    
-                                                <!-- ปุ่มเปิด Modal -->
-                                                <button
-                                                    onclick="openModal('modal-<?= $account['id_account'] ?>')"
-                                                    class="mt-2 inline-flex items-center px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-full shadow transition">
-                                                    แก้ไขสิทธิ์การใช้งาน
-                                                </button>
-
+                                                <div class="flex justify-center items-center">
+                                                    <!-- ปุ่มเปิด Modal -->
+                                                    <button
+                                                        onclick="openModal('modal-<?= $account['id_account'] ?>')"
+                                                        class="mt-2 inline-flex items-center px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-full shadow transition">
+                                                        แก้ไขสิทธิ์การใช้งาน
+                                                    </button>
+                                                </div>
                                                 <!-- Modal -->
                                                 <div
                                                     id="modal-<?= $account['id_account'] ?>"
@@ -118,7 +118,7 @@ $accounts = $stmt->fetchAll();
                                                         <!-- ปุ่มปิดมุมขวา -->
                                                         <button
                                                             onclick="closeModal('modal-<?= $account['id_account'] ?>')"
-                                                            class="absolute top-3 right-3 text-gray-400 hover:text-black text-xl font-bold">
+                                                            class="absolute top-3 right-3 text-amber-400 hover:text-black text-xl font-bold">
                                                             &times;
                                                         </button>
 
