@@ -298,7 +298,7 @@ $accounts = $stmt->fetchAll();
                 ]);
 
                 // 4. ย้อนกลับหรือแจ้งผลสำเร็จ
-                header("Location: account_list.php?success=1"); // หรือปรับ URL ตามของคุณ
+                header("Location: account?success=1"); // หรือปรับ URL ตามของคุณ
                 exit;
             } catch (PDOException $e) {
                 // 5. จัดการ error
