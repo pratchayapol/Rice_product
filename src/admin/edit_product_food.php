@@ -76,23 +76,30 @@ if (!$products_food) {
                 <!-- ชื่อผลิตภัณฑ์ -->
                 <div>
                     <label for="product_name_th" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
-                    <input type="text" id="product_name_th" name="product_name_th" value="<?= htmlspecialchars($products_food['product_name']) ?>" required
+                    <input type="text" id="product_name_th" name="product_name_th"
+                        value="<?= htmlspecialchars($products_food['product_name'] ?? '') !== '' ? htmlspecialchars($products_food['product_name']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
+                        required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์อังกฤษแบบไทย -->
                 <div>
                     <label for="product_name_eng_thai" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์อังกฤษแบบไทย</label>
-                    <input type="text" id="product_name_eng_thai" name="product_name_eng_thai" value="<?= htmlspecialchars($products_food['product_name_th']) ?>" required
+                    <input type="text" id="product_name_eng_thai" name="product_name_eng_thai"
+                        value="<?= htmlspecialchars($products_food['product_name_th'] ?? '') !== '' ? htmlspecialchars($products_food['product_name_th']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
+                        required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์ภาษาอังกฤษ -->
                 <div>
                     <label for="product_name_eng" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง)</label>
-                    <input type="text" id="product_name_eng" name="product_name_eng" value="<?= htmlspecialchars($products_food['product_name_en']) ?>" required
+                    <input type="text" id="product_name_eng" name="product_name_eng"
+                        value="<?= htmlspecialchars($products_food['product_name_en'] ?? '') !== '' ? htmlspecialchars($products_food['product_name_en']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
+                        required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
+
 
                 <!-- ประเภท -->
                 <div>
@@ -108,7 +115,7 @@ if (!$products_food) {
                 </div>
 
                 <!-- กลุ่มย่อย -->
-                <div>
+                <div id="subcategory-div">
                     <label for="subcategory" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
                     <select id="subcategory" name="subcategory" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
@@ -119,6 +126,25 @@ if (!$products_food) {
                         <option value="เครื่องปรุงรส" <?= $products_food['category'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
                     </select>
                 </div>
+
+                <!-- JavaScript -->
+                <script>
+                    function toggleSubcategory() {
+                        const productGroup = document.getElementById('product_group').value;
+                        const subcategoryDiv = document.getElementById('subcategory-div');
+
+                        if (productGroup === 'ผลิตภัณฑ์จากส่วนอื่นๆ') {
+                            subcategoryDiv.style.display = 'none';
+                        } else {
+                            subcategoryDiv.style.display = 'block';
+                        }
+                    }
+
+                    // รันเมื่อโหลดหน้า
+                    document.addEventListener('DOMContentLoaded', toggleSubcategory);
+                    // รันเมื่อเปลี่ยนค่า
+                    document.getElementById('product_group').addEventListener('change', toggleSubcategory);
+                </script>
 
                 <!-- กลุ่มพันธุ์ข้าวภาษาไทย -->
                 <div>
