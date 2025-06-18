@@ -47,18 +47,94 @@ if ($id > 0) {
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
-        <script>
-            // tailwind.config.js
-            module.exports = {
-                content: ['./**/*.php', './**/*.html'], // ปรับให้ตรงกับไฟล์ของคุณ
-                plugins: [
-                    require('@tailwindcss/typography'),
-                ],
+        <style>
+            .ck-content p {
+                @apply mb-4 text-base leading-relaxed text-gray-700;
             }
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.7/dist/typography.min.js"></script>
 
+            .ck-content h1 {
+                @apply text-3xl font-bold mt-8 mb-4;
+            }
 
+            .ck-content h2 {
+                @apply text-2xl font-semibold mt-8 mb-4;
+            }
+
+            .ck-content h3 {
+                @apply text-xl font-semibold mt-6 mb-3;
+            }
+
+            .ck-content h4 {
+                @apply text-lg font-semibold mt-6 mb-3;
+            }
+
+            .ck-content h5 {
+                @apply text-base font-semibold mt-4 mb-2;
+            }
+
+            .ck-content h6 {
+                @apply text-sm font-semibold mt-4 mb-2;
+            }
+
+            .ck-content ul {
+                @apply list-disc list-inside mb-4 ml-5;
+            }
+
+            .ck-content ol {
+                @apply list-decimal list-inside mb-4 ml-5;
+            }
+
+            .ck-content li {
+                @apply mb-1;
+            }
+
+            .ck-content a {
+                @apply text-blue-600 hover:underline;
+            }
+
+            .ck-content strong,
+            .ck-content b {
+                @apply font-bold;
+            }
+
+            .ck-content em,
+            .ck-content i {
+                @apply italic;
+            }
+
+            .ck-content blockquote {
+                @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-6;
+            }
+
+            .ck-content code {
+                @apply bg-gray-100 text-red-600 px-1 rounded;
+            }
+
+            .ck-content pre {
+                @apply bg-gray-800 text-white p-4 rounded overflow-x-auto my-6;
+            }
+
+            .ck-content hr {
+                @apply border-t border-gray-300 my-8;
+            }
+
+            .ck-content table {
+                @apply border-collapse border border-gray-300 w-full mb-6;
+            }
+
+            .ck-content th,
+            .ck-content td {
+                @apply border border-gray-300 px-4 py-2 text-left align-top;
+            }
+
+            .ck-content img {
+                @apply max-w-full h-auto my-4 rounded;
+            }
+
+            .ck-content iframe {
+                @apply w-full my-4 aspect-video;
+            }
+        </style>
     </head>
 
     <body class="bg t1">
