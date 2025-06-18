@@ -162,25 +162,24 @@ if (!empty($products_food['rice_id'])) {
                 </script>
 
                 <!-- แปรรูปจากพันธุ์ข้าว -->
-                <!-- แปรรูปจากพันธุ์ข้าว -->
                 <div>
                     <label for="rice_label" class="block text-sm font-medium text-gray-700 mb-1">แปรรูปจากพันธุ์ข้าว</label>
 
                     <!-- input แสดงชื่อพันธุ์ข้าว -->
+                    <!-- input แสดงชื่อพันธุ์ข้าว -->
                     <input type="text" id="rice_label" name="rice_label"
                         list="riceSuggestions"
-                        value="<?= htmlspecialchars($riceNameLabel) ?>"
+                        value="<?= htmlspecialchars($riceNameLabel ?? '') ?>"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
                         oninput="fetchRiceSuggestions(this.value)" autocomplete="off" />
 
-                    <!-- datalist สำหรับแสดงตัวเลือก -->
+                    <!-- datalist -->
                     <datalist id="riceSuggestions"></datalist>
 
-                    <!-- ซ่อนค่า rice_id จริงไว้ส่ง -->
-                    <input type="hidden" id="rice_id" name="rice_id" value="<?= htmlspecialchars($riceIdValue) ?>" />
+                    <!-- hidden fields -->
+                    <input type="hidden" id="rice_id" name="rice_id" value="<?= htmlspecialchars($riceIdValue ?? '') ?>" />
                     <input type="hidden" id="thai_name" name="thai_name" value="<?= htmlspecialchars($thaiNameValue ?? '') ?>" />
                     <input type="hidden" id="english_name" name="english_name" value="<?= htmlspecialchars($englishNameValue ?? '') ?>" />
-
                 </div>
 
                 <script>
@@ -217,8 +216,8 @@ if (!empty($products_food['rice_id'])) {
                         options.forEach(opt => {
                             if (opt.value === inputVal) {
                                 hiddenId.value = opt.dataset.id;
-                                thaiName.value = opt.dataset.thai;
-                                englishName.value = opt.dataset.english;
+                                thaiName.value = opt.dataset.thai || "";
+                                englishName.value = opt.dataset.english || "";
                                 matched = true;
                             }
                         });
