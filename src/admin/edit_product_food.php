@@ -340,7 +340,7 @@ if (!empty($products_food['rice_id'])) {
         ClassicEditor.create(document.querySelector('#ingredients_en'));
         ClassicEditor.create(document.querySelector('#method_en'));
     </script>
-
+    <?php include '../loadtab/f.php'; ?>
 </body>
 
 </html>
