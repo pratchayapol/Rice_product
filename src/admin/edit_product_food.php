@@ -498,8 +498,7 @@ if (!empty($products_food['rice_id'])) {
         $stmt->bindParam(':product_group', $product_group);
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':rice_id', $rice_id);
-        $stmt->bindParam(':thai_name', $thaiName);
-        $stmt->bindParam(':english_name', $englishName);
+
         $stmt->bindParam(':rice_variety_group_th_name', $rice_variety_group_th_name);
         $stmt->bindParam(':rice_variety_group_en_name', $rice_variety_group_en_name);
         $stmt->bindParam(':source_url', $source_url);
