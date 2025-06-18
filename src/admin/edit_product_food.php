@@ -21,10 +21,13 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 include '../connect/dbcon.php';
 
-$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id");
-$stmt->execute();
-$products_food = $stmt->fetchAll();
+$stmt = $pdo->prepare("SELECT * FROM food_product WHERE food_product_id = :id");
+$stmt->execute(['id' => $id]);
+$products_food = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if (!$products_food) {
+    exit('ไม่พบข้อมูลผลิตภัณฑ์ที่ต้องการแก้ไข');
+}
 ?>
 <!DOCTYPE html>
 <html lang="th">
