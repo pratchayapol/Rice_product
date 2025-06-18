@@ -13,12 +13,17 @@ $stmt = $pdo->prepare("SELECT rice_id, thai_breed_name, english_breed_name FROM 
 $stmt->execute(["%$q%", "%$q%"]);
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$response = array_map(function($row) {
+$response = array_map(function ($row) {
+    $label = $row['thai_breed_name'];
+    if (!empty($row['english_breed_name'])) {
+        $label .= ' (' . $row['english_breed_name'] . ')';
+    }
     return [
         "id" => $row['rice_id'],
-        "label" => $row['thai_breed_name'] . ' (' . $row['english_breed_name'] . ')'
+        "label" => $label
     ];
 }, $results);
+
 
 header('Content-Type: application/json');
 echo json_encode($response);
