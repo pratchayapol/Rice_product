@@ -283,6 +283,50 @@ $accounts = $stmt->fetchAll();
         window.onload = () => showTab('method', document.querySelector('.tab-button'));
     </script>
 
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id_account = $_POST['id_account'] ?? null;
+        $role = $_POST['role'] ?? null;
+
+        if ($id_account && $role && in_array($role, ['User', 'Admin'])) {
+            try {
+                // 3. เตรียมคำสั่ง SQL ปลอดภัย
+                $stmt = $pdo->prepare("UPDATE accounts SET role = :role WHERE id_account = :id_account");
+                $stmt->execute([
+                    ':role' => $role,
+                    ':id_account' => $id_account
+                ]);
+
+                // 4. ย้อนกลับหรือแจ้งผลสำเร็จ
+                header("Location: account_list.php?success=1"); // หรือปรับ URL ตามของคุณ
+                exit;
+            } catch (PDOException $e) {
+                // 5. จัดการ error
+                echo "เกิดข้อผิดพลาดในการอัปเดต: " . $e->getMessage();
+            }
+        } else {
+            echo "ข้อมูลไม่ถูกต้อง";
+        }
+    } else {
+        echo "Method ไม่ถูกต้อง";
+    }
+    ?>
+
+    <?php if (!empty($_GET['success']) && $_GET['success'] == 1): ?>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'สำเร็จ',
+                    text: 'อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'ตกลง'
+                });
+            });
+        </script>
+    <?php endif; ?>
+
     <?php include '../loadtab/f.php'; ?>
 </body>
 
