@@ -124,7 +124,7 @@ $accounts = $stmt->fetchAll();
 
                                                         <h2 class="text-xl font-semibold mb-4">แก้ไขสิทธิ์การใช้งาน</h2>
 
-                                                        <form method="POST" action="update_role.php">
+                                                        <form method="POST" action="">
                                                             <input type="hidden" name="id_account" value="<?= htmlspecialchars($account['id_account']) ?>">
 
                                                             <label for="role-<?= $account['id_account'] ?>" class="block text-sm font-medium text-gray-700 mb-1">
@@ -135,8 +135,8 @@ $accounts = $stmt->fetchAll();
                                                                 id="role-<?= $account['id_account'] ?>"
                                                                 class="w-full border rounded-lg px-3 py-2 mb-4 text-sm"
                                                                 required>
-                                                                <option value="User">User</option>
-                                                                <option value="Admin">Admin</option>
+                                                                <option value="User" <?= $account['role'] === 'User' ? 'selected' : '' ?>>User</option>
+                                                                <option value="Admin" <?= $account['role'] === 'Admin' ? 'selected' : '' ?>>Admin</option>
                                                             </select>
 
                                                             <div class="flex justify-end gap-2">
