@@ -349,9 +349,9 @@ if (!empty($products_food['rice_id'])) {
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <script>
         ClassicEditor.create(document.querySelector('#ingredients_th'));
-        ClassicEditor.create(document.querySelector('#method_th'));
-        ClassicEditor.create(document.querySelector('#ingredients_en'));
-        ClassicEditor.create(document.querySelector('#method_en'));
+        ClassicEditor.create(document.querySelector('#instructions'));
+        ClassicEditor.create(document.querySelector('#ingredients_and_equipment_en'));
+        ClassicEditor.create(document.querySelector('#instructions_en'));
     </script>
 
     <?php
