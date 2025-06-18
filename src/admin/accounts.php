@@ -309,7 +309,7 @@ $accounts = $stmt->fetchAll();
                             confirmButtonText: 'ตกลง'
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = 'accounts.php'; // เปลี่ยนไปหน้า accounts.php
+                                window.location.href = 'accounts'; // เปลี่ยนไปหน้า accounts
                             }
                         });
                     });
