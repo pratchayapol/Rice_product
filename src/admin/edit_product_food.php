@@ -152,28 +152,28 @@ if (!$products_food) {
                 <div>
                     <label for="ingredients_th" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
                     <textarea id="ingredients_th" name="ingredients_th" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_and_equipment']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_and_equipment'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- วิธีทำ -->
                 <div>
                     <label for="method_th" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ</label>
                     <textarea id="method_th" name="method_th" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['instructions']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['instructions'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- วัตถุดิบและอุปกรณ์ภาษาอังกฤษ -->
                 <div>
                     <label for="ingredients_en" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์ภาษาอังกฤษ</label>
                     <textarea id="ingredients_en" name="ingredients_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_and_equipment_en']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_and_equipment_en'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- วิธีทำภาษาอังกฤษ -->
                 <div>
                     <label for="method_en" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำภาษาอังกฤษ</label>
                     <textarea id="method_en" name="method_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['instructions_en']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['instructions_en'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- ภาพผลิตภัณฑ์ -->
