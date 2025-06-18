@@ -490,7 +490,24 @@ if (!empty($products_food['rice_id'])) {
 
         // ดำเนินการอัปเดต
         if ($stmt->execute()) {
-            echo "อัปเดตข้อมูลสำเร็จ!";
+             ?>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'ตกลง'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = 'edit_product_food?id=<?php echo $food_product_id ;?>'; // เปลี่ยนไปหน้า accounts
+                            }
+                        });
+                    });
+                </script>
+    <?php
         } else {
             echo "เกิดข้อผิดพลาดในการอัปเดตข้อมูล";
         }
