@@ -204,10 +204,51 @@ if (!$products_food) {
 
                 <!-- ภาพผลิตภัณฑ์ -->
                 <div>
-                    <label for="product_image" class="block text-sm font-medium text-gray-700 mb-1">ภาพผลิตภัณฑ์</label>
+                    <label for="product_image" class="block text-sm font-medium text-gray-700 mb-1">
+                        <?= !empty($products_food['picture']) ? 'อัปเดตภาพผลิตภัณฑ์' : 'อัปโหลดภาพผลิตภัณฑ์' ?>
+                    </label>
+
+                    <!-- Input เลือกภาพ -->
                     <input type="file" id="product_image" name="product_image" accept="image/*"
-                        class="w-full text-gray-600 file:border file:border-gray-300 file:rounded file:px-3 file:py-2 file:bg-gray-50 file:text-gray-700 hover:file:bg-rose-100 transition" />
+                        class="w-full text-gray-600 file:border file:border-gray-300 file:rounded file:px-3 file:py-2 file:bg-gray-50 file:text-gray-700 hover:file:bg-rose-100 transition"
+                        onchange="previewImage(event)">
+
+                    <!-- แสดงภาพเดิมถ้ามี -->
+                    <?php if (!empty($products_food['picture'])): ?>
+                        <div class="mt-3">
+                            <p class="text-sm text-gray-500 mb-1">ภาพปัจจุบัน:</p>
+                            <img src="<?= htmlspecialchars($products_food['picture']) ?>" alt="Product Image" class="w-48 h-auto rounded shadow">
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- พื้นที่แสดงภาพ preview -->
+                    <div id="image-preview" class="mt-3 hidden">
+                        <p class="text-sm text-gray-500 mb-1">ภาพที่เลือก:</p>
+                        <img id="preview-img" src="" alt="Preview Image" class="w-48 h-auto rounded shadow border">
+                    </div>
                 </div>
+
+                <!-- JavaScript แสดง preview -->
+                <script>
+                    function previewImage(event) {
+                        const file = event.target.files[0];
+                        const preview = document.getElementById('image-preview');
+                        const imgTag = document.getElementById('preview-img');
+
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                imgTag.src = e.target.result;
+                                preview.classList.remove('hidden');
+                            }
+                            reader.readAsDataURL(file);
+                        } else {
+                            preview.classList.add('hidden');
+                            imgTag.src = '';
+                        }
+                    }
+                </script>
+
 
                 <!-- ปุ่มบันทึก -->
                 <div class="text-center">
