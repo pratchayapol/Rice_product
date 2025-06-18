@@ -497,7 +497,7 @@ if (!empty($products_food['rice_id'])) {
                         Swal.fire({
                             icon: 'success',
                             title: 'สำเร็จ',
-                            text: 'อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว',
+                            text: 'อัปเดตข้อมูลผลิตภัณฑ์เรียบร้อยแล้ว',
                             confirmButtonColor: '#3085d6',
                             confirmButtonText: 'ตกลง'
                         }).then((result) => {
