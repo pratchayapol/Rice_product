@@ -120,6 +120,7 @@ $products_medical = $stmt->fetchAll();
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">แก้ไขข้อมูล</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
                                             </tr>
 
@@ -139,6 +140,36 @@ $products_medical = $stmt->fetchAll();
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <?= htmlspecialchars($product_food['rice_variety_th_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <div class="flex justify-center items-center">
+                                                            <button
+                                                                onclick="openModal('modal-<?= $product_food['food_product_id'] ?>')"
+                                                                class="inline-block bg-rose-300 hover:bg-rose-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
+                                                                แก้ไขข้อมูล
+                                                            </button>
+                                                        </div>
+                                                        <!-- Modal -->
+                                                        <div id="modal-<?= $product_food['food_product_id'] ?>" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+                                                            <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
+                                                                <button
+                                                                    onclick="closeModal('modal-<?= $product_food['food_product_id'] ?>')"
+                                                                    class="absolute top-3 right-3 text-gray-500 hover:text-black text-xl font-bold">&times;</button>
+
+                                                                <h2 class="text-xl font-semibold mb-4">แก้ไขข้อมูลสินค้า</h2>
+                                                                <!-- ใส่ฟอร์มหรือเนื้อหาแก้ไขที่นี่ -->
+                                                            </div>
+                                                        </div>
+
+                                                        <script>
+                                                            function openModal(id) {
+                                                                document.getElementById(id).classList.remove('hidden');
+                                                            }
+
+                                                            function closeModal(id) {
+                                                                document.getElementById(id).classList.add('hidden');
+                                                            }
+                                                        </script>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <div class="flex justify-center items-center">
@@ -281,7 +312,6 @@ $products_medical = $stmt->fetchAll();
                                                                 รายละเอียด
                                                             </a>
                                                         </div>
-
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
