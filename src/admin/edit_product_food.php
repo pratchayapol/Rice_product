@@ -377,6 +377,8 @@ if (!empty($products_food['rice_id'])) {
         // รับค่ารหัสพันธุ์ข้าว
         echo $rice_id = $_POST['rice_id']; // รหัสพันธุ์ข้าว (ใช้สำหรับเชื่อมโยงกับข้อมูลพันธุ์ข้าวในระบบ)
 
+        echo $thaiName = $_POST['thai_name'] ?? '';
+        echo $englishName = $_POST['english_name'] ?? '';
         // รับค่ากลุ่มพันธุ์ข้าว (ภาษาไทย)
         echo $rice_variety_group_th_name = $_POST['rice_variety_group_th_name']; // ชื่อกลุ่มพันธุ์ข้าว (ภาษาไทย)
 

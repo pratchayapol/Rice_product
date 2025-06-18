@@ -20,10 +20,11 @@ $response = array_map(function ($row) {
     }
     return [
         "id" => $row['rice_id'],
-        "label" => $label
+        "label" => $label,
+        "thai" => $row['thai_breed_name'],
+        "english" => $row['english_breed_name']
     ];
 }, $results);
-
 
 header('Content-Type: application/json');
 echo json_encode($response);
