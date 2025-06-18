@@ -146,6 +146,61 @@ if (!$products_food) {
                     document.getElementById('product_group').addEventListener('change', toggleSubcategory);
                 </script>
 
+                <!-- แปรรูปจากพันธุ์ข้าว -->
+                <div>
+                    <label for="rice_group_th" class="block text-sm font-medium text-gray-700 mb-1">แปรรูปจากพันธุ์ข้าว</label>
+
+                    <!-- input แสดงชื่อพันธุ์ข้าว -->
+                    <input type="text" id="rice_group_th" name="rice_group_th"
+                        list="riceSuggestions"
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                        oninput="fetchRiceSuggestions(this.value)" autocomplete="off" />
+
+                    <!-- datalist สำหรับแสดงตัวเลือก -->
+                    <datalist id="riceSuggestions"></datalist>
+
+                    <!-- ซ่อนค่า rice_id จริงไว้ส่ง -->
+                    <input type="hidden" id="rice_id" name="rice_id" />
+                </div>
+                <script>
+                    function fetchRiceSuggestions(query) {
+                        if (query.length < 2) return;
+
+                        fetch("search_rice.php?q=" + encodeURIComponent(query))
+                            .then(response => response.json())
+                            .then(data => {
+                                const datalist = document.getElementById("riceSuggestions");
+                                datalist.innerHTML = "";
+
+                                data.forEach(item => {
+                                    const option = document.createElement("option");
+                                    option.value = item.label; // แสดงชื่อพันธุ์ข้าว
+                                    option.dataset.id = item.id; // เก็บ rice_id ไว้ใน data
+                                    datalist.appendChild(option);
+                                });
+                            });
+                    }
+
+                    // เมื่อเลือกพันธุ์ข้าว ตรวจสอบและเก็บ rice_id
+                    document.getElementById("rice_group_th").addEventListener("change", function() {
+                        const inputVal = this.value;
+                        const options = document.querySelectorAll("#riceSuggestions option");
+                        const hiddenInput = document.getElementById("rice_id");
+
+                        let matched = false;
+                        options.forEach(opt => {
+                            if (opt.value === inputVal) {
+                                hiddenInput.value = opt.dataset.id;
+                                matched = true;
+                            }
+                        });
+
+                        if (!matched) {
+                            hiddenInput.value = ""; // ถ้าไม่ match ก็ไม่ส่ง rice_id
+                        }
+                    });
+                </script>
+
                 <!-- กลุ่มพันธุ์ข้าวภาษาไทย -->
                 <div>
                     <label for="rice_group_th" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
