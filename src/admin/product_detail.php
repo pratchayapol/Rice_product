@@ -52,6 +52,10 @@ if ($id > 0) {
                 @apply mb-4 text-base leading-relaxed text-gray-700;
             }
 
+            .ck-content blockquote {
+                @apply border-l-4 border-gray-300 pl-4 italic text-gray-600 my-6;
+            }
+
             .ck-content h1 {
                 @apply text-3xl font-bold mt-8 mb-4;
             }
