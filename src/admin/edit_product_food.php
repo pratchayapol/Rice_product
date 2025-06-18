@@ -114,7 +114,7 @@ if (!$products_food) {
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
                         <option value="อาหาร" <?= $products_food['category'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
-                        <option value="ขนม" <?= $products_food['category'] === 'ขนม' ? 'selected' : '' ?>>ขนม</option>
+                        <option value="อาหารว่าง" <?= $products_food['category'] === 'อาหารว่าง' ? 'selected' : '' ?>>ขนม</option>
                         <option value="เครื่องดื่ม" <?= $products_food['category'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
                         <option value="เครื่องปรุงรส" <?= $products_food['category'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
                     </select>
