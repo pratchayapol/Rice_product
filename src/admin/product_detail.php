@@ -150,7 +150,13 @@ if ($id > 0) {
         </script>
 
 
-
+        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor.create(document.querySelector('#ingredients_th'));
+            ClassicEditor.create(document.querySelector('#instructions'));
+            ClassicEditor.create(document.querySelector('#ingredients_and_equipment_en'));
+            ClassicEditor.create(document.querySelector('#instructions_en'));
+        </script>
         <?php include '../loadtab/f.php'; ?>
     </body>
 
@@ -192,13 +198,7 @@ if ($id > 0) {
                 </div>
             </div>
         </div>
-        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
-        <script>
-            ClassicEditor.create(document.querySelector('#ingredients_th'));
-            ClassicEditor.create(document.querySelector('#instructions'));
-            ClassicEditor.create(document.querySelector('#ingredients_and_equipment_en'));
-            ClassicEditor.create(document.querySelector('#instructions_en'));
-        </script>
+
 
     </body>
 
