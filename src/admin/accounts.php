@@ -307,6 +307,10 @@ $accounts = $stmt->fetchAll();
                             text: 'อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว',
                             confirmButtonColor: '#3085d6',
                             confirmButtonText: 'ตกลง'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload(); // รีเฟรชหน้าเดิม
+                            }
                         });
                     });
                 </script>
