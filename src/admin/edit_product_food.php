@@ -68,26 +68,26 @@ $products_food = $stmt->fetchAll();
 
             <form method="POST" action="update_product.php" enctype="multipart/form-data" class="space-y-6">
 
-                <input type="hidden" name="food_product_id" value="<?= htmlspecialchars($product['food_product_id']) ?>">
+                <input type="hidden" name="food_product_id" value="<?= htmlspecialchars($products_food['food_product_id']) ?>">
 
                 <!-- ชื่อผลิตภัณฑ์ -->
                 <div>
                     <label for="product_name_th" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
-                    <input type="text" id="product_name_th" name="product_name_th" value="<?= htmlspecialchars($product['product_name_th']) ?>" required
+                    <input type="text" id="product_name_th" name="product_name_th" value="<?= htmlspecialchars($products_food['product_name_th']) ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์อังกฤษแบบไทย -->
                 <div>
                     <label for="product_name_eng_thai" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์อังกฤษแบบไทย</label>
-                    <input type="text" id="product_name_eng_thai" name="product_name_eng_thai" value="<?= htmlspecialchars($product['product_name_eng_thai']) ?>" required
+                    <input type="text" id="product_name_eng_thai" name="product_name_eng_thai" value="<?= htmlspecialchars($products_food['product_name_eng_thai']) ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์ภาษาอังกฤษ -->
                 <div>
                     <label for="product_name_eng" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง)</label>
-                    <input type="text" id="product_name_eng" name="product_name_eng" value="<?= htmlspecialchars($product['product_name_eng']) ?>" required
+                    <input type="text" id="product_name_eng" name="product_name_eng" value="<?= htmlspecialchars($products_food['product_name_eng']) ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -97,10 +97,10 @@ $products_food = $stmt->fetchAll();
                     <select id="category" name="category" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกประเภท --</option>
-                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $product['category'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
-                        <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $product['category'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
-                        <option value="ผลิตภัณฑ์จากการหมัก" <?= $product['category'] === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
-                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= $product['category'] === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
+                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $products_food['category'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
+                        <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $products_food['category'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
+                        <option value="ผลิตภัณฑ์จากการหมัก" <?= $products_food['category'] === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
+                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= $products_food['category'] === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
                     </select>
                 </div>
 
@@ -110,38 +110,38 @@ $products_food = $stmt->fetchAll();
                     <select id="subcategory" name="subcategory" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
-                        <option value="อาหาร" <?= $product['subcategory'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
-                        <option value="ขนม" <?= $product['subcategory'] === 'ขนม' ? 'selected' : '' ?>>ขนม</option>
-                        <option value="เครื่องดื่ม" <?= $product['subcategory'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
-                        <option value="เครื่องปรุงรส" <?= $product['subcategory'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
+                        <option value="อาหาร" <?= $products_food['subcategory'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
+                        <option value="ขนม" <?= $products_food['subcategory'] === 'ขนม' ? 'selected' : '' ?>>ขนม</option>
+                        <option value="เครื่องดื่ม" <?= $products_food['subcategory'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
+                        <option value="เครื่องปรุงรส" <?= $products_food['subcategory'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
                     </select>
                 </div>
 
                 <!-- กลุ่มพันธุ์ข้าวภาษาไทย -->
                 <div>
                     <label for="rice_group_th" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
-                    <input type="text" id="rice_group_th" name="rice_group_th" value="<?= htmlspecialchars($product['rice_group_th'] ?? 'ข้าวอื่น ๆ') ?>" required
+                    <input type="text" id="rice_group_th" name="rice_group_th" value="<?= htmlspecialchars($products_food['rice_group_th'] ?? 'ข้าวอื่น ๆ') ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- กลุ่มพันธุ์ข้าวภาษาอังกฤษ -->
                 <div>
                     <label for="rice_group_eng" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาอังกฤษ</label>
-                    <input type="text" id="rice_group_eng" name="rice_group_eng" value="<?= htmlspecialchars($product['rice_group_eng'] ?? 'ข้าวอื่น ๆ') ?>" required
+                    <input type="text" id="rice_group_eng" name="rice_group_eng" value="<?= htmlspecialchars($products_food['rice_group_eng'] ?? 'ข้าวอื่น ๆ') ?>" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ที่มา URL -->
                 <div>
                     <label for="source_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา URL <span class="text-gray-400 text-xs">(วางลิงค์ข้อมูล)</span></label>
-                    <input type="url" id="source_url" name="source_url" value="<?= htmlspecialchars($product['source_url']) ?>"
+                    <input type="url" id="source_url" name="source_url" value="<?= htmlspecialchars($products_food['source_url']) ?>"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- ที่มา -->
                 <div>
                     <label for="source" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-400 text-xs">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
-                    <input type="text" id="source" name="source" value="<?= htmlspecialchars($product['source']) ?>"
+                    <input type="text" id="source" name="source" value="<?= htmlspecialchars($products_food['source']) ?>"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -149,28 +149,28 @@ $products_food = $stmt->fetchAll();
                 <div>
                     <label for="ingredients_th" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
                     <textarea id="ingredients_th" name="ingredients_th" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($product['ingredients_th']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_th']) ?></textarea>
                 </div>
 
                 <!-- วิธีทำ -->
                 <div>
                     <label for="method_th" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ</label>
                     <textarea id="method_th" name="method_th" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($product['method_th']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['method_th']) ?></textarea>
                 </div>
 
                 <!-- วัตถุดิบและอุปกรณ์ภาษาอังกฤษ -->
                 <div>
                     <label for="ingredients_en" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์ภาษาอังกฤษ</label>
                     <textarea id="ingredients_en" name="ingredients_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($product['ingredients_en']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['ingredients_en']) ?></textarea>
                 </div>
 
                 <!-- วิธีทำภาษาอังกฤษ -->
                 <div>
                     <label for="method_en" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำภาษาอังกฤษ</label>
                     <textarea id="method_en" name="method_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($product['method_en']) ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_food['method_en']) ?></textarea>
                 </div>
 
                 <!-- ภาพผลิตภัณฑ์ -->
