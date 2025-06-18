@@ -47,7 +47,12 @@ if ($id > 0) {
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
-
+        <script>
+            tailwind.config = {
+                plugins: [tailwindTypography],
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.7/dist/typography.min.js"></script>
 
 
     </head>
@@ -96,7 +101,7 @@ if ($id > 0) {
                         </div>
 
                         <!-- Tab Contents -->
-                     
+
 
 
                         <div class="relative">
