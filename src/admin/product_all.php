@@ -143,7 +143,7 @@ $products_medical = $stmt->fetchAll();
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <div class="flex justify-center items-center">
-                                                            <a href="edit_product.php?id=<?= urlencode($product_food['food_product_id']) ?>"
+                                                            <a href="edit_product_food?id=<?= urlencode($product_food['food_product_id']) ?>"
                                                                 class="inline-block bg-rose-300 hover:bg-rose-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
                                                                 แก้ไขข้อมูล
                                                             </a>
