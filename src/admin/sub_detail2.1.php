@@ -8,7 +8,7 @@
                                         } else {
                                         ?>
                                             <textarea id="ingredients_th" name="ingredients_and_equipment" rows="5"
-                                                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?php echo $ingredients_and_equipment; ?></textarea>
+                                                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($ingredients_and_equipment ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                                         <?php
 
                                         }
@@ -25,7 +25,7 @@
                                         } else {
                                         ?>
                                             <textarea id="ingredients_th" name="ingredients_and_equipment" rows="5"
-                                                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?php echo $instructions; ?></textarea>
+                                                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($instructions ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                                         <?php
 
                                         }
