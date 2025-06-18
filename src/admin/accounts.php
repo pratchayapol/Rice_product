@@ -297,8 +297,20 @@ $accounts = $stmt->fetchAll();
                     ':id_account' => $id_account
                 ]);
 
-                // 4. ย้อนกลับหรือแจ้งผลสำเร็จ
-                header("Location: account?success=1"); // หรือปรับ URL ตามของคุณ
+    ?>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'ตกลง'
+                        });
+                    });
+                </script>
+    <?php
                 exit;
             } catch (PDOException $e) {
                 // 5. จัดการ error
@@ -311,21 +323,6 @@ $accounts = $stmt->fetchAll();
         echo "Method ไม่ถูกต้อง";
     }
     ?>
-
-    <?php if (!empty($_GET['success']) && $_GET['success'] == 1): ?>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'สำเร็จ',
-                    text: 'อัปเดตสิทธิ์การใช้งานเรียบร้อยแล้ว',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'ตกลง'
-                });
-            });
-        </script>
-    <?php endif; ?>
 
     <?php include '../loadtab/f.php'; ?>
 </body>
