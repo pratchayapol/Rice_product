@@ -48,8 +48,12 @@ if ($id > 0) {
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
         <script>
-            tailwind.config = {
-                plugins: [tailwindTypography],
+            // tailwind.config.js
+            module.exports = {
+                content: ['./**/*.php', './**/*.html'], // ปรับให้ตรงกับไฟล์ของคุณ
+                plugins: [
+                    require('@tailwindcss/typography'),
+                ],
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/typography@0.5.7/dist/typography.min.js"></script>
