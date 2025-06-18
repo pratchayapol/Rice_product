@@ -177,6 +177,8 @@ if (!empty($products_food['rice_id'])) {
 
                     <!-- ซ่อนค่า rice_id จริงไว้ส่ง -->
                     <input type="hidden" id="rice_id" name="rice_id" value="<?= htmlspecialchars($riceIdValue) ?>" />
+                    <input type="hidden" id="thai_name" name="thai_name" value="<?= htmlspecialchars($thaiNameValue) ?>" />
+                    <input type="hidden" id="english_name" name="english_name" value="<?= htmlspecialchars($englishNameValue) ?>" />
                 </div>
                 <script>
                     function fetchRiceSuggestions(query) {
@@ -190,29 +192,38 @@ if (!empty($products_food['rice_id'])) {
 
                                 data.forEach(item => {
                                     const option = document.createElement("option");
-                                    option.value = item.label; // แสดงชื่อพันธุ์ข้าว
-                                    option.dataset.id = item.id; // เก็บ rice_id ไว้ใน data
+                                    option.value = item.label;
+                                    option.dataset.id = item.id;
+                                    option.dataset.thai = item.thai;
+                                    option.dataset.english = item.english;
                                     datalist.appendChild(option);
                                 });
                             });
                     }
 
-                    // เมื่อเลือกพันธุ์ข้าว ตรวจสอบและเก็บ rice_id
-                    document.getElementById("rice_group_th").addEventListener("change", function() {
+                    document.getElementById("rice_label").addEventListener("change", function() {
                         const inputVal = this.value;
                         const options = document.querySelectorAll("#riceSuggestions option");
-                        const hiddenInput = document.getElementById("rice_id");
+
+                        const hiddenId = document.getElementById("rice_id");
+                        const thaiName = document.getElementById("thai_name");
+                        const englishName = document.getElementById("english_name");
 
                         let matched = false;
+
                         options.forEach(opt => {
                             if (opt.value === inputVal) {
-                                hiddenInput.value = opt.dataset.id;
+                                hiddenId.value = opt.dataset.id;
+                                thaiName.value = opt.dataset.thai;
+                                englishName.value = opt.dataset.english;
                                 matched = true;
                             }
                         });
 
                         if (!matched) {
-                            hiddenInput.value = ""; // ถ้าไม่ match ก็ไม่ส่ง rice_id
+                            hiddenId.value = "";
+                            thaiName.value = "";
+                            englishName.value = "";
                         }
                     });
                 </script>
