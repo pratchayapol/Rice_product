@@ -359,55 +359,55 @@ if (!empty($products_food['rice_id'])) {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // รับค่า ID ของผลิตภัณฑ์
-        echo $food_product_id = $_POST['food_product_id']; // รหัสผลิตภัณฑ์
+        $food_product_id = $_POST['food_product_id']; // รหัสผลิตภัณฑ์
 
         // รับค่าชื่อผลิตภัณฑ์ภาษาไทย
-        echo $product_name = $_POST['product_name']; // ชื่อผลิตภัณฑ์
+        $product_name = $_POST['product_name']; // ชื่อผลิตภัณฑ์
 
         // รับค่าชื่อผลิตภัณฑ์อังกฤษแบบไทย
-        echo $product_name_th = $_POST['product_name_th']; // ชื่อผลิตภัณฑ์อังกฤษแบบไทย (สะกดตามเสียงไทย)
+        $product_name_th = $_POST['product_name_th']; // ชื่อผลิตภัณฑ์อังกฤษแบบไทย (สะกดตามเสียงไทย)
 
         // รับค่าชื่อผลิตภัณฑ์ภาษาอังกฤษ
-        echo $product_name_en = $_POST['product_name_en']; // ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บ)
+        $product_name_en = $_POST['product_name_en']; // ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บ)
 
         // รับค่าประเภทของผลิตภัณฑ์
-        echo $product_group = $_POST['product_group']; // ประเภทหลักของผลิตภัณฑ์ เช่น เมล็ดข้าว, แป้งข้าว ฯลฯ
+        $product_group = $_POST['product_group']; // ประเภทหลักของผลิตภัณฑ์ เช่น เมล็ดข้าว, แป้งข้าว ฯลฯ
 
         // รับค่ากลุ่มย่อย (เช่น อาหาร, เครื่องดื่ม)
-        echo $category = $_POST['category'] ?? ''; // กลุ่มย่อยของผลิตภัณฑ์
+        $category = $_POST['category'] ?? ''; // กลุ่มย่อยของผลิตภัณฑ์
 
         // รับค่ารหัสพันธุ์ข้าว
-        echo $rice_id = $_POST['rice_id']; // รหัสพันธุ์ข้าว (ใช้สำหรับเชื่อมโยงกับข้อมูลพันธุ์ข้าวในระบบ)
+        $rice_id = $_POST['rice_id']; // รหัสพันธุ์ข้าว (ใช้สำหรับเชื่อมโยงกับข้อมูลพันธุ์ข้าวในระบบ)
 
         // ชื่อพันธุ์ข้าวไทย
-        echo $thaiName = $_POST['thai_name'];
+        $thaiName = $_POST['thai_name'];
 
         // ชื่อพันธุ์ข้าวอังกฤษ
-        echo $englishName = $_POST['english_name'];
+        $englishName = $_POST['english_name'];
 
         // รับค่ากลุ่มพันธุ์ข้าว (ภาษาไทย)
-        echo $rice_variety_group_th_name = $_POST['rice_variety_group_th_name']; // ชื่อกลุ่มพันธุ์ข้าว (ภาษาไทย)
+        $rice_variety_group_th_name = $_POST['rice_variety_group_th_name']; // ชื่อกลุ่มพันธุ์ข้าว (ภาษาไทย)
 
         // รับค่ากลุ่มพันธุ์ข้าว (ภาษาอังกฤษ)
-        echo $rice_variety_group_en_name = $_POST['rice_variety_group_en_name']; // ชื่อกลุ่มพันธุ์ข้าว (ภาษาอังกฤษ)
+        $rice_variety_group_en_name = $_POST['rice_variety_group_en_name']; // ชื่อกลุ่มพันธุ์ข้าว (ภาษาอังกฤษ)
 
         // รับค่าที่มา URL
-        echo $source_url = $_POST['source_url']; // URL แหล่งที่มา (ลิงก์ข้อมูลอ้างอิง)
+        $source_url = $_POST['source_url']; // URL แหล่งที่มา (ลิงก์ข้อมูลอ้างอิง)
 
         // รับค่าที่มา (ชื่อหน่วยงาน)
-        echo $source = $_POST['source']; // หน่วยงานหรือที่มาของข้อมูล
+        $source = $_POST['source']; // หน่วยงานหรือที่มาของข้อมูล
 
         // รับค่าวัตถุดิบและอุปกรณ์ (ภาษาไทย)
-        echo $ingredients_and_equipment = $_POST['ingredients_and_equipment']; // วัตถุดิบและอุปกรณ์ (ภาษาไทย)
+        $ingredients_and_equipment = $_POST['ingredients_and_equipment']; // วัตถุดิบและอุปกรณ์ (ภาษาไทย)
 
         // รับค่าวิธีทำ (ภาษาไทย)
-        echo $instructions = $_POST['instructions']; // วิธีทำ (ภาษาไทย)
+        $instructions = $_POST['instructions']; // วิธีทำ (ภาษาไทย)
 
         // รับค่าวัตถุดิบและอุปกรณ์ (ภาษาอังกฤษ)
-        echo $ingredients_and_equipment_en = $_POST['ingredients_and_equipment_en']; // วัตถุดิบและอุปกรณ์ (ภาษาอังกฤษ)
+        $ingredients_and_equipment_en = $_POST['ingredients_and_equipment_en']; // วัตถุดิบและอุปกรณ์ (ภาษาอังกฤษ)
 
         // รับค่าวิธีทำ (ภาษาอังกฤษ)
-        echo $instructions_en = $_POST['instructions_en']; // วิธีทำ (ภาษาอังกฤษ)
+        $instructions_en = $_POST['instructions_en']; // วิธีทำ (ภาษาอังกฤษ)
 
         // จัดการกับไฟล์ภาพถ้ามีการอัปโหลด
         if (isset($_FILES['picture']) && $_FILES['picture']['error'] === UPLOAD_ERR_OK) {
