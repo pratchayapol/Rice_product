@@ -492,30 +492,9 @@ if (!empty($products_food['rice_id'])) {
         $sql = "UPDATE food_product SET " . implode(", ", $fieldsToUpdate) . " WHERE food_product_id = :food_product_id";
         $stmt = $pdo->prepare($sql);
 
-        $stmt->bindParam(':product_name', $product_name);
-        $stmt->bindParam(':product_name_th', $product_name_th);
-        $stmt->bindParam(':product_name_en', $product_name_en);
-        $stmt->bindParam(':product_group', $product_group);
-        $stmt->bindParam(':category', $category);
-        $stmt->bindParam(':rice_id', $rice_id);
-
-        $stmt->bindParam(':rice_variety_group_th_name', $rice_variety_group_th_name);
-        $stmt->bindParam(':rice_variety_group_en_name', $rice_variety_group_en_name);
-        $stmt->bindParam(':source_url', $source_url);
-        $stmt->bindParam(':source', $source);
-        $stmt->bindParam(':ingredients_and_equipment', $ingredients_and_equipment);
-        $stmt->bindParam(':instructions', $instructions);
-        $stmt->bindParam(':ingredients_and_equipment_en', $ingredients_and_equipment_en);
-        $stmt->bindParam(':instructions_en', $instructions_en);
-
-        if (!empty($picture_path)) {
-            $stmt->bindParam(':picture', $picture_path);
-        }
-
-        $stmt->bindParam(':food_product_id', $food_product_id);
 
         // ดำเนินการอัปเดต
-        if ($stmt->execute()) {
+        if ($stmt->execute($params)) {
     ?>
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
             <script>
