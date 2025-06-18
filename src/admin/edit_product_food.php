@@ -419,7 +419,7 @@ if (!empty($products_food['rice_id'])) {
             $newFileName = uniqid('img_', true) . '.' . $fileExtension;
 
             // กำหนดที่เก็บไฟล์
-            $uploadFileDir = './uploads/';
+            $uploadFileDir = '../image/rice_product/';
             $dest_path = $uploadFileDir . $newFileName;
 
             // ย้ายไฟล์จาก temp ไปยังโฟลเดอร์ที่กำหนด
