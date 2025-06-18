@@ -379,8 +379,12 @@ if (!empty($products_food['rice_id'])) {
         // รับค่ารหัสพันธุ์ข้าว
         echo $rice_id = $_POST['rice_id']; // รหัสพันธุ์ข้าว (ใช้สำหรับเชื่อมโยงกับข้อมูลพันธุ์ข้าวในระบบ)
 
-        echo $thaiName = $_POST['thai_name'] ?? '';
-        echo $englishName = $_POST['english_name'] ?? '';
+        // ชื่อพันธุ์ข้าวไทย
+        echo $thaiName = $_POST['thai_name'];
+
+        // ชื่อพันธุ์ข้าวอังกฤษ
+        echo $englishName = $_POST['english_name'];
+
         // รับค่ากลุ่มพันธุ์ข้าว (ภาษาไทย)
         echo $rice_variety_group_th_name = $_POST['rice_variety_group_th_name']; // ชื่อกลุ่มพันธุ์ข้าว (ภาษาไทย)
 
@@ -432,9 +436,64 @@ if (!empty($products_food['rice_id'])) {
             $picture_path = ''; // ไม่มีการอัปโหลดภาพใหม่
         }
 
-        // จากนี้สามารถใช้ค่าทั้งหมด $... ไปบันทึกลงฐานข้อมูลได้ตามต้องการ
-        // เช่น: INSERT หรือ UPDATE
+        // รวมคำสั่ง SQL สำหรับอัปเดต
+        $sql = "UPDATE food_product SET
+                product_name = :product_name,
+                product_name_th = :product_name_th,
+                product_name_en = :product_name_en,
+                product_group = :product_group,
+                category = :category,
+                rice_id = :rice_id,
+                rice_name_th = :thai_name,
+                rice_name_en = :english_name,
+                rice_variety_group_th_name = :rice_variety_group_th_name,
+                rice_variety_group_en_name = :rice_variety_group_en_name,
+                source_url = :source_url,
+                source = :source,
+                ingredients_and_equipment = :ingredients_and_equipment,
+                instructions = :instructions,
+                ingredients_and_equipment_en = :ingredients_and_equipment_en,
+                instructions_en = :instructions_en";
 
+        // เพิ่มเฉพาะภาพหากมีการอัปโหลด
+        if (!empty($picture_path)) {
+            $sql .= ", picture = :picture";
+        }
+
+        $sql .= " WHERE food_product_id = :food_product_id";
+
+        // เตรียมคำสั่งและ bind ค่าต่าง ๆ
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':product_name', $product_name);
+        $stmt->bindParam(':product_name_th', $product_name_th);
+        $stmt->bindParam(':product_name_en', $product_name_en);
+        $stmt->bindParam(':product_group', $product_group);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':rice_id', $rice_id);
+        $stmt->bindParam(':thai_name', $thaiName);
+        $stmt->bindParam(':english_name', $englishName);
+        $stmt->bindParam(':rice_variety_group_th_name', $rice_variety_group_th_name);
+        $stmt->bindParam(':rice_variety_group_en_name', $rice_variety_group_en_name);
+        $stmt->bindParam(':source_url', $source_url);
+        $stmt->bindParam(':source', $source);
+        $stmt->bindParam(':ingredients_and_equipment', $ingredients_and_equipment);
+        $stmt->bindParam(':instructions', $instructions);
+        $stmt->bindParam(':ingredients_and_equipment_en', $ingredients_and_equipment_en);
+        $stmt->bindParam(':instructions_en', $instructions_en);
+
+        if (!empty($picture_path)) {
+            $stmt->bindParam(':picture', $picture_path);
+        }
+
+        $stmt->bindParam(':food_product_id', $food_product_id);
+
+        // ดำเนินการอัปเดต
+        if ($stmt->execute()) {
+            echo "อัปเดตข้อมูลสำเร็จ!";
+        } else {
+            echo "เกิดข้อผิดพลาดในการอัปเดตข้อมูล";
+        }
     }
     ?>
 
