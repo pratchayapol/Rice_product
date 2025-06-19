@@ -50,7 +50,7 @@ if (!empty($products_cosmetic['rice_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แก้ไขข้อมูลผลิตภัณฑ์อาหาร</title>
+    <title>แก้ไขข้อมูลผลิตภัณฑ์เวชสำอาง</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -82,7 +82,7 @@ if (!empty($products_cosmetic['rice_id'])) {
 
     <div class="pt-24 flex items-center justify-center min-h-screen px-4">
         <div class="w-full max-w-3xl bg-white p-10 rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-semibold mb-8 text-center text-rose-600">แก้ไขข้อมูลผลิตภัณฑ์อาหาร</h2>
+            <h2 class="text-3xl font-semibold mb-8 text-center text-rose-600">แก้ไขข้อมูลผลิตภัณฑ์เวชสำอาง</h2>
 
             <form method="POST" action="" enctype="multipart/form-data" class="space-y-6">
 
