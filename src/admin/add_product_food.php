@@ -12,21 +12,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 include '../connect/dbcon.php';
 
+// ดึงข้อมูลชื่อพันธุ์ข้าว
+$stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
+$stmt->execute([$products_food['rice_id']]);
+$rice = $stmt->fetch();
 
-if (!empty($products_food['rice_id'])) {
-    // ดึงข้อมูลชื่อพันธุ์ข้าว
-    $stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
-    $stmt->execute([$products_food['rice_id']]);
-    $rice = $stmt->fetch();
-
-    if ($rice) {
-        $riceNameLabel = $rice['thai_breed_name'];
-        if (!empty($rice['english_breed_name'])) {
-            $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
-        }
-        $riceIdValue = $products_food['rice_id'];
+if ($rice) {
+    $riceNameLabel = $rice['thai_breed_name'];
+    if (!empty($rice['english_breed_name'])) {
+        $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
     }
+    $riceIdValue = $products_food['rice_id'];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -220,7 +218,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="source" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-400 text-xs">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
                     <input type="text" id="source" name="source"
-                    placeholder="ระบุ ที่มา เช่น หน่วยงานที่รับรองผลิตภัณฑ์"
+                        placeholder="ระบุ ที่มา เช่น หน่วยงานที่รับรองผลิตภัณฑ์"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 

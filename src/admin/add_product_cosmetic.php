@@ -13,10 +13,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 include '../connect/dbcon.php';
 
 
-if (!empty($products_food['rice_id'])) {
     // ดึงข้อมูลชื่อพันธุ์ข้าว
     $stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
-    $stmt->execute([$products_food['rice_id']]);
+    $stmt->execute([$products_cosmetic['rice_id']]);
     $rice = $stmt->fetch();
 
     if ($rice) {
@@ -24,9 +23,9 @@ if (!empty($products_food['rice_id'])) {
         if (!empty($rice['english_breed_name'])) {
             $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
         }
-        $riceIdValue = $products_food['rice_id'];
+        $riceIdValue = $products_cosmetic['rice_id'];
     }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="th">
@@ -255,7 +254,7 @@ if (!empty($products_food['rice_id'])) {
                 <!-- ภาพผลิตภัณฑ์ -->
                 <div>
                     <label for="picture" class="block text-sm font-medium text-gray-700 mb-1">
-                        <?= !empty($products_food['picture']) ? 'อัปเดตภาพผลิตภัณฑ์' : 'อัปโหลดภาพผลิตภัณฑ์' ?>
+                        <?= !empty($products_cosmetic['picture']) ? 'อัปเดตภาพผลิตภัณฑ์' : 'อัปโหลดภาพผลิตภัณฑ์' ?>
                     </label>
 
                     <!-- Input เลือกภาพ -->
@@ -264,10 +263,10 @@ if (!empty($products_food['rice_id'])) {
                         onchange="previewImage(event)">
 
                     <!-- แสดงภาพเดิมถ้ามี -->
-                    <?php if (!empty($products_food['picture'])): ?>
+                    <?php if (!empty($products_cosmetic['picture'])): ?>
                         <div class="mt-3">
                             <p class="text-sm text-gray-500 mb-1">ภาพปัจจุบัน:</p>
-                            <img src="<?= htmlspecialchars($products_food['picture']) ?>" alt="Product Image" class="w-48 h-auto rounded shadow">
+                            <img src="<?= htmlspecialchars($products_cosmetic['picture']) ?>" alt="Product Image" class="w-48 h-auto rounded shadow">
                         </div>
                     <?php endif; ?>
 
@@ -424,7 +423,7 @@ if (!empty($products_food['rice_id'])) {
         }
 
         // สร้างคำสั่ง SQL INSERT
-        $sql = "INSERT INTO food_product (" . implode(", ", $columns) . ") VALUES (" . implode(", ", $placeholders) . ")";
+        $sql = "INSERT INTO cosmetic_product (" . implode(", ", $columns) . ") VALUES (" . implode(", ", $placeholders) . ")";
         $stmt = $pdo->prepare($sql);
 
 
