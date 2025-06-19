@@ -421,8 +421,8 @@ if (!empty($products_food['rice_id'])) {
         addField($columns, $placeholders, $params, 'product_group', ':product_group', $_POST['product_group']);
         addField($columns, $placeholders, $params, 'category', ':category', $_POST['category'] ?? '');
         addField($columns, $placeholders, $params, 'rice_id', ':rice_id', $_POST['rice_id']);
-        addField($columns, $placeholders, $params, 'rice_name_th', ':thai_name', $_POST['thai_name']);
-        addField($columns, $placeholders, $params, 'rice_name_en', ':english_name', $_POST['english_name']);
+        addField($columns, $placeholders, $params, 'rice_variety_th_name', ':thai_name', $_POST['thai_name']);
+        addField($columns, $placeholders, $params, 'rice_variety_en_name', ':english_name', $_POST['english_name']);
         addField($columns, $placeholders, $params, 'rice_variety_group_th_name', ':rice_variety_group_th_name', $_POST['rice_variety_group_th_name']);
         addField($columns, $placeholders, $params, 'rice_variety_group_en_name', ':rice_variety_group_en_name', $_POST['rice_variety_group_en_name']);
         addField($columns, $placeholders, $params, 'source_url', ':source_url', $_POST['source_url']);
