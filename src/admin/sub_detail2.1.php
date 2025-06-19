@@ -1,11 +1,10 @@
-<!-- ปุ่มสลับภาษา -->
-<div class="flex justify-end mb-4">
-    <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full shadow">
-        🌐 <span id="language-label">English</span>
-    </button>
-</div>
-
 <div id="method" class="tab-content">
+    <!-- ปุ่มสลับภาษา -->
+    <div class="flex justify-end mb-4">
+        <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full shadow">
+            🌐 <span id="language-label">English</span>
+        </button>
+    </div>
     <!-- ภาษาไทย -->
     <div id="thai-section">
         <div class="bg-white p-4 rounded-lg mb-4">
