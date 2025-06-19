@@ -16,7 +16,7 @@
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-4 items-center">
+                <div class="hidden lg:flex space-x-4 items-center">
                     <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
                     <a href="product_all" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
 
@@ -29,8 +29,6 @@
                         <div id="dropdown-menu"
                             class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
                             <a href="accounts" class="px-4 py-2 text-gray-700 hover:bg-gray-100">จัดการบัญชีผู้ใช้งาน</a>
-                            <!-- <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอาง</a>
-                            <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์ทางการแพทย์</a> -->
                         </div>
                     </div>
 
@@ -51,7 +49,7 @@
                             hideTimeout = setTimeout(() => {
                                 dropdown.classList.remove('flex');
                                 dropdown.classList.add('hidden');
-                            }, 500); // ซ่อนหลัง 0.5 วินาที
+                            }, 500);
                         }
 
                         wrapper.addEventListener('mouseenter', showMenu);
@@ -61,15 +59,14 @@
                     <a href="profile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
                 </div>
 
-
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-white focus:outline-none">☰</button>
+                <div class="lg:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none text-2xl">☰</button>
                 </div>
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4 px-4">
+            <div id="mobile-menu" class="hidden lg:hidden mt-4 space-y-2 pb-4 px-4">
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
                 <a href="product_all" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
 
@@ -84,10 +81,8 @@
                     <div id="mobile-submenu"
                         class="hidden w-full bg-white rounded-xl mt-2 shadow-md border border-gray-200 transition-all duration-300 overflow-hidden">
                         <a href="accounts" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 border-b">จัดการบัญชีผู้ใช้งาน</a>
-                        <!-- เพิ่มเมนูอื่นๆ ได้ที่นี่ -->
                     </div>
                 </div>
-
 
                 <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
             </div>
@@ -97,18 +92,16 @@
 
 <script>
     // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('menu-toggle').addEventListener('click', function () {
         const menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
     });
 
     // Toggle mobile submenu
-    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
+    document.getElementById('mobile-submenu-toggle').addEventListener('click', function () {
         const submenu = document.getElementById('mobile-submenu');
         const arrow = document.getElementById('submenu-arrow');
         submenu.classList.toggle('hidden');
-
-        // Toggle arrow icon
         arrow.textContent = submenu.classList.contains('hidden') ? '▼' : '▲';
     });
 </script>
