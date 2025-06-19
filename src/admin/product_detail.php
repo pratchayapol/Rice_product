@@ -158,8 +158,6 @@ if ($id > 0) {
                     })
                     .then(editor => {
                         // เอา style ที่ไม่ต้องการออก
-                        editor.ui.view.editable.element.style.border = 'none';
-
                         editor.editing.view.change(writer => {
                             writer.setStyle('border', 'none', editor.editing.view.document.getRoot());
                             writer.setStyle('background-color', 'transparent', editor.editing.view.document.getRoot());
@@ -194,6 +192,10 @@ if ($id > 0) {
 
             .ck.ck-editor__main>.ck-editor__editable {
                 border: none !important;
+            }
+
+            .ck.ck-editor__top {
+                display: none !important;
             }
         </style>
 
