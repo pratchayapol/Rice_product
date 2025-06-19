@@ -324,7 +324,7 @@ $accounts = $stmt->fetchAll();
             echo "ข้อมูลไม่ถูกต้อง";
         }
     } else {
-        echo "Method ไม่ถูกต้อง";
+        // echo "Method ไม่ถูกต้อง";
     }
     ?>
 
