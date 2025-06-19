@@ -109,7 +109,7 @@ $products_medical = $stmt->fetchAll();
                                 </h3>
                                 <div class="flex justify-end mb-4">
                                     <a href="add_product_food"
-                                        class="bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        class="bg-rose-500 hover:bg-rose-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                 </div>
