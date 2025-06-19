@@ -47,13 +47,6 @@ if ($id > 0) {
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
-        <style>
-            .ck-editor__editable_inline {
-                padding: 0;
-                min-height: auto;
-            }
-        </style>
-
     </head>
 
     <body class="bg t1">
@@ -161,15 +154,16 @@ if ($id > 0) {
         <script>
             function createReadOnlyEditor(selector) {
                 ClassicEditor.create(document.querySelector(selector), {
-                        toolbar: [], // ไม่มี toolbar
+                        toolbar: [],
+                        isReadOnly: true, // ตั้งค่าตรงนี้เลย
                     })
                     .then(editor => {
-                        // ทำให้เป็น read-only
-                        editor.isReadOnly = true;
-
-                        // ซ่อนเส้นขอบ (ต้องใช้ CSS เพิ่มเติม)
-                        editor.ui.view.editable.element.style.border = "none";
-                        editor.ui.view.editable.element.style.backgroundColor = "transparent";
+                        // ใช้ view.change เพื่อปรับสไตล์
+                        editor.editing.view.change(writer => {
+                            writer.setStyle('border', 'none', editor.editing.view.document.getRoot());
+                            writer.setStyle('background-color', 'transparent', editor.editing.view.document.getRoot());
+                            writer.setStyle('padding', '0', editor.editing.view.document.getRoot());
+                        });
                     })
                     .catch(error => {
                         console.error(error);
