@@ -177,17 +177,21 @@ if ($id > 0) {
             createReadOnlyEditor('#instructions');
             createReadOnlyEditor('#ingredients_and_equipment_en');
             createReadOnlyEditor('#instructions_en');
-
         </script>
 
         <style>
             .ck.ck-editor__editable_inline.read-only-disabled {
                 pointer-events: none;
-                /* ปิดการคลิกทุกชนิด */
                 user-select: none;
-                /* ห้ามเลือกข้อความ */
                 caret-color: transparent;
-                /* ไม่แสดงเคอร์เซอร์ */
+            }
+
+            .ck.ck-editor__editable_inline {
+                border: none !important;
+            }
+
+            .ck.ck-editor__main>.ck-editor__editable {
+                border: none !important;
             }
         </style>
 
