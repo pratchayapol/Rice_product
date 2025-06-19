@@ -47,6 +47,13 @@ if ($id > 0) {
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
+        <style>
+            .ck-editor__editable_inline {
+                padding: 0;
+                min-height: auto;
+            }
+        </style>
+
     </head>
 
     <body class="bg t1">
