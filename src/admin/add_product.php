@@ -100,10 +100,10 @@ if (!empty($products_food['rice_id'])) {
                     <select id="product_group" name="product_group" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกประเภท --</option>
-                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
-                        <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
-                        <option value="ผลิตภัณฑ์จากการหมัก" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
-                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= $products_food['product_group'] === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
+                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว">ผลิตภัณฑ์จากเมล็ดข้าว</option>
+                        <option value="ผลิตภัณฑ์จากแป้งข้าว">ผลิตภัณฑ์จากแป้งข้าว</option>
+                        <option value="ผลิตภัณฑ์จากการหมัก">ผลิตภัณฑ์จากการหมัก</option>
+                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ">ผลิตภัณฑ์จากส่วนอื่นๆ</option>
                     </select>
                 </div>
 
@@ -113,10 +113,10 @@ if (!empty($products_food['rice_id'])) {
                     <select id="category" name="category" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
-                        <option value="อาหาร" <?= $products_food['category'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
-                        <option value="อาหารว่าง" <?= $products_food['category'] === 'อาหารว่าง' ? 'selected' : '' ?>>ขนม</option>
-                        <option value="เครื่องดื่ม" <?= $products_food['category'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
-                        <option value="เครื่องปรุงรส" <?= $products_food['category'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
+                        <option value="อาหาร">อาหาร</option>
+                        <option value="อาหารว่าง">ขนม</option>
+                        <option value="เครื่องดื่ม">เครื่องดื่ม</option>
+                        <option value="เครื่องปรุงรส">เครื่องปรุงรส</option>
                     </select>
                 </div>
 
