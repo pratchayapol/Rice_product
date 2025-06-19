@@ -13,18 +13,18 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 include '../connect/dbcon.php';
 
 
-    // ดึงข้อมูลชื่อพันธุ์ข้าว
-    $stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
-    $stmt->execute([$products_cosmetic['rice_id']]);
-    $rice = $stmt->fetch();
+// ดึงข้อมูลชื่อพันธุ์ข้าว
+$stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
+$stmt->execute([$products_cosmetic['rice_id']]);
+$rice = $stmt->fetch();
 
-    if ($rice) {
-        $riceNameLabel = $rice['thai_breed_name'];
-        if (!empty($rice['english_breed_name'])) {
-            $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
-        }
-        $riceIdValue = $products_cosmetic['rice_id'];
+if ($rice) {
+    $riceNameLabel = $rice['thai_breed_name'];
+    if (!empty($rice['english_breed_name'])) {
+        $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
     }
+    $riceIdValue = $products_cosmetic['rice_id'];
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +33,7 @@ include '../connect/dbcon.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เพิ่มข้อมูลผลิตภัณฑ์</title>
+    <title>เพิ่มข้อมูลผลิตภัณฑ์เวชสำอาง</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom fonts for this template-->
@@ -65,7 +65,7 @@ include '../connect/dbcon.php';
 
     <div class="pt-24 flex items-center justify-center min-h-screen px-4">
         <div class="w-full max-w-3xl bg-white p-10 rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-semibold mb-8 text-center text-violet-600">เพิ่มข้อมูลผลิตภัณฑ์</h2>
+            <h2 class="text-3xl font-semibold mb-8 text-center text-violet-600">เพิ่มข้อมูลผลิตภัณฑ์เวชสำอาง</h2>
 
             <form method="POST" action="" enctype="multipart/form-data" class="space-y-6">
 
@@ -101,10 +101,10 @@ include '../connect/dbcon.php';
                     <select id="product_group" name="product_group" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-violet-400">
                         <option value="">-- เลือกประเภท --</option>
-                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว">ผลิตภัณฑ์จากเมล็ดข้าว</option>
-                        <option value="ผลิตภัณฑ์จากแป้งข้าว">ผลิตภัณฑ์จากแป้งข้าว</option>
-                        <option value="ผลิตภัณฑ์จากการหมัก">ผลิตภัณฑ์จากการหมัก</option>
-                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ">ผลิตภัณฑ์จากส่วนอื่นๆ</option>
+                        <option value="ผลิตภัณฑ์บำรุงผิว">ผลิตภัณฑ์บำรุงผิว</option>
+                        <option value="ผลิตภัณฑ์ทำความสะอาด">ผลิตภัณฑ์ทำความสะอาด</option>
+                        <option value="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ">ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ</option>
+                        <option value="ผลิตภัณฑ์เวชสำอางเฉพาะทาง">ผลิตภัณฑ์เวชสำอางเฉพาะทาง</option>
                     </select>
                 </div>
 
@@ -114,12 +114,50 @@ include '../connect/dbcon.php';
                     <select id="category" name="category"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-violet-400">
                         <option value="">-- เลือกกลุ่มย่อย --</option>
-                        <option value="อาหาร">อาหาร</option>
-                        <option value="อาหารว่าง">ขนม</option>
-                        <option value="เครื่องดื่ม">เครื่องดื่ม</option>
-                        <option value="เครื่องปรุงรส">เครื่องปรุงรส</option>
                     </select>
                 </div>
+
+                <script>
+                    const subcategories = {
+                        "ผลิตภัณฑ์บำรุงผิว": [
+                            "เซรั่ม",
+                            "ครีมบำรุงผิว",
+                            "มาส์กหน้าข้าว",
+                            "โลชั่น"
+                        ],
+                        "ผลิตภัณฑ์ทำความสะอาด": [
+                            "สบู่ข้าว",
+                            "โฟมล้างหน้า",
+                            "สครับผิว"
+                        ],
+                        "ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ": [
+                            "แชมพู / ครีมนวดผม",
+                            "ทรีตเมนต์"
+                        ],
+                        "ผลิตภัณฑ์เวชสำอางเฉพาะทาง": [
+                            ""
+                        ]
+                    };
+
+                    const productGroupSelect = document.getElementById("product_group");
+                    const categorySelect = document.getElementById("category");
+
+                    productGroupSelect.addEventListener("change", function() {
+                        const selectedGroup = this.value;
+                        const options = subcategories[selectedGroup] || [];
+
+                        // Clear current options
+                        categorySelect.innerHTML = '<option value="">-- เลือกกลุ่มย่อย --</option>';
+
+                        // Add new options
+                        options.forEach(sub => {
+                            const opt = document.createElement("option");
+                            opt.value = sub;
+                            opt.textContent = sub;
+                            categorySelect.appendChild(opt);
+                        });
+                    });
+                </script>
 
 
 
@@ -219,7 +257,7 @@ include '../connect/dbcon.php';
                 <div>
                     <label for="source" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-400 text-xs">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
                     <input type="text" id="source" name="source"
-                    placeholder="ระบุ ที่มา เช่น หน่วยงานที่รับรองผลิตภัณฑ์"
+                        placeholder="ระบุ ที่มา เช่น หน่วยงานที่รับรองผลิตภัณฑ์"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
