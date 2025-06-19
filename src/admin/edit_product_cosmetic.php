@@ -82,7 +82,7 @@ if (!empty($products_cosmetic['rice_id'])) {
 
     <div class="pt-24 flex items-center justify-center min-h-screen px-4">
         <div class="w-full max-w-3xl bg-white p-10 rounded-2xl shadow-xl">
-            <h2 class="text-3xl font-semibold mb-8 text-center text-rose-600">แก้ไขข้อมูลผลิตภัณฑ์เวชสำอาง</h2>
+            <h2 class="text-3xl font-semibold mb-8 text-center text-violet-600">แก้ไขข้อมูลผลิตภัณฑ์เวชสำอาง</h2>
 
             <form method="POST" action="" enctype="multipart/form-data" class="space-y-6">
 
@@ -94,7 +94,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                     <input type="text" id="product_name_th" name="product_name"
                         value="<?= htmlspecialchars($products_cosmetic['product_name'] ?? '') !== '' ? htmlspecialchars($products_cosmetic['product_name']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
                         required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์อังกฤษแบบไทย -->
@@ -103,7 +103,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                     <input type="text" id="product_name_eng_thai" name="product_name_th"
                         value="<?= htmlspecialchars($products_cosmetic['product_name_th'] ?? '') !== '' ? htmlspecialchars($products_cosmetic['product_name_th']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
                         required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
                 <!-- ชื่อผลิตภัณฑ์ภาษาอังกฤษ -->
@@ -112,7 +112,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                     <input type="text" id="product_name_eng" name="product_name_en"
                         value="<?= htmlspecialchars($products_cosmetic['product_name_en'] ?? '') !== '' ? htmlspecialchars($products_cosmetic['product_name_en']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
                         required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
 
@@ -120,7 +120,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                 <div>
                     <label for="product_group" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
                     <select id="product_group" name="product_group" required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-violet-400">
                         <option value="">-- กรุณาเลือกประเภท --</option>
                         <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
                         <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
@@ -133,7 +133,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                 <div id="subcategory-div">
                     <label for="category" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
                     <select id="category" name="category" required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-violet-400">
                         <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
                         <option value="อาหาร" <?= $products_cosmetic['category'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
                         <option value="อาหารว่าง" <?= $products_cosmetic['category'] === 'อาหารว่าง' ? 'selected' : '' ?>>ขนม</option>
@@ -170,7 +170,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                     <input type="text" id="rice_label" name="rice_label"
                         list="riceSuggestions"
                         value="<?= htmlspecialchars($riceNameLabel ?? '') ?>"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400"
                         oninput="fetchRiceSuggestions(this.value)" autocomplete="off" />
 
                     <!-- datalist -->
@@ -234,56 +234,56 @@ if (!empty($products_cosmetic['rice_id'])) {
                 <div>
                     <label for="rice_variety_group_th_name" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
                     <input type="text" id="rice_variety_group_th_name" name="rice_variety_group_th_name" value="<?= htmlspecialchars($products_cosmetic['rice_variety_group_th_name'] ?? 'ข้าวอื่น ๆ') ?>" required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
                 <!-- กลุ่มพันธุ์ข้าวภาษาอังกฤษ -->
                 <div>
                     <label for="rice_variety_group_en_name" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาอังกฤษ</label>
                     <input type="text" id="rice_variety_group_en_name" name="rice_variety_group_en_name" value="<?= htmlspecialchars($products_cosmetic['rice_variety_group_en_name'] ?? 'ข้าวอื่น ๆ') ?>" required
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
                 <!-- ที่มา URL -->
                 <div>
                     <label for="source_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา URL <span class="text-gray-400 text-xs">(วางลิงค์ข้อมูล)</span></label>
                     <input type="url" id="source_url" name="source_url" value="<?= htmlspecialchars($products_cosmetic['source_url']) ?>"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
                 <!-- ที่มา -->
                 <div>
                     <label for="source" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-400 text-xs">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
                     <input type="text" id="source" name="source" value="<?= htmlspecialchars($products_cosmetic['source']) ?>"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
                 <!-- วัตถุดิบและอุปกรณ์ -->
                 <div>
                     <label for="ingredients_th" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
                     <textarea id="ingredients_th" name="ingredients_and_equipment" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_cosmetic['ingredients_and_equipment'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400"><?= htmlspecialchars($products_cosmetic['ingredients_and_equipment'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- วิธีทำ -->
                 <div>
                     <label for="instructions" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำ</label>
                     <textarea id="instructions" name="instructions" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_cosmetic['instructions'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400"><?= htmlspecialchars($products_cosmetic['instructions'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- วัตถุดิบและอุปกรณ์ภาษาอังกฤษ -->
                 <div>
                     <label for="ingredients_and_equipment_en" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์ภาษาอังกฤษ</label>
                     <textarea id="ingredients_and_equipment_en" name="ingredients_and_equipment_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_cosmetic['ingredients_and_equipment_en'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400"><?= htmlspecialchars($products_cosmetic['ingredients_and_equipment_en'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- วิธีทำภาษาอังกฤษ -->
                 <div>
                     <label for="instructions_en" class="block text-sm font-medium text-gray-700 mb-1">วิธีทำภาษาอังกฤษ</label>
                     <textarea id="instructions_en" name="instructions_en" rows="5"
-                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"><?= htmlspecialchars($products_cosmetic['instructions_en'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400"><?= htmlspecialchars($products_cosmetic['instructions_en'] ?? 'รอเจ้าหน้าที่เพิ่มข้อมูล') ?></textarea>
                 </div>
 
                 <!-- ภาพผลิตภัณฑ์ -->
@@ -294,7 +294,7 @@ if (!empty($products_cosmetic['rice_id'])) {
 
                     <!-- Input เลือกภาพ -->
                     <input type="file" id="picture" name="picture" accept="image/*"
-                        class="w-full text-gray-600 file:border file:border-gray-300 file:rounded file:px-3 file:py-2 file:bg-gray-50 file:text-gray-700 hover:file:bg-rose-100 transition"
+                        class="w-full text-gray-600 file:border file:border-gray-300 file:rounded file:px-3 file:py-2 file:bg-gray-50 file:text-gray-700 hover:file:bg-violet-100 transition"
                         onchange="previewImage(event)">
 
                     <!-- แสดงภาพเดิมถ้ามี -->
@@ -337,7 +337,7 @@ if (!empty($products_cosmetic['rice_id'])) {
                 <!-- ปุ่มบันทึก -->
                 <div class="text-center">
                     <button type="submit"
-                        class="inline-block bg-rose-500 hover:bg-rose-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md transition">
+                        class="inline-block bg-violet-500 hover:bg-violet-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md transition">
                         บันทึกข้อมูล
                     </button>
                 </div>
