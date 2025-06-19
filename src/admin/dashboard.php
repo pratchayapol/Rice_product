@@ -203,7 +203,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <script>
         Chart.defaults.font.family = 'Noto Sans Thai';
 
-        function animateCounter(element, start, end, duration = 1700) {
+        function animateCounter(element, start, end, duration = 1000) {
             if (start === end) {
                 element.textContent = end;
                 return;
@@ -314,7 +314,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         });
 
         fetchProductCounts(); // เรียกครั้งแรกทันที
-        setInterval(fetchProductCounts, 500); // เรียกซ้ำทุก 0.5 วินาที
+        setInterval(fetchProductCounts, 1000); // เรียกซ้ำทุก 1 วินาที
     </script>
 
 
