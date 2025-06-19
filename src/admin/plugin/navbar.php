@@ -100,4 +100,17 @@
         dropdown.classList.toggle('hidden');
     });
 
+    // Toggle submenu
+    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
+        const submenu = document.getElementById('mobile-submenu');
+        const arrow = document.getElementById('submenu-arrow');
+        submenu.classList.toggle('hidden');
+
+        // เปลี่ยนลูกศร ▼/▲
+        if (submenu.classList.contains('hidden')) {
+            arrow.textContent = '▼';
+        } else {
+            arrow.textContent = '▲';
+        }
+    });
 </script>
