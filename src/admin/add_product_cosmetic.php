@@ -134,10 +134,8 @@ if (!empty($products_food['rice_id'])) {
                         "ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ": [
                             "แชมพู / ครีมนวดผม",
                             "ทรีตเมนต์"
-                        ],
-                        "ผลิตภัณฑ์เวชสำอางเฉพาะทาง": [
-                            ""
                         ]
+                       
                     };
 
                     const productGroupSelect = document.getElementById("product_group");
