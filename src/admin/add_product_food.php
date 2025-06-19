@@ -68,7 +68,7 @@ if (!empty($products_food['rice_id'])) {
         <div class="w-full max-w-3xl bg-white p-10 rounded-2xl shadow-xl">
             <h2 class="text-3xl font-semibold mb-8 text-center text-rose-600">เพิ่มข้อมูลผลิตภัณฑ์</h2>
 
-            <form method="POST" action="add_product_food" enctype="multipart/form-data" class="space-y-6">
+            <form method="POST" action="" enctype="multipart/form-data" class="space-y-6">
 
                 <!-- ชื่อผลิตภัณฑ์ -->
                 <div>
