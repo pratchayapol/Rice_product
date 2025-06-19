@@ -74,7 +74,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="product_name_th" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
                     <input type="text" id="product_name_th" name="product_name" required
-                    oninvalid="this.setCustomValidity('ระบุชื่อผลิตภัณฑ์')"
+                        placeholder="ระบุชื่อผลิตภัณฑ์"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -82,7 +82,8 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="product_name_eng_thai" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์อังกฤษแบบไทย</label>
                     <input type="text" id="product_name_eng_thai" name="product_name_th"
-                        required
+                        placeholder="ระบุชื่อผลิตภัณฑ์อังกฤษแบบไทย"
+
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -90,7 +91,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="product_name_eng" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์ภาษาอังกฤษ (วงเล็บข้างหลัง)</label>
                     <input type="text" id="product_name_eng" name="product_name_en"
-                        required
+                        placeholder="ระบุชื่อผลิตภัณฑ์อังกฤษแบบไทย"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -111,7 +112,7 @@ if (!empty($products_food['rice_id'])) {
                 <!-- กลุ่มย่อย -->
                 <div id="subcategory-div">
                     <label for="category" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
-                    <select id="category" name="category" required
+                    <select id="category" name="category"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
                         <option value="">-- เลือกกลุ่มย่อย --</option>
                         <option value="อาหาร">อาหาร</option>
@@ -127,8 +128,9 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="rice_label" class="block text-sm font-medium text-gray-700 mb-1">แปรรูปจากพันธุ์ข้าว</label>
                     <!-- input แสดงชื่อพันธุ์ข้าว -->
-                    <input type="text" id="rice_label" name="rice_label"
+                    <input type="text" id="rice_label" name="rice_label" required
                         list="riceSuggestions"
+                        placeholder="ระบุชื่อพันธุ์ข้าว"
                         value="<?= htmlspecialchars($riceNameLabel ?? '') ?>"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
                         oninput="fetchRiceSuggestions(this.value)" autocomplete="off" />
@@ -194,7 +196,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="rice_variety_group_th_name" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาไทย</label>
                     <input type="text" id="rice_variety_group_th_name" name="rice_variety_group_th_name"
-                        required
+                        placeholder="ระบุกลุ่มพันธุ์ข้าวภาษาไทย"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -202,7 +204,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="rice_variety_group_en_name" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มพันธุ์ข้าวภาษาอังกฤษ</label>
                     <input type="text" id="rice_variety_group_en_name" name="rice_variety_group_en_name"
-                        required
+                        placeholder="ระบุกลุ่มพันธุ์ข้าวภาษาอังกฤษ"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -210,6 +212,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="source_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา URL <span class="text-gray-400 text-xs">(วางลิงค์ข้อมูล)</span></label>
                     <input type="url" id="source_url" name="source_url"
+                        placeholder="ระบุ ที่มา URL"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
@@ -217,6 +220,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="source" class="block text-sm font-medium text-gray-700 mb-1">ที่มา <span class="text-gray-400 text-xs">(เช่น หน่วยงานที่รับรองผลิตภัณฑ์)</span></label>
                     <input type="text" id="source" name="source"
+                    placeholder="ระบุ ที่มา เช่น หน่วยงานที่รับรองผลิตภัณฑ์"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
