@@ -449,12 +449,12 @@ if (!empty($products_food['rice_id'])) {
                     Swal.fire({
                         icon: 'success',
                         title: 'สำเร็จ',
-                        text: 'อัปเดตข้อมูลผลิตภัณฑ์เรียบร้อยแล้ว',
+                        text: 'เพิ่มข้อมูลผลิตภัณฑ์เรียบร้อยแล้ว',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'ตกลง'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.href = 'edit_product_food?id=<?php echo $food_product_id; ?>'; // เปลี่ยนไปหน้า accounts
+                            window.location.href = 'product_all'; // เปลี่ยนไปหน้า product_all
                         }
                     });
                 });
