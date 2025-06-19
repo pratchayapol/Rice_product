@@ -74,6 +74,7 @@ if (!empty($products_food['rice_id'])) {
                 <div>
                     <label for="product_name_th" class="block text-sm font-medium text-gray-700 mb-1">ชื่อผลิตภัณฑ์</label>
                     <input type="text" id="product_name_th" name="product_name" required
+                    oninvalid="this.setCustomValidity('ระบุชื่อผลิตภัณฑ์')"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
