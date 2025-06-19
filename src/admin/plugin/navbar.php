@@ -75,15 +75,19 @@
 
                 <!-- Group Wrapper for Mobile -->
                 <div class="relative" id="mobile-menu-wrapper">
-                    <button id="mobile-submenu-toggle" class="w-full bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center">
+                    <button id="mobile-submenu-toggle"
+                        class="w-full bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center shadow-sm">
                         ตั้งค่าระบบ
                         <span id="submenu-arrow">▼</span>
                     </button>
 
-                    <div id="mobile-submenu" class="hidden flex-col w-full bg-white rounded-lg shadow-lg mt-2 z-50 transition-all duration-200">
-                        <a href="accounts" class="px-4 py-2 text-gray-700 hover:bg-gray-100">จัดการบัญชีผู้ใช้งาน</a>
+                    <div id="mobile-submenu"
+                        class="hidden w-full bg-white rounded-xl mt-2 shadow-md border border-gray-200 transition-all duration-300 overflow-hidden">
+                        <a href="accounts" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 border-b">จัดการบัญชีผู้ใช้งาน</a>
+                        <!-- เพิ่มเมนูอื่นๆ ได้ที่นี่ -->
                     </div>
                 </div>
+
 
                 <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
             </div>
@@ -93,13 +97,13 @@
 
 <script>
     // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', function () {
+    document.getElementById('menu-toggle').addEventListener('click', function() {
         const menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
     });
 
     // Toggle mobile submenu
-    document.getElementById('mobile-submenu-toggle').addEventListener('click', function () {
+    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
         const submenu = document.getElementById('mobile-submenu');
         const arrow = document.getElementById('submenu-arrow');
         submenu.classList.toggle('hidden');
