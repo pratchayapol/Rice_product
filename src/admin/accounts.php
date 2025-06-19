@@ -69,7 +69,7 @@ $accounts = $stmt->fetchAll();
                                 <thead class="bg-amber-200 text-gray-800">
                                     <tr>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle w-[125px]">ภาพโปรไฟล์</th>
-                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle w-[275px]">ชื่อบัญชีผู้ใช้</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle w-[325px]">ชื่อบัญชีผู้ใช้</th>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle w-[300px]">อีเมล</th>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle w-[300px]">หมายเลข id line</th>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle">สิทธิ์การใช้งาน</th>
