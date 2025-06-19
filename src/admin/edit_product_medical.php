@@ -122,26 +122,24 @@ if (!empty($products_medical['rice_id'])) {
                     <select id="product_group" name="product_group" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400">
                         <option value="">-- เลือกประเภท --</option>
-                        <option value="ผลิตภัณฑ์บำรุงผิว" <?= $products_medical['product_group'] === 'ผลิตภัณฑ์บำรุงผิว' ? 'selected' : '' ?>>ผลิตภัณฑ์บำรุงผิว</option>
-                        <option value="ผลิตภัณฑ์ทำความสะอาด" <?= $products_medical['product_group'] === 'ผลิตภัณฑ์ทำความสะอาด' ? 'selected' : '' ?>>ผลิตภัณฑ์ทำความสะอาด</option>
-                        <option value="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ" <?= $products_medical['product_group'] === 'ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ' ? 'selected' : '' ?>>ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ</option>
-                        <option value="ผลิตภัณฑ์ทางการแพทย์เฉพาะทาง" <?= $products_medical['product_group'] === 'ผลิตภัณฑ์ทางการแพทย์เฉพาะทาง' ? 'selected' : '' ?>>ผลิตภัณฑ์ทางการแพทย์เฉพาะทาง</option>
+                        <option value="เวชภัณฑ์จากสารออกฤทธิ์ในข้าว" <?= $products_medical['product_group'] === 'เวชภัณฑ์จากสารออกฤทธิ์ในข้าว' ? 'selected' : '' ?>>เวชภัณฑ์จากสารออกฤทธิ์ในข้าว</option>
+                        <option value="วัสดุทางการแพทย์จากข้าว" <?= $products_medical['product_group'] === 'วัสดุทางการแพทย์จากข้าว' ? 'selected' : '' ?>>วัสดุทางการแพทย์จากข้าว</option>
+                        <option value="ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย" <?= $products_medical['product_group'] === 'ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย' ? 'selected' : '' ?>>ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย</option>
+                        <option value="ผลิตภัณฑ์เฉพาะโรค" <?= $products_medical['product_group'] === 'ผลิตภัณฑ์เฉพาะโรค' ? 'selected' : '' ?>>ผลิตภัณฑ์เฉพาะโรค</option>
                     </select>
                 </div>
 
                 <!-- กลุ่มย่อย -->
                 <div id="subcategory-div">
                     <label for="category" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
-                    <select id="category" name="category" required
+                    <select id="category" name="category"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-sky-400">
                         <option value="">-- เลือกกลุ่มย่อย --</option>
                         <?php
                         $group = $products_medical['product_group'];
                         $category = $products_medical['category'];
                         $subcategories = [
-                            "ผลิตภัณฑ์บำรุงผิว" => ["เซรั่ม", "ครีมบำรุงผิว", "มาส์กหน้าข้าว", "โลชั่น"],
-                            "ผลิตภัณฑ์ทำความสะอาด" => ["สบู่ข้าว", "โฟมล้างหน้า", "สครับผิว"],
-                            "ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ" => ["แชมพู / ครีมนวดผม", "ทรีตเมนต์"],
+                            // หากมีประเภทไหนที่ต้องมีกลุ่มย่อยในอนาคต สามารถใส่เพิ่มที่นี่
                         ];
                         if (isset($subcategories[$group])) {
                             foreach ($subcategories[$group] as $item) {
@@ -155,21 +153,8 @@ if (!empty($products_medical['rice_id'])) {
 
                 <script>
                     const subcategories = {
-                        "ผลิตภัณฑ์บำรุงผิว": [
-                            "เซรั่ม",
-                            "ครีมบำรุงผิว",
-                            "มาส์กหน้าข้าว",
-                            "โลชั่น"
-                        ],
-                        "ผลิตภัณฑ์ทำความสะอาด": [
-                            "สบู่ข้าว",
-                            "โฟมล้างหน้า",
-                            "สครับผิว"
-                        ],
-                        "ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ": [
-                            "แชมพู / ครีมนวดผม",
-                            "ทรีตเมนต์"
-                        ]
+                        // เพิ่มกลุ่มย่อยในอนาคตตรงนี้ได้ เช่น:
+                        // "เวชภัณฑ์จากสารออกฤทธิ์ในข้าว": ["แผ่นแปะ", "แคปซูล"],
                     };
 
                     const productGroupSelect = document.getElementById("product_group");
@@ -177,7 +162,6 @@ if (!empty($products_medical['rice_id'])) {
 
                     function populateSubcategories(selectedGroup, currentValue = '') {
                         const options = subcategories[selectedGroup] || [];
-
                         categorySelect.innerHTML = '<option value="">-- เลือกกลุ่มย่อย --</option>';
 
                         options.forEach(sub => {
@@ -199,6 +183,7 @@ if (!empty($products_medical['rice_id'])) {
                         populateSubcategories(this.value);
                     });
                 </script>
+
 
 
                 <!-- แปรรูปจากพันธุ์ข้าว -->
