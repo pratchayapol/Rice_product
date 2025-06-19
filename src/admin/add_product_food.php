@@ -99,7 +99,7 @@ if (!empty($products_food['rice_id'])) {
                     <label for="product_group" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
                     <select id="product_group" name="product_group" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
-                        <option value="">-- กรุณาเลือกประเภท --</option>
+                        <option value="">-- เลือกประเภท --</option>
                         <option value="ผลิตภัณฑ์จากเมล็ดข้าว">ผลิตภัณฑ์จากเมล็ดข้าว</option>
                         <option value="ผลิตภัณฑ์จากแป้งข้าว">ผลิตภัณฑ์จากแป้งข้าว</option>
                         <option value="ผลิตภัณฑ์จากการหมัก">ผลิตภัณฑ์จากการหมัก</option>
@@ -112,7 +112,7 @@ if (!empty($products_food['rice_id'])) {
                     <label for="category" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
                     <select id="category" name="category" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-rose-400">
-                        <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
+                        <option value="">-- เลือกกลุ่มย่อย --</option>
                         <option value="อาหาร">อาหาร</option>
                         <option value="อาหารว่าง">ขนม</option>
                         <option value="เครื่องดื่ม">เครื่องดื่ม</option>
@@ -120,24 +120,7 @@ if (!empty($products_food['rice_id'])) {
                     </select>
                 </div>
 
-                <!-- JavaScript -->
-                <script>
-                    function toggleSubcategory() {
-                        const productGroup = document.getElementById('product_group').value;
-                        const subcategoryDiv = document.getElementById('subcategory-div');
 
-                        if (productGroup === 'ผลิตภัณฑ์จากส่วนอื่นๆ') {
-                            subcategoryDiv.style.display = 'none';
-                        } else {
-                            subcategoryDiv.style.display = 'block';
-                        }
-                    }
-
-                    // รันเมื่อโหลดหน้า
-                    document.addEventListener('DOMContentLoaded', toggleSubcategory);
-                    // รันเมื่อเปลี่ยนค่า
-                    document.getElementById('product_group').addEventListener('change', toggleSubcategory);
-                </script>
 
                 <!-- แปรรูปจากพันธุ์ข้าว -->
                 <div>
