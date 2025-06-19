@@ -94,23 +94,10 @@
 </nav>
 
 <script>
-    // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        const menu = document.getElementById('mobile-menu');
-        menu.classList.toggle('hidden');
+    // Toggle dropdown menu
+    document.getElementById('menu-button').addEventListener('click', function() {
+        const dropdown = document.getElementById('dropdown-menu');
+        dropdown.classList.toggle('hidden');
     });
 
-    // Toggle submenu
-    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
-        const submenu = document.getElementById('mobile-submenu');
-        const arrow = document.getElementById('submenu-arrow');
-        submenu.classList.toggle('hidden');
-
-        // เปลี่ยนลูกศร ▼/▲
-        if (submenu.classList.contains('hidden')) {
-            arrow.textContent = '▼';
-        } else {
-            arrow.textContent = '▲';
-        }
-    });
 </script>
