@@ -65,11 +65,11 @@ $accounts = $stmt->fetchAll();
                         </h3>
 
                         <div class="overflow-x-auto p-6">
-                            <table id="productTable1" class="table-fixed min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
+                            <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                 <thead class="bg-amber-200 text-gray-800">
                                     <tr>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle">ภาพโปรไฟล์</th>
-                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อบัญชีผู้ใช้</th>
+                                        <th class="border border-gray-300 px-4 py-2 text-center align-middle w-[200px]">ชื่อบัญชีผู้ใช้</th>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle">อีเมล</th>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle">หมายเลข id line</th>
                                         <th class="border border-gray-300 px-4 py-2 text-center align-middle">สิทธิ์การใช้งาน</th>
