@@ -73,16 +73,14 @@
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
                 <a href="product_all" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
 
-                <!-- Group Wrapper -->
-                <div class="relative" id="menu-wrapper">
-                    <button id="menu-button" class="w-full bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center">
+                <!-- Group Wrapper for Mobile -->
+                <div class="relative" id="mobile-menu-wrapper">
+                    <button id="mobile-submenu-toggle" class="w-full bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center">
                         ตั้งค่าระบบ
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
+                        <span id="submenu-arrow">▼</span>
                     </button>
 
-                    <div id="dropdown-menu" class="hidden flex-col w-full bg-white rounded-lg shadow-lg mt-2 z-50 transition-all duration-200">
+                    <div id="mobile-submenu" class="hidden flex-col w-full bg-white rounded-lg shadow-lg mt-2 z-50 transition-all duration-200">
                         <a href="accounts" class="px-4 py-2 text-gray-700 hover:bg-gray-100">จัดการบัญชีผู้ใช้งาน</a>
                     </div>
                 </div>
@@ -95,22 +93,18 @@
 
 <script>
     // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', function() {
+    document.getElementById('menu-toggle').addEventListener('click', function () {
         const menu = document.getElementById('mobile-menu');
         menu.classList.toggle('hidden');
     });
 
-    // Toggle submenu
-    document.getElementById('mobile-submenu-toggle').addEventListener('click', function() {
+    // Toggle mobile submenu
+    document.getElementById('mobile-submenu-toggle').addEventListener('click', function () {
         const submenu = document.getElementById('mobile-submenu');
         const arrow = document.getElementById('submenu-arrow');
         submenu.classList.toggle('hidden');
 
-        // เปลี่ยนลูกศร ▼/▲
-        if (submenu.classList.contains('hidden')) {
-            arrow.textContent = '▼';
-        } else {
-            arrow.textContent = '▲';
-        }
+        // Toggle arrow icon
+        arrow.textContent = submenu.classList.contains('hidden') ? '▼' : '▲';
     });
 </script>
