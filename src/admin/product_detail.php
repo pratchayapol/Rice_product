@@ -175,9 +175,9 @@ if ($id > 0) {
 
             createReadOnlyEditor('#ingredients_th');
             createReadOnlyEditor('#instructions');
+            createReadOnlyEditor('#ingredients_and_equipment_en');
+            createReadOnlyEditor('#instructions_en');
 
-            ClassicEditor.create(document.querySelector('#ingredients_and_equipment_en'));
-            ClassicEditor.create(document.querySelector('#instructions_en'));
         </script>
 
         <style>
