@@ -69,26 +69,25 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
-                <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
-                <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
-                <a href="product_all" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4 px-4">
+                <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
+                <a href="product_all" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
 
                 <!-- Group Wrapper -->
                 <div class="relative" id="menu-wrapper">
-                    <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
+                    <button id="menu-button" class="w-full bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center">
                         ตั้งค่าระบบ
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
 
-                    <div id="dropdown-menu"
-                        class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
+                    <div id="dropdown-menu" class="hidden flex-col w-full bg-white rounded-lg shadow-lg mt-2 z-50 transition-all duration-200">
                         <a href="accounts" class="px-4 py-2 text-gray-700 hover:bg-gray-100">จัดการบัญชีผู้ใช้งาน</a>
-                        <!-- <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอาง</a>
-                            <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์ทางการแพทย์</a> -->
                     </div>
                 </div>
 
-                <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2">บัญชีผู้ใช้งาน</a>
+                <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
             </div>
         </div>
     </div>
