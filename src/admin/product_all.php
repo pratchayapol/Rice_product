@@ -194,6 +194,7 @@ $products_medical = $stmt->fetchAll();
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">แก้ไขข้อมูล</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
                                             </tr>
 
@@ -213,6 +214,14 @@ $products_medical = $stmt->fetchAll();
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <?= htmlspecialchars($product_cosmetic['rice_variety_th_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <div class="flex justify-center items-center">
+                                                            <a href="edit_product_cosmetic?id=<?= urlencode($product_cosmetic['cosmetic_product_id']) ?>"
+                                                                class="inline-block bg-violet-300 hover:bg-violet-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
+                                                                แก้ไขข้อมูล
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <div class="flex justify-center items-center">
@@ -262,6 +271,7 @@ $products_medical = $stmt->fetchAll();
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">รูปผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">ชื่อผลิตภัณฑ์</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">สายพันธุ์ข้าว</th>
+                                                <th class="border border-gray-300 px-4 py-2 text-center align-middle">แก้ไขข้อมูล</th>
                                                 <th class="border border-gray-300 px-4 py-2 text-center align-middle">ดูรายละเอียด</th>
                                             </tr>
 
@@ -281,6 +291,14 @@ $products_medical = $stmt->fetchAll();
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <?= htmlspecialchars($product_medical['rice_variety_th_name']) ?>
+                                                    </td>
+                                                    <td class="border border-gray-300 px-4 py-2">
+                                                        <div class="flex justify-center items-center">
+                                                            <a href="edit_product_medical?id=<?= urlencode($product_medical['medical_product_id']) ?>"
+                                                                class="inline-block bg-sky-300 hover:bg-sky-500 text-white text-xs font-medium py-2 px-4 rounded-full shadow transition">
+                                                                แก้ไขข้อมูล
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                     <td class="border border-gray-300 px-4 py-2">
                                                         <div class="flex justify-center items-center">
