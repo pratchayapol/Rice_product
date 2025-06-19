@@ -71,17 +71,20 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2 pb-4">
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2">หน้าหลัก</a>
+                <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
+                <a href="product_all" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
 
-                <!-- Dropdown toggle -->
-                <div>
-                    <button id="mobile-submenu-toggle" class="w-full text-left bg-white text-gray-700 rounded-full px-4 py-2 flex justify-between items-center">
-                        ผลิตภัณฑ์ทั้งหมด
-                        <span id="submenu-arrow">▼</span>
+                <!-- Group Wrapper -->
+                <div class="relative" id="menu-wrapper">
+                    <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
+                        ตั้งค่าระบบ
                     </button>
-                    <div id="mobile-submenu" class="hidden mt-2 ml-4 space-y-2">
-                        <a href="product_food" class="block bg-white text-gray-700 rounded-full px-4 py-2">อาหาร</a>
-                        <a href="product_cosmetic" class="block bg-white text-gray-700 rounded-full px-4 py-2">เวชสำอางค์</a>
-                        <a href="product_medical" class="block bg-white text-gray-700 rounded-full px-4 py-2">การแพทย์</a>
+
+                    <div id="dropdown-menu"
+                        class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
+                        <a href="accounts" class="px-4 py-2 text-gray-700 hover:bg-gray-100">จัดการบัญชีผู้ใช้งาน</a>
+                        <!-- <a href="product_cosmetic" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์เวชสำอาง</a>
+                            <a href="product_medical" class="px-4 py-2 text-gray-700 hover:bg-gray-100">ผลิตภัณฑ์ทางการแพทย์</a> -->
                     </div>
                 </div>
 
