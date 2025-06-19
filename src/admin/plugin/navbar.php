@@ -94,10 +94,10 @@
 </nav>
 
 <script>
-    // Toggle dropdown menu
-    document.getElementById('menu-button').addEventListener('click', function() {
-        const dropdown = document.getElementById('dropdown-menu');
-        dropdown.classList.toggle('hidden');
+    // Toggle mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
     });
 
     // Toggle submenu
