@@ -314,7 +314,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         });
 
         fetchProductCounts(); // เรียกครั้งแรกทันที
-        setInterval(fetchProductCounts, 1000); // เรียกซ้ำทุก 1 วินาที
+        setInterval(fetchProductCounts, 500); // เรียกซ้ำทุก 0.5 วินาที
     </script>
 
 
