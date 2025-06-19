@@ -152,13 +152,26 @@ if ($id > 0) {
 
         <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
         <script>
-            ClassicEditor.create(document.querySelector('#ingredients_th'), {
-                toolbar: []
-            });
+            function createReadOnlyEditor(selector) {
+                ClassicEditor.create(document.querySelector(selector), {
+                        toolbar: [], // ไม่มี toolbar
+                    })
+                    .then(editor => {
+                        // ทำให้เป็น read-only
+                        editor.isReadOnly = true;
 
-            ClassicEditor.create(document.querySelector('#instructions'), {
-                toolbar: []
-            });
+                        // ซ่อนเส้นขอบ (ต้องใช้ CSS เพิ่มเติม)
+                        editor.ui.view.editable.element.style.border = "none";
+                        editor.ui.view.editable.element.style.backgroundColor = "transparent";
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
+            createReadOnlyEditor('#ingredients_th');
+            createReadOnlyEditor('#instructions');
+
             ClassicEditor.create(document.querySelector('#ingredients_and_equipment_en'));
             ClassicEditor.create(document.querySelector('#instructions_en'));
         </script>
