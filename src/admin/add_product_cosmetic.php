@@ -12,18 +12,19 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 include '../connect/dbcon.php';
 
+if (!empty($products_food['rice_id'])) {
+    // ดึงข้อมูลชื่อพันธุ์ข้าว
+    $stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
+    $stmt->execute([$products_cosmetic['rice_id']]);
+    $rice = $stmt->fetch();
 
-// ดึงข้อมูลชื่อพันธุ์ข้าว
-$stmt = $pdo->prepare("SELECT thai_breed_name, english_breed_name FROM rice WHERE rice_id = ?");
-$stmt->execute([$products_cosmetic['rice_id']]);
-$rice = $stmt->fetch();
-
-if ($rice) {
-    $riceNameLabel = $rice['thai_breed_name'];
-    if (!empty($rice['english_breed_name'])) {
-        $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
+    if ($rice) {
+        $riceNameLabel = $rice['thai_breed_name'];
+        if (!empty($rice['english_breed_name'])) {
+            $riceNameLabel .= ' (' . $rice['english_breed_name'] . ')';
+        }
+        $riceIdValue = $products_cosmetic['rice_id'];
     }
-    $riceIdValue = $products_cosmetic['rice_id'];
 }
 
 ?>
