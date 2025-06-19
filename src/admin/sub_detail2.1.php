@@ -20,7 +20,7 @@
                 <?php } ?>
             </div>
         </div>
-        <br>
+     
         <div class="bg-white p-4 rounded-lg">
             <h4 class="inline-block font-bold mb-2 bg-white px-4 py-2 rounded-full text-sm w-fit px-4 py-1 mx-auto shadow">วิธีทำ</h4>
             <div style='border:0px solid #ccc; padding:10px;'>
