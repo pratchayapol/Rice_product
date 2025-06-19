@@ -155,15 +155,19 @@ if ($id > 0) {
             function createReadOnlyEditor(selector) {
                 ClassicEditor.create(document.querySelector(selector), {
                         toolbar: [],
-                        isReadOnly: true, // ตั้งค่าตรงนี้เลย
+                        isReadOnly: true,
                     })
                     .then(editor => {
-                        // ใช้ view.change เพื่อปรับสไตล์
+                        // เอา style ที่ไม่ต้องการออก
                         editor.editing.view.change(writer => {
                             writer.setStyle('border', 'none', editor.editing.view.document.getRoot());
                             writer.setStyle('background-color', 'transparent', editor.editing.view.document.getRoot());
                             writer.setStyle('padding', '0', editor.editing.view.document.getRoot());
                         });
+
+                        // เพิ่ม class เพื่อปิดการโต้ตอบทั้งหมด
+                        const editableElement = editor.ui.view.editable.element;
+                        editableElement.classList.add('read-only-disabled');
                     })
                     .catch(error => {
                         console.error(error);
@@ -176,6 +180,18 @@ if ($id > 0) {
             ClassicEditor.create(document.querySelector('#ingredients_and_equipment_en'));
             ClassicEditor.create(document.querySelector('#instructions_en'));
         </script>
+
+        <style>
+            .ck.ck-editor__editable_inline.read-only-disabled {
+                pointer-events: none;
+                /* ปิดการคลิกทุกชนิด */
+                user-select: none;
+                /* ห้ามเลือกข้อความ */
+                caret-color: transparent;
+                /* ไม่แสดงเคอร์เซอร์ */
+            }
+        </style>
+
         <?php include '../loadtab/f.php'; ?>
     </body>
 
