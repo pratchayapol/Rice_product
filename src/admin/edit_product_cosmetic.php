@@ -121,11 +121,11 @@ if (!empty($products_cosmetic['rice_id'])) {
                     <label for="product_group" class="block text-sm font-medium text-gray-700 mb-1">ประเภท</label>
                     <select id="product_group" name="product_group" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-violet-400">
-                        <option value="">-- กรุณาเลือกประเภท --</option>
-                        <option value="ผลิตภัณฑ์จากเมล็ดข้าว" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์จากเมล็ดข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากเมล็ดข้าว</option>
-                        <option value="ผลิตภัณฑ์จากแป้งข้าว" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์จากแป้งข้าว' ? 'selected' : '' ?>>ผลิตภัณฑ์จากแป้งข้าว</option>
-                        <option value="ผลิตภัณฑ์จากการหมัก" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์จากการหมัก' ? 'selected' : '' ?>>ผลิตภัณฑ์จากการหมัก</option>
-                        <option value="ผลิตภัณฑ์จากส่วนอื่นๆ" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์จากส่วนอื่นๆ' ? 'selected' : '' ?>>ผลิตภัณฑ์จากส่วนอื่นๆ</option>
+                        <option value="">-- เลือกประเภท --</option>
+                        <option value="ผลิตภัณฑ์บำรุงผิว" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์บำรุงผิว' ? 'selected' : '' ?>>ผลิตภัณฑ์บำรุงผิว</option>
+                        <option value="ผลิตภัณฑ์ทำความสะอาด" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์ทำความสะอาด' ? 'selected' : '' ?>>ผลิตภัณฑ์ทำความสะอาด</option>
+                        <option value="ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ' ? 'selected' : '' ?>>ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ</option>
+                        <option value="ผลิตภัณฑ์เวชสำอางเฉพาะทาง" <?= $products_cosmetic['product_group'] === 'ผลิตภัณฑ์เวชสำอางเฉพาะทาง' ? 'selected' : '' ?>>ผลิตภัณฑ์เวชสำอางเฉพาะทาง</option>
                     </select>
                 </div>
 
@@ -134,32 +134,72 @@ if (!empty($products_cosmetic['rice_id'])) {
                     <label for="category" class="block text-sm font-medium text-gray-700 mb-1">กลุ่มย่อย</label>
                     <select id="category" name="category" required
                         class="w-full border border-gray-300 rounded-md px-4 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-violet-400">
-                        <option value="">-- กรุณาเลือกกลุ่มย่อย --</option>
-                        <option value="อาหาร" <?= $products_cosmetic['category'] === 'อาหาร' ? 'selected' : '' ?>>อาหาร</option>
-                        <option value="อาหารว่าง" <?= $products_cosmetic['category'] === 'อาหารว่าง' ? 'selected' : '' ?>>ขนม</option>
-                        <option value="เครื่องดื่ม" <?= $products_cosmetic['category'] === 'เครื่องดื่ม' ? 'selected' : '' ?>>เครื่องดื่ม</option>
-                        <option value="เครื่องปรุงรส" <?= $products_cosmetic['category'] === 'เครื่องปรุงรส' ? 'selected' : '' ?>>เครื่องปรุงรส</option>
+                        <option value="">-- เลือกกลุ่มย่อย --</option>
+                        <?php
+                        $group = $products_cosmetic['product_group'];
+                        $category = $products_cosmetic['category'];
+                        $subcategories = [
+                            "ผลิตภัณฑ์บำรุงผิว" => ["เซรั่ม", "ครีมบำรุงผิว", "มาส์กหน้าข้าว", "โลชั่น"],
+                            "ผลิตภัณฑ์ทำความสะอาด" => ["สบู่ข้าว", "โฟมล้างหน้า", "สครับผิว"],
+                            "ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ" => ["แชมพู / ครีมนวดผม", "ทรีตเมนต์"],
+                        ];
+                        if (isset($subcategories[$group])) {
+                            foreach ($subcategories[$group] as $item) {
+                                $selected = ($category === $item) ? 'selected' : '';
+                                echo "<option value=\"$item\" $selected>$item</option>";
+                            }
+                        }
+                        ?>
                     </select>
                 </div>
 
-                <!-- JavaScript -->
                 <script>
-                    function toggleSubcategory() {
-                        const productGroup = document.getElementById('product_group').value;
-                        const subcategoryDiv = document.getElementById('subcategory-div');
+                    const subcategories = {
+                        "ผลิตภัณฑ์บำรุงผิว": [
+                            "เซรั่ม",
+                            "ครีมบำรุงผิว",
+                            "มาส์กหน้าข้าว",
+                            "โลชั่น"
+                        ],
+                        "ผลิตภัณฑ์ทำความสะอาด": [
+                            "สบู่ข้าว",
+                            "โฟมล้างหน้า",
+                            "สครับผิว"
+                        ],
+                        "ผลิตภัณฑ์ดูแลเส้นผมและหนังศีรษะ": [
+                            "แชมพู / ครีมนวดผม",
+                            "ทรีตเมนต์"
+                        ]
+                    };
 
-                        if (productGroup === 'ผลิตภัณฑ์จากส่วนอื่นๆ') {
-                            subcategoryDiv.style.display = 'none';
-                        } else {
-                            subcategoryDiv.style.display = 'block';
-                        }
+                    const productGroupSelect = document.getElementById("product_group");
+                    const categorySelect = document.getElementById("category");
+
+                    function populateSubcategories(selectedGroup, currentValue = '') {
+                        const options = subcategories[selectedGroup] || [];
+
+                        categorySelect.innerHTML = '<option value="">-- เลือกกลุ่มย่อย --</option>';
+
+                        options.forEach(sub => {
+                            const opt = document.createElement("option");
+                            opt.value = sub;
+                            opt.textContent = sub;
+                            if (sub === currentValue) opt.selected = true;
+                            categorySelect.appendChild(opt);
+                        });
                     }
 
-                    // รันเมื่อโหลดหน้า
-                    document.addEventListener('DOMContentLoaded', toggleSubcategory);
-                    // รันเมื่อเปลี่ยนค่า
-                    document.getElementById('product_group').addEventListener('change', toggleSubcategory);
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const selectedGroup = productGroupSelect.value;
+                        const currentCategory = "<?= $products_cosmetic['category'] ?>";
+                        if (selectedGroup) populateSubcategories(selectedGroup, currentCategory);
+                    });
+
+                    productGroupSelect.addEventListener("change", function() {
+                        populateSubcategories(this.value);
+                    });
                 </script>
+
 
                 <!-- แปรรูปจากพันธุ์ข้าว -->
                 <div>
