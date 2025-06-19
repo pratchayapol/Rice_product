@@ -47,9 +47,6 @@ if ($id > 0) {
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
         <script src="https://unpkg.com/flowbite@latest/dist/flowbite.min.js"></script>
 
-
-
-
     </head>
 
     <body class="bg t1">
@@ -96,14 +93,13 @@ if ($id > 0) {
                         </div>
 
                         <!-- Tab Contents -->
-                     
+
 
 
                         <div class="relative">
                             <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต
                             include 'sub_detail2.2.php'; //tab ข้อมูลพันธุ์ข้าว
-
                             include 'sub_detail2.3.php'; //tab ข้อมูลโภชนาการ
                             ?>
                         </div>
@@ -153,6 +149,55 @@ if ($id > 0) {
         </script>
 
 
+        <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+        <script>
+            function createReadOnlyEditor(selector) {
+                ClassicEditor.create(document.querySelector(selector), {
+                        toolbar: [],
+                        isReadOnly: true,
+                    })
+                    .then(editor => {
+                        // เอา style ที่ไม่ต้องการออก
+                        editor.editing.view.change(writer => {
+                            writer.setStyle('border', 'none', editor.editing.view.document.getRoot());
+                            writer.setStyle('background-color', 'transparent', editor.editing.view.document.getRoot());
+                            writer.setStyle('padding', '0', editor.editing.view.document.getRoot());
+                        });
+
+                        // เพิ่ม class เพื่อปิดการโต้ตอบทั้งหมด
+                        const editableElement = editor.ui.view.editable.element;
+                        editableElement.classList.add('read-only-disabled');
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
+            createReadOnlyEditor('#ingredients_th');
+            createReadOnlyEditor('#instructions');
+            createReadOnlyEditor('#ingredients_and_equipment_en');
+            createReadOnlyEditor('#instructions_en');
+        </script>
+
+        <style>
+            .ck.ck-editor__editable_inline.read-only-disabled {
+                pointer-events: none;
+                user-select: none;
+                caret-color: transparent;
+            }
+
+            .ck.ck-editor__editable_inline {
+                border: none !important;
+            }
+
+            .ck.ck-editor__main>.ck-editor__editable {
+                border: none !important;
+            }
+
+            .ck.ck-editor__top {
+                display: none !important;
+            }
+        </style>
 
         <?php include '../loadtab/f.php'; ?>
     </body>
@@ -195,6 +240,8 @@ if ($id > 0) {
                 </div>
             </div>
         </div>
+
+
     </body>
 
     </html>

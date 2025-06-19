@@ -22,6 +22,8 @@ if ($type === "food") {
         $source = $product['source'];
         $ingredients_and_equipment = $product['ingredients_and_equipment'];
         $instructions = $product['instructions'];
+        $ingredients_and_equipment_en = $product['ingredients_and_equipment_en'];
+        $instructions_en = $product['instructions_en'];
         $picture = $product['picture'];
 
         // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
