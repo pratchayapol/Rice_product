@@ -7,15 +7,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit;
 }
 
-// ถ้ามีการส่ง token ผ่าน AJAX
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
     $token = $_POST['ajax_token'];
-    $user_id = $_SESSION['id']; // หรือเปลี่ยนให้ตรงกับระบบคุณ เช่น username
+    $user_id = $_SESSION['id']; // หรือชื่อ session ที่เก็บ id ผู้ใช้
 
-    $stmt = $conn->prepare("UPDATE accounts SET access_token = ? WHERE id_account = ?");
-    $stmt->bind_param("si", $token, $user_id);
-
-    if ($stmt->execute()) {
+    $stmt = $pdo->prepare("UPDATE accounts SET access_token = ? WHERE id_account = ?");
+    if ($stmt->execute([$token, $user_id])) {
         echo "บันทึก Token สำเร็จ";
     } else {
         echo "บันทึก Token ไม่สำเร็จ";
