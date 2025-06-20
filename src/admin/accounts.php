@@ -137,6 +137,7 @@ $accounts = $stmt->fetchAll();
                                                                 required>
                                                                 <option value="User" <?= $account['role'] === 'User' ? 'selected' : '' ?>>User</option>
                                                                 <option value="Admin" <?= $account['role'] === 'Admin' ? 'selected' : '' ?>>Admin</option>
+                                                                <option value="Developer" <?= $account['role'] === 'Developer' ? 'selected' : '' ?>>นักพัฒนา (ต้องการใช้ API)</option>
                                                             </select>
 
                                                             <div class="flex justify-end gap-2">
