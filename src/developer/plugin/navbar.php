@@ -18,44 +18,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex space-x-4 items-center">
                     <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
-                    <a href="product_all" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
-
-                    <!-- Group Wrapper -->
-                    <div class="relative" id="menu-wrapper">
-                        <button id="menu-button" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">
-                            ตั้งค่าระบบ
-                        </button>
-
-                        <div id="dropdown-menu"
-                            class="absolute left-0 mt-1 w-52 bg-white rounded-lg shadow-lg z-50 hidden flex-col">
-                            <a href="accounts" class="px-4 py-2 text-gray-700 hover:bg-gray-100">จัดการบัญชีผู้ใช้งาน</a>
-                        </div>
-                    </div>
-
-                    <script>
-                        const button = document.getElementById('menu-button');
-                        const dropdown = document.getElementById('dropdown-menu');
-                        const wrapper = document.getElementById('menu-wrapper');
-
-                        let hideTimeout;
-
-                        function showMenu() {
-                            clearTimeout(hideTimeout);
-                            dropdown.classList.remove('hidden');
-                            dropdown.classList.add('flex');
-                        }
-
-                        function hideMenuWithDelay() {
-                            hideTimeout = setTimeout(() => {
-                                dropdown.classList.remove('flex');
-                                dropdown.classList.add('hidden');
-                            }, 500);
-                        }
-
-                        wrapper.addEventListener('mouseenter', showMenu);
-                        wrapper.addEventListener('mouseleave', hideMenuWithDelay);
-                    </script>
-
+                    <a href="swagger" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">Swagger ทดสอบ API</a>
                     <a href="profile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
                 </div>
 
@@ -68,22 +31,7 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden lg:hidden mt-4 space-y-2 pb-4 px-4">
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
-                <a href="product_all" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">จัดการผลิตภัณฑ์ทั้งหมด</a>
-
-                <!-- Group Wrapper for Mobile -->
-                <div class="relative" id="mobile-menu-wrapper">
-                    <button id="mobile-submenu-toggle"
-                        class="w-full bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 flex justify-between items-center shadow-sm">
-                        ตั้งค่าระบบ
-                        <span id="submenu-arrow">▼</span>
-                    </button>
-
-                    <div id="mobile-submenu"
-                        class="hidden w-full bg-white rounded-xl mt-2 shadow-md border border-gray-200 transition-all duration-300 overflow-hidden">
-                        <a href="accounts" class="block px-6 py-3 text-gray-700 hover:bg-gray-100 border-b">จัดการบัญชีผู้ใช้งาน</a>
-                    </div>
-                </div>
-
+                <a href="swagger" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">Swagger ทดสอบ API</a>
                 <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
             </div>
         </div>
