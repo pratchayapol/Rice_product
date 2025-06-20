@@ -9,7 +9,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
     $token = $_POST['ajax_token'];
-    $email = $_SESSION['email']; // หรือชื่อ session ที่เก็บ id ผู้ใช้
+    $email = $_SESSION['user']['email']; // ดึงอีเมลจาก session
 
     $stmt = $pdo->prepare("UPDATE accounts SET access_token = ? WHERE email = ?");
     if ($stmt->execute([$token, $email])) {
