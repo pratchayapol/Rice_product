@@ -18,7 +18,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden lg:flex space-x-4 items-center">
                     <a href="dashboard" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
-                    <a href="swagger" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">Swagger ทดสอบ API</a>
+                    <a href="/swagger" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">Swagger ทดสอบ API</a>
                     <a href="profile" class="bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
                 </div>
 
@@ -31,7 +31,7 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="hidden lg:hidden mt-4 space-y-2 pb-4 px-4">
                 <a href="dashboard" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">หน้าหลัก</a>
-                <a href="swagger" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">Swagger ทดสอบ API</a>
+                <a href="/swagger" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">Swagger ทดสอบ API</a>
                 <a href="profile" class="block bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100">บัญชีผู้ใช้งาน</a>
             </div>
         </div>
