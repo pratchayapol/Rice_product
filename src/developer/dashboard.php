@@ -9,10 +9,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
     $token = $_POST['ajax_token'];
-    $user_id = $_SESSION['id']; // หรือชื่อ session ที่เก็บ id ผู้ใช้
+    $email = $_SESSION['email']; // หรือชื่อ session ที่เก็บ id ผู้ใช้
 
-    $stmt = $pdo->prepare("UPDATE accounts SET access_token = ? WHERE id_account = ?");
-    if ($stmt->execute([$token, $user_id])) {
+    $stmt = $pdo->prepare("UPDATE accounts SET access_token = ? WHERE email = ?");
+    if ($stmt->execute([$token, $email])) {
         echo "บันทึก Token สำเร็จ";
     } else {
         echo "บันทึก Token ไม่สำเร็จ";
