@@ -183,19 +183,8 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                     <div class="flex-1 bg-white rounded-xl shadow p-2 h-96">
                         <canvas id="productChart" class="w-full h-full"></canvas>
                     </div>
-
-
-
-
-
-
                 </div>
-
-
-
             </div>
-
-
         </div>
     </div>
 
