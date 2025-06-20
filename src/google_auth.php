@@ -154,6 +154,9 @@ if (isset($_GET['logout'])) {
                         case 'Admin':
                             header("Location: admin/dashboard");
                             exit();
+                        case 'Developer':
+                            header("Location: developer/dashboard");
+                            exit();
 
                         default:
                             // ถ้า role ไม่ตรงกับที่คาดหวัง
@@ -208,6 +211,8 @@ if (isset($_GET['logout'])) {
                 echo '<a href="user/dashboard" class="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-lg transition">ไปยังหน้าผู้ใช้งาน</a>';
             } elseif ($role == 'Admin') {
                 echo '<a href="admin/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมผู้ดูแลระบบ</a>';
+            } elseif ($role == 'Developer') {
+                echo '<a href="developer/dashboard" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-lg transition">ไปยังแผงควบคุมนักพัฒนา</a>';
             }
 
             echo '</div>';
