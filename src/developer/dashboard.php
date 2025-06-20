@@ -6,6 +6,16 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: ../session_timeout');
     exit;
 }
+$existingToken = '';
+if (isset($_SESSION['user']['email'])) {
+    $email = $_SESSION['user']['email'];
+    $stmt = $pdo->prepare("SELECT access_token FROM accounts WHERE email = ?");
+    $stmt->execute([$email]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($row && !empty($row['access_token'])) {
+        $existingToken = $row['access_token'];
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
     $token = $_POST['ajax_token'];
@@ -59,16 +69,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
 
                 <div class="flex justify-center mb-8">
 
-                    <div class="text-center">
-                        <button id="genTokenBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">
-                            สร้าง Access Token
+                    <button id="genTokenBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">
+                        <?php echo empty($existingToken) ? 'สร้าง Access Token' : 'อัปเดต Access Token'; ?>
+                    </button>
+                    <div id="tokenContainer" class="<?php echo empty($existingToken) ? 'hidden' : ''; ?> mt-4">
+                        <input type="text" id="accessToken" class="border p-2 rounded w-full md:w-96 text-center" readonly value="<?php echo htmlspecialchars($existingToken); ?>">
+                        <button onclick="copyToken()" class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+                            คัดลอก Token
                         </button>
-                        <div id="tokenContainer" class="hidden mt-4">
-                            <input type="text" id="accessToken" class="border p-2 rounded w-full md:w-96 text-center" readonly>
-                            <button onclick="copyToken()" class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                                คัดลอก Token
-                            </button>
-                        </div>
                     </div>
 
 
@@ -76,6 +84,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
             </div>
         </div>
     </div>
+    <script>
+        const existingToken = "<?php echo htmlspecialchars($existingToken); ?>";
+        if (existingToken) {
+            document.getElementById('tokenContainer').classList.remove('hidden');
+            document.getElementById('accessToken').value = existingToken;
+        }
+    </script>
+
     <script>
         function generateRandomToken(length = 64) {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
