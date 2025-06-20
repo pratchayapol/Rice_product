@@ -27,28 +27,28 @@ paths:
         '500':
           description: Internal server error
 
-/api/cosmetic_product:
-    get:
-      summary: Get all cosmetic_product
-      security:
-        - bearerAuth: []
-      tags:
-        - ข้อมูลผลิตภัณฑ์เครื่องสำอาง table cosmetic_Product
-      responses:
-        '200':
-          description: A list of cosmetic_product
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CosmeticProduct'
-        '401':
-          description: Access token required
-        '403':
-          description: Invalid access token
-        '500':
-          description: Internal server error
+  /api/cosmetic_product:
+      get:
+        summary: Get all cosmetic_product
+        security:
+          - bearerAuth: []
+        tags:
+          - ข้อมูลผลิตภัณฑ์เครื่องสำอาง table cosmetic_Product
+        responses:
+          '200':
+            description: A list of cosmetic_product
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CosmeticProduct'
+          '401':
+            description: Access token required
+          '403':
+            description: Invalid access token
+          '500':
+            description: Internal server error
 
 components:
   securitySchemes:
