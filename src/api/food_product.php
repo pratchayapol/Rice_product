@@ -14,7 +14,7 @@ if (!$access_token) {
 }
 
 // ตรวจสอบว่ามี token นี้ในฐานข้อมูลหรือไม่
-$stmt = $pdo->prepare("SELECT id FROM accounts WHERE access_token = ?");
+$stmt = $pdo->prepare("SELECT * FROM accounts WHERE access_token = ?");
 $stmt->execute([$access_token]);
 $user = $stmt->fetch();
 
