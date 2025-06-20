@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: RiceProduct API
   version: 1.0.0
-  description: API สำหรับดึงข้อมูลผลิตภัณฑ์ข้าว โดยต้องมี access_token เพื่อเข้าถึง
+  description: API สำหรับดึงข้อมูลผลิตภัณฑ์ข้าว โดยต้องมี access_token เพื่อเข้าถึง พบปัญหาสอบถาม นายปรัชญาพล จำปาลาด 0909691701
 paths:
   /api/food_product:
     get:
@@ -10,7 +10,7 @@ paths:
       security:
         - bearerAuth: []
       tags:
-        - FoodProduct
+        - ข้อมูลผลิตภัณฑ์อาหาร table FoodProduct
       responses:
         '200':
           description: A list of food_product
