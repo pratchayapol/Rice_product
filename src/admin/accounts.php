@@ -289,7 +289,7 @@ $accounts = $stmt->fetchAll();
         $id_account = $_POST['id_account'] ?? null;
         $role = $_POST['role'] ?? null;
 
-        if ($id_account && $role && in_array($role, ['User', 'Admin'])) {
+        if ($id_account && $role && in_array($role, ['User', 'Admin', 'Developer'])) {
             try {
                 // 3. เตรียมคำสั่ง SQL ปลอดภัย
                 $stmt = $pdo->prepare("UPDATE accounts SET role = :role WHERE id_account = :id_account");
