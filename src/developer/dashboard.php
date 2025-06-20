@@ -60,30 +60,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
     <?php include '../loadtab/h.php'; ?>
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
-    <div class="pt-24 flex items-center justify-center min-h-screen">
-        <div class="w-full max-w-7xl px-4 md:px-8">
-            <div class="text-center bg-white/75 py-24 px-10 rounded-2xl shadow-xl w-full mb-10">
-                <h1 class="text-3xl md:text-4xl font-bold text-black mb-2 t1">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
-                <p class="text-xl text-gray-800 mb-6 t1">Rice Product Processing Database</p>
-                <p class="text-xl text-gray-800 mb-6 t1">สำหรับนักพัฒนา</p>
+    <!-- ส่วนใน <body> -->
+    <div class="pt-24 flex items-center justify-center min-h-screen bg-gradient-to-br from-white via-blue-100 to-blue-200">
+        <div class="w-full max-w-2xl px-4">
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-10 text-center space-y-6">
+                <h1 class="text-4xl font-bold text-gray-800 t1">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
+                <p class="text-lg text-gray-700 t1">Rice Product Processing Database</p>
+                <p class="text-lg text-gray-700 t1">สำหรับนักพัฒนา</p>
 
-                <div class="flex justify-center mb-8">
-
-                    <button id="genTokenBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">
-                        <?php echo empty($existingToken) ? 'สร้าง Access Token' : 'อัปเดต Access Token'; ?>
+                <!-- ปุ่มและ Token -->
+                <div class="space-y-4">
+                    <button id="genTokenBtn"
+                        class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-5 rounded-xl shadow-md transition">
+                        🔐 <?php echo empty($existingToken) ? 'สร้าง Access Token' : 'อัปเดต Access Token'; ?>
                     </button>
-                    <div id="tokenContainer" class="<?php echo empty($existingToken) ? 'hidden' : ''; ?> mt-4">
-                        <input type="text" id="accessToken" class="border p-2 rounded w-full md:w-96 text-center" readonly value="<?php echo htmlspecialchars($existingToken); ?>">
-                        <button onclick="copyToken()" class="mt-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                            คัดลอก Token
+
+                    <div id="tokenContainer" class="<?php echo empty($existingToken) ? 'hidden' : ''; ?> space-y-3">
+                        <input type="text" id="accessToken"
+                            class="border border-gray-300 p-3 rounded-lg w-full text-center text-gray-700 font-mono text-sm bg-gray-100"
+                            readonly value="<?php echo htmlspecialchars($existingToken); ?>">
+
+                        <button onclick="copyToken()"
+                            class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition shadow-sm">
+                            📋 คัดลอก Token
                         </button>
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         const existingToken = "<?php echo htmlspecialchars($existingToken); ?>";
         if (existingToken) {
