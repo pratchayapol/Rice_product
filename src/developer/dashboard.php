@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ajax_token'])) {
     <!-- Navigation Bar -->
     <?php include './plugin/navbar.php' ?>
     <!-- ส่วนใน <body> -->
-    <div class="pt-24 flex items-center justify-center min-h-screen bg-gradient-to-br from-white via-blue-100 to-blue-200">
+    <div class="pt-24 flex items-center justify-center min-h-screen">
         <div class="w-full max-w-2xl px-4">
             <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-10 text-center space-y-6">
                 <h1 class="text-4xl font-bold text-gray-800 t1">ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h1>
