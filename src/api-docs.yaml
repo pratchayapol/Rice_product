@@ -12,43 +12,66 @@ paths:
       tags:
         - ข้อมูลผลิตภัณฑ์อาหาร table FoodProduct
       responses:
-        '200':
+        "200":
           description: A list of food_product
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/FoodProduct'
-        '401':
+                  $ref: "#/components/schemas/FoodProduct"
+        "401":
           description: Access token required
-        '403':
+        "403":
           description: Invalid access token
-        '500':
+        "500":
           description: Internal server error
 
   /api/cosmetic_product:
-      get:
-        summary: Get all cosmetic_product
-        security:
-          - bearerAuth: []
-        tags:
-          - ข้อมูลผลิตภัณฑ์เครื่องสำอาง table CosmeticProduct
-        responses:
-          '200':
-            description: A list of cosmetic_product
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/CosmeticProduct'
-          '401':
-            description: Access token required
-          '403':
-            description: Invalid access token
-          '500':
-            description: Internal server error
+    get:
+      summary: Get all cosmetic_product
+      security:
+        - bearerAuth: []
+      tags:
+        - ข้อมูลผลิตภัณฑ์เครื่องสำอาง table CosmeticProduct
+      responses:
+        "200":
+          description: A list of cosmetic_product
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CosmeticProduct"
+        "401":
+          description: Access token required
+        "403":
+          description: Invalid access token
+        "500":
+          description: Internal server error
+
+  /api/medical_product:
+    get:
+      summary: Get all medical_product
+      security:
+        - bearerAuth: []
+      tags:
+        - ข้อมูลผลิตภัณฑ์ทางการแพทย์ table MedicalProduct
+      responses:
+        "200":
+          description: A list of medical_product
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/MedicalProduct"
+        "401":
+          description: Access token required
+        "403":
+          description: Invalid access token
+        "500":
+          description: Internal server error
 
 components:
   securitySchemes:
@@ -119,6 +142,63 @@ components:
       type: object
       properties:
         cosmetic_product_id:
+          type: integer
+        rice_id:
+          type: integer
+          nullable: true
+        rice_variety_th_name:
+          type: string
+          nullable: true
+        rice_variety_en_name:
+          type: string
+          nullable: true
+        product_name:
+          type: string
+          nullable: true
+        product_group:
+          type: string
+          nullable: true
+        category:
+          type: string
+          nullable: true
+        rice_variety_group_th_name:
+          type: string
+          nullable: true
+        rice_variety_group_en_name:
+          type: string
+          nullable: true
+        source_url:
+          type: string
+          nullable: true
+        source:
+          type: string
+          nullable: true
+        ingredients_and_equipment:
+          type: string
+          nullable: true
+        instructions:
+          type: string
+          nullable: true
+        ingredients_and_equipment_en:
+          type: string
+          nullable: true
+        instructions_en:
+          type: string
+          nullable: true
+        product_name_th:
+          type: string
+          nullable: true
+        product_name_en:
+          type: string
+          nullable: true
+        picture:
+          type: string
+          nullable: true
+
+    MedicalProduct:
+      type: object
+      properties:
+        medical_product_id:
           type: integer
         rice_id:
           type: integer
