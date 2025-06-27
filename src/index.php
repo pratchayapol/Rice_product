@@ -22,6 +22,20 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     <!-- animation -->
     <link rel="stylesheet" href="./css/animation.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0RGNMK85DQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0RGNMK85DQ');
+    </script>
+
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg t1">
@@ -37,7 +51,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             </h1>
 
             <p class="text-gray-600 mt-2 text-sm text-center">
-               Rice Product Processing Database
+                Rice Product Processing Database
             </p>
             <p class="text-gray-600 mt-1 text-sm text-center">
                 ศูนย์วิจัยข้าวขอนแก่น กรมการข้าว
