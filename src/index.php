@@ -78,17 +78,20 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
                 Sign in with LINE
             </a>
             <a
-                href="https://riceproduct.pcnone.com/%E0%B8%84%E0%B8%B9%E0%B9%88%E0%B8%A1%E0%B8%B7%E0%B8%AD%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B9%83%E0%B8%8A%E0%B9%89%E0%B8%87%E0%B8%B2%E0%B8%99%20%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%81%E0%B8%AD%E0%B8%9B%E0%B8%9E%E0%B8%A5%E0%B8%B4%E0%B9%80%E0%B8%84%E0%B8%8A%E0%B8%B1%E0%B8%99%20%E0%B8%90%E0%B8%B2%E0%B8%99%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5%E0%B9%81%E0%B8%9B%E0%B8%A3%E0%B8%A3%E0%B8%B9%E0%B8%9B%E0%B8%9C%E0%B8%A5%E0%B8%B4%E0%B8%95%E0%B8%A0%E0%B8%B1%E0%B8%93%E0%B8%91%E0%B9%8C%E0%B8%82%E0%B9%89%E0%B8%B2%E0%B8%A7.pdf"
+                href="/คู่มือการใช้งาน%20เว็บแอปพลิเคชัน%20ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว.pdf"
                 target="_blank"
-                class="w-full mt-4 px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg shadow-md
-         hover:bg-indigo-700 hover:shadow-lg transition-all flex items-center justify-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                    class="w-6 h-6 bg-white text-indigo-600 rounded p-1">
+                class="w-full mt-4 px-6 py-3 bg-orange-500 text-white font-medium rounded-lg shadow-md 
+         hover:bg-orange-600 hover:shadow-lg transition-all flex items-center justify-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor"
+                    class="w-6 h-6 bg-white text-orange-600 rounded p-1">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3 16.5V19a2.003 2.003 0 002 2h14a2.003 2.003 0 002-2v-2.5M7 10l5 5m0 0l5-5m-5 5V3" />
                 </svg>
                 ดาวน์โหลดคู่มือการใช้งาน
             </a>
+
 
         </div>
     </div>
