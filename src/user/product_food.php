@@ -24,14 +24,7 @@ $paginator = new Paginator($totalItems, $cardsPerPage, $currentPage, $urlPattern
 
 // ดึงข้อมูลสินค้าของหน้าปัจจุบัน
 $offset = ($currentPage - 1) * $cardsPerPage;
-$stmt = $pdo->prepare("SELECT *
-FROM food_product
-ORDER BY
-  (picture IS NOT NULL) DESC,
-  picture DESC,
-  food_product_id ASC
-LIMIT :limit OFFSET :offset
-");
+$stmt = $pdo->prepare("SELECT * FROM food_product ORDER BY food_product_id LIMIT :limit OFFSET :offset");
 $stmt->bindValue(':limit', $cardsPerPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
