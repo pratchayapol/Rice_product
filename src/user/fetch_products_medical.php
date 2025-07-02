@@ -35,7 +35,13 @@ $stmtTotal = $pdo->prepare($totalSql);
 $stmtTotal->execute($params);
 $totalItems = $stmtTotal->fetchColumn();
 
-$sql .= " ORDER BY medical_product_id LIMIT :limit OFFSET :offset";
+// แก้ ORDER BY
+$sql .= " ORDER BY
+  (picture IS NOT NULL AND picture != '') DESC,
+  picture DESC,
+  medical_product_id ASC
+  LIMIT :limit OFFSET :offset";
+
 $stmt = $pdo->prepare($sql);
 foreach ($params as $key => $val) {
     $stmt->bindValue($key, $val);
@@ -44,6 +50,7 @@ $stmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
 $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 $stmt->execute();
 $products = $stmt->fetchAll();
+
 
 header('Content-Type: application/json');
 echo json_encode([

@@ -35,7 +35,13 @@ $stmtTotal = $pdo->prepare($totalSql);
 $stmtTotal->execute($params);
 $totalItems = $stmtTotal->fetchColumn();
 
-$sql .= " ORDER BY cosmetic_product_id LIMIT :limit OFFSET :offset";
+// แก้ ORDER BY ให้เรียงสินค้าที่มีรูปก่อน
+$sql .= " ORDER BY
+    (picture IS NOT NULL AND picture != '') DESC,
+    picture DESC,
+    cosmetic_product_id ASC
+    LIMIT :limit OFFSET :offset";
+
 $stmt = $pdo->prepare($sql);
 foreach ($params as $key => $val) {
     $stmt->bindValue($key, $val);
