@@ -37,65 +37,96 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </script>
 
     <style>
-        .cookie-banner {
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #cookie-popup {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
+            max-width: 800px;
+            width: 90%;
             background: #fff;
-            border: 1px solid #ccc;
-            padding: 1em;
-            width: 300px;
-            z-index: 1000;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .cookie-banner__actions button {
-            margin: 0.5em 0.25em;
-        }
-
-        .cookie-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-        }
-
-        .cookie-modal.active {
-            display: block;
-        }
-
-        .cookie-modal__overlay {
-            background: rgba(0, 0, 0, 0.6);
-            position: absolute;
-            inset: 0;
-        }
-
-        .cookie-modal__content {
-            background: #fff;
-            margin: 5% auto;
-            padding: 1em;
-            max-width: 500px;
-            position: relative;
-            border-radius: 4px;
-        }
-
-        .cookie-modal__header {
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px;
+            z-index: 9999;
+            display: none;
         }
 
-        .cookie-modal__footer button {
-            margin: 0.5em;
+        #cookie-popup .cookie-text {
+            flex: 1;
+            margin-right: 20px;
         }
 
-        .link {
-            background: none;
-            color: blue;
+        #cookie-popup .cookie-text h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        #cookie-popup .cookie-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        #cookie-popup .cookie-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cookie-btn {
+            padding: 10px 16px;
+            font-size: 14px;
             border: none;
+            border-radius: 6px;
             cursor: pointer;
-            text-decoration: underline;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+
+        .accept-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        .accept-btn:hover {
+            background-color: #555;
+        }
+
+        .reject-btn {
+            background-color: #333;
+            color: white;
+        }
+
+        .reject-btn:hover {
+            background-color: #555;
+        }
+
+        .manage-btn {
+            background-color: #f1f3f5;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .manage-btn:hover {
+            background-color: #e2e6ea;
+        }
+
+        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
+        @media (min-width: 600px) {
+            #cookie-popup .cookie-buttons {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
@@ -158,119 +189,50 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
-    <!-- Cookie Banner -->
-    <div id="cookie-banner" class="cookie-banner">
-        <div class="cookie-banner__body">
-            <h2>เราใช้คุกกี้</h2>
+    <div id="cookie-popup">
+        <div class="cookie-text">
+            <h4>We use cookies</h4>
             <p>
-                เว็บไซต์นี้ใช้คุกกี้ที่จำเป็นเพื่อให้ทำงานได้ถูกต้อง และคุกกี้สำหรับติดตามเพื่อเข้าใจว่าคุณโต้ตอบกับเว็บไซต์อย่างไร
-                <button id="btn-show-settings" class="link">ให้ฉันเลือก</button>
+                Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
             </p>
-            <div class="cookie-banner__actions">
-                <button id="btn-accept-all">ยอมรับทั้งหมด</button>
-                <button id="btn-decline-all">ปฏิเสธทั้งหมด</button>
-            </div>
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
+            <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
+            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
         </div>
     </div>
 
-    <!-- Cookie Settings Modal -->
-    <div id="cookie-modal" class="cookie-modal">
-        <div class="cookie-modal__overlay"></div>
-        <div class="cookie-modal__content">
-            <div class="cookie-modal__header">
-                <h2>การตั้งค่าคุกกี้</h2>
-                <button id="btn-close-modal">&times;</button>
-            </div>
-            <div class="cookie-modal__body">
-                <div class="cookie-section">
-                    <h3>คุกกี้ที่จำเป็น</h3>
-                    <p>คุกกี้เหล่านี้จำเป็นสำหรับการทำงานของเว็บไซต์</p>
-                    <label><input type="checkbox" checked disabled> เปิดใช้งานเสมอ</label>
-                </div>
-                <div class="cookie-section">
-                    <h3>คุกกี้วิเคราะห์</h3>
-                    <p>ช่วยปรับปรุงประสบการณ์ใช้งานของคุณ</p>
-                    <label><input type="checkbox" id="toggle-analytics"> เปิด/ปิด</label>
-                </div>
-                <div class="cookie-section">
-                    <h3>คุกกี้โฆษณา</h3>
-                    <p>ช่วยแสดงเนื้อหาและโฆษณาที่ตรงกับความสนใจ</p>
-                    <label><input type="checkbox" id="toggle-ads"> เปิด/ปิด</label>
-                </div>
-            </div>
-            <div class="cookie-modal__footer">
-                <button id="btn-accept-all-modal">ยอมรับทั้งหมด</button>
-                <button id="btn-decline-all-modal">ปฏิเสธทั้งหมด</button>
-                <button id="btn-save-settings">บันทึกการตั้งค่า</button>
-            </div>
-        </div>
-    </div>
     <script>
-        // Banner buttons
-        const btnShowSettings = document.getElementById('btn-show-settings');
-        const btnAcceptAll = document.getElementById('btn-accept-all');
-        const btnDeclineAll = document.getElementById('btn-decline-all');
-
-        // Modal elements
-        const modal = document.getElementById('cookie-modal');
-        const btnCloseModal = document.getElementById('btn-close-modal');
-        const btnAcceptAllModal = document.getElementById('btn-accept-all-modal');
-        const btnDeclineAllModal = document.getElementById('btn-decline-all-modal');
-        const btnSaveSettings = document.getElementById('btn-save-settings');
-
-        // Toggles
-        const toggleAnalytics = document.getElementById('toggle-analytics');
-        const toggleAds = document.getElementById('toggle-ads');
-
-        btnShowSettings.addEventListener('click', () => {
-            modal.classList.add('active');
-        });
-
-        btnCloseModal.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        btnAcceptAll.addEventListener('click', () => {
-            // Save consent for all cookies
-            setCookieConsent(true, true);
-            hideBanner();
-        });
-
-        btnDeclineAll.addEventListener('click', () => {
-            setCookieConsent(false, false);
-            hideBanner();
-        });
-
-        btnAcceptAllModal.addEventListener('click', () => {
-            setCookieConsent(true, true);
-            hideBanner();
-            modal.classList.remove('active');
-        });
-
-        btnDeclineAllModal.addEventListener('click', () => {
-            setCookieConsent(false, false);
-            hideBanner();
-            modal.classList.remove('active');
-        });
-
-        btnSaveSettings.addEventListener('click', () => {
-            const analytics = toggleAnalytics.checked;
-            const ads = toggleAds.checked;
-            setCookieConsent(analytics, ads);
-            hideBanner();
-            modal.classList.remove('active');
-        });
-
-        function hideBanner() {
-            document.getElementById('cookie-banner').style.display = 'none';
+        function showCookiePopup() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookie-popup').style.display = 'flex';
+            }
         }
 
-        function setCookieConsent(analytics, ads) {
-            localStorage.setItem('cookieConsent', JSON.stringify({
-                analytics,
-                ads
-            }));
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookie-popup').style.display = 'none';
+            console.log('Cookies accepted.');
+            // Enable tracking cookies here
         }
+
+        function rejectCookies() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            document.getElementById('cookie-popup').style.display = 'none';
+            console.log('Cookies rejected.');
+            // Disable tracking cookies here
+        }
+
+        function managePreferences() {
+            localStorage.setItem('cookieConsent', 'customize');
+            document.getElementById('cookie-popup').style.display = 'none';
+            alert('Open preferences modal here.');
+            // Open a modal for detailed preferences if needed
+        }
+
+        window.onload = showCookiePopup;
     </script>
 
     <?php include './loadtab/f.php'; ?>
