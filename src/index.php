@@ -39,112 +39,84 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
         }
 
-        #cookie-popup {
+        .cookie-banner {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 800px;
-            width: 90%;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            z-index: 9999;
-            display: none;
-        }
-
-        #cookie-popup .cookie-text {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        #cookie-popup .cookie-text h4 {
-            margin: 0 0 8px;
-            font-size: 16px;
-        }
-
-        #cookie-popup .cookie-text p {
-            margin: 0;
-            font-size: 14px;
-            color: #333;
-            line-height: 1.4;
-        }
-
-        #cookie-popup .cookie-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #f2f2f2;
+            padding: 16px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
         }
 
         .cookie-btn {
-            padding: 10px 16px;
-            font-size: 14px;
+            padding: 10px 20px;
+            margin: 5px;
             border: none;
-            border-radius: 6px;
             cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s ease;
+            font-size: 14px;
+            border-radius: 4px;
         }
 
         .accept-btn {
-            background-color: #333;
+            background-color: #4CAF50;
             color: white;
-        }
-
-        .accept-btn:hover {
-            background-color: #555;
         }
 
         .reject-btn {
-            background-color: #333;
+            background-color: #f44336;
             color: white;
         }
 
-        .reject-btn:hover {
-            background-color: #555;
+        #manage-preferences {
+            background-color: #2196F3;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
         }
 
-        .manage-btn {
-            background-color: #f1f3f5;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-
-        .manage-btn:hover {
-            background-color: #e2e6ea;
-        }
-
-        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
-        @media (min-width: 600px) {
-            #cookie-popup .cookie-buttons {
-                flex-direction: row;
-            }
-        }
-
-        .pm {
+        /* Popup styling */
+        .cookie-popup {
             display: none;
-            /* optional: ตกแต่ง overlay */
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
             justify-content: center;
             align-items: center;
         }
 
-        .pm.active {
-            display: flex;
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -206,62 +178,60 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
         </div>
     </div>
-
-    <div id="cookie-popup">
-        <div class="cookie-text">
-            <h4>We use cookies</h4>
-            <p>
-                Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
-            </p>
-        </div>
-        <div class="cookie-buttons">
+    <div class="cookie-banner">
+        <div>
             <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
             <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
+        </div>
+        <div>
             <button id="manage-preferences">Manage Individual Preferences</button>
         </div>
     </div>
 
-    <script>
-        function showCookiePopup() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                document.getElementById('cookie-popup').style.display = 'flex';
-            }
-        }
+    <!-- Popup -->
+    <div class="cookie-popup" id="cookie-popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">×</button>
+            <h2>Cookie Settings</h2>
+            <p>You can customize your cookie preferences below:</p>
+            <label><input type="checkbox" checked disabled /> Necessary Cookies (always enabled)</label><br />
+            <label><input type="checkbox" id="analytics-checkbox" /> Analytics Cookies</label><br />
+            <label><input type="checkbox" id="ads-checkbox" /> Advertising Cookies</label><br />
+            <div style="margin-top: 15px;">
+                <button onclick="savePreferences()">Save Preferences</button>
+            </div>
+        </div>
+    </div>
 
+    <script>
         function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookie-popup').style.display = 'none';
-            console.log('Cookies accepted.');
-            // Enable tracking cookies here
+            alert('You accepted all cookies.');
+            // Place your accept logic here
         }
 
         function rejectCookies() {
-            localStorage.setItem('cookieConsent', 'rejected');
-            document.getElementById('cookie-popup').style.display = 'none';
-            console.log('Cookies rejected.');
-            // Disable tracking cookies here
+            alert('You rejected all cookies.');
+            // Place your reject logic here
         }
 
-        function managePreferences() {
-            localStorage.setItem('cookieConsent', 'customize');
-            document.getElementById('cookie-popup').style.display = 'none';
-            alert('Open preferences modal here.');
-            // Open a modal for detailed preferences if needed
+        const manageBtn = document.getElementById('manage-preferences');
+        const popup = document.getElementById('cookie-popup');
+
+        manageBtn.addEventListener('click', () => {
+            popup.style.display = 'flex';
+        });
+
+        function closePopup() {
+            popup.style.display = 'none';
         }
-        document.getElementById('manage-preferences').addEventListener('click', function() {
-            document.querySelector('.pm').classList.add('active');
-            document.querySelector('.pm').setAttribute('aria-hidden', 'false');
-        });
 
-        document.querySelector('.pm__close-btn').addEventListener('click', function() {
-            document.querySelector('.pm').classList.remove('active');
-            document.querySelector('.pm').setAttribute('aria-hidden', 'true');
-        });
-
-        window.onload = showCookiePopup;
+        function savePreferences() {
+            const analytics = document.getElementById('analytics-checkbox').checked;
+            const ads = document.getElementById('ads-checkbox').checked;
+            alert(`Preferences saved.\nAnalytics: ${analytics}\nAds: ${ads}`);
+            closePopup();
+        }
     </script>
-
     <?php include './loadtab/f.php'; ?>
 </body>
 
