@@ -189,20 +189,37 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
-    <div id="cookie-popup">
-        <div class="cookie-text">
-            <h4>We use cookies</h4>
+    <div id="cookie-popup" class="w-[70%] mx-auto p-4 border rounded shadow-lg">
+        <div class="cookie-text mb-4">
+            <h4 class="text-lg font-semibold mb-2">We use cookies</h4>
             <p>
                 Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
             </p>
         </div>
-        <div class="cookie-buttons">
-            <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
-            <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
-            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
+
+        <!-- ปุ่มแถวบน -->
+        <div class="flex justify-between mb-4">
+            <button
+                class="cookie-btn accept-btn w-[15%] bg-green-500 text-white py-2 rounded"
+                onclick="acceptCookies()">
+                Accept all
+            </button>
+            <button
+                class="cookie-btn reject-btn w-[15%] bg-red-500 text-white py-2 rounded"
+                onclick="rejectCookies()">
+                Reject all
+            </button>
+        </div>
+
+        <!-- ปุ่มแถวล่าง -->
+        <div class="flex justify-center">
+            <button
+                class="cookie-btn manage-btn w-[30%] bg-gray-500 text-white py-2 rounded"
+                onclick="managePreferences()">
+                Manage Individual preferences
+            </button>
         </div>
     </div>
-
     <script>
         function showCookiePopup() {
             const consent = localStorage.getItem('cookieConsent');
