@@ -113,30 +113,31 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick="exportCSV(dataArray, [
-    'food_product_id',
-    'rice_id',
-    'rice_variety_th_name',
-    'rice_variety_en_name',
-    'product_name',
-    'product_group',
-    'category',
-    'rice_variety_group_th_name',
-    'rice_variety_group_en_name',
-    'source_url',
-    'source',
-    'ingredients_and_equipment',
-    'instructions',
-    'ingredients_and_equipment_en',
-    'instructions_en',
-    'product_name_th',
-    'product_name_en',
-    'picture',
-    'genbank_url'
-  ])"
-                                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                                        onclick='exportCSV(myDataFromServer, [
+    "food_product_id",
+    "rice_id",
+    "rice_variety_th_name",
+    "rice_variety_en_name",
+    "product_name",
+    "product_group",
+    "category",
+    "rice_variety_group_th_name",
+    "rice_variety_group_en_name",
+    "source_url",
+    "source",
+    "ingredients_and_equipment",
+    "instructions",
+    "ingredients_and_equipment_en",
+    "instructions_en",
+    "product_name_th",
+    "product_name_en",
+    "picture",
+    "genbank_url"
+  ])'
+                                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
                                         Export CSV
                                     </button>
+
 
                                 </div>
                                 <div class="overflow-x-auto p-6">
@@ -366,38 +367,32 @@ $products_medical = $stmt->fetchAll();
 
             </div>
         </div>
-       <script>
-    
-    function exportCSV(data, headers) {
-      // สร้างหัวตาราง
-      let csv = headers.join(",") + "\n";
+        <script>
+            function exportCSV(data, headers) {
+                let csv = headers.join(",") + "\n";
 
-      // สร้างแต่ละแถว
-      data.forEach(row => {
-        csv += headers
-          .map(field => {
-            // แปลงค่าทุกชนิดให้เป็น string
-            const value = String(row[field] ?? "");
-            // Escape double quotes
-            return `"${value.replace(/"/g, '""')}"`;
-          })
-          .join(",") + "\n";
-      });
+                data.forEach(row => {
+                    csv += headers
+                        .map(field => {
+                            const value = String(row[field] ?? "");
+                            return `"${value.replace(/"/g, '""')}"`;
+                        })
+                        .join(",") + "\n";
+                });
 
-      // สร้าง Blob สำหรับดาวน์โหลด
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
+                const blob = new Blob([csv], {
+                    type: "text/csv;charset=utf-8;"
+                });
+                const url = URL.createObjectURL(blob);
 
-      // สร้างลิงก์ดาวน์โหลด
-      const link = document.createElement("a");
-      link.setAttribute("href", url);
-      link.setAttribute("download", "rice_products.csv");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  </script>
-
+                const link = document.createElement("a");
+                link.setAttribute("href", url);
+                link.setAttribute("download", "rice_products.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        </script>
 
 
         <script>
