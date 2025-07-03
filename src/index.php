@@ -7,7 +7,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว รวมข้อมูล ผลิตภัณฑ์ข้าวหลากหลายชนิด ขั้นตอนการแปรรูป คุณค่าโภชนาการ และนวัตกรรมเกี่ยวกับข้าวในประเทศไทย.">
+    <meta name="description" content="ฐานข้อมูลผลิตภัณฑ์ข้าวและการแปรรูป แหล่งข้อมูลครอบคลุมสำหรับผู้ประกอบการ นักวิจัย และผู้สนใจเรื่องข้าว.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rice Product Processing Database</title>
     <script src="https://cdn.tailwindcss.com"></script>
