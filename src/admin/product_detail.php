@@ -74,9 +74,16 @@ if ($id > 0) {
                             </a>
                         </p>
 
-                        <a href="./dashboard" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm inline-block text-center">
-                            หน้าแรก
-                        </a>
+                        <div class="flex gap-3">
+                            <button onclick="history.back()" class="bg-gray-300 text-black px-4 py-2 rounded-full text-sm hover:bg-gray-400 transition">
+                                ย้อนกลับ
+                            </button>
+
+                            <a href="./dashboard" class="bg-yellow-400 text-black px-4 py-2 rounded-full text-sm inline-block text-center">
+                                หน้าแรก
+                            </a>
+                        </div>
+
                     </div>
 
                     <!-- Content -->
