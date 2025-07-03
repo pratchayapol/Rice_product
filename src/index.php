@@ -7,6 +7,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
 <head>
     <meta charset="UTF-8">
+    <meta name=description>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rice Product Processing Database</title>
     <script src="https://cdn.tailwindcss.com"></script>
