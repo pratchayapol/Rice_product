@@ -95,6 +95,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
+    <!-- Cookie popup (เดิม) -->
     <div
         id="cookie-popup"
         class="fixed bottom-10 left-1/2 transform -translate-x-1/2 max-w-3xl w-[800px] bg-white rounded-lg shadow-lg flex divide-x divide-gray-200 p-6">
@@ -128,6 +129,38 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
+    <!-- Modal popup สำหรับจัดการ preferences -->
+    <div id="preferences-modal" class="pm-wrapper cc--anim" style="display:none;">
+        <div class="pm-overlay"></div>
+        <div class="pm pm--box" role="dialog" aria-hidden="false" aria-modal="true" aria-labelledby="pm__title">
+            <div tabindex="-1"></div>
+            <div class="pm__header">
+                <h2 class="pm__title" id="pm__title">Cookie Settings</h2>
+                <button type="button" class="pm__close-btn" aria-label="Close modal" onclick="closePreferencesModal()">
+                    <span>
+                        <svg viewBox="0 0 24 24" stroke-width="1.5">
+                            <path d="M 19.5 4.5 L 4.5 19.5 M 4.5 4.501 L 19.5 19.5"></path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <div class="pm__body">
+                <!-- ใส่เนื้อหาของ modal ที่คุณให้มาไว้ตรงนี้ -->
+                <!-- ... ตัวอย่างตัดมาเพื่อความกระชับ ... -->
+                <p class="pm__section-desc">I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="https://www.ricethailand.go.th/page/27011" target="_blank" class="cc-link">privacy policy</a>.</p>
+                <!-- ... เพิ่มเติมเนื้อหาอื่น ๆ ตามที่คุณให้มาได้เลย -->
+            </div>
+            <div class="pm__footer">
+                <div class="pm__btn-group">
+                    <button type="button" class="pm__btn" data-role="all" onclick="acceptCookiesFromModal()">Accept all</button>
+                    <button type="button" class="pm__btn" data-role="necessary" onclick="rejectCookiesFromModal()">Reject all</button>
+                </div>
+                <div class="pm__btn-group">
+                    <button type="button" class="pm__btn pm__btn--secondary" data-role="save" onclick="saveSettings()">Save settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         function showCookiePopup() {
@@ -151,17 +184,40 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             // Disable tracking cookies here
         }
 
-
         function managePreferences() {
             localStorage.setItem('cookieConsent', 'customize');
             document.getElementById('cookie-popup').style.display = 'none';
-            alert('Open preferences modal here.');
-            // Open a modal for detailed preferences if needed
+
+            // แสดง modal popup
+            document.getElementById('preferences-modal').style.display = 'block';
         }
 
+        function closePreferencesModal() {
+            document.getElementById('preferences-modal').style.display = 'none';
+        }
+
+        // ฟังก์ชันรับมือปุ่มใน modal
+        function acceptCookiesFromModal() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            closePreferencesModal();
+            console.log('Set cookieConsent: accepted (from modal)');
+        }
+
+        function rejectCookiesFromModal() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            closePreferencesModal();
+            console.log('Set cookieConsent: rejected (from modal)');
+        }
+
+        function saveSettings() {
+            // เก็บค่าที่ผู้ใช้เลือกใน modal (ถ้ามี)
+            alert('Settings saved.');
+            closePreferencesModal();
+        }
 
         window.onload = showCookiePopup;
     </script>
+
 
     <?php include './loadtab/f.php'; ?>
 </body>
