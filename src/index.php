@@ -36,6 +36,66 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         gtag('config', 'G-0RGNMK85DQ');
     </script>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #cookie-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            max-width: 350px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 9999;
+            display: none;
+        }
+
+        #cookie-popup h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        #cookie-popup p {
+            font-size: 14px;
+            margin: 0 0 15px;
+            line-height: 1.4;
+        }
+
+        #cookie-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cookie-btn {
+            padding: 8px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .accept-btn {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .reject-btn {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .manage-btn {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg t1">
@@ -95,6 +155,51 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
         </div>
     </div>
+
+    <div id="cookie-popup">
+        <h4>We use cookies</h4>
+        <p>
+            Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
+        </p>
+        <div id="cookie-buttons">
+            <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
+            <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
+            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage individual preferences</button>
+        </div>
+    </div>
+
+    <script>
+        function showCookiePopup() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookie-popup').style.display = 'block';
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookie-popup').style.display = 'none';
+            console.log('All cookies accepted.');
+            // Enable tracking cookies here
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            document.getElementById('cookie-popup').style.display = 'none';
+            console.log('All tracking cookies rejected.');
+            // Disable tracking cookies here
+        }
+
+        function managePreferences() {
+            localStorage.setItem('cookieConsent', 'customize');
+            document.getElementById('cookie-popup').style.display = 'none';
+            alert('You can customize your cookie preferences in the next step.');
+            // Here, you could open a modal with detailed options
+        }
+
+        window.onload = showCookiePopup;
+    </script>
+
     <?php include './loadtab/f.php'; ?>
 </body>
 
