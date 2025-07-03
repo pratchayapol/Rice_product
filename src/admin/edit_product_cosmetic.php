@@ -523,7 +523,7 @@ if (!empty($products_cosmetic['rice_id'])) {
             ':instructions' => $instructions,
             ':ingredients_and_equipment_en' => $ingredients_and_equipment_en,
             ':instructions_en' => $instructions_en,
-            ':food_product_id' => $food_product_id
+            ':cosmetic_product_id' => $cosmetic_product_id
         ];
 
         if (!empty($_POST['thai_name'])) {
