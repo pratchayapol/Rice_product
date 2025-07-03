@@ -407,7 +407,7 @@ if (!empty($products_cosmetic['rice_id'])) {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // รับค่า ID ของผลิตภัณฑ์
-        $food_product_id = $_POST['food_product_id']; // รหัสผลิตภัณฑ์
+        $cosmetic_product_id = $_POST['cosmetic_product_id']; // รหัสผลิตภัณฑ์
 
         // รับค่าชื่อผลิตภัณฑ์ภาษาไทย
         $product_name = $_POST['product_name']; // ชื่อผลิตภัณฑ์
