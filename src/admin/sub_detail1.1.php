@@ -25,7 +25,7 @@ if ($type === "food") {
         $ingredients_and_equipment_en = $product['ingredients_and_equipment_en'];
         $instructions_en = $product['instructions_en'];
         $picture = $product['picture'];
-
+        $link_url = $product['link_url'] ?? null;
         // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
         $rice_id_array = explode(', ', $rice_id);
         $target_rice_id = trim($rice_id_array[0]); // ลบช่องว่างเผื่อมี
@@ -59,7 +59,7 @@ if ($type === "food") {
             $photoperiod_sensitivity = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
 
             $picture_rice = $general_info['picture_rice'] ?? null;
-            $link_url = $general_info['link_url'] ?? null;
+
         } else {
             echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
         }
