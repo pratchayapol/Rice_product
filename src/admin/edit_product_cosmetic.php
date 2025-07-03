@@ -298,6 +298,14 @@ if (!empty($products_cosmetic['rice_id'])) {
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
                 </div>
 
+                <!-- ที่มา Genbank url -->
+                <div>
+                    <label for="genbank_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา Genbank url <span class="text-gray-400 text-xs"></span></label>
+                    <input type="text" id="genbank_url" name="genbank_url" value="<?= htmlspecialchars($products_food['genbank_url'] ?? '') !== '' ? htmlspecialchars($products_food['genbank_url']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
+                        placeholder="ลิงค์ข้อมูลข้าวจาก Genbank"
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                </div>
+
                 <!-- วัตถุดิบและอุปกรณ์ -->
                 <div>
                     <label for="ingredients_th" class="block text-sm font-medium text-gray-700 mb-1">วัตถุดิบและอุปกรณ์</label>
@@ -399,7 +407,7 @@ if (!empty($products_cosmetic['rice_id'])) {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // รับค่า ID ของผลิตภัณฑ์
-        $cosmetic_product_id = $_POST['cosmetic_product_id']; // รหัสผลิตภัณฑ์
+        $food_product_id = $_POST['food_product_id']; // รหัสผลิตภัณฑ์
 
         // รับค่าชื่อผลิตภัณฑ์ภาษาไทย
         $product_name = $_POST['product_name']; // ชื่อผลิตภัณฑ์
@@ -436,6 +444,9 @@ if (!empty($products_cosmetic['rice_id'])) {
 
         // รับค่าที่มา (ชื่อหน่วยงาน)
         $source = $_POST['source']; // หน่วยงานหรือที่มาของข้อมูล
+
+        // รับค่า genbank_url
+        $genbank_url = $_POST['genbank_url']; // genbank_url
 
         // รับค่าวัตถุดิบและอุปกรณ์ (ภาษาไทย)
         $ingredients_and_equipment = $_POST['ingredients_and_equipment']; // วัตถุดิบและอุปกรณ์ (ภาษาไทย)
@@ -488,6 +499,7 @@ if (!empty($products_cosmetic['rice_id'])) {
             "rice_variety_group_en_name = :rice_variety_group_en_name",
             "source_url = :source_url",
             "source = :source",
+            "genbank_url = :genbank_url",
             "ingredients_and_equipment = :ingredients_and_equipment",
             "instructions = :instructions",
             "ingredients_and_equipment_en = :ingredients_and_equipment_en",
@@ -506,11 +518,12 @@ if (!empty($products_cosmetic['rice_id'])) {
             ':rice_variety_group_en_name' => $rice_variety_group_en_name,
             ':source_url' => $source_url,
             ':source' => $source,
+            ':genbank_url' => $genbank_url,
             ':ingredients_and_equipment' => $ingredients_and_equipment,
             ':instructions' => $instructions,
             ':ingredients_and_equipment_en' => $ingredients_and_equipment_en,
             ':instructions_en' => $instructions_en,
-            ':cosmetic_product_id' => $cosmetic_product_id
+            ':food_product_id' => $food_product_id
         ];
 
         if (!empty($_POST['thai_name'])) {

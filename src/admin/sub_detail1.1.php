@@ -25,7 +25,7 @@ if ($type === "food") {
         $ingredients_and_equipment_en = $product['ingredients_and_equipment_en'];
         $instructions_en = $product['instructions_en'];
         $picture = $product['picture'];
-        $link_url = $product['link_url'] ?? null;
+        $genbank_url = $product['genbank_url'] ?? null;
         // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
         $rice_id_array = explode(', ', $rice_id);
         $target_rice_id = trim($rice_id_array[0]); // ลบช่องว่างเผื่อมี
@@ -57,9 +57,7 @@ if ($type === "food") {
             $general_status = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
             $harvest_age_days = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
             $photoperiod_sensitivity = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
-
             $picture_rice = $general_info['picture_rice'] ?? null;
-
         } else {
             echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
         }
@@ -89,7 +87,7 @@ if ($type === "food") {
         $ingredients_and_equipment_en = $product['ingredients_and_equipment_en'];
         $instructions_en = $product['instructions_en'];
         $picture = $product['picture'];
-
+        $genbank_url = $product['genbank_url'] ?? null;
         // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
         $rice_id_array = explode(', ', $rice_id);
         $target_rice_id = trim($rice_id_array[0]); // ลบช่องว่างเผื่อมี
@@ -121,9 +119,7 @@ if ($type === "food") {
             $general_status = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
             $harvest_age_days = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
             $photoperiod_sensitivity = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
-
             $picture_rice = $general_info['picture_rice'] ?? null;
-            $link_url = $general_info['link_url'] ?? null;
         } else {
             echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
         }
@@ -153,15 +149,13 @@ if ($type === "food") {
         $ingredients_and_equipment_en = $product['ingredients_and_equipment_en'];
         $instructions_en = $product['instructions_en'];
         $picture = $product['picture'];
-
+        $genbank_url = $product['genbank_url'] ?? null;
         // แยกสตริงด้วยเครื่องหมายคอมมา แล้วเอาแค่ตัวแรก
         $rice_id_array = explode(', ', $rice_id);
         $target_rice_id = trim($rice_id_array[0]); // ลบช่องว่างเผื่อมี
 
         // แปลงเป็น integer ถ้าจำเป็น
         $target_rice_id = (int)$target_rice_id;
-
-
 
         // คำสั่ง SQL พร้อม placeholder
         $sql = "SELECT * FROM rice WHERE rice_id = :rice_id";
@@ -187,9 +181,7 @@ if ($type === "food") {
             $general_status = !empty($general_info['general_status']) ? $general_info['general_status'] : 'ไม่พบข้อมูล';
             $harvest_age_days = !empty($general_info['harvest_age_days']) ? $general_info['harvest_age_days'] : 'ไม่พบข้อมูล';
             $photoperiod_sensitivity = !empty($general_info['photoperiod_sensitivity']) ? $general_info['photoperiod_sensitivity'] : 'ไม่พบข้อมูล';
-
             $picture_rice = $general_info['picture_rice'] ?? null;
-            $link_url = $general_info['link_url'] ?? null;
         } else {
             echo "ไม่พบข้อมูลสำหรับ rice_id = $target_rice_id";
         }

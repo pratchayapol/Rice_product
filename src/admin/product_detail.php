@@ -100,9 +100,6 @@ if ($id > 0) {
                         </div>
 
                         <!-- Tab Contents -->
-
-
-
                         <div class="relative">
                             <?php
                             include 'sub_detail2.1.php'; //tab กรรมวิธีการผลิต

@@ -135,7 +135,7 @@ if (!empty($products_food['rice_id'])) {
                             "แชมพู / ครีมนวดผม",
                             "ทรีตเมนต์"
                         ]
-                       
+
                     };
 
                     const productGroupSelect = document.getElementById("product_group");
@@ -258,6 +258,14 @@ if (!empty($products_food['rice_id'])) {
                     <input type="text" id="source" name="source"
                         placeholder="ระบุ ที่มา เช่น หน่วยงานที่รับรองผลิตภัณฑ์"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-violet-400" />
+                </div>
+
+                <!-- ที่มา Genbank url -->
+                <div>
+                    <label for="genbank_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา Genbank url <span class="text-gray-400 text-xs"></span></label>
+                    <input type="text" id="genbank_url" name="genbank_url"
+                        placeholder="ลิงค์ข้อมูลข้าวจาก Genbank"
+                        class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
 
                 <!-- วัตถุดิบและอุปกรณ์ -->
@@ -395,6 +403,10 @@ if (!empty($products_food['rice_id'])) {
         // รับค่าที่มา (ชื่อหน่วยงาน)
         $source = $_POST['source']; // หน่วยงานหรือที่มาของข้อมูล
 
+        // รับค่า genbank_url
+        $genbank_url = $_POST['genbank_url']; // genbank_url
+
+
         // รับค่าวัตถุดิบและอุปกรณ์ (ภาษาไทย)
         $ingredients_and_equipment = $_POST['ingredients_and_equipment']; // วัตถุดิบและอุปกรณ์ (ภาษาไทย)
 
@@ -451,6 +463,7 @@ if (!empty($products_food['rice_id'])) {
         addField($columns, $placeholders, $params, 'rice_variety_group_en_name', ':rice_variety_group_en_name', $_POST['rice_variety_group_en_name']);
         addField($columns, $placeholders, $params, 'source_url', ':source_url', $_POST['source_url']);
         addField($columns, $placeholders, $params, 'source', ':source', $_POST['source']);
+        addField($columns, $placeholders, $params, 'genbank_url', ':genbank_url', $_POST['genbank_url']);
         addField($columns, $placeholders, $params, 'ingredients_and_equipment', ':ingredients_and_equipment', $_POST['ingredients_and_equipment']);
         addField($columns, $placeholders, $params, 'instructions', ':instructions', $_POST['instructions']);
         addField($columns, $placeholders, $params, 'ingredients_and_equipment_en', ':ingredients_and_equipment_en', $_POST['ingredients_and_equipment_en']);
