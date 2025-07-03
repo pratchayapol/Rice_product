@@ -414,7 +414,7 @@ $products_medical = $stmt->fetchAll();
 
                 const link = document.createElement("a");
                 link.setAttribute("href", url);
-                link.setAttribute("download", "rice_products.csv");
+                link.setAttribute("download", "CSV_food_products.csv");
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -432,7 +432,7 @@ $products_medical = $stmt->fetchAll();
 
                 const link = document.createElement("a");
                 link.setAttribute("href", url);
-                link.setAttribute("download", "rice_products.csv");
+                link.setAttribute("download", "CSV_medical_products.csv");
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -450,7 +450,7 @@ $products_medical = $stmt->fetchAll();
 
                 const link = document.createElement("a");
                 link.setAttribute("href", url);
-                link.setAttribute("download", "rice_products.csv");
+                link.setAttribute("download", "CSV_cosmetic_products.csv");
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
