@@ -102,7 +102,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         class="fixed bottom-10 left-1/2 transform -translate-x-1/2 max-w-3xl w-[800px] bg-white rounded-lg shadow-lg flex divide-x divide-gray-200 p-6">
         <!-- ฝั่งซ้ายข้อความ -->
         <div class="flex-1 pr-6">
-            <h4 class="font-semibold text-gray-900 mb-2">We use cookies</h4>
+            <h2 class="font-semibold text-gray-900 mb-2">We use cookies</h2>
             <p class="text-sm text-gray-600 leading-relaxed">
                 Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. Let me choose
             </p>
