@@ -171,6 +171,17 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             const consent = localStorage.getItem('cookieConsent');
             if (!consent) {
                 document.getElementById('cookie-popup').style.display = 'flex';
+            } else {
+                try {
+                    const consentObj = JSON.parse(consent);
+                    if (consentObj.status === 'accepted' || consentObj.status === 'rejected') {
+                        document.getElementById('cookie-popup').style.display = 'none';
+                    } else {
+                        document.getElementById('cookie-popup').style.display = 'flex';
+                    }
+                } catch {
+                    document.getElementById('cookie-popup').style.display = 'flex';
+                }
             }
         }
 
