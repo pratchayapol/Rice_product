@@ -113,7 +113,7 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick="exportEmptyCSV([
+                                        onclick="exportEmptyCSV_food([
     'food_product_id',
     'rice_id',
     'rice_variety_th_name',
@@ -134,12 +134,9 @@ $products_medical = $stmt->fetchAll();
     'picture',
     'genbank_url'
   ])"
-                                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-                                        Export CSV (หัวตารางอย่างเดียว)
+                                        class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        Export CSV
                                     </button>
-
-
-
                                 </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
@@ -214,6 +211,31 @@ $products_medical = $stmt->fetchAll();
                                         class="bg-violet-500 hover:bg-violet-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
+                                    <button
+                                        onclick="exportEmptyCSV_cosmetic([
+    'cosmetic_product_id',
+    'rice_id',
+    'rice_variety_th_name',
+    'rice_variety_en_name',
+    'product_name',
+    'product_group',
+    'category',
+    'rice_variety_group_th_name',
+    'rice_variety_group_en_name',
+    'source_url',
+    'source',
+    'ingredients_and_equipment',
+    'instructions',
+    'ingredients_and_equipment_en',
+    'instructions_en',
+    'product_name_th',
+    'product_name_en',
+    'picture',
+    'genbank_url'
+  ])"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        Export CSV
+                                    </button>
                                 </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable2" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
@@ -291,6 +313,31 @@ $products_medical = $stmt->fetchAll();
                                         class="bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
+                                    <button
+                                        onclick="exportEmptyCSV_medical([
+    'medical_product_id',
+    'rice_id',
+    'rice_variety_th_name',
+    'rice_variety_en_name',
+    'product_name',
+    'product_group',
+    'category',
+    'rice_variety_group_th_name',
+    'rice_variety_group_en_name',
+    'source_url',
+    'source',
+    'ingredients_and_equipment',
+    'instructions',
+    'ingredients_and_equipment_en',
+    'instructions_en',
+    'product_name_th',
+    'product_name_en',
+    'picture',
+    'genbank_url'
+  ])"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        Export CSV
+                                    </button>
                                 </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
@@ -350,26 +397,49 @@ $products_medical = $stmt->fetchAll();
 
                     </div>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
+
+
+
         <script>
-            function exportEmptyCSV(headers) {
+            function exportEmptyCSV_food(headers) {
+                // สร้างเฉพาะบรรทัดหัวตาราง
+                const csv = headers.join(",") + "\n";
+
+                const blob = new Blob([csv], {
+                    type: "text/csv;charset=utf-8;"
+                });
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+                link.setAttribute("href", url);
+                link.setAttribute("download", "rice_products.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        </script>
+        <script>
+            function exportEmptyCSV_medical(headers) {
+                // สร้างเฉพาะบรรทัดหัวตาราง
+                const csv = headers.join(",") + "\n";
+
+                const blob = new Blob([csv], {
+                    type: "text/csv;charset=utf-8;"
+                });
+                const url = URL.createObjectURL(blob);
+
+                const link = document.createElement("a");
+                link.setAttribute("href", url);
+                link.setAttribute("download", "rice_products.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        </script>
+        <script>
+            function exportEmptyCSV_cosmetic(headers) {
                 // สร้างเฉพาะบรรทัดหัวตาราง
                 const csv = headers.join(",") + "\n";
 
