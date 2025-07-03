@@ -113,30 +113,31 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick='exportCSV(myDataFromServer, [
-    "food_product_id",
-    "rice_id",
-    "rice_variety_th_name",
-    "rice_variety_en_name",
-    "product_name",
-    "product_group",
-    "category",
-    "rice_variety_group_th_name",
-    "rice_variety_group_en_name",
-    "source_url",
-    "source",
-    "ingredients_and_equipment",
-    "instructions",
-    "ingredients_and_equipment_en",
-    "instructions_en",
-    "product_name_th",
-    "product_name_en",
-    "picture",
-    "genbank_url"
-  ])'
+                                        onclick="exportEmptyCSV([
+    'food_product_id',
+    'rice_id',
+    'rice_variety_th_name',
+    'rice_variety_en_name',
+    'product_name',
+    'product_group',
+    'category',
+    'rice_variety_group_th_name',
+    'rice_variety_group_en_name',
+    'source_url',
+    'source',
+    'ingredients_and_equipment',
+    'instructions',
+    'ingredients_and_equipment_en',
+    'instructions_en',
+    'product_name_th',
+    'product_name_en',
+    'picture',
+    'genbank_url'
+  ])"
                                         class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-                                        Export CSV
+                                        Export CSV (หัวตารางอย่างเดียว)
                                     </button>
+
 
 
                                 </div>
@@ -368,17 +369,9 @@ $products_medical = $stmt->fetchAll();
             </div>
         </div>
         <script>
-            function exportCSV(data, headers) {
-                let csv = headers.join(",") + "\n";
-
-                data.forEach(row => {
-                    csv += headers
-                        .map(field => {
-                            const value = String(row[field] ?? "");
-                            return `"${value.replace(/"/g, '""')}"`;
-                        })
-                        .join(",") + "\n";
-                });
+            function exportEmptyCSV(headers) {
+                // สร้างเฉพาะบรรทัดหัวตาราง
+                const csv = headers.join(",") + "\n";
 
                 const blob = new Blob([csv], {
                     type: "text/csv;charset=utf-8;"
@@ -393,6 +386,7 @@ $products_medical = $stmt->fetchAll();
                 document.body.removeChild(link);
             }
         </script>
+
 
 
         <script>
