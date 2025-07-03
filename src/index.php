@@ -128,6 +128,24 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
                 flex-direction: row;
             }
         }
+
+        .pm {
+            display: none;
+            /* optional: ตกแต่ง overlay */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pm.active {
+            display: flex;
+        }
     </style>
 </head>
 
@@ -199,7 +217,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         <div class="cookie-buttons">
             <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
             <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
-            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
+            <button id="manage-preferences">Manage Individual Preferences</button>
         </div>
     </div>
 
@@ -231,6 +249,15 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             alert('Open preferences modal here.');
             // Open a modal for detailed preferences if needed
         }
+        document.getElementById('manage-preferences').addEventListener('click', function() {
+            document.querySelector('.pm').classList.add('active');
+            document.querySelector('.pm').setAttribute('aria-hidden', 'false');
+        });
+
+        document.querySelector('.pm__close-btn').addEventListener('click', function() {
+            document.querySelector('.pm').classList.remove('active');
+            document.querySelector('.pm').setAttribute('aria-hidden', 'true');
+        });
 
         window.onload = showCookiePopup;
     </script>
