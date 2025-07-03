@@ -86,7 +86,7 @@ $products = $stmt->fetchAll();
                             class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-blue-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
                             วัสดุทางการแพทย์จากข้าว
                         </button>
-                      
+
                         <button data-type="ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย::"
                             class="filter-btn w-full py-2 rounded-full bg-white shadow hover:bg-violet-300 hover:shadow-lg transition-colors duration-300 flex items-center justify-center gap-2">
                             ผลิตภัณฑ์ดูแลผิวสำหรับผู้ป่วย
@@ -114,13 +114,14 @@ $products = $stmt->fetchAll();
                                         class="rounded-xl mb-4 w-full h-40 object-cover" />
 
                                     <div class="flex flex-col gap-2 w-full">
-                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
+                                        <div class="w-full px-4 py-1 rounded-full text-base font-semibold text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
                                             <?= htmlspecialchars($product['product_name']) ?>
                                         </div>
-                                        <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
+                                        <div class="w-full px-4 py-1 rounded-full text-base font-semibold text-gray-700 shadow bg-white hover:bg-yellow-600 transition text-center">
                                             <?= htmlspecialchars($product['rice_variety_th_name']) ?>
                                         </div>
                                     </div>
+
 
                                 </a>
                             <?php endforeach; ?>
