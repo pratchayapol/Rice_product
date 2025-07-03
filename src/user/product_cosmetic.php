@@ -217,13 +217,14 @@ $products = $stmt->fetchAll();
                         <img src="${product.picture || '../image/rice_product/A.jpg'}"
                             alt="${product.product_name}" class="rounded-xl mb-4 w-full h-40 object-cover" />
                         <div class="flex flex-col gap-2 w-full">
-                            <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white text-center">
-                                ${product.product_name}
-                            </div>
-                            <div class="w-full px-4 py-1 rounded-full text-sm text-gray-700 shadow bg-white text-center">
-                                ${product.rice_variety_th_name}
-                            </div>
-                        </div>
+    <div class="w-full px-4 py-1 rounded-full text-base font-semibold text-gray-700 shadow bg-white text-center">
+        ${product.product_name}
+    </div>
+    <div class="w-full px-4 py-1 rounded-full text-base font-semibold text-gray-700 shadow bg-white text-center">
+        ${product.rice_variety_th_name}
+    </div>
+</div>
+
                     </a>`;
                         });
                     }
