@@ -37,33 +37,26 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </script>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
         #cookie-popup {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             max-width: 800px;
-            width: 90%;
+            width: 70%;
+            /* เปลี่ยนจาก 90% เป็น 70% ตามต้องการ */
             background: #fff;
             border-radius: 12px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             padding: 20px;
             z-index: 9999;
-            display: none;
+            /* ลบ display:flex ออกเพราะจะจัดปุ่มเป็นแถวหลายแถว */
+            display: block;
         }
 
         #cookie-popup .cookie-text {
-            flex: 1;
-            margin-right: 20px;
+            margin-bottom: 20px;
+            /* เว้นระยะห่างจากปุ่ม */
         }
 
         #cookie-popup .cookie-text h4 {
@@ -78,22 +71,43 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             line-height: 1.4;
         }
 
-        #cookie-popup .cookie-buttons {
+        /* Container สำหรับปุ่มแถวบน */
+        .cookie-buttons-top {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            /* เว้นช่องว่างระหว่างแถวบนกับล่าง */
         }
 
-        .cookie-btn {
-            padding: 10px 16px;
+        .cookie-buttons-top .cookie-btn {
+            width: 15%;
+            /* ปุ่มละ 15% */
+            padding: 10px 0;
             font-size: 14px;
-            border: none;
             border-radius: 6px;
             cursor: pointer;
             white-space: nowrap;
             transition: background 0.2s ease;
         }
 
+        /* Container สำหรับปุ่มแถวล่าง */
+        .cookie-buttons-bottom {
+            display: flex;
+            justify-content: center;
+        }
+
+        .cookie-buttons-bottom .manage-btn {
+            width: 30%;
+            /* กว้าง 30% */
+            padding: 10px 0;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+
+        /* ปุ่มสีและโฮเวอร์ */
         .accept-btn {
             background-color: #333;
             color: white;
@@ -120,13 +134,6 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
         .manage-btn:hover {
             background-color: #e2e6ea;
-        }
-
-        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
-        @media (min-width: 600px) {
-            #cookie-popup .cookie-buttons {
-                flex-direction: row;
-            }
         }
     </style>
 </head>
@@ -189,37 +196,22 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
-    <div id="cookie-popup" class="w-[70%] mx-auto p-4 border rounded shadow-lg">
-        <div class="cookie-text mb-4">
-            <h4 class="text-lg font-semibold mb-2">We use cookies</h4>
+    <div id="cookie-popup" style="display:none;">
+        <div class="cookie-text">
+            <h4>We use cookies</h4>
             <p>
                 Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
             </p>
         </div>
-
-        <!-- ปุ่มแถวบน -->
-        <div class="flex justify-between mb-4">
-            <button
-                class="cookie-btn accept-btn w-[15%] bg-green-500 text-white py-2 rounded"
-                onclick="acceptCookies()">
-                Accept all
-            </button>
-            <button
-                class="cookie-btn reject-btn w-[15%] bg-red-500 text-white py-2 rounded"
-                onclick="rejectCookies()">
-                Reject all
-            </button>
+        <div class="cookie-buttons-top">
+            <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
+            <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
         </div>
-
-        <!-- ปุ่มแถวล่าง -->
-        <div class="flex justify-center">
-            <button
-                class="cookie-btn manage-btn w-[30%] bg-gray-500 text-white py-2 rounded"
-                onclick="managePreferences()">
-                Manage Individual preferences
-            </button>
+        <div class="cookie-buttons-bottom">
+            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
         </div>
     </div>
+
     <script>
         function showCookiePopup() {
             const consent = localStorage.getItem('cookieConsent');
