@@ -261,7 +261,7 @@ if (!empty($products_food['rice_id'])) {
                 <!-- ที่มา Genbank url -->
                 <div>
                     <label for="genbank_url" class="block text-sm font-medium text-gray-700 mb-1">ที่มา Genbank url <span class="text-gray-400 text-xs"></span></label>
-                    <input type="text" id="genbank_url" name="genbank_url" value="<?= htmlspecialchars($products_food['genbank_url']) ?>"
+                    <input type="text" id="genbank_url" name="genbank_url" value="<?= htmlspecialchars($products_food['genbank_url'] ?? '') !== '' ? htmlspecialchars($products_food['genbank_url']) : 'รอเจ้าหน้าที่เพิ่มข้อมูล' ?>"
                         placeholder="ลิงค์ข้อมูลข้าวจาก Genbank"
                         class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
                 </div>
