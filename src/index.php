@@ -39,84 +39,94 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        .cookie-banner {
+        #cookie-popup {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #f2f2f2;
-            padding: 16px;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            z-index: 1000;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 800px;
+            width: 90%;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            z-index: 9999;
+            display: none;
+        }
+
+        #cookie-popup .cookie-text {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        #cookie-popup .cookie-text h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        #cookie-popup .cookie-text p {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        #cookie-popup .cookie-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .cookie-btn {
-            padding: 10px 20px;
-            margin: 5px;
-            border: none;
-            cursor: pointer;
+            padding: 10px 16px;
             font-size: 14px;
-            border-radius: 4px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background 0.2s ease;
         }
 
         .accept-btn {
-            background-color: #4CAF50;
+            background-color: #333;
             color: white;
+        }
+
+        .accept-btn:hover {
+            background-color: #555;
         }
 
         .reject-btn {
-            background-color: #f44336;
+            background-color: #333;
             color: white;
         }
 
-        #manage-preferences {
-            background-color: #2196F3;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 4px;
+        .reject-btn:hover {
+            background-color: #555;
         }
 
-        /* Popup styling */
-        .cookie-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
+        .manage-btn {
+            background-color: #f1f3f5;
+            color: #333;
+            border: 1px solid #ccc;
         }
 
-        .popup-content {
-            background: #fff;
-            padding: 20px;
-            max-width: 500px;
-            width: 90%;
-            border-radius: 8px;
-            position: relative;
+        .manage-btn:hover {
+            background-color: #e2e6ea;
         }
 
-        .popup-content h2 {
-            margin-top: 0;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
-            background: none;
-            border: none;
-            cursor: pointer;
+        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
+        @media (min-width: 600px) {
+            #cookie-popup .cookie-buttons {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
@@ -178,60 +188,53 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
         </div>
     </div>
-    <div class="cookie-banner">
-        <div>
+
+    <div id="cookie-popup">
+        <div class="cookie-text">
+            <h4>We use cookies</h4>
+            <p>
+                Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
+            </p>
+        </div>
+        <div class="cookie-buttons">
             <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
             <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
-        </div>
-        <div>
-            <button id="manage-preferences">Manage Individual Preferences</button>
-        </div>
-    </div>
-
-    <!-- Popup -->
-    <div class="cookie-popup" id="cookie-popup">
-        <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">×</button>
-            <h2>Cookie Settings</h2>
-            <p>You can customize your cookie preferences below:</p>
-            <label><input type="checkbox" checked disabled /> Necessary Cookies (always enabled)</label><br />
-            <label><input type="checkbox" id="analytics-checkbox" /> Analytics Cookies</label><br />
-            <label><input type="checkbox" id="ads-checkbox" /> Advertising Cookies</label><br />
-            <div style="margin-top: 15px;">
-                <button onclick="savePreferences()">Save Preferences</button>
-            </div>
+            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
         </div>
     </div>
 
     <script>
+        function showCookiePopup() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                document.getElementById('cookie-popup').style.display = 'flex';
+            }
+        }
+
         function acceptCookies() {
-            alert('You accepted all cookies.');
-            // Place your accept logic here
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookie-popup').style.display = 'none';
+            console.log('Cookies accepted.');
+            // Enable tracking cookies here
         }
 
         function rejectCookies() {
-            alert('You rejected all cookies.');
-            // Place your reject logic here
+            localStorage.setItem('cookieConsent', 'rejected');
+            document.getElementById('cookie-popup').style.display = 'none';
+            console.log('Cookies rejected.');
+            // Disable tracking cookies here
         }
 
-        const manageBtn = document.getElementById('manage-preferences');
-        const popup = document.getElementById('cookie-popup');
-
-        manageBtn.addEventListener('click', () => {
-            popup.style.display = 'flex';
-        });
-
-        function closePopup() {
-            popup.style.display = 'none';
+        function managePreferences() {
+            localStorage.setItem('cookieConsent', 'customize');
+            document.getElementById('cookie-popup').style.display = 'none';
+            alert('Open preferences modal here.');
+            // Open a modal for detailed preferences if needed
         }
 
-        function savePreferences() {
-            const analytics = document.getElementById('analytics-checkbox').checked;
-            const ads = document.getElementById('ads-checkbox').checked;
-            alert(`Preferences saved.\nAnalytics: ${analytics}\nAds: ${ads}`);
-            closePopup();
-        }
+        window.onload = showCookiePopup;
     </script>
+
     <?php include './loadtab/f.php'; ?>
 </body>
 
