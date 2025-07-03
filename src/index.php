@@ -70,26 +70,27 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
             <!-- LINE Sign-In Button -->
             <a href="<?= $line_login_url ?>"
-                class="w-full mt-4 px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md 
-          hover:bg-green-600 hover:shadow-lg transition-all flex items-center justify-center gap-3">
+                class="w-full mt-4 px-6 py-3 bg-green-700 text-white font-medium rounded-lg shadow-md 
+          hover:bg-green-800 hover:shadow-lg transition-all flex items-center justify-center gap-3">
                 <img src="image/LINE_logo.svg.webp"
                     alt="LINE Logo" class="w-6 h-6 bg-white rounded p-1">
                 Sign in with LINE
             </a>
-            <a
-                href="/คู่มือการใช้งาน%20เว็บแอปพลิเคชัน%20ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว.pdf"
+
+            <a href="/คู่มือการใช้งาน%20เว็บแอปพลิเคชัน%20ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว.pdf"
                 target="_blank"
-                class="w-full mt-4 px-6 py-3 bg-orange-500 text-white font-medium rounded-lg shadow-md 
-         hover:bg-orange-600 hover:shadow-lg transition-all flex items-center justify-center gap-3">
+                class="w-full mt-4 px-6 py-3 bg-orange-700 text-white font-medium rounded-lg shadow-md 
+          hover:bg-orange-800 hover:shadow-lg transition-all flex items-center justify-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24"
                     stroke-width="1.5" stroke="currentColor"
-                    class="w-6 h-6 bg-white text-orange-600 rounded p-1">
+                    class="w-6 h-6 bg-white text-orange-700 rounded p-1">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M3 16.5V19a2.003 2.003 0 002 2h14a2.003 2.003 0 002-2v-2.5M7 10l5 5m0 0l5-5m-5 5V3" />
                 </svg>
                 ดาวน์โหลดคู่มือการใช้งาน
             </a>
+
 
 
         </div>
