@@ -130,8 +130,8 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </div>
 
     <!-- Modal popup สำหรับจัดการ preferences -->
-<div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-  <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[80vh] overflow-auto p-6 relative">
+    <div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[80vh] overflow-auto p-6 relative">
             <!-- Header -->
             <div class="flex justify-between items-center border-b pb-3">
                 <h2 id="pm__title" class="text-xl font-semibold">Cookie Settings</h2>
@@ -189,16 +189,18 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         }
 
         function managePreferences() {
-            localStorage.setItem('cookieConsent', 'customize');
             document.getElementById('cookie-popup').style.display = 'none';
-
-            // แสดง modal popup
-            document.getElementById('preferences-modal').style.display = 'block';
+            const modal = document.getElementById('preferences-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closePreferencesModal() {
-            document.getElementById('preferences-modal').style.display = 'none';
+            const modal = document.getElementById('preferences-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
         }
+
 
         // ฟังก์ชันรับมือปุ่มใน modal
         function acceptCookiesFromModal() {
