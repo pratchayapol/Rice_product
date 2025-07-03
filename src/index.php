@@ -39,61 +39,94 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         #cookie-popup {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            max-width: 350px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 800px;
+            width: 90%;
             background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 20px;
             z-index: 9999;
             display: none;
         }
 
-        #cookie-popup h4 {
-            margin-top: 0;
-            margin-bottom: 8px;
+        #cookie-popup .cookie-text {
+            flex: 1;
+            margin-right: 20px;
         }
 
-        #cookie-popup p {
+        #cookie-popup .cookie-text h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+
+        #cookie-popup .cookie-text p {
+            margin: 0;
             font-size: 14px;
-            margin: 0 0 15px;
+            color: #333;
             line-height: 1.4;
         }
 
-        #cookie-buttons {
+        #cookie-popup .cookie-buttons {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
         .cookie-btn {
-            padding: 8px;
+            padding: 10px 16px;
             font-size: 14px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            text-align: center;
+            white-space: nowrap;
+            transition: background 0.2s ease;
         }
 
         .accept-btn {
-            background-color: #4caf50;
+            background-color: #333;
             color: white;
+        }
+
+        .accept-btn:hover {
+            background-color: #555;
         }
 
         .reject-btn {
-            background-color: #f44336;
+            background-color: #333;
             color: white;
         }
 
+        .reject-btn:hover {
+            background-color: #555;
+        }
+
         .manage-btn {
-            background-color: #e0e0e0;
+            background-color: #f1f3f5;
             color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .manage-btn:hover {
+            background-color: #e2e6ea;
+        }
+
+        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
+        @media (min-width: 600px) {
+            #cookie-popup .cookie-buttons {
+                flex-direction: row;
+            }
         }
     </style>
 </head>
@@ -157,14 +190,16 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </div>
 
     <div id="cookie-popup">
-        <h4>We use cookies</h4>
-        <p>
-            Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
-        </p>
-        <div id="cookie-buttons">
+        <div class="cookie-text">
+            <h4>We use cookies</h4>
+            <p>
+                Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
+            </p>
+        </div>
+        <div class="cookie-buttons">
             <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
             <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
-            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage individual preferences</button>
+            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
         </div>
     </div>
 
@@ -172,29 +207,29 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         function showCookiePopup() {
             const consent = localStorage.getItem('cookieConsent');
             if (!consent) {
-                document.getElementById('cookie-popup').style.display = 'block';
+                document.getElementById('cookie-popup').style.display = 'flex';
             }
         }
 
         function acceptCookies() {
             localStorage.setItem('cookieConsent', 'accepted');
             document.getElementById('cookie-popup').style.display = 'none';
-            console.log('All cookies accepted.');
+            console.log('Cookies accepted.');
             // Enable tracking cookies here
         }
 
         function rejectCookies() {
             localStorage.setItem('cookieConsent', 'rejected');
             document.getElementById('cookie-popup').style.display = 'none';
-            console.log('All tracking cookies rejected.');
+            console.log('Cookies rejected.');
             // Disable tracking cookies here
         }
 
         function managePreferences() {
             localStorage.setItem('cookieConsent', 'customize');
             document.getElementById('cookie-popup').style.display = 'none';
-            alert('You can customize your cookie preferences in the next step.');
-            // Here, you could open a modal with detailed options
+            alert('Open preferences modal here.');
+            // Open a modal for detailed preferences if needed
         }
 
         window.onload = showCookiePopup;
