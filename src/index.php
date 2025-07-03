@@ -35,100 +35,6 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
         gtag('config', 'G-0RGNMK85DQ');
     </script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        #cookie-popup {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 800px;
-            width: 90%;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            z-index: 9999;
-            display: none;
-        }
-
-        #cookie-popup .cookie-text {
-            flex: 1;
-            margin-right: 20px;
-        }
-
-        #cookie-popup .cookie-text h4 {
-            margin: 0 0 8px;
-            font-size: 16px;
-        }
-
-        #cookie-popup .cookie-text p {
-            margin: 0;
-            font-size: 14px;
-            color: #333;
-            line-height: 1.4;
-        }
-
-        #cookie-popup .cookie-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .cookie-btn {
-            padding: 10px 16px;
-            font-size: 14px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s ease;
-        }
-
-        .accept-btn {
-            background-color: #333;
-            color: white;
-        }
-
-        .accept-btn:hover {
-            background-color: #555;
-        }
-
-        .reject-btn {
-            background-color: #333;
-            color: white;
-        }
-
-        .reject-btn:hover {
-            background-color: #555;
-        }
-
-        .manage-btn {
-            background-color: #f1f3f5;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-
-        .manage-btn:hover {
-            background-color: #e2e6ea;
-        }
-
-        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
-        @media (min-width: 600px) {
-            #cookie-popup .cookie-buttons {
-                flex-direction: row;
-            }
-        }
-    </style>
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg t1">
@@ -189,39 +95,43 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
-    <div
-        id="cookie-popup"
-        class="fixed bottom-5 left-1/2 transform -translate-x-1/2 max-w-3xl w-[70%] bg-white rounded-xl shadow-lg p-5 z-[9999] hidden flex-col">
-        <div class="cookie-text mb-4">
-            <h4 class="text-lg font-semibold mb-2">We use cookies</h4>
-            <p class="text-sm text-gray-800 leading-relaxed">
-                Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
-            </p>
-        </div>
+  <div
+  id="cookie-popup"
+  class="fixed bottom-10 left-1/2 transform -translate-x-1/2 max-w-3xl w-[600px] bg-white rounded-lg shadow-lg flex divide-x divide-gray-200 p-6"
+>
+  <!-- ฝั่งซ้ายข้อความ -->
+  <div class="flex-1 pr-6">
+    <h4 class="font-semibold text-gray-900 mb-2">We use cookies</h4>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. Let me choose
+    </p>
+  </div>
 
-        <!-- ปุ่มแถวบน -->
-        <div class="flex justify-between mb-4">
-            <button
-                class="accept-btn w-[15%] bg-gray-800 text-white py-2 rounded hover:bg-gray-700 transition"
-                onclick="acceptCookies()">
-                Accept all
-            </button>
-            <button
-                class="reject-btn w-[15%] bg-gray-800 text-white py-2 rounded hover:bg-gray-700 transition"
-                onclick="rejectCookies()">
-                Reject all
-            </button>
-        </div>
-
-        <!-- ปุ่มแถวล่าง -->
-        <div class="flex justify-center">
-            <button
-                class="manage-btn w-[30%] bg-gray-200 text-gray-800 border border-gray-300 py-2 rounded hover:bg-gray-300 transition"
-                onclick="managePreferences()">
-                Manage Individual preferences
-            </button>
-        </div>
+  <!-- ฝั่งขวาปุ่ม -->
+  <div class="flex flex-col justify-center pl-6 space-y-3 w-[280px]">
+    <div class="flex space-x-3">
+      <button
+        class="flex-1 bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition"
+        onclick="acceptCookies()"
+      >
+        Accept all
+      </button>
+      <button
+        class="flex-1 bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition"
+        onclick="rejectCookies()"
+      >
+        Reject all
+      </button>
     </div>
+    <button
+      class="w-full bg-gray-100 text-gray-800 py-2 rounded-md hover:bg-gray-200 transition"
+      onclick="managePreferences()"
+    >
+      Manage Individual preferences
+    </button>
+  </div>
+</div>
+
 
     <script>
         function showCookiePopup() {
