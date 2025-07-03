@@ -169,19 +169,11 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     <script>
         function showCookiePopup() {
             const consent = localStorage.getItem('cookieConsent');
+            const popup = document.getElementById('cookie-popup');
             if (!consent) {
-                document.getElementById('cookie-popup').style.display = 'flex';
+                popup.style.display = 'flex';
             } else {
-                try {
-                    const consentObj = JSON.parse(consent);
-                    if (consentObj.status === 'accepted' || consentObj.status === 'rejected') {
-                        document.getElementById('cookie-popup').style.display = 'none';
-                    } else {
-                        document.getElementById('cookie-popup').style.display = 'flex';
-                    }
-                } catch {
-                    document.getElementById('cookie-popup').style.display = 'flex';
-                }
+                popup.style.setProperty('display', 'none', 'important');
             }
         }
 
