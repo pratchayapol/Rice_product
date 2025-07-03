@@ -130,34 +130,38 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </div>
 
     <!-- Modal popup สำหรับจัดการ preferences -->
-    <div id="preferences-modal" class="pm-wrapper cc--anim" style="display:none;">
-        <div class="pm-overlay"></div>
-        <div class="pm pm--box" role="dialog" aria-hidden="false" aria-modal="true" aria-labelledby="pm__title">
-            <div tabindex="-1"></div>
-            <div class="pm__header">
-                <h2 class="pm__title" id="pm__title">Cookie Settings</h2>
-                <button type="button" class="pm__close-btn" aria-label="Close modal" onclick="closePreferencesModal()">
-                    <span>
-                        <svg viewBox="0 0 24 24" stroke-width="1.5">
-                            <path d="M 19.5 4.5 L 4.5 19.5 M 4.5 4.501 L 19.5 19.5"></path>
-                        </svg>
-                    </span>
+    <div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[80vh] overflow-auto p-6 relative">
+            <!-- Header -->
+            <div class="flex justify-between items-center border-b pb-3">
+                <h2 id="pm__title" class="text-xl font-semibold">Cookie Settings</h2>
+                <button
+                    type="button"
+                    aria-label="Close modal"
+                    onclick="closePreferencesModal()"
+                    class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19.5 4.5L4.5 19.5M4.5 4.5L19.5 19.5"></path>
+                    </svg>
                 </button>
             </div>
-            <div class="pm__body">
-                <!-- ใส่เนื้อหาของ modal ที่คุณให้มาไว้ตรงนี้ -->
-                <!-- ... ตัวอย่างตัดมาเพื่อความกระชับ ... -->
-                <p class="pm__section-desc">I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="https://www.ricethailand.go.th/page/27011" target="_blank" class="cc-link">privacy policy</a>.</p>
-                <!-- ... เพิ่มเติมเนื้อหาอื่น ๆ ตามที่คุณให้มาได้เลย -->
+
+            <!-- Body -->
+            <div class="mt-4 text-gray-700">
+                <p class="mb-4">
+                    I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full
+                    <a href="https://www.ricethailand.go.th/page/27011" target="_blank" class="text-blue-600 underline hover:text-blue-800">privacy policy</a>.
+                </p>
+                <!-- เพิ่มส่วนอื่นๆ ตามเนื้อหาที่คุณให้มาได้เลย -->
             </div>
-            <div class="pm__footer">
-                <div class="pm__btn-group">
-                    <button type="button" class="pm__btn" data-role="all" onclick="acceptCookiesFromModal()">Accept all</button>
-                    <button type="button" class="pm__btn" data-role="necessary" onclick="rejectCookiesFromModal()">Reject all</button>
+
+            <!-- Footer -->
+            <div class="mt-6 flex justify-between border-t pt-4">
+                <div class="space-x-3">
+                    <button onclick="acceptCookiesFromModal()" class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition">Accept all</button>
+                    <button onclick="rejectCookiesFromModal()" class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition">Reject all</button>
                 </div>
-                <div class="pm__btn-group">
-                    <button type="button" class="pm__btn pm__btn--secondary" data-role="save" onclick="saveSettings()">Save settings</button>
-                </div>
+                <button onclick="saveSettings()" class="bg-gray-100 text-gray-800 py-2 px-4 rounded hover:bg-gray-200 transition">Save settings</button>
             </div>
         </div>
     </div>
