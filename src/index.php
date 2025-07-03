@@ -43,90 +43,67 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             padding: 0;
         }
 
-        #cookie-popup {
+        .cm {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            max-width: 800px;
-            width: 90%;
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
             z-index: 9999;
-            display: none;
+            padding: 20px;
         }
 
-        #cookie-popup .cookie-text {
-            flex: 1;
-            margin-right: 20px;
+        .cm__title {
+            margin-top: 0;
+            font-size: 18px;
+            font-weight: bold;
         }
 
-        #cookie-popup .cookie-text h4 {
-            margin: 0 0 8px;
-            font-size: 16px;
-        }
-
-        #cookie-popup .cookie-text p {
-            margin: 0;
+        .cm__desc {
             font-size: 14px;
-            color: #333;
-            line-height: 1.4;
+            margin-bottom: 15px;
         }
 
-        #cookie-popup .cookie-buttons {
+        .cc-link {
+            background: none;
+            border: none;
+            color: #007BFF;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+        }
+
+        .cm__btns {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
-        .cookie-btn {
-            padding: 10px 16px;
-            font-size: 14px;
+        .cm__btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cm__btn {
+            background-color: #007BFF;
+            color: white;
             border: none;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s ease;
+            font-size: 14px;
         }
 
-        .accept-btn {
-            background-color: #333;
-            color: white;
-        }
-
-        .accept-btn:hover {
-            background-color: #555;
-        }
-
-        .reject-btn {
-            background-color: #333;
-            color: white;
-        }
-
-        .reject-btn:hover {
-            background-color: #555;
-        }
-
-        .manage-btn {
-            background-color: #f1f3f5;
-            color: #333;
-            border: 1px solid #ccc;
-        }
-
-        .manage-btn:hover {
-            background-color: #e2e6ea;
-        }
-
-        /* สำหรับหน้าจอกว้าง ปุ่มเรียงแนวนอน */
-        @media (min-width: 600px) {
-            #cookie-popup .cookie-buttons {
-                flex-direction: row;
-            }
+        .cm__btn--secondary {
+            background-color: #6c757d;
         }
     </style>
 </head>
@@ -189,50 +166,45 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
-    <div id="cookie-popup">
-        <div class="cookie-text">
-            <h4>We use cookies</h4>
-            <p>
-                Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
-            </p>
-        </div>
-        <div class="cookie-buttons">
-            <button class="cookie-btn accept-btn" onclick="acceptCookies()">Accept all</button>
-            <button class="cookie-btn reject-btn" onclick="rejectCookies()">Reject all</button>
-            <button class="cookie-btn manage-btn" onclick="managePreferences()">Manage Individual preferences</button>
+
+    <div class="cm" role="dialog" aria-modal="true" aria-describedby="cm__desc" aria-labelledby="cm__title">
+        <div class="cm__body">
+            <div class="cm__texts">
+                <h2 id="cm__title" class="cm__title">เราใช้คุกกี้</h2>
+                <p id="cm__desc" class="cm__desc">
+                    สวัสดี เว็บไซต์นี้ใช้คุกกี้ที่จำเป็นเพื่อให้แน่ใจว่าทำงานได้อย่างถูกต้อง และคุกกี้สำหรับติดตามเพื่อทำความเข้าใจว่าคุณโต้ตอบกับเว็บไซต์อย่างไร คุกกี้จะถูกตั้งค่าหลังจากได้รับความยินยอมเท่านั้น
+                    <button type="button" id="btn-settings" class="cc-link">ให้ฉันเลือก</button>
+                </p>
+            </div>
+            <div class="cm__btns">
+                <div class="cm__btn-group">
+                    <button type="button" class="cm__btn" onclick="acceptAll()">ยอมรับทั้งหมด</button>
+                    <button type="button" class="cm__btn" onclick="rejectAll()">ปฏิเสธทั้งหมด</button>
+                </div>
+                <div class="cm__btn-group">
+                    <button type="button" class="cm__btn cm__btn--secondary" onclick="managePreferences()">จัดการการตั้งค่าส่วนบุคคล</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function showCookiePopup() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                document.getElementById('cookie-popup').style.display = 'flex';
-            }
+        function acceptAll() {
+            alert("คุณยอมรับคุกกี้ทั้งหมด");
+            document.querySelector('.cm').style.display = 'none';
         }
 
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            document.getElementById('cookie-popup').style.display = 'none';
-            console.log('Cookies accepted.');
-            // Enable tracking cookies here
-        }
-
-        function rejectCookies() {
-            localStorage.setItem('cookieConsent', 'rejected');
-            document.getElementById('cookie-popup').style.display = 'none';
-            console.log('Cookies rejected.');
-            // Disable tracking cookies here
+        function rejectAll() {
+            alert("คุณปฏิเสธคุกกี้ทั้งหมด");
+            document.querySelector('.cm').style.display = 'none';
         }
 
         function managePreferences() {
-            localStorage.setItem('cookieConsent', 'customize');
-            document.getElementById('cookie-popup').style.display = 'none';
-            alert('Open preferences modal here.');
-            // Open a modal for detailed preferences if needed
+            alert("เปิดหน้าต่างจัดการการตั้งค่า (ตัวอย่าง)");
+            // ที่นี่คุณสามารถเปิด modal หรือไปยังหน้าการตั้งค่า
         }
 
-        window.onload = showCookiePopup;
+        document.getElementById('btn-settings').addEventListener('click', managePreferences);
     </script>
 
     <?php include './loadtab/f.php'; ?>
