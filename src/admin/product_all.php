@@ -113,10 +113,31 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick="exportCSV()"
-                                        class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-full text-sm transition">
+                                        onclick="exportCSV(dataArray, [
+    'food_product_id',
+    'rice_id',
+    'rice_variety_th_name',
+    'rice_variety_en_name',
+    'product_name',
+    'product_group',
+    'category',
+    'rice_variety_group_th_name',
+    'rice_variety_group_en_name',
+    'source_url',
+    'source',
+    'ingredients_and_equipment',
+    'instructions',
+    'ingredients_and_equipment_en',
+    'instructions_en',
+    'product_name_th',
+    'product_name_en',
+    'picture',
+    'genbank_url'
+  ])"
+                                        class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
                                         Export CSV
                                     </button>
+
                                 </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
@@ -345,74 +366,82 @@ $products_medical = $stmt->fetchAll();
 
             </div>
         </div>
-        <script>
-            function exportCSV() {
-                const data = [{
-                        food_product_id: 1,
-                        rice_id: 101,
-                        rice_variety_th_name: "ข้าวหอมมะลิ",
-                        rice_variety_en_name: "Jasmine Rice",
-                        product_name: "ขนมข้าว",
-                        product_group: "ขนม",
-                        category: "อบแห้ง",
-                        rice_variety_group_th_name: "ข้าวหอม",
-                        rice_variety_group_en_name: "Aromatic Rice",
-                        source_url: "https://example.com",
-                        source: "กรมการข้าว",
-                        ingredients_and_equipment: "ข้าว น้ำตาล อุปกรณ์",
-                        instructions: "ต้ม อบ แพ็ค",
-                        ingredients_and_equipment_en: "Rice, sugar, equipment",
-                        instructions_en: "Boil, bake, pack",
-                        product_name_th: "ขนมข้าว",
-                        product_name_en: "Khanom Khao (Rice Snack)",
-                        picture: "image.jpg",
-                        genbank_url: "https://genbank.example.com"
-                    }
-                    // เพิ่มรายการตามต้องการ
-                ];
+       <script>
+    // ตัวอย่างข้อมูล
+    const dataArray = [
+      {
+        food_product_id: 1,
+        rice_id: 101,
+        rice_variety_th_name: "ข้าวหอมมะลิ",
+        rice_variety_en_name: "Jasmine Rice",
+        product_name: "ข้าวตัง",
+        product_group: "ขนม",
+        category: "ของว่าง",
+        rice_variety_group_th_name: "ข้าวหอม",
+        rice_variety_group_en_name: "Aromatic Rice",
+        source_url: "https://example.com",
+        source: "กรมการข้าว",
+        ingredients_and_equipment: "ข้าว, น้ำมัน",
+        instructions: "ทอดจนกรอบ",
+        ingredients_and_equipment_en: "Rice, Oil",
+        instructions_en: "Fry until crispy",
+        product_name_th: "ข้าวตัง",
+        product_name_en: "Khao Tang",
+        picture: "image.jpg",
+        genbank_url: "https://genbank.example.com"
+      },
+      {
+        food_product_id: 2,
+        rice_id: 102,
+        rice_variety_th_name: null, // ทดสอบ null
+        rice_variety_en_name: undefined, // ทดสอบ undefined
+        product_name: "ข้าวเกรียบ",
+        product_group: "ของว่าง",
+        category: "ขนม",
+        rice_variety_group_th_name: "ข้าวเหนียว",
+        rice_variety_group_en_name: "Glutinous Rice",
+        source_url: "",
+        source: "กรมการข้าว",
+        ingredients_and_equipment: "แป้ง, น้ำ",
+        instructions: "อบจนแห้ง",
+        ingredients_and_equipment_en: "",
+        instructions_en: "",
+        product_name_th: "ข้าวเกรียบ",
+        product_name_en: "Khao Krieb",
+        picture: "",
+        genbank_url: ""
+      }
+    ];
 
-                const headers = [
-                    "food_product_id",
-                    "rice_id",
-                    "rice_variety_th_name",
-                    "rice_variety_en_name",
-                    "product_name",
-                    "product_group",
-                    "category",
-                    "rice_variety_group_th_name",
-                    "rice_variety_group_en_name",
-                    "source_url",
-                    "source",
-                    "ingredients_and_equipment",
-                    "instructions",
-                    "ingredients_and_equipment_en",
-                    "instructions_en",
-                    "product_name_th",
-                    "product_name_en",
-                    "picture",
-                    "genbank_url"
-                ];
+    function exportCSV(data, headers) {
+      // สร้างหัวตาราง
+      let csv = headers.join(",") + "\n";
 
-                let csv = headers.join(",") + "\n";
+      // สร้างแต่ละแถว
+      data.forEach(row => {
+        csv += headers
+          .map(field => {
+            // แปลงค่าทุกชนิดให้เป็น string
+            const value = String(row[field] ?? "");
+            // Escape double quotes
+            return `"${value.replace(/"/g, '""')}"`;
+          })
+          .join(",") + "\n";
+      });
 
-                data.forEach(row => {
-                    csv += headers.map(field => `"${(row[field] || "").replace(/"/g, '""')}"`).join(",") + "\n";
-                });
+      // สร้าง Blob สำหรับดาวน์โหลด
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
 
-                // Create a blob and download
-                const blob = new Blob([csv], {
-                    type: "text/csv;charset=utf-8;"
-                });
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-                link.setAttribute("href", url);
-                link.setAttribute("download", "rice_products.csv");
-                link.style.visibility = "hidden";
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        </script>
+      // สร้างลิงก์ดาวน์โหลด
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", "rice_products.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
 
 
 
