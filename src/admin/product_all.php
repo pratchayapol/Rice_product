@@ -113,27 +113,7 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick="exportEmptyCSV_food([
-    'food_product_id',
-    'rice_id',
-    'rice_variety_th_name',
-    'rice_variety_en_name',
-    'product_name',
-    'product_group',
-    'category',
-    'rice_variety_group_th_name',
-    'rice_variety_group_en_name',
-    'source_url',
-    'source',
-    'ingredients_and_equipment',
-    'instructions',
-    'ingredients_and_equipment_en',
-    'instructions_en',
-    'product_name_th',
-    'product_name_en',
-    'picture',
-    'genbank_url'
-  ])"
+                                        onclick="exportSampleCSV_food(headers)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
                                     </button>
@@ -403,9 +383,30 @@ $products_medical = $stmt->fetchAll();
 
 
         <script>
-            function exportEmptyCSV_food(headers) {
-                // สร้างเฉพาะบรรทัดหัวตาราง
-                const csv = headers.join(",") + "\n";
+            function exportSampleCSV_food(headers) {
+                // สร้างข้อมูลตัวอย่าง
+                const sampleData = [
+                    [
+                        "1", "R001", "หอมมะลิ", "Jasmine Rice", "ข้าวกล้องหอมมะลิ", "ข้าว", "ข้าวกล้อง",
+                        "ข้าวหอมมะลิ", "Jasmine Rice", "https://example.com/product1", "กรมการข้าว",
+                        "ข้าวกล้องหอมมะลิ, หม้อหุงข้าว", "ล้างข้าวให้สะอาด แล้วหุงด้วยหม้อหุงข้าว",
+                        "Jasmine brown rice, rice cooker", "Rinse rice and cook with a rice cooker",
+                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "https://example.com/image1.jpg", ""
+                    ],
+                    [
+                        "2", "R002", "ข้าวเหนียวเขาวง", "Khao Wong Glutinous Rice", "ข้าวเหนียวแพ็คสุญญากาศ", "ข้าว", "ข้าวเหนียว",
+                        "ข้าวเหนียว", "Glutinous Rice", "https://example.com/product2", "ชุมชนกลุ่มแม่บ้าน",
+                        "ข้าวเหนียว, ซึ้งนึ่งข้าว", "แช่ข้าว 6 ชั่วโมง แล้วนึ่งให้สุก",
+                        "Sticky rice, steamer", "Soak rice for 6 hours and steam until cooked",
+                        "ข้าวเหนียวสุญญากาศ", "Vacuum-Packed Sticky Rice", "https://example.com/image2.jpg", ""
+                    ]
+                ];
+
+                // สร้างบรรทัด CSV: หัวตาราง + ข้อมูลตัวอย่าง
+                let csv = headers.join(",") + "\n";
+                sampleData.forEach(row => {
+                    csv += row.map(value => `"${value}"`).join(",") + "\n";
+                });
 
                 const blob = new Blob([csv], {
                     type: "text/csv;charset=utf-8;"
@@ -414,12 +415,26 @@ $products_medical = $stmt->fetchAll();
 
                 const link = document.createElement("a");
                 link.setAttribute("href", url);
-                link.setAttribute("download", "CSV_food_products.csv");
+                link.setAttribute("download", "Sample_CSV_food_products.csv");
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
             }
+
+            // ตัวอย่างการเรียกใช้
+            const headers = [
+                "food_product_id", "rice_id", "rice_variety_th_name", "rice_variety_en_name",
+                "product_name", "product_group", "category", "rice_variety_group_th_name",
+                "rice_variety_group_en_name", "source_url", "source",
+                "ingredients_and_equipment", "instructions",
+                "ingredients_and_equipment_en", "instructions_en",
+                "product_name_th", "product_name_en", "picture", "genbank_url"
+            ];
+
+            // เรียกใช้ฟังก์ชันเพื่อดาวน์โหลด
+            // exportSampleCSV_food(headers);
         </script>
+
         <script>
             function exportEmptyCSV_medical(headers) {
                 // สร้างเฉพาะบรรทัดหัวตาราง
