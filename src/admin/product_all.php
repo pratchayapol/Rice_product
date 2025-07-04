@@ -360,7 +360,10 @@ $products_medical = $stmt->fetchAll();
             function handleImportCSV(event) {
                 const file = event.target.files[0];
                 if (!file) {
-                    alert("กรุณาเลือกไฟล์ CSV");
+                    Swal.fire({
+                        icon: "warning",
+                        title: "กรุณาเลือกไฟล์ CSV"
+                    });
                     return;
                 }
 
@@ -377,16 +380,30 @@ $products_medical = $stmt->fetchAll();
                             // แปลข้อความเป็นไทย
                             const matches = result.message.match(/Imported (\d+) rows?/);
                             let count = matches ? matches[1] : "0";
-                            alert("นำเข้าข้อมูลสำเร็จ จำนวน " + count + " รายการ");
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "นำเข้าข้อมูลสำเร็จ",
+                                text: "จำนวน " + count + " รายการ"
+                            });
                         } else {
-                            alert("เกิดข้อผิดพลาด: " + result.message);
+                            Swal.fire({
+                                icon: "error",
+                                title: "เกิดข้อผิดพลาด",
+                                text: result.message
+                            });
                         }
                     })
                     .catch(error => {
                         console.error("Error:", error);
-                        alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
+                        Swal.fire({
+                            icon: "error",
+                            title: "เกิดข้อผิดพลาด",
+                            text: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์"
+                        });
                     });
             }
+
 
 
 
