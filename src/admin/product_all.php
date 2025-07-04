@@ -537,7 +537,7 @@ $products_medical = $stmt->fetchAll();
                         "ข้าวหอมมะลิ", "Jasmine Rice", "วาง url อ้างอิงผลิตภัณฑ์", "ระบุองค์กรหรือแหล่งที่มา",
                         "ข้าวกล้องหอมมะลิ, หม้อหุงข้าว", "ล้างข้าวให้สะอาด แล้วหุงด้วยหม้อหุงข้าว",
                         "Jasmine brown rice, rice cooker", "Rinse rice and cook with a rice cooker",
-                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "วาง url ภาพ หรือเว้นว่างถ้าไม่มี", "ระบุที่มาของข้อมูลใน genbank"
+                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "", "ระบุที่มาของข้อมูลใน genbank"
                     ]
                 ];
 
@@ -583,7 +583,7 @@ $products_medical = $stmt->fetchAll();
                         "ข้าวหอมมะลิ", "Jasmine Rice", "วาง url อ้างอิงผลิตภัณฑ์", "ระบุองค์กรหรือแหล่งที่มา",
                         "ข้าวกล้องหอมมะลิ, หม้อหุงข้าว", "ล้างข้าวให้สะอาด แล้วหุงด้วยหม้อหุงข้าว",
                         "Jasmine brown rice, rice cooker", "Rinse rice and cook with a rice cooker",
-                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "วาง url ภาพ หรือเว้นว่างถ้าไม่มี", "ระบุที่มาของข้อมูลใน genbank"
+                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "", "ระบุที่มาของข้อมูลใน genbank"
                     ]
                 ];
 
@@ -628,7 +628,7 @@ $products_medical = $stmt->fetchAll();
                         "ข้าวหอมมะลิ", "Jasmine Rice", "วาง url อ้างอิงผลิตภัณฑ์", "ระบุองค์กรหรือแหล่งที่มา",
                         "ข้าวกล้องหอมมะลิ, หม้อหุงข้าว", "ล้างข้าวให้สะอาด แล้วหุงด้วยหม้อหุงข้าว",
                         "Jasmine brown rice, rice cooker", "Rinse rice and cook with a rice cooker",
-                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "วาง url ภาพ หรือเว้นว่างถ้าไม่มี", "ระบุที่มาของข้อมูลใน genbank"
+                        "ข้าวกล้องหอมมะลิ", "Jasmine Brown Rice", "", "ระบุที่มาของข้อมูลใน genbank"
                     ]
                 ];
 
