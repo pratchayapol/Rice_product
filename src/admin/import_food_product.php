@@ -88,7 +88,7 @@ try {
             ":instructions_en" => $data[14] ?? null,
             ":product_name_th" => $data[15] ?? null,
             ":product_name_en" => $data[16] ?? null,
-            ":picture" => $data[17] ?? null,
+            ":picture" => (isset($data[17]) && trim($data[17]) !== "") ? $data[17] : null,
             ":genbank_url" => $data[18] ?? null
         ];
         $stmt->execute($params);
