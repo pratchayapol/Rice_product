@@ -107,16 +107,32 @@ $products_medical = $stmt->fetchAll();
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-rose-300 px-4 py-2 rounded-full shadow-md">
                                     ผลิตภัณฑ์อาหาร
                                 </h3>
+                                <!-- แถวบน: ปุ่มเพิ่มผลิตภัณฑ์ -->
                                 <div class="flex justify-end mb-4">
                                     <a href="add_product_food"
                                         class="bg-rose-500 hover:bg-rose-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
-                                    <button
-                                        onclick="exportSampleCSV_food(headers1)"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
-                                        Export CSV
-                                    </button>
+                                </div>
+
+                                <!-- แถวล่าง: Import และ Export -->
+                                <div class="grid grid-cols-2 gap-4">
+                                    <!-- ปุ่ม Import CSV -->
+                                    <div class="flex justify-start">
+                                        <label for="import_csv" class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
+                                            Import CSV
+                                        </label>
+                                        <!-- hidden file input -->
+                                        <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV(event)">
+                                    </div>
+
+                                    <!-- ปุ่ม Export CSV -->
+                                    <div class="flex justify-end">
+                                        <button onclick="exportSampleCSV_food(headers1)"
+                                            class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                            Export CSV
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
@@ -273,7 +289,7 @@ $products_medical = $stmt->fetchAll();
                                         class="bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
-                                   <button
+                                    <button
                                         onclick="exportSampleCSV_food(headers3)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
