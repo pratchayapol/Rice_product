@@ -115,25 +115,21 @@ $products_medical = $stmt->fetchAll();
                                     </a>
                                 </div>
 
-                                <!-- แถวล่าง: Import (ซ้าย) + Export (ขวา) อยู่ใน div เดียวกัน -->
-                                <div class="flex justify-between">
+                                <!-- แถวล่าง: Import + Export ชิดขวาติดกัน -->
+                                <div class="flex justify-end space-x-2">
                                     <!-- ปุ่ม Import CSV -->
-                                    <div>
-                                        <label for="import_csv"
-                                            class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
-                                            Import CSV
-                                        </label>
-                                        <!-- hidden file input -->
-                                        <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV(event)">
-                                    </div>
+                                    <label for="import_csv"
+                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
+                                        Import CSV
+                                    </label>
+                                    <!-- hidden file input -->
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV(event)">
 
                                     <!-- ปุ่ม Export CSV -->
-                                    <div>
-                                        <button onclick="exportSampleCSV_food(headers1)"
-                                            class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
-                                            Export CSV
-                                        </button>
-                                    </div>
+                                    <button onclick="exportSampleCSV_food(headers1)"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
+                                        Export CSV
+                                    </button>
                                 </div>
 
                                 <div class="overflow-x-auto p-6">
