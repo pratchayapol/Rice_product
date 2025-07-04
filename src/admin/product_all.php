@@ -374,7 +374,10 @@ $products_medical = $stmt->fetchAll();
                     .then(response => response.json())
                     .then(result => {
                         if (result.success) {
-                            alert("นำเข้าข้อมูลสำเร็จ");
+                            // แปลข้อความเป็นไทย
+                            const matches = result.message.match(/Imported (\d+) rows?/);
+                            let count = matches ? matches[1] : "0";
+                            alert("นำเข้าข้อมูลสำเร็จ จำนวน " + count + " รายการ");
                         } else {
                             alert("เกิดข้อผิดพลาด: " + result.message);
                         }
@@ -384,6 +387,7 @@ $products_medical = $stmt->fetchAll();
                         alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
                     });
             }
+
 
 
             function exportSampleCSV_food(headers1) {
