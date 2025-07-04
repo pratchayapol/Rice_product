@@ -357,6 +357,35 @@ $products_medical = $stmt->fetchAll();
 
 
         <script>
+            function handleImportCSV(event) {
+                const file = event.target.files[0];
+                if (!file) {
+                    alert("กรุณาเลือกไฟล์ CSV");
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("csv_file", file);
+
+                fetch("import_food_product.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            alert("นำเข้าข้อมูลสำเร็จ");
+                        } else {
+                            alert("เกิดข้อผิดพลาด: " + result.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
+                    });
+            }
+
+
             function exportSampleCSV_food(headers1) {
                 // สร้างข้อมูลตัวอย่าง
                 const sampleData = [
