@@ -126,7 +126,7 @@ $products_medical = $stmt->fetchAll();
                                         Import CSV
                                     </label>
                                     <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV(event)">
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_food(event1)">
 
                                     <!-- ปุ่ม Export CSV -->
                                     <button onclick="exportSampleCSV_food(headers1)"
@@ -203,17 +203,31 @@ $products_medical = $stmt->fetchAll();
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-violet-300 px-4 py-2 rounded-full shadow-md">
                                     ผลิตภัณฑ์เวชสำอาง
                                 </h3>
+                                <!-- แถวบน: ปุ่มเพิ่มผลิตภัณฑ์ -->
                                 <div class="flex justify-end mb-4">
                                     <a href="add_product_cosmetic"
                                         class="bg-violet-500 hover:bg-violet-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
-                                    <button
-                                        onclick="exportSampleCSV_food(headers2)"
+                                </div>
+
+                                <!-- แถวล่าง: Import + Export ชิดขวาติดกัน -->
+                                <div class="flex justify-end space-x-2">
+                                    <!-- ปุ่ม Import CSV -->
+                                    <label for="import_csv"
+                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
+                                        Import CSV
+                                    </label>
+                                    <!-- hidden file input -->
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event2)">
+
+                                    <!-- ปุ่ม Export CSV -->
+                                    <button onclick="exportEmptyCSV_cosmetic(headers2)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
                                     </button>
                                 </div>
+
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable2" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-violet-200 text-gray-800">
@@ -285,17 +299,31 @@ $products_medical = $stmt->fetchAll();
                                 <h3 class="text-xl font-bold text-center text-gray-800 mb-4 bg-sky-300 px-4 py-2 rounded-full shadow-md">
                                     ผลิตภัณฑ์ทางการแพทย์
                                 </h3>
+                                <!-- แถวบน: ปุ่มเพิ่มผลิตภัณฑ์ -->
                                 <div class="flex justify-end mb-4">
                                     <a href="add_product_medical"
                                         class="bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
-                                    <button
-                                        onclick="exportSampleCSV_food(headers3)"
+                                </div>
+
+                                <!-- แถวล่าง: Import + Export ชิดขวาติดกัน -->
+                                <div class="flex justify-end space-x-2">
+                                    <!-- ปุ่ม Import CSV -->
+                                    <label for="import_csv"
+                                        class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
+                                        Import CSV
+                                    </label>
+                                    <!-- hidden file input -->
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event3)">
+
+                                    <!-- ปุ่ม Export CSV -->
+                                    <button onclick="exportEmptyCSV_medical(headers3)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
                                     </button>
                                 </div>
+
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable3" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-sky-200 text-gray-800">
@@ -360,8 +388,8 @@ $products_medical = $stmt->fetchAll();
 
 
         <script>
-            function handleImportCSV(event) {
-                const file = event.target.files[0];
+            function handleImportCSV_food(event1) {
+                const file = event1.target.files[0];
                 if (!file) {
                     Swal.fire({
                         icon: "warning",
@@ -374,6 +402,100 @@ $products_medical = $stmt->fetchAll();
                 formData.append("csv_file", file);
 
                 fetch("import_food_product.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            // แปลข้อความเป็นไทย
+                            const matches = result.message.match(/Imported (\d+) rows?/);
+                            let count = matches ? matches[1] : "0";
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "นำเข้าข้อมูลสำเร็จ",
+                                text: "จำนวน " + count + " รายการ"
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "เกิดข้อผิดพลาด",
+                                text: result.message
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "เกิดข้อผิดพลาด",
+                            text: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์"
+                        });
+                    });
+            }
+
+            function handleImportCSV_medical(event2) {
+                const file = event2.target.files[0];
+                if (!file) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "กรุณาเลือกไฟล์ CSV"
+                    });
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("csv_file", file);
+
+                fetch("import_medical_product.php", {
+                        method: "POST",
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            // แปลข้อความเป็นไทย
+                            const matches = result.message.match(/Imported (\d+) rows?/);
+                            let count = matches ? matches[1] : "0";
+
+                            Swal.fire({
+                                icon: "success",
+                                title: "นำเข้าข้อมูลสำเร็จ",
+                                text: "จำนวน " + count + " รายการ"
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "เกิดข้อผิดพลาด",
+                                text: result.message
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "เกิดข้อผิดพลาด",
+                            text: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์"
+                        });
+                    });
+            }
+
+            function handleImportCSV_cosmetic(event3) {
+                const file = event3.target.files[0];
+                if (!file) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "กรุณาเลือกไฟล์ CSV"
+                    });
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("csv_file", file);
+
+                fetch("import_cosmetic_product.php", {
                         method: "POST",
                         body: formData
                     })
