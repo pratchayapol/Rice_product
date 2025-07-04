@@ -219,7 +219,7 @@ $products_medical = $stmt->fetchAll();
                                         Import CSV
                                     </label>
                                     <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event2)">
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event3)">
 
                                     <!-- ปุ่ม Export CSV -->
                                     <button onclick="exportEmptyCSV_cosmetic(headers2)"
@@ -315,7 +315,7 @@ $products_medical = $stmt->fetchAll();
                                         Import CSV
                                     </label>
                                     <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event3)">
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event2)">
 
                                     <!-- ปุ่ม Export CSV -->
                                     <button onclick="exportEmptyCSV_medical(headers3)"
