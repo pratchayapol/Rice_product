@@ -113,7 +113,7 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick="exportSampleCSV_food(headers)"
+                                        onclick="exportSampleCSV_food(headers1)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
                                     </button>
@@ -192,27 +192,7 @@ $products_medical = $stmt->fetchAll();
                                         เพิ่มผลิตภัณฑ์
                                     </a>
                                     <button
-                                        onclick="exportEmptyCSV_cosmetic([
-    'cosmetic_product_id',
-    'rice_id',
-    'rice_variety_th_name',
-    'rice_variety_en_name',
-    'product_name',
-    'product_group',
-    'category',
-    'rice_variety_group_th_name',
-    'rice_variety_group_en_name',
-    'source_url',
-    'source',
-    'ingredients_and_equipment',
-    'instructions',
-    'ingredients_and_equipment_en',
-    'instructions_en',
-    'product_name_th',
-    'product_name_en',
-    'picture',
-    'genbank_url'
-  ])"
+                                        onclick="exportSampleCSV_food(headers2)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
                                     </button>
@@ -293,28 +273,8 @@ $products_medical = $stmt->fetchAll();
                                         class="bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         เพิ่มผลิตภัณฑ์
                                     </a>
-                                    <button
-                                        onclick="exportEmptyCSV_medical([
-    'medical_product_id',
-    'rice_id',
-    'rice_variety_th_name',
-    'rice_variety_en_name',
-    'product_name',
-    'product_group',
-    'category',
-    'rice_variety_group_th_name',
-    'rice_variety_group_en_name',
-    'source_url',
-    'source',
-    'ingredients_and_equipment',
-    'instructions',
-    'ingredients_and_equipment_en',
-    'instructions_en',
-    'product_name_th',
-    'product_name_en',
-    'picture',
-    'genbank_url'
-  ])"
+                                   <button
+                                        onclick="exportSampleCSV_food(headers3)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
                                     </button>
