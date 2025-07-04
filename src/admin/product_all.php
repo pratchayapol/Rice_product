@@ -126,7 +126,7 @@ $products_medical = $stmt->fetchAll();
                                         Import CSV
                                     </label>
                                     <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_food(event1)">
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_food(event)">
 
                                     <!-- ปุ่ม Export CSV -->
                                     <button onclick="exportSampleCSV_food(headers1)"
@@ -219,7 +219,7 @@ $products_medical = $stmt->fetchAll();
                                         Import CSV
                                     </label>
                                     <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event3)">
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event)">
 
                                     <!-- ปุ่ม Export CSV -->
                                     <button onclick="exportEmptyCSV_cosmetic(headers2)"
@@ -315,7 +315,7 @@ $products_medical = $stmt->fetchAll();
                                         Import CSV
                                     </label>
                                     <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event2)">
+                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event)">
 
                                     <!-- ปุ่ม Export CSV -->
                                     <button onclick="exportEmptyCSV_medical(headers3)"
@@ -388,8 +388,8 @@ $products_medical = $stmt->fetchAll();
 
 
         <script>
-            function handleImportCSV_food(event1) {
-                const file = event1.target.files[0];
+            function handleImportCSV_food(event) {
+                const file = event.target.files[0];
                 if (!file) {
                     Swal.fire({
                         icon: "warning",
@@ -435,8 +435,8 @@ $products_medical = $stmt->fetchAll();
                     });
             }
 
-            function handleImportCSV_medical(event2) {
-                const file = event2.target.files[0];
+            function handleImportCSV_medical(event) {
+                const file = event.target.files[0];
                 if (!file) {
                     Swal.fire({
                         icon: "warning",
@@ -482,8 +482,8 @@ $products_medical = $stmt->fetchAll();
                     });
             }
 
-            function handleImportCSV_cosmetic(event3) {
-                const file = event3.target.files[0];
+            function handleImportCSV_cosmetic(event) {
+                const file = event.target.files[0];
                 if (!file) {
                     Swal.fire({
                         icon: "warning",
