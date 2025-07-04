@@ -398,7 +398,6 @@ $products_medical = $stmt->fetchAll();
                     .then(response => response.json())
                     .then(result => {
                         if (result.success) {
-                            // แปลข้อความเป็นไทย
                             const matches = result.message.match(/Imported (\d+) rows?/);
                             let count = matches ? matches[1] : "0";
 
@@ -406,7 +405,11 @@ $products_medical = $stmt->fetchAll();
                                 icon: "success",
                                 title: "นำเข้าข้อมูลสำเร็จ",
                                 text: "จำนวน " + count + " รายการ"
+                            }).then(() => {
+                                // รีเฟรชหน้าหลังจากกด OK
+                                location.reload();
                             });
+
                         } else {
                             Swal.fire({
                                 icon: "error",
@@ -423,6 +426,7 @@ $products_medical = $stmt->fetchAll();
                             text: "ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์"
                         });
                     });
+
             }
 
             function handleImportCSV_medical(event) {
@@ -445,7 +449,6 @@ $products_medical = $stmt->fetchAll();
                     .then(response => response.json())
                     .then(result => {
                         if (result.success) {
-                            // แปลข้อความเป็นไทย
                             const matches = result.message.match(/Imported (\d+) rows?/);
                             let count = matches ? matches[1] : "0";
 
@@ -453,6 +456,8 @@ $products_medical = $stmt->fetchAll();
                                 icon: "success",
                                 title: "นำเข้าข้อมูลสำเร็จ",
                                 text: "จำนวน " + count + " รายการ"
+                            }).then(() => {
+                                location.reload(); // รีเฟรชหลังจากกด OK
                             });
                         } else {
                             Swal.fire({
@@ -492,7 +497,6 @@ $products_medical = $stmt->fetchAll();
                     .then(response => response.json())
                     .then(result => {
                         if (result.success) {
-                            // แปลข้อความเป็นไทย
                             const matches = result.message.match(/Imported (\d+) rows?/);
                             let count = matches ? matches[1] : "0";
 
@@ -500,6 +504,8 @@ $products_medical = $stmt->fetchAll();
                                 icon: "success",
                                 title: "นำเข้าข้อมูลสำเร็จ",
                                 text: "จำนวน " + count + " รายการ"
+                            }).then(() => {
+                                location.reload(); // 🔄 รีเฟรชหน้าหลังจากผู้ใช้กด OK
                             });
                         } else {
                             Swal.fire({
@@ -518,6 +524,7 @@ $products_medical = $stmt->fetchAll();
                         });
                     });
             }
+
 
 
 
