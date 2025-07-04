@@ -115,11 +115,12 @@ $products_medical = $stmt->fetchAll();
                                     </a>
                                 </div>
 
-                                <!-- แถวล่าง: Import และ Export -->
-                                <div class="grid grid-cols-2 gap-4">
+                                <!-- แถวล่าง: Import (ซ้าย) + Export (ขวา) อยู่ใน div เดียวกัน -->
+                                <div class="flex justify-between">
                                     <!-- ปุ่ม Import CSV -->
-                                    <div class="flex justify-start">
-                                        <label for="import_csv" class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
+                                    <div>
+                                        <label for="import_csv"
+                                            class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
                                             Import CSV
                                         </label>
                                         <!-- hidden file input -->
@@ -127,13 +128,14 @@ $products_medical = $stmt->fetchAll();
                                     </div>
 
                                     <!-- ปุ่ม Export CSV -->
-                                    <div class="flex justify-end">
+                                    <div>
                                         <button onclick="exportSampleCSV_food(headers1)"
                                             class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                             Export CSV
                                         </button>
                                     </div>
                                 </div>
+
                                 <div class="overflow-x-auto p-6">
                                     <table id="productTable1" class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-left">
                                         <thead class="bg-rose-200 text-gray-800">
