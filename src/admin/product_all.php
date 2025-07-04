@@ -119,16 +119,13 @@ $products_medical = $stmt->fetchAll();
                                 </div>
 
                                 <!-- แถวล่าง: Import + Export ชิดขวาติดกัน -->
+                                <!-- FOOD -->
                                 <div class="flex justify-end space-x-2">
-                                    <!-- ปุ่ม Import CSV -->
-                                    <label for="import_csv"
+                                    <label for="import_csv_food"
                                         class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
                                         Import CSV
                                     </label>
-                                    <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_food(event)">
-
-                                    <!-- ปุ่ม Export CSV -->
+                                    <input id="import_csv_food" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_food(event)">
                                     <button onclick="exportSampleCSV_food(headers1)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
@@ -212,16 +209,13 @@ $products_medical = $stmt->fetchAll();
                                 </div>
 
                                 <!-- แถวล่าง: Import + Export ชิดขวาติดกัน -->
+                                <!-- COSMETIC -->
                                 <div class="flex justify-end space-x-2">
-                                    <!-- ปุ่ม Import CSV -->
-                                    <label for="import_csv"
+                                    <label for="import_csv_cosmetic"
                                         class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
                                         Import CSV
                                     </label>
-                                    <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event)">
-
-                                    <!-- ปุ่ม Export CSV -->
+                                    <input id="import_csv_cosmetic" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_cosmetic(event)">
                                     <button onclick="exportEmptyCSV_cosmetic(headers2)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
@@ -309,15 +303,11 @@ $products_medical = $stmt->fetchAll();
 
                                 <!-- แถวล่าง: Import + Export ชิดขวาติดกัน -->
                                 <div class="flex justify-end space-x-2">
-                                    <!-- ปุ่ม Import CSV -->
-                                    <label for="import_csv"
+                                    <label for="import_csv_medical"
                                         class="bg-green-500 hover:bg-green-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow cursor-pointer">
                                         Import CSV
                                     </label>
-                                    <!-- hidden file input -->
-                                    <input id="import_csv" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event)">
-
-                                    <!-- ปุ่ม Export CSV -->
+                                    <input id="import_csv_medical" type="file" accept=".csv" class="hidden" onchange="handleImportCSV_medical(event)">
                                     <button onclick="exportEmptyCSV_medical(headers3)"
                                         class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2 px-4 rounded-full shadow">
                                         Export CSV
