@@ -132,11 +132,12 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </div>
 
     <!-- Modal popup สำหรับจัดการ preferences -->
-    <div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen">
-        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[80vh] overflow-auto p-6 relative">
+    <div id="preferences-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen px-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] overflow-auto p-6 relative">
             <!-- Header -->
             <div class="flex justify-between items-center border-b pb-3">
-                <h2 id="pm__title" class="text-xl font-semibold">Cookie Settings</h2>
+                <h2 id="pm__title" class="text-lg sm:text-xl font-semibold">Cookie Settings</h2>
                 <button
                     type="button"
                     aria-label="Close modal"
@@ -149,7 +150,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             </div>
 
             <!-- Body -->
-            <div class="mt-4 text-gray-700">
+            <div class="mt-4 text-gray-700 text-sm sm:text-base">
                 <p class="mb-4">
                     I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full
                     <a href="https://www.ricethailand.go.th/page/27011" target="_blank" class="text-blue-600 underline hover:text-blue-800">privacy policy</a>.
@@ -158,12 +159,21 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             </div>
 
             <!-- Footer -->
-            <div class="mt-6 flex justify-between border-t pt-4">
-                <div class="space-x-3">
-                    <button onclick="acceptCookiesFromModal()" class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition">Accept all</button>
-                    <button onclick="rejectCookiesFromModal()" class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition">Reject all</button>
+            <div class="mt-6 flex flex-col sm:flex-row sm:justify-between gap-3 border-t pt-4">
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <button onclick="acceptCookiesFromModal()"
+                        class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition w-full sm:w-auto">
+                        Accept all
+                    </button>
+                    <button onclick="rejectCookiesFromModal()"
+                        class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition w-full sm:w-auto">
+                        Reject all
+                    </button>
                 </div>
-                <button onclick="saveSettings()" class="bg-gray-100 text-gray-800 py-2 px-4 rounded hover:bg-gray-200 transition">Save settings</button>
+                <button onclick="saveSettings()"
+                    class="bg-gray-100 text-gray-800 py-2 px-4 rounded hover:bg-gray-200 transition w-full sm:w-auto">
+                    Save settings
+                </button>
             </div>
         </div>
     </div>
