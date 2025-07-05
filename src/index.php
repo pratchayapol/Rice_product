@@ -133,11 +133,11 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
     <!-- Modal popup สำหรับจัดการ preferences -->
     <div id="preferences-modal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen px-4">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] overflow-auto p-6 relative">
+        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen px-2 sm:px-4 py-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[90vh] overflow-auto p-4 sm:p-6 relative">
             <!-- Header -->
             <div class="flex justify-between items-center border-b pb-3">
-                <h2 id="pm__title" class="text-lg sm:text-xl font-semibold">Cookie Settings</h2>
+                <h2 id="pm__title" class="text-base sm:text-xl font-semibold">Cookie Settings</h2>
                 <button
                     type="button"
                     aria-label="Close modal"
@@ -152,7 +152,8 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             <!-- Body -->
             <div class="mt-4 text-gray-700 text-sm sm:text-base">
                 <p class="mb-4">
-                    I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full
+                    I use cookies to ensure the basic functionalities of the website and to enhance your online experience.
+                    You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full
                     <a href="https://www.ricethailand.go.th/page/27011" target="_blank" class="text-blue-600 underline hover:text-blue-800">privacy policy</a>.
                 </p>
                 <!-- เพิ่มส่วนอื่นๆ ตามเนื้อหาที่คุณให้มาได้เลย -->
@@ -160,7 +161,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
             <!-- Footer -->
             <div class="mt-6 flex flex-col sm:flex-row sm:justify-between gap-3 border-t pt-4">
-                <div class="flex flex-col sm:flex-row gap-3">
+                <div class="flex flex-col sm:flex-row gap-3 w-full">
                     <button onclick="acceptCookiesFromModal()"
                         class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition w-full sm:w-auto">
                         Accept all
@@ -177,6 +178,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             </div>
         </div>
     </div>
+
 
     <script>
         function showCookiePopup() {
