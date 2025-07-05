@@ -10,7 +10,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     <meta name="description" content="ฐานข้อมูลผลิตภัณฑ์ข้าวและการแปรรูป แหล่งข้อมูลครอบคลุมสำหรับผู้ประกอบการ นักวิจัย และผู้สนใจเรื่องข้าว.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rice Product Processing Database</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Custom fonts for this template-->
     <link rel="shortcut icon" href="./image/favicon.ico" type="image/x-icon">
