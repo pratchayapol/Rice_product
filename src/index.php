@@ -133,8 +133,8 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
 
     <!-- Modal popup สำหรับจัดการ preferences -->
     <div id="preferences-modal"
-        class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen px-2 sm:px-4 py-4">
-        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg max-h-[90vh] overflow-auto p-4 sm:p-6 relative">
+        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-start z-50 hidden min-h-screen px-2 py-4 overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg p-4 sm:p-6 mt-8">
             <!-- Header -->
             <div class="flex justify-between items-center border-b pb-3">
                 <h2 id="pm__title" class="text-base sm:text-xl font-semibold">Cookie Settings</h2>
