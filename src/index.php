@@ -97,12 +97,12 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
     </div>
 
-    <!-- Cookie popup (เดิม) -->
+    <!-- Cookie popup (ปรับ responsive) -->
     <div
         id="cookie-popup"
-        class="fixed bottom-10 left-1/2 transform -translate-x-1/2 max-w-3xl w-[800px] bg-white rounded-lg shadow-lg flex divide-x divide-gray-200 p-6">
+        class="fixed bottom-4 left-1/2 transform -translate-x-1/2 max-w-full w-[90%] sm:w-[600px] bg-white rounded-lg shadow-lg flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-gray-200 p-4 sm:p-6">
         <!-- ฝั่งซ้ายข้อความ -->
-        <div class="flex-1 pr-6">
+        <div class="flex-1 sm:pr-6 mb-4 sm:mb-0">
             <h2 class="font-semibold text-gray-900 mb-2">We use cookies</h2>
             <p class="text-sm text-gray-600 leading-relaxed">
                 Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. Let me choose
@@ -110,8 +110,8 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
         </div>
 
         <!-- ฝั่งขวาปุ่ม -->
-        <div class="flex flex-col justify-center pl-6 space-y-3 w-[280px]">
-            <div class="flex space-x-3">
+        <div class="flex flex-col justify-center sm:pl-6 space-y-3 sm:w-[280px] w-full">
+            <div class="flex flex-col sm:flex-row w-full gap-3">
                 <button
                     class="flex-1 bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition"
                     onclick="acceptCookies()">
@@ -132,8 +132,8 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
     </div>
 
     <!-- Modal popup สำหรับจัดการ preferences -->
-    <div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen">
-        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[80vh] overflow-auto p-6 relative">
+    <div id="preferences-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden min-h-screen px-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[80vh] overflow-auto p-4 sm:p-6 relative">
             <!-- Header -->
             <div class="flex justify-between items-center border-b pb-3">
                 <h2 id="pm__title" class="text-xl font-semibold">Cookie Settings</h2>
@@ -158,8 +158,8 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             </div>
 
             <!-- Footer -->
-            <div class="mt-6 flex justify-between border-t pt-4">
-                <div class="space-x-3">
+            <div class="mt-6 flex flex-col sm:flex-row justify-between border-t pt-4 gap-3">
+                <div class="flex gap-3 flex-col sm:flex-row">
                     <button onclick="acceptCookiesFromModal()" class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition">Accept all</button>
                     <button onclick="rejectCookiesFromModal()" class="bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 transition">Reject all</button>
                 </div>
@@ -167,6 +167,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
             </div>
         </div>
     </div>
+
 
     <script>
         function showCookiePopup() {
