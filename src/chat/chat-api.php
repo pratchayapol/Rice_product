@@ -4,7 +4,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $message = $data['message'] ?? '';
 
 // เรียก Rasa (เปลี่ยน URL ตาม Docker network)
-$url = 'http://rasa:5005/webhooks/rest/webhook';
+$url = 'http://100.99.99.99:5005/webhooks/rest/webhook';
 $payload = json_encode([
     "sender" => "web_user",
     "message" => $message
