@@ -1,0 +1,19 @@
+intents:
+  - greet
+  - ask_calories
+
+
+actions:
+  - action_query_rice_data
+
+
+responses:
+  utter_greet:
+    - text: "สวัสดีค่ะ ยินดีต้อนรับสู่ระบบโภชนาการข้าวไทยค่ะ"
+  utter_ask_calories:
+    - text: "ข้าวหอมมะลิมีแคลอรี่ประมาณ 130 kcal ต่อ 100 กรัมค่ะ"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+

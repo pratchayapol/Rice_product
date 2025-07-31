@@ -1,0 +1,17 @@
+version: "3.1"
+
+rules:
+- rule: ตอบคำทักทาย
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: ถามแคลอรี่
+  steps:
+  - intent: ask_calories
+  - action: utter_ask_calories
+
+- rule: ดึงข้อมูลโภชนาการหรือสารอาหารจากทุกตาราง
+  steps:
+  - intent: ask_rice_info
+  - action: action_query_rice_data

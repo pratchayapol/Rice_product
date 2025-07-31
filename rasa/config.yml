@@ -1,0 +1,10 @@
+language: th
+
+pipeline:
+  - name: "JiebaTokenizer"
+  - name: "CountVectorsFeaturizer"
+  - name: "DIETClassifier"
+  - name: "FallbackClassifier"
+
+policies:
+  - name: RulePolicy
