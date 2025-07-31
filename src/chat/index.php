@@ -43,7 +43,7 @@
 
       // เรียก API (คุณสามารถเปลี่ยน URL นี้ไปยัง PHP หรือ Rasa API)
       try {
-        const res = await fetch('/chat-api.php', {
+        const res = await fetch('/chat/chat-api.php', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message })
