@@ -1,7 +1,7 @@
 version: "3.1"
 
 stories:
-- rule: ตอบคำถามทั่วไปด้วย AI
+- story: ตอบคำถามทั่วไปด้วย AI
   steps:
     - intent: ask_general
     - action: action_ask_cohere
