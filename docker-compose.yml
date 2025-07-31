@@ -95,7 +95,7 @@ services:
       ecp_req_network:
         ipv4_address: 192.168.129.7
     depends_on:
-      - mariadb - mariadb
+      - mariadb
 
 networks:
   ecp_req_network:
