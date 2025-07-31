@@ -1,17 +1,7 @@
 version: "3.1"
 
 stories:
-- story: greet path
+- rule: ตอบคำถามทั่วไปด้วย AI
   steps:
-  - intent: greet
-  - action: utter_greet
-
-- story: ask calories path
-  steps:
-  - intent: ask_calories
-  - action: utter_ask_calories
-
-- story: ask rice info path
-  steps:
-  - intent: ask_rice_info
-  - action: utter_ask_rice_info
+    - intent: ask_general
+    - action: action_ask_cohere

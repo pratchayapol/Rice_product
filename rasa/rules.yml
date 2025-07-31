@@ -1,17 +1,7 @@
 version: "3.1"
 
 rules:
-- rule: ตอบคำทักทาย
+- rule: ตอบคำถามทั่วไปด้วย AI
   steps:
-  - intent: greet
-  - action: utter_greet
-
-- rule: ถามแคลอรี่
-  steps:
-  - intent: ask_calories
-  - action: utter_ask_calories
-
-- rule: ดึงข้อมูลโภชนาการหรือสารอาหารจากทุกตาราง
-  steps:
-  - intent: ask_rice_info
-  - action: action_query_rice_data
+    - intent: ask_general
+    - action: action_ask_cohere

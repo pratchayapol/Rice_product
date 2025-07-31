@@ -6,7 +6,7 @@ intents:
 
 
 actions:
-  - action_query_rice_data
+  - action_ask_cohere
 
 
 responses:
