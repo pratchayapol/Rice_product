@@ -1,10 +1,12 @@
-language: th
+language: "th"
 
 pipeline:
-  - name: "JiebaTokenizer"
-  - name: "CountVectorsFeaturizer"
-  - name: "DIETClassifier"
-  - name: "FallbackClassifier"
+  - name: WhitespaceTokenizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: DIETClassifier
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
 
 policies:
   - name: RulePolicy

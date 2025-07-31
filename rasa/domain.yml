@@ -1,6 +1,8 @@
 intents:
   - greet
   - ask_calories
+  - ask_rice_info
+
 
 
 actions:
@@ -12,7 +14,9 @@ responses:
     - text: "สวัสดีค่ะ ยินดีต้อนรับสู่ระบบโภชนาการข้าวไทยค่ะ"
   utter_ask_calories:
     - text: "ข้าวหอมมะลิมีแคลอรี่ประมาณ 130 kcal ต่อ 100 กรัมค่ะ"
-
+  utter_ask_rice_info:
+    - text: "ข้อมูลเกี่ยวกับข้าวที่คุณต้องการคืออะไรครับ?"
+    
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
