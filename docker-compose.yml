@@ -80,23 +80,24 @@ services:
       ecp_req_network:
         ipv4_address: 192.168.129.6
 
-  rasa:
-    build:
-      context: ./rasa
-      dockerfile: Dockerfile
-    container_name: rasa_bot
-    ports:
-      - "5005:5005"
-    volumes:
-      - ./rasa:/app
-    command: >
-      bash -c "rasa run --enable-api --cors '*' --debug"
-    networks:
-      ecp_req_network:
-        ipv4_address: 192.168.129.7
-    depends_on:
+rasa:
+  build:
+    context: ./rasa
+    dockerfile: Dockerfile
+  container_name: rasa_bot
+  ports:
+    - "5005:5005"
+  volumes:
+    - ./rasa:/app
+  command: >
+    bash -c "rasa train && rasa run --enable-api --cors '*' --debug"
+  networks:
+    ecp_req_network:
+      ipv4_address: 192.168.129.7
+  depends_on:
+    - mariadb
       - mariadb
-      
+
 networks:
   ecp_req_network:
     driver: bridge
