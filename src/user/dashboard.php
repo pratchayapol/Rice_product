@@ -309,7 +309,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <div
         id="chat-icon"
         class="fixed bottom-5 right-5 w-16 h-16 cursor-pointer z-50 group"
-        title="สอบถามข้อมูลแปรรูปผลิตภัณฑ์ข้าว001">
+        title="">
         <img src="/image/chat.png" alt="Chat Icon" class="w-full h-full" />
         <!-- Tooltip -->
         <div
