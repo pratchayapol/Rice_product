@@ -406,7 +406,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             chatInput.value = '';
             chatSendBtn.disabled = true;
             try {
-                const response = await fetch('https://rice_product_chat.pcnone.com/api/chat', {
+                const response = await fetch('https://rice_product_chat.pcnone.com/api', {
                     method: 'POST',
                     headers: {
                         accept: 'application/json',
