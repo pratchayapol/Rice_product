@@ -12,11 +12,11 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # ตั้งค่าฐานข้อมูล
 db_config = {
-    'host': os.getenv("DB_HOST"),
-    'user': os.getenv("DB_USER"),
-    'password': os.getenv("DB_PASSWORD"),
-    'database': os.getenv("DB_NAME"),
-    'port': int(os.getenv("DB_PORT"))  # แปลง string → int
+    'host': 'mariadb',
+    'user': 'admin',
+    'password': 'rice',
+    'database': 'rice_product',
+    'port': 3306
 }
 
 @app.route('/api/chat', methods=['POST'])
