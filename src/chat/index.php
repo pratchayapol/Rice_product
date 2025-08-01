@@ -10,7 +10,7 @@
     <script>
       window.onload = () => {
         SwaggerUIBundle({
-          url: "/swagger.yaml", // หรือ .json ถ้าคุณใช้ JSON
+          url: "swagger.yaml", // หรือ .json ถ้าคุณใช้ JSON
           dom_id: "#swagger-ui"
         });
       };
