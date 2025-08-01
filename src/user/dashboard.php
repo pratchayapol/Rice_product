@@ -336,8 +336,10 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             </div>
             <div
                 id="chat-messages"
+                style="font-weight: bold;"
                 class="flex-grow border border-gray-300 rounded-md p-3 overflow-y-auto max-h-80 mb-4 space-y-3 text-sm"></div>
             <div class="flex space-x-2">
+
                 <input
                     type="text"
                     id="chat-input"
