@@ -27,11 +27,12 @@ def chat():
 
     # เรียก GPT-3.5
     try:
-        response = openai.ChatCompletion.create(
+        client = openai.OpenAI()
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": user_input}]
         )
-        gpt_response = response.choices[0].message["content"]
+        gpt_response = response.choices[0].message.content
     except Exception as e:
         gpt_response = f"OpenAI Error: {str(e)}"
 
