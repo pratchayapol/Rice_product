@@ -305,7 +305,129 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         fetchProductCounts(); // เรียกครั้งแรกทันที
         setInterval(fetchProductCounts, 1000); // เรียกซ้ำทุก 1 วินาที
     </script>
+    <!-- Chat Icon ลอยมุมขวาล่าง -->
+    <div
+        id="chat-icon"
+        class="fixed bottom-5 right-5 w-16 h-16 cursor-pointer z-50 group"
+        title="สอบถามข้อมูลโภชนาการ">
+        <img src="chat.png" alt="Chat Icon" class="w-full h-full" />
+        <!-- Tooltip -->
+        <div
+            class="absolute bottom-full mb-2 right-0 hidden group-hover:block bg-gray-800 text-white text-sm rounded px-3 py-1 whitespace-nowrap">
+            สอบถามข้อมูลโภชนาการ
+        </div>
+    </div>
 
+    <!-- Modal Overlay -->
+    <div
+        id="chat-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 hidden">
+        <div
+            id="chat-modal-content"
+            class="bg-white rounded-lg w-96 max-w-full flex flex-col p-5 relative">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold">ถามตอบข้อมูลโภชนาการ</h2>
+                <button
+                    id="chat-modal-close"
+                    class="text-2xl font-bold text-gray-700 hover:text-gray-900"
+                    aria-label="Close">
+                    &times;
+                </button>
+            </div>
+            <div
+                id="chat-messages"
+                class="flex-grow border border-gray-300 rounded-md p-3 overflow-y-auto max-h-80 mb-4 space-y-3 text-sm"></div>
+            <div class="flex space-x-2">
+                <input
+                    type="text"
+                    id="chat-input"
+                    placeholder="พิมพ์ข้อความที่นี่..."
+                    class="flex-grow border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <button
+                    id="chat-send-btn"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50">
+                    ส่ง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatIcon = document.getElementById('chat-icon');
+        const chatModal = document.getElementById('chat-modal');
+        const chatClose = document.getElementById('chat-modal-close');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatSendBtn = document.getElementById('chat-send-btn');
+
+        // เปิด modal
+        chatIcon.addEventListener('click', () => {
+            chatModal.classList.remove('hidden');
+            chatInput.focus();
+        });
+
+        // ปิด modal
+        chatClose.addEventListener('click', () => {
+            chatModal.classList.add('hidden');
+            chatMessages.innerHTML = ''; // เคลียร์ข้อความเก่า
+            chatInput.value = '';
+        });
+
+        // ฟังก์ชันเพิ่มข้อความใน chat
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.classList.add('message', 'whitespace-pre-wrap');
+            if (sender === 'user') {
+                div.classList.add('text-right', 'text-blue-600');
+            } else {
+                div.classList.add('text-left', 'text-green-600');
+            }
+            div.textContent = text;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // ส่งข้อความไป API
+        async function sendMessage(message) {
+            addMessage(message, 'user');
+            chatInput.value = '';
+            chatSendBtn.disabled = true;
+            try {
+                const response = await fetch('https://rice_product_chat.pcnone.com/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message
+                    }),
+                });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                addMessage(data.gpt_response, 'bot');
+            } catch (error) {
+                addMessage('เกิดข้อผิดพลาดในการเชื่อมต่อ API', 'bot');
+            } finally {
+                chatSendBtn.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+        // Event ส่งข้อความ
+        chatSendBtn.addEventListener('click', () => {
+            const msg = chatInput.value.trim();
+            if (msg) sendMessage(msg);
+        });
+
+        // กด Enter ส่งข้อความ
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                chatSendBtn.click();
+            }
+        });
+    </script>
 
 
     <?php include '../loadtab/f.php'; ?>
