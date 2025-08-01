@@ -12,11 +12,11 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # ตั้งค่าฐานข้อมูล
 db_config = {
-    'host': 'localhost',        # หรือใช้ '127.0.0.1' หรือชื่อ container ถ้าใช้ภายใน Docker network
-    'user': 'admin',
-    'password': 'rice',
-    'database': 'rice_product',
-    'port': 3307                # เนื่องจากคุณแมปพอร์ตภายนอกเป็น 3307:3306
+    'host': os.getenv("DB_HOST"),
+    'user': os.getenv("DB_USER"),
+    'password': os.getenv("DB_PASSWORD"),
+    'database': os.getenv("DB_NAME"),
+    'port': int(os.getenv("DB_PORT"))  # แปลง string → int
 }
 
 @app.route('/api/chat', methods=['POST'])
