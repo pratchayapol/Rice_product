@@ -23,8 +23,9 @@ db_config = {
 def chat():
     data = request.get_json()
     user_input = data.get("message", "")
+    tables = data.get("tables", ["food_product"])  # รับชื่อ tables เป็น list
     gpt_response = ""
-    db_data = []
+    db_data = {}
 
     # เรียก GPT-3.5
     try:
@@ -37,22 +38,24 @@ def chat():
     except Exception as e:
         gpt_response = f"OpenAI Error: {str(e)}"
 
-    # ดึงข้อมูลจาก MySQL
+    # ดึงข้อมูลจากหลายตาราง
     try:
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM products")
-        db_data = cursor.fetchall()
+        for table in tables:
+            cursor.execute(f"SELECT * FROM {table}")
+            db_data[table] = cursor.fetchall()
         cursor.close()
         conn.close()
     except Exception as e:
-        db_data = [{"error": str(e)}]
+        db_data = {"error": str(e)}
 
     return jsonify({
         "input": user_input,
         "gpt_response": gpt_response,
         "db_data": db_data
     })
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
