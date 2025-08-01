@@ -386,10 +386,19 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             chatInput.value = '';
         });
 
+        // ปิด modal เมื่อคลิกนอกกล่อง chat modal (optional)
+        chatModal.addEventListener('click', (e) => {
+            if (e.target === chatModal) {
+                chatModal.classList.add('hidden');
+                chatMessages.innerHTML = '';
+                chatInput.value = '';
+            }
+        });
+
         // ฟังก์ชันเพิ่มข้อความใน chat
         function addMessage(text, sender) {
             const div = document.createElement('div');
-            div.classList.add('message', 'whitespace-pre-wrap');
+            div.classList.add('message', 'whitespace-pre-wrap', 'break-words');
             if (sender === 'user') {
                 div.classList.add('text-right', 'text-blue-600');
             } else {
@@ -402,9 +411,12 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
         // ส่งข้อความไป API
         async function sendMessage(message) {
+            if (!message) return; // ป้องกันส่งข้อความว่าง
+
             addMessage(message, 'user');
             chatInput.value = '';
             chatSendBtn.disabled = true;
+
             try {
                 const response = await fetch('https://rice_product_chat.pcnone.com/api/chat', {
                     method: 'POST',
@@ -416,8 +428,11 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
                         message
                     }),
                 });
+
                 if (!response.ok) throw new Error('Network response was not ok');
+
                 const data = await response.json();
+
                 addMessage(data.gpt_response, 'bot');
             } catch (error) {
                 addMessage('เกิดข้อผิดพลาดในการเชื่อมต่อ API', 'bot');
@@ -427,20 +442,21 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             }
         }
 
-        // Event ส่งข้อความ
+        // Event ส่งข้อความเมื่อคลิกปุ่มส่ง
         chatSendBtn.addEventListener('click', () => {
             const msg = chatInput.value.trim();
             if (msg) sendMessage(msg);
         });
 
-        // กด Enter ส่งข้อความ
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+        // กด Enter เพื่อส่งข้อความ
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 chatSendBtn.click();
             }
         });
     </script>
+
     <?php include '../loadtab/f.php'; ?>
 </body>
 
