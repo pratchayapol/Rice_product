@@ -322,12 +322,12 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
     <div
         id="chat-icon"
         class="fixed bottom-5 right-5 w-16 h-16 cursor-pointer z-50 group"
-        title="สอบถามข้อมูลโภชนาการ">
+        title="สอบถามข้อมูลแปรรูปผลิตภัณฑ์ข้าว">
         <img src="/image/chat.png" alt="Chat Icon" class="w-full h-full" />
         <!-- Tooltip -->
         <div
             class="absolute bottom-full mb-2 right-0 hidden group-hover:block bg-gray-800 text-white text-sm rounded px-3 py-1 whitespace-nowrap">
-            สอบถามข้อมูลโภชนาการ
+            สอบถามข้อมูลแปรรูปผลิตภัณฑ์ข้าว
         </div>
     </div>
 
@@ -339,7 +339,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
             id="chat-modal-content"
             class="bg-white rounded-lg w-96 max-w-full flex flex-col p-5 relative">
             <div class="flex justify-between items-center mb-4">
-                <h2 class="text-lg font-semibold">ถามตอบข้อมูลโภชนาการ</h2>
+                <h2 class="text-lg font-semibold">ถามตอบข้อมูลแปรรูปผลิตภัณฑ์ข้าว</h2>
                 <button
                     id="chat-modal-close"
                     class="text-2xl font-bold text-gray-700 hover:text-gray-900"
