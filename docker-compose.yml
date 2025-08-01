@@ -88,7 +88,7 @@ services:
     ports:
       - "5000:5000"
     env_file:
-      - .env
+      - ./flaskapp/.env
     volumes:
       - ./flaskapp:/app
     working_dir: /app
