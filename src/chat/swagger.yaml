@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: PHP ChatGPT API
+  version: 1.0.0
+  description: REST API สำหรับเชื่อมต่อ GPT และ MySQL
+servers:
+  - url: http://localhost:5000/api
+
+paths:
+  /chat:
+    post:
+      summary: ส่งข้อความไปยัง GPT และดึงข้อมูลจาก MySQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: "สวัสดี"
+      responses:
+        '200':
+          description: การตอบกลับจาก GPT และข้อมูลจากฐานข้อมูล
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  input:
+                    type: string
+                  gpt_response:
+                    type: string
+                  db_data:
+                    type: array
+                    items:
+                      type: object

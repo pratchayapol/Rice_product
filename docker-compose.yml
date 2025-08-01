@@ -80,22 +80,24 @@ services:
       ecp_req_network:
         ipv4_address: 192.168.129.6
 
-  rasa:
+  flaskapp:
     build:
-      context: ./rasa
+      context: ./flaskapp
       dockerfile: Dockerfile
-    container_name: rasa_bot
+    container_name: flask_app
     ports:
-      - "5005:5005"
+      - "5000:5000"
+    env_file:
+      - ./flaskapp/.env
     volumes:
-      - ./rasa:/app
-    command: >
-      bash -c "rasa train && rasa run --enable-api --cors '*' --debug"
+      - ./flaskapp:/app
+    working_dir: /app
+    depends_on:
+      - mariadb
     networks:
       ecp_req_network:
         ipv4_address: 192.168.129.7
-    depends_on:
-      - mariadb
+    restart: unless-stopped
 
 networks:
   ecp_req_network:
