@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: REST API สำหรับเชื่อมต่อ GPT และ MySQL
 servers:
-  - url: https://rice_product_chat.pcnone.com/api/chat
+  - url: https://rice_product_chat.pcnone.com/api
 
 paths:
   /chat:
