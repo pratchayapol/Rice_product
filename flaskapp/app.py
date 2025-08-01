@@ -15,7 +15,8 @@ db_config = {
     'host': os.getenv("DB_HOST"),
     'user': os.getenv("DB_USER"),
     'password': os.getenv("DB_PASSWORD"),
-    'database': os.getenv("DB_NAME")
+    'database': os.getenv("DB_NAME"),
+    'port': 3307
 }
 
 @app.route('/api/chat', methods=['POST'])
@@ -27,7 +28,7 @@ def chat():
 
     # เรียก GPT-3.5
     try:
-        client = openai.OpenAI()
+        client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": user_input}]
