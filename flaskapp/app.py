@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import openai
 import mysql.connector
 import os
 
 app = Flask(__name__)
+CORS(app)  # ✅ เปิด CORS
 
 # ดึง API KEY จาก ENV
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -36,7 +38,7 @@ def chat():
     # ดึงข้อมูลจาก MySQL
     try:
         conn = mysql.connector.connect(**db_config)
-        cursor = conn.cursor(dictionary=True)  # ให้ผลลัพธ์เป็น dict
+        cursor = conn.cursor(dictionary=True)
         cursor.execute("SELECT * FROM products")
         db_data = cursor.fetchall()
         cursor.close()
