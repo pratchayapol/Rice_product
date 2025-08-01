@@ -16,7 +16,7 @@ db_config = {
     'user': os.getenv("DB_USER"),
     'password': os.getenv("DB_PASSWORD"),
     'database': os.getenv("DB_NAME"),
-    'port': 3307
+    'port': 3306
 }
 
 @app.route('/api/chat', methods=['POST'])
