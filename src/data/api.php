@@ -3,10 +3,14 @@ header('Content-Type: application/json');
 
 $jsonUrl = 'https://riceproduct.pcnone.com/data/rice_data.json';
 
-// อ่านจาก URL
-$jsonData = file_get_contents($jsonUrl);
+// ใช้ cURL โหลด JSON
+$ch = curl_init($jsonUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$jsonData = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
 
-if ($jsonData === false) {
+if ($jsonData === false || $httpCode !== 200) {
     http_response_code(500);
     echo json_encode([
         'json' => [
@@ -17,7 +21,7 @@ if ($jsonData === false) {
     exit;
 }
 
-// แปลง JSON เป็น array
+// แปลง JSON
 $data = json_decode($jsonData, true);
 if ($data === null) {
     http_response_code(500);
@@ -30,7 +34,7 @@ if ($data === null) {
     exit;
 }
 
-// ส่งข้อมูลกลับ
+// ส่งกลับ client
 echo json_encode([
     'json' => [
         'allData' => $data['allData'] ?? []
