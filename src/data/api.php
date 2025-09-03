@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // path ของไฟล์ JSON
-$jsonFile = __DIR__ . 'rice_data.json';
+$jsonFile = __DIR__ . '/rice_data.json';
 
 // ตรวจสอบไฟล์
 if (!file_exists($jsonFile)) {
