@@ -1,29 +1,17 @@
 <?php
 header('Content-Type: application/json');
 
-// path ของไฟล์ JSON
-$jsonFile = __DIR__ . '/rice_data.json';
+$jsonUrl = 'https://riceproduct.pcnone.com/data/rice_data.json';
 
-// ตรวจสอบไฟล์
-if (!file_exists($jsonFile)) {
-    http_response_code(404);
-    echo json_encode([
-        'json' => [
-            'allData' => [],
-            'error' => 'File not found'
-        ]
-    ]);
-    exit;
-}
+// อ่านจาก URL
+$jsonData = file_get_contents($jsonUrl);
 
-// อ่านไฟล์
-$jsonData = file_get_contents($jsonFile);
 if ($jsonData === false) {
     http_response_code(500);
     echo json_encode([
         'json' => [
             'allData' => [],
-            'error' => 'Unable to read JSON file'
+            'error' => 'Unable to fetch JSON from URL'
         ]
     ]);
     exit;
@@ -42,7 +30,7 @@ if ($data === null) {
     exit;
 }
 
-// ส่งข้อมูลกลับ client ตามรูปแบบ
+// ส่งข้อมูลกลับ
 echo json_encode([
     'json' => [
         'allData' => $data['allData'] ?? []
