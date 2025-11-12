@@ -78,7 +78,7 @@ $line_login_url = 'https://liff.line.me/2007460484-WlA3R3By';
                 Sign in with LINE
             </a>
 
-            <a href="/คู่มือการใช้งาน%20เว็บแอปพลิเคชัน%20ฐานข้อมูลแปรรูปผลิตภัณฑ์ข้าว.pdf"
+            <a href="doc/manual_riceproducr.pdf"
                 target="_blank"
                 class="w-full mt-4 px-6 py-3 bg-orange-700 text-white font-medium rounded-lg shadow-md 
           hover:bg-orange-800 hover:shadow-lg transition-all flex items-center justify-center gap-3">
