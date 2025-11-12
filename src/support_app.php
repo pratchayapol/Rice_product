@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>คณะทำงาน RGBA</title>
+    <title>คณะทำงาน TNRGBdb</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -20,7 +20,7 @@
                 คณะทำงาน
             </h1>
             <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto rounded-full"></div>
-            <p class="text-gray-600 mt-4 text-lg">แอปพลิเคชันธนาคารเชื้อพันธุกรรมข้าว Rice Germplasm Bank Application</p>
+            <p class="text-gray-600 mt-4 text-lg">แอปพลิเคชันธนาคารเชื้อพันธุ์ข้าวแห่งชาติ TNRGBdb Application</p>
         </div>
 
         <!-- Developer Cards -->
