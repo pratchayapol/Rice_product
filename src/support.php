@@ -17,10 +17,10 @@
         <!-- Header -->
         <div class="text-center mb-12">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
-                ผู้พัฒนาระบบ
+                คณะทำงาน
             </h1>
             <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto rounded-full"></div>
-            <p class="text-gray-600 mt-4 text-lg">ทีมงานพัฒนาและดูแลระบบ</p>
+            <p class="text-gray-600 mt-4 text-lg">คณะทำงาน แอปพลิเคชันธนาคารเชื้อพันธุกรรมข้าว Rice Germplasm Bank Application</p>
         </div>
 
         <!-- Developer Cards -->
