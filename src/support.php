@@ -33,14 +33,14 @@
                     'name' => 'นางสาวปิยรัตน์ พลยะเรศ',
                     'position' => 'นักวิชาการเกษตรชำนาญการ',
                     'email' => 'piyarat.p@rice.mail.go.th',
-                    'image' => 'path/to/piyarat-image.jpg', // เปลี่ยนเป็น path รูปภาพจริง
+                    'image' => '/image/files-rice-1719538646197.png', // เปลี่ยนเป็น path รูปภาพจริง
                     'color' => 'from-blue-500 to-blue-600'
                 ],
                 [
                     'name' => 'นายปรัชญาพล จำปาลาด',
-                    'position' => 'ตำแหน่ง', // เติมตำแหน่งที่ต้องการ
-                    'email' => '', // เติมอีเมลถ้ามี
-                    'image' => 'path/to/prachayaphon-image.jpg', // เปลี่ยนเป็น path รูปภาพจริง
+                    'position' => 'ผู้ช่วยวิจัย', // เติมตำแหน่งที่ต้องการ
+                    'email' => 'pratchayapol2543@gmail.com', // เติมอีเมลถ้ามี
+                    'image' => '/image/IMG_1629.PNG', // เปลี่ยนเป็น path รูปภาพจริง
                     'color' => 'from-green-500 to-green-600'
                 ]
             ];
