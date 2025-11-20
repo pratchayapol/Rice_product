@@ -43,10 +43,10 @@
                                     "type": "object",
                                     "properties": {
                                         "client_id": {
-                                            "type": "string"
+                                            "type": "4cxr9vqrcu98d47"
                                         },
                                         "client_secret": {
-                                            "type": "string"
+                                            "type": "FpLhAYx496VZWqOPcqP29u9RNF3Z701i59gam0BsiiLs9f6p98F5tlZ04aL3"
                                         }
                                     }
                                 }
