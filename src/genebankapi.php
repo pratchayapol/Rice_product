@@ -33,29 +33,35 @@
         ],
         "paths": {
             "/api/v1/auth/token": {
-                "post": {
-                    "summary": "1.ขอ access token",
-                    "tags": [],
-                    "requestBody": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "client_id": {
-                                            "type": "4cxr9vqrcu98d47"
-                                        },
-                                        "client_secret": {
-                                            "type": "FpLhAYx496VZWqOPcqP29u9RNF3Z701i59gam0BsiiLs9f6p98F5tlZ04aL3"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "responses": {}
-                }
+  "post": {
+    "summary": "1.ขอ access token",
+    "tags": [],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "client_id": {
+                "type": "string"
+              },
+              "client_secret": {
+                "type": "string"
+              }
             },
+            "required": ["client_id", "client_secret"]
+          },
+          "example": {
+            "client_id": "4cxr9vqrcu98d47",
+            "client_secret": "FpLhAYx496VZWqOPcqP29u9RNF3Z701i59gam0BsiiLs9f6p98F5tlZ04aL3"
+          }
+        }
+      }
+    },
+    "responses": {}
+  }
+}
+,
             "/api/v1/rices/public": {
                 "get": {
                     "summary": "2. ใช้ Access Token เพื่อดึงข้อมูลข้าว",
