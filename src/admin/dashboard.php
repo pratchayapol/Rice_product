@@ -319,17 +319,16 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
 
 
     <!-- Chat Icon ลอยมุมขวาล่าง -->
-    <div
+    <!-- <div
         id="chat-icon"
         class="fixed bottom-5 right-5 w-16 h-16 cursor-pointer z-50 group"
         title="">
         <img src="/image/chat.png" alt="Chat Icon" class="w-full h-full" />
-        <!-- Tooltip -->
         <div
             class="absolute bottom-full mb-2 right-0 hidden group-hover:block bg-gray-800 text-white text-sm rounded px-3 py-1 whitespace-nowrap">
             สอบถามข้อมูลแปรรูปผลิตภัณฑ์ข้าว
         </div>
-    </div>
+    </div> -->
 
     <!-- Modal Overlay -->
     <div
